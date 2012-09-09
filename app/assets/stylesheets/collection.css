@@ -1,0 +1,65 @@
+// Place all the styles related to the Collection controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.instruction p, .instruction a{
+font-size: 25px;
+}
+
+#center_title {
+	text-align: center;
+	font-weight:bold;
+}
+
+#scrap_details, #collection_description, #collection_categories, #scrap_categories{
+	text-align: left;
+	font-style:italic;
+	position:relative;
+}
+
+#scrap_name, #collection_title{
+	text-align: left;
+	font-weight: bold;
+}
+
+#scrap_pic{
+display:block;
+margin-left:auto;
+margin-right:auto;
+}
+
+#arrow_forward a, #arrow_backward a{
+	display:block;
+	position:fixed;
+	font-size:18px;
+	font-family:Courier New, monospace;
+}
+
+#arrow_forward a{right:10px;top:1%; display:block; color:white; z-index: 10;}
+#arrow_backward a{left:10px;top:1%;, display:block; color:white; z-index: 10;}
+
+#instruction {
+	position:absolute;
+	top:35%;
+	font-size:30px;
+	margin-right: 25%;
+	margin-left:25%;
+}
+
+#instruction a{
+	font-size:30px;
+}
+
+#inline{
+	display:inline;
+	vertical-align: center;
+	font-size: 12px;
+}
+
+#collection_edit_menu table tr th a {color: white; font-weight: normal; font-size: 11px; font-family: Courier New, monospace;}
+#collection_edit_menu table {position: fixed; left: 30px; bottom: 6px; z-index: 10;}
+
+#account_menu table {position: fixed; right:10px; bottom: 5px; z-index:10;}
+#account_menu table tr th a {color: white; font-weight: normal; font-size: 11px; font-family: Courier New, monospace;}
+
+#select_category_instruction {font-weight: bold;}

@@ -1,0 +1,22 @@
+<div id="arrow_forward">
+	<table summary = "collection menu">
+		<tr>
+			<th> <%= link_to('back to your collection>>', {:action => 'view_collection'})%></th>
+		</tr>
+	</table>
+</div>
+
+<div id="center_title"> <%=@scrap.name%><br/></div><hr>
+
+<table class="collection_details">
+	<tr>
+		<th>
+			<%= link_to('Edit', {:action => 'edit_scrap', :id => @scrap.id})%><br/><br/><br/>
+			<%= link_to('Delete', {:action => 'delete_scrap', :id => @scrap.id})%>
+		</th>
+		<th><div id="scrap_pic"><%= image_tag @scrap.photo.url%></div></th>
+		<th>
+			<div id="scrap_categories"><%= @categories.map { |i| i.to_s }.join(", ") %></div>
+			<div id="scrap_details"><%= simple_format(word_wrap(@scrap.description, 50))%></div></th>
+		</tr>
+	</table>

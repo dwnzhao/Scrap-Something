@@ -1,0 +1,24 @@
+<% @page_title ="Edit Profile"%>
+
+<h1>Edit Profile</h1>
+<hr><br>
+
+<div class = "user_edit">
+
+<%= form_for(:user, :url => {:action => 'update_user'}) do |f| %>
+
+	<%= render(:partial => "profile_form", :locals => {:f => f})%>
+
+	<div class="form-buttons"><%= submit_tag("edit")%> </div>
+
+<% end %>
+
+<br/><br/><br/>
+
+<%= link_to("no thanks. take me back.", {:action => 'profile'})%>
+
+
+</div>
+
+
+

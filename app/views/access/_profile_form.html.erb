@@ -1,0 +1,40 @@
+<%= error_messages_for(@user)%>
+
+<table summary="User form fields">
+	<tr>
+		<th><%= f.label(:first_name, "First Name")%></th>
+		<td><%= f.text_field(:first_name, :size => 30, :maxlength => 40) %></td>
+	</tr>
+	<tr>
+		<th><%= f.label(:last_name, "Last Name")%></th>
+		<td><%= f.text_field(:last_name, :size => 30, :maxlength => 40)%></td>
+	</tr>
+	<tr>
+		<th><%= f.label(:user_name, "User Name")%></th>
+		<td><%= f.text_field(:user_name, :size => 30, :maxlength => 40)%></td>
+	</tr>
+	<tr>
+		<th><%= f.label(:email, "Email")%></th>
+		<td><%= f.text_field(:email, :size => 30, :maxlength => 40)%></td>
+	</tr>
+	<tr>
+		<th><%= f.label(:hashed_password, "Password")%></th>
+		<td><%= f.password_field(:hashed_password, :size => 30, :maxlength => 40)%></td>
+	</tr>
+	<tr>
+		<th><%= f.label(:hashed_password_confirmation, "Retype Password")%></th>
+		<td><%= f.password_field(:hashed_password_confirmation, :size => 30, :maxlength => 40)%></td>
+	</tr>
+	<tr>
+		<th><%= f.label(:company, "Company Name")%></th>
+		<td><%= f.text_field(:company, :size => 30, :maxlength => 40)%></td>
+	</tr>
+	<tr>
+		<th><%= f.label(:website, "Company Website")%></th>
+		<td><%= f.text_field(:website, :size => 30, :maxlength => 40)%></td>
+	</tr>
+	<tr>
+		<th><%= f.label(:metro_area, "Your City")%></th>
+		<td><%= f.text_field(:metro_area, :size => 30, :maxlength => 40)%></td>
+	</tr>
+</table> <br/>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Scrap Something | <%= @page_title || 'Collections' %></title>
+<%= stylesheet_link_tag('collection', 'application', :media => "all" )%>
+<%= javascript_include_tag "application" %>
+<%= csrf_meta_tags %>
+</head>
+
+<body>
+<div id="account_menu">
+<table summary = "account menu">
+	<tr>
+		<th> <%= link_to('Account', {:controller => 'access', :action => 'profile'})%></th>
+		<th> <%= link_to('Log out', {:controller => 'access', :action => 'logout'})%></th>
+	</tr>
+</table>
+</div>
+<br/><br/>
+
+
+<%= yield %>
+
+<div id="collection_edit_menu">
+<table summary = "edit menu">
+	<tr> <th><%= link_to('+Scrap', {:action => 'add_scrap'})%></th>
+	<th><%= link_to('+Pocket', {:action => 'add_pocket'})%></th>
+	<th><%= link_to('Organize', {:action => 'organize_collection'})%></th></tr>
+</table>
+<br/><br/>
+</div>
+
+<div id="left"></div>
+<div id="right"></div>
+<div id="bottom"></div>
+<div id="top"></div>
+
+<br/><br/>
+<div class="notice">
+<% if !flash[:notice].blank?%>
+<%= flash[:notice]%>
+<%end%>
+</div>
+
+
+
+</body>
+</html>

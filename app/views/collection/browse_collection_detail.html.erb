@@ -1,0 +1,24 @@
+<div id="arrow_backward">
+	<table summary = "collection menu">
+		<tr>
+			<th> <%= link_to('<< back to search', {:action => 'browse_collection'})%></th>
+		</tr>
+	</table>
+</div>
+<div id="center_title"> <%=@scrap.name%></div>
+<hr>
+
+<br/>
+
+<table class="collection_details">
+	<tr>
+		<th>
+			<%= link_to('+', {:action => 'bookmark', :controller => 'share', :id => @scrap.id})%>
+		</th>
+		<th><%= image_tag @scrap.photo.url, :size => '80%x80%'%></th>
+		<th>
+			<div id="scrap_categories"><%= @categories.map { |i| i.to_s }.join(", ") %></div>
+			<div id="collection_description"><%= simple_format(word_wrap(@scrap.description, 50))%></div>
+			</th>
+	</tr>
+</table>

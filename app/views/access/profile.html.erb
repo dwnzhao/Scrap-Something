@@ -1,0 +1,38 @@
+<% @page_title ="Profile"%>
+
+<h1>Your Profile </h1>
+
+<% if @user.avatar_file_name%>
+	<%= image_tag @user.avatar.url(:thumb) %>
+<%end%>
+
+<table class="profile">
+<tr>
+	<td> <%= @user.first_name  + " " + @user.last_name %></td>
+</tr>
+<tr>
+	<td> <%= @user.user_name %></td>
+</tr>
+<tr>
+	<td> <%= mail_to(@user.email) %></td>
+</tr>
+<tr>
+	<td> <%= @user.company %> </td>
+</tr>
+<tr>
+	<td> <%= @user.website %> </td>
+</tr>
+<tr>
+	<td> <%= @user.metro_area %> </td>
+</tr>
+</table>
+
+<br/><hr><br/>
+<table summary = "edit profile">
+	<tr>
+		<th> <%= link_to('Edit Profile', {:action => 'edit_profile'})%></th>
+		<th> <%= link_to('Delete Profile', {:action => 'delete_profile'})%></th>
+		<th> <%= link_to('Your Collections', {:controller=> 'collection', :action => 'view_collection'})%></th>
+		<th> <%= link_to('Log Out', {:action => 'logout'})%></th>
+	</tr>
+</table>

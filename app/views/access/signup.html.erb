@@ -1,0 +1,18 @@
+<% @page_title ="Sign Up"%>
+
+<h1>Sign Up</h1>
+<hr><br/>
+
+<div class = "user_new">
+
+<%= form_for(:user, :url => {:action => 'create_user'}) do |f| %>
+
+	<%= render(:partial => "profile_form", :locals => {:f => f})%>
+
+	<div class="form-buttons"><%= submit_tag("Sign Up")%></div>
+
+<% end %>
+
+<br/><br/>
+
+<div id ="navigation_link"> <%= link_to('log in', {:action => 'login'})%> </div>

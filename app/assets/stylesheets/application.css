@@ -1,0 +1,88 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the top of the
+ * compiled file, but it's generally better to create a new file per style scope.
+ *
+ *= require_self
+ */
+
+html { height: 100%; width: 100%;}
+body { 	font-family: Courier New, monospace; text-align: center; color: #181818; }
+table, #form {margin-left: auto; margin-right: auto;}
+table tr th, table tr td, .tag {vertical-align: top; text-align: top; text-decoration: none; font-size: 12px; font-weight: normal;}
+
+img{
+	/* This centers the image */
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+
+	/* This adds the border */
+	padding:4px;
+	border:solid;
+	border-color: #dddddd #aaaaaa #aaaaaa #dddddd;
+	border-width: 1px 2px 2px 1px;
+	background-color:white;
+	
+	}
+
+h1 {text-align: center; font-size: 24px;}
+
+.form-buttons {margin-left: auto; margin-right: auto; display inline;}
+
+a {font-weight: bold;}
+
+hr { 
+  border: 1px dashed;
+  width: 70%;
+  color: #999;
+}
+
+a {
+	text-decoration:none;
+	color:#181818;
+	padding:0 5px 5px;
+	font-size: 12px;
+}
+
+a:hover {
+	color:#909090;
+	font-style:italic;
+}
+
+.notice {
+color: black;
+font-style:italic;
+font-size: 12px;
+}
+
+#bottom, #top {
+	background: #000000;
+	position: fixed;
+	width: 120%;
+	left: -50px;
+	height: 30px;	
+}
+
+#bottom {bottom: 0px;}
+#top {top: 0px}
+
+#errorExplanation, ul li{
+	list-style-type:none;
+	text-decoration:none;
+	font-size:11px;
+	font-family:"Lucida Sans Unicode", "Lucida Grande", sans-serif;
+	color:#F80000;
+	text-align:center;
+}
+
+
+.field_with_errors {
+	color: #F80000;	
+}
+

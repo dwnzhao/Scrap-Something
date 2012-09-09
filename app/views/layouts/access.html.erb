@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Scrap Something | <%= @page_title || 'Home' %></title>
+	<%= stylesheet_link_tag('application', 'access', :media => "all" )%>
+	<%= javascript_include_tag "application" %>
+	<%= csrf_meta_tags %>
+</head>
+<body>
+
+	<br/><br/>
+
+	<div id="left"></div>
+	<div id="right"></div>
+	<div id="top"></div>
+	<div id="bottom"></div>
+	<%= yield %>
+
+	<br/><br/>
+	<div class="notice">
+	<% if !flash[:notice].blank?%>
+		<%= flash[:notice]%>
+		<%end%>
+	</div>
+
+
+</body>
+</html>

@@ -1,0 +1,24 @@
+<h1>Edit</h1>
+<hr>
+
+
+
+<table summary ="collection detail">
+<tr>
+<th> <%= image_tag @scrap.photo.url(:thumb) %> <br/>
+	<%= @scrap.name %>
+</th>
+</tr>
+</table>
+
+<%= form_for(:scrap, :url => {:action => 'update_scrap', :id => @scrap.id}, 
+:html => { :multipart => true, :id => "form" }) do |f| %>
+
+<%= render(:partial => "scrap_form", :locals => {:f => f})%>
+
+<%= submit_tag "Update", :id =>'upload_button' %>
+<% end %>
+
+<br/><br/><br/>
+
+<%= link_to('back to collections', {:action => 'view_collection'})%>

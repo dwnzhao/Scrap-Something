@@ -1,0 +1,35 @@
+<div id="arrow_forward"> <%= link_to('explore >>', {:action => 'browse_collection'})%> </div>
+
+<% if !@collection.blank?%>
+<h1>My Collection</h1><hr>
+<%= render(:partial => "collection_view", :locals => {:detail => 'view_collection_detail'})%>
+<%end%>
+
+<% if !@shared_collection.blank?%>
+<hr>
+<h1>Bookmarked Collection</h1>
+
+<table summary ="bookmarked collection view">
+	<tr>
+		<% @shared_collection.each_with_index do |collection, index|%>
+			<% if !collection.blank? %>
+				<th> <%= link_to image_tag(collection.photo.url(:medium)), {:action => 'browse_bookmarked_collection_detail', :id => collection.id}%><br/>
+				<%= collection.name %>
+				<% if (index+1)%4==0 %>
+					</th> </tr>				
+				<% end %>		
+			<%end%>
+			</th>
+	 	<%end%>
+	</tr>
+</table>
+<% end%>
+
+<% if @collection.blank? && @shared_collection.blank?%>
+<div id = "instruction">	
+	<p>You have a clean slate.
+	<%= link_to('add a scrap', {:action => 'add_scrap'})%>or 
+	<%= link_to('explore', {:action => 'browse_collection'})%> 	
+	</p>
+</div>
+<%end%>

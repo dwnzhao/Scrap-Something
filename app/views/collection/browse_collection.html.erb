@@ -1,0 +1,23 @@
+<div id="arrow_backward"> <%= link_to('<< collection', {:action => 'view_collection'})%> </div>
+
+<br/><br/>
+
+<tr><div id ='inline'> BROWSE &nbsp; </div></tr>
+<table id = "category_table">
+<% @categories.each do |cat| %>
+<tr><%= link_to(cat.name, '#')%>&nbsp;</tr>
+<%end%>	
+
+<tr><div id ='inline'> OR &nbsp; </div></tr>
+
+
+<%= form_tag({:action => 'search'}, :remote => true) do%>
+
+	<%= text_field_tag("search","", :size => 25, :maxlength => 40) %>
+	<%= submit_tag ("search for ideas")%>
+<%end%>
+<hr>
+
+</table>
+
+<%= render(:partial => "collection_view", :locals => {:detail => 'browse_collection_detail'})%>

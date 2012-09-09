@@ -1,0 +1,10 @@
+<h2>Are you sure you want to delete your scrap?</h2>
+
+
+<table summary = "delete scrap confirmation">
+	<tr>
+		<th> <%= link_to('Yes', {:action => 'destroy_scrap', :id => @scrap.id})%></th>
+		<th> <%= link_to('No', {:action => 'view_collection'})%></th>
+	</tr>
+</table>
+<br/><br/>
