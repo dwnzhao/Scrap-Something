@@ -6,7 +6,8 @@ class CreateCategories < ActiveRecord::Migration
       t.timestamps
     end
     add_index("categories", "name")
-    Category.create(:name => 'dress')
+    Category.create(:name => 'dress')    
+    Category.create(:name => 'accessories')
     Category.create(:name => 'cake')
     Category.create(:name => 'decor')
     Category.create(:name => 'stationary')

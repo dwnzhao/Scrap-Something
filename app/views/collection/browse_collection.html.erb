@@ -2,22 +2,23 @@
 
 <br/><br/>
 
-<tr><div id ='inline'> BROWSE &nbsp; </div></tr>
-<table id = "category_table">
-<% @categories.each do |cat| %>
-<tr><%= link_to(cat.name, '#')%>&nbsp;</tr>
-<%end%>	
+<div id = "category_table">
+<table>
+	<tr><div id ='inline'> BROWSE &nbsp; </div></tr>
+	<% @categories.each do |cat| %>
+	<tr><%= link_to(cat.name, {:action => 'filter', :id => cat.id})%>&nbsp;</tr>
+	<%end%>	
 
-<tr><div id ='inline'> OR &nbsp; </div></tr>
+	<tr><div id ='inline'> OR &nbsp; </div></tr>
+	<tr>
 
-
-<%= form_tag({:action => 'search'}, :remote => true) do%>
+	<%= form_tag({:action => 'search'}, :remote => true) do%>
 
 	<%= text_field_tag("search","", :size => 25, :maxlength => 40) %>
 	<%= submit_tag ("search for ideas")%>
-<%end%>
-<hr>
+	<%end%></tr>
+	<hr>
 
-</table>
+</table> </div>
 
-<%= render(:partial => "collection_view", :locals => {:detail => 'browse_collection_detail'})%>
+<%= render(:partial => "collection/collection_view", :locals => {:detail => 'browse_collection_detail'})%>

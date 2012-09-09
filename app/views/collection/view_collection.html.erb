@@ -27,8 +27,8 @@
 
 <% if @collection.blank? && @shared_collection.blank?%>
 <div id = "instruction">	
-	<p>You have a clean slate.
-	<%= link_to('add a scrap', {:action => 'add_scrap'})%>or 
+	<p>You have a pretty clean slate. <br/>
+	<%= link_to('add a scrap', {:action => 'add_scrap'})%> or 
 	<%= link_to('explore', {:action => 'browse_collection'})%> 	
 	</p>
 </div>

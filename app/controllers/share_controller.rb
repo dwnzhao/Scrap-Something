@@ -6,6 +6,7 @@ class ShareController < ApplicationController
     scrap_to_bookmark = Scrap.find(params[:id])
     user = User.find(session[:user_id])
     SharedScrap.create(:user => user, :bookmarked_scrap => scrap_to_bookmark)
+    scrap_to_bookmark.update_attribute(:number_of_shares, scrap_to_bookmark.number_of_shares + 1)
     redirect_to(:action => 'browse_collection', :controller => 'collection')
   end
 

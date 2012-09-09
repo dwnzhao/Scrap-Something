@@ -49,7 +49,7 @@ ActiveRecord::Schema.define(:version => 20120905061201) do
     t.integer  "creator_id"
     t.string   "name",               :default => ""
     t.text     "description"
-    t.integer  "number_of_shares"
+    t.integer  "number_of_shares",   :default => 0
     t.boolean  "item_availability",  :default => false
     t.boolean  "visibility",         :default => true
     t.datetime "created_at",                            :null => false

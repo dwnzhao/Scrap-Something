@@ -1,10 +1,11 @@
 class Scrap < ActiveRecord::Base
   attr_accessible :name, :photo, :description, :number_of_shares, :item_availability, :visibility
 
-  has_attached_file :photo, :styles => { :medium => "300x300>", :thumb => "100x100>" }
+  has_attached_file :photo, :styles => { :medium => "200x300#", :thumb => "100x100" }
   
   validates :creator_id, :presence => true
   validates :name, :presence => true, :length => {:maximum => 25}, :uniqueness => {:scope => :creator_id}
+  validates_attachment :photo, :presence => true, :size => {:less_than => 2.megabytes}
   
   has_and_belongs_to_many :pockets
   has_and_belongs_to_many :categories

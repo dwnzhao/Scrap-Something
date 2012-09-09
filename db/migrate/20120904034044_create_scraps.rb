@@ -4,7 +4,7 @@ class CreateScraps < ActiveRecord::Migration
       t.references :creator, :class_name => "User", :foreign_key => 'user_id'
       t.string "name", :default => ""
       t.text "description" 
-      t.integer "number_of_shares"
+      t.integer "number_of_shares", :default => 0
       t.boolean "item_availability", :default => false
       t.boolean "visibility", :default => true
       t.timestamps

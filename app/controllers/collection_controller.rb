@@ -66,7 +66,8 @@ class CollectionController < ApplicationController
     @scrap.creator_id = session[:user_id]
     checked_categories = get_categories_from(params[:categories])
     remove_categories = Category.all - checked_categories
-    if @scrap.save
+    @scrap.save
+    if !@scrap.new_record?
       checked_categories.each {|cat| @scrap.categories << cat if !@scrap.categories.include?(cat)}
       remove_categories.each {|cat| @scrap.categories.destroy(cat) if @scrap.categories.include?(cat)}
       flash[:notice] = "... scrap added ..."
@@ -87,7 +88,15 @@ class CollectionController < ApplicationController
     redirect_to(:action => 'view_collection')
   end
   
-  private
+  def filter
+     user = User.find(session[:user_id])
+     @shared_collection = user.bookmarked_scraps 
+     @categories = Category.all
+     @collection = Category.find(params[:id]).scraps.where("creator_id != ?", session[:user_id]).where(:visibility => true) - @shared_collection
+     render('collection/browse_collection')
+  end
+  
+  private #--------------------
   
   def get_categories_from(cat_list)
     cat_list = [] if cat_list.blank?
