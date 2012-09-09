@@ -12,9 +12,10 @@
  */
 
 html { height: 100%; width: 100%;}
-body { 	font-family: Courier New, monospace; text-align: center; color: #181818; }
+body { font-family: Courier New, monospace; text-align: center; color: #181818; }
 table, #form {margin-left: auto; margin-right: auto;}
-table tr th, table tr td, .tag {vertical-align: top; text-align: top; text-decoration: none; font-size: 12px; font-weight: normal;}
+table tr th, table tr td, .small_tagline {vertical-align: top; text-align: top; text-decoration: none; 
+	font-size: 12px; font-weight: normal;}
 
 img{
 	/* This centers the image */
@@ -28,14 +29,11 @@ img{
 	border-color: #dddddd #aaaaaa #aaaaaa #dddddd;
 	border-width: 1px 2px 2px 1px;
 	background-color:white;
-	
-	}
+}
 
 h1 {text-align: center; font-size: 24px;}
 
 .form-buttons {margin-left: auto; margin-right: auto; display inline;}
-
-a {font-weight: bold;}
 
 hr { 
   border: 1px dashed;
@@ -48,6 +46,7 @@ a {
 	color:#181818;
 	padding:0 5px 5px;
 	font-size: 12px;
+	font-weight: bold;
 }
 
 a:hover {
@@ -72,17 +71,18 @@ font-size: 12px;
 #bottom {bottom: 0px;}
 #top {top: 0px}
 
-#errorExplanation, ul li{
-	list-style-type:none;
+#errorExplanation ul{margin: 0; padding: 0;}
+
+#errorExplanation ul li, #errorExplanation{
+	list-style-type: none;
+	margin: 0;
+	padding: 5px 0 5px 0;	
 	text-decoration:none;
 	font-size:11px;
 	font-family:"Lucida Sans Unicode", "Lucida Grande", sans-serif;
 	color:#F80000;
-	text-align:center;
 }
-
 
 .field_with_errors {
 	color: #F80000;	
 }
-

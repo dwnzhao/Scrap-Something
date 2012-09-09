@@ -12,10 +12,4 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require_tree .
 
-function show() {alert('hello');}
-
-function show_pic() {
-	document.getElementById("image").innerHTML = "asdfasdf";
-}

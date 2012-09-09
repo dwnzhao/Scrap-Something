@@ -5,7 +5,7 @@
 		</tr>
 	</table>
 </div>
-<div id="center_title"> <%=@scrap.name%></div>
+<div id="detailed_view_scrap_name"> <%=@scrap.name%></div>
 <hr>
 
 <br/>
@@ -18,7 +18,7 @@
 		<th><%= image_tag @scrap.photo.url, :size => '80%x80%'%></th>
 		<th>
 			<div id="scrap_categories"><%= @categories.map { |i| i.to_s }.join(", ") %></div>
-			<div id="collection_description"><%= simple_format(word_wrap(@scrap.description, 50))%></div>
+			<div id="scrap_details"><%= simple_format(word_wrap(@scrap.description, 50))%></div>
 			</th>
 	</tr>
 </table>

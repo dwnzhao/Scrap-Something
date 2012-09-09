@@ -1,20 +1,18 @@
+<div id="arrow_backward"> <%= link_to('<< collection', {:action => 'view_collection'})%> </div>
+
 <br/><br/>
 
 <h1>Add Scrap</h1>
 <hr>
 </br>
 
-<%= form_for(:scrap, :url => {:action => 'save_add_scrap'}, :html => {:multipart => true, :id => 'form' }, :remote => true) do |f| %>
+<%= form_for(:scrap, :url => {:action => 'save_add_scrap'}, :html => {:multipart => true, :id => 'form' }) do |f| %>
 
 	<%= render(:partial => 'scrap_form', :locals => {:f => f})%><br/>
+	
+	
 	<%= submit_tag "Save", :id =>'upload_button' %>
 
 <% end %>
 
 <br/><br/><br/>
-
-
-<%= link_to('back to collections', {:action => 'view_collection'})%>
-
-
-

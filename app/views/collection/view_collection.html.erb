@@ -14,7 +14,7 @@
 		<% @shared_collection.each_with_index do |collection, index|%>
 			<% if !collection.blank? %>
 				<th> <%= link_to image_tag(collection.photo.url(:medium)), {:action => 'browse_bookmarked_collection_detail', :id => collection.id}%><br/>
-				<%= collection.name %>
+				<div id ='scrap_name'><%= collection.name %></div>
 				<% if (index+1)%4==0 %>
 					</th> </tr>				
 				<% end %>		

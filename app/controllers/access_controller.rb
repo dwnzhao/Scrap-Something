@@ -35,19 +35,6 @@ class AccessController < ApplicationController
       redirect_to(:action => 'index')
     end
 
-    def authenticate
-      @authorized_user = User.authenticate(params[:username], params[:password])
-      if @authorized_user
-        session[:user_id] = @authorized_user.id
-        session[:username] = @authorized_user.user_name
-        flash[:notice] = "You are now logged in."
-        redirect_to(:action => 'index')
-      else
-        flash[:notice] = "Invalid username / password combination"
-        render('login')
-      end
-    end
-
     def create_user
       @user = User.new(params[:user])
       if @user.save
@@ -60,7 +47,7 @@ class AccessController < ApplicationController
     end
 
     def update_profile_pic
-      @user = User.find(session[:user_id])
+      @user = get_session_user
       @user.attributes = params[:user]
       if @user.save
         flash[:notice] = "profile created."
@@ -71,11 +58,11 @@ class AccessController < ApplicationController
     end
 
     def edit_profile
-      @user = User.find(session[:user_id])
+      @user = get_session_user
     end
 
     def update_user
-      @user = User.find(session[:user_id])
+      @user = get_session_user
       if @user.update_attributes(params[:user])
         flash[:notice] = "... profile updated ..."
         redirect_to(:action => 'profile')
@@ -85,19 +72,35 @@ class AccessController < ApplicationController
     end
 
     def profile
-      @user = User.find(session[:user_id])
+      @user = get_session_user
     end
 
 
     def delete_profile
-      @user = User.find(session[:user_id])
+      @user = get_session_user
     end 
 
     def destroy_profile
-      User.find(session[:user_id]).destroy
+      User.get_session_user.destroy
       session[:user_id] = nil
       session[:username] = nil
       flash[:notice] = "... profile deleted ..."
       redirect_to(:action => 'index')
+    end
+  end
+
+
+  private #--------------------------------------------------------------
+
+  def authenticate
+    @authorized_user = User.authenticate(params[:username], params[:password])
+    if @authorized_user
+      session[:user_id] = @authorized_user.id
+      session[:username] = @authorized_user.user_name
+      flash[:notice] = "You are now logged in."
+      redirect_to(:action => 'index')
+    else
+      flash[:notice] = "Invalid username / password combination"
+      render('login')
     end
   end

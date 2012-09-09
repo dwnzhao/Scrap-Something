@@ -3,7 +3,7 @@
 <head>
 <title>Scrap Something | <%= @page_title || 'Collections' %></title>
 <%= stylesheet_link_tag('collection', 'application', :media => "all" )%>
-<%= javascript_include_tag "application" %>
+<%= javascript_include_tag('application', 'collection')%>
 <%= csrf_meta_tags %>
 </head>
 

@@ -1,12 +1,6 @@
-<div id="arrow_forward">
-	<table summary = "collection menu">
-		<tr>
-			<th> <%= link_to('back to your collection>>', {:action => 'view_collection'})%></th>
-		</tr>
-	</table>
-</div>
+<div id="arrow_backward"> <%= link_to('<< collection', {:action => 'view_collection'})%> </div>
 
-<div id="center_title"> <%=@scrap.name%><br/></div><hr>
+<div id="detailed_view_scrap_name"> <%=@scrap.name%><br/></div><hr>
 
 <table class="collection_details">
 	<tr>

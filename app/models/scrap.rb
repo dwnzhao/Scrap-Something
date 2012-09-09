@@ -5,12 +5,15 @@ class Scrap < ActiveRecord::Base
   
   validates :creator_id, :presence => true
   validates :name, :presence => true, :length => {:maximum => 25}, :uniqueness => {:scope => :creator_id}
-  validates_attachment :photo, :presence => true, :size => {:less_than => 2.megabytes}
+  validates :photo, :attachment_presence => true
   
   has_and_belongs_to_many :pockets
   has_and_belongs_to_many :categories
   has_many :shared_scraps, :class_name => 'SharedScrap', :foreign_key => 'bookmarked_scrap_id'
   has_many :users, :through => :shared_scraps
   belongs_to :creator, :class_name => 'User'
+
+  scope :search, lambda {|query| where(["name LIKE ?", "%#{query}%"])}
+
   
 end

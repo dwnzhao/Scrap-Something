@@ -7,32 +7,32 @@ class CollectionController < ApplicationController
   end
 
   def view_collection
-    user = User.find(session[:user_id])
+    user = get_session_user
+    @categories = Category.all
     @collection = user.scraps
     @shared_collection = user.bookmarked_scraps
-    @categories = Category.all
   end
 
   def view_collection_detail
     @scrap = Scrap.find(params[:id])
-    @categories = @scrap.categories.select("name").map {|x| x.name}
+    @categories = get_category_names(@scrap)
   end
 
   def browse_collection
-    user = User.find(session[:user_id])
-    @shared_collection = user.bookmarked_scraps 
+    user = get_session_user
     @categories = Category.all
+    @shared_collection = user.bookmarked_scraps 
     @collection = Scrap.where("creator_id != ?", session[:user_id]).where(:visibility => true) - @shared_collection
   end
 
   def browse_collection_detail
     @scrap = Scrap.find(params[:id]) 
-    @categories = @scrap.categories.select("name").map {|x| x.name}
+    @categories = get_category_names(@scrap)
   end
   
   def browse_bookmarked_collection_detail
     @scrap = Scrap.find(params[:id]) 
-    @categories = @scrap.categories.select("name").map {|x| x.name}
+    @categories = get_category_names(@scrap)
   end
   
 
@@ -88,11 +88,22 @@ class CollectionController < ApplicationController
     redirect_to(:action => 'view_collection')
   end
   
+  def search
+  user = get_session_user
+  shared_collection = user.bookmarked_scraps 
+  user_owned = Scrap.where("creator_id == ?", session[:user_id])
+  @categories = Category.all
+  @collection = Scrap.search(params[:search]) - shared_collection - user_owned
+  render('collection/browse_collection')
+
+
+  end
+  
   def filter
-     user = User.find(session[:user_id])
-     @shared_collection = user.bookmarked_scraps 
+     user = get_session_user
+     shared_collection = user.bookmarked_scraps 
      @categories = Category.all
-     @collection = Category.find(params[:id]).scraps.where("creator_id != ?", session[:user_id]).where(:visibility => true) - @shared_collection
+     @collection = Category.find(params[:id]).scraps.where("creator_id != ?", session[:user_id]).where(:visibility => true) - shared_collection
      render('collection/browse_collection')
   end
   
