@@ -20,5 +20,10 @@ class ApplicationController < ActionController::Base
       return true
     end
   end
+  
+  def get_categories_from(cat_list)
+     cat_list = [] if cat_list.blank?
+     return cat_list.collect {|cid| Category.find_by_id(cid.to_i)}.compact
+   end
 
 end

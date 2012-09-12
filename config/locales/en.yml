@@ -2,4 +2,21 @@
 # See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
-  hello: "Hello world"
+  activerecord:
+    attributes:
+      user:
+        hashed_password: "Password"
+      scrap:
+        photo: "Image"
+    errors:
+      models:
+        user:
+          attributes:
+            hashed_password:
+              blank: "is required"
+        scrap:
+          attributes:
+            photo:
+              blank: "is required"
+              
+             

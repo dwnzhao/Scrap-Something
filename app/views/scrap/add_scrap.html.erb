@@ -1,0 +1,14 @@
+<h1>Add Scrap</h1>
+<hr>
+</br>
+
+<%= form_for(:scrap, :url => {:action => 'save_add_scrap'}, :html => {:multipart => true, :id => 'form' }) do |f| %>
+
+	<%= render(:partial => 'scrap_form', :locals => {:f => f})%><br/>
+	
+	
+	<%= submit_tag "Save", :id =>'upload_button' %>
+
+<% end %>
+
+<br/><br/><br/>

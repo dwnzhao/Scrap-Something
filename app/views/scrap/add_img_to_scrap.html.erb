@@ -1,0 +1,10 @@
+<h2>Upload an image </h2>
+
+<hr>
+<br/><br/>
+
+<%= form_for(:image, :url => {:action => 'save_image_to_scrap', :id => @scrap_id}, :html => { :multipart => true, :id => "form" }) do |f| %>
+	<%= f.file_field :image %>
+	<br/><br/><br/>
+	<%= submit_tag "Upload", :id =>'upload_button' %>
+<% end %>

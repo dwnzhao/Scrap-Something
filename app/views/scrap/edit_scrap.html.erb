@@ -1,0 +1,41 @@
+<div id ="holder"></div>
+
+<h1>Edit</h1>
+<hr>
+
+<table summary ="collection detail">
+	<tr>
+		<th> <%= image_tag @scrap.photo.url(:thumb) %>
+			<% @images.each_with_index do |image, index|%>
+			<th><div class="thumb_to_delete", id="scrap_image"><%= link_to image_tag(image.image.url(:thumb)), {:action => "destroy_image_to_scrap", :id => image.id}%> 
+				<div class="delete_text">click to<br/> delete</div>
+				</div>
+			<% if (index+1)%3==0 %>	
+		</th></tr><tr>
+			<% end %>		
+			<%end%>
+		<th><%= link_to('+image', {:action => 'add_img_to_scrap', :controller => 'scrap', :id => @scrap.id})%>
+		</th>
+	</tr>
+</table> 
+
+<hr>
+
+<%= form_for(:scrap, :url => {:action => 'update_scrap', :id => @scrap.id}, 
+:html => { :multipart => true, :id => "form" }) do |f| %>
+
+<%= render(:partial => "scrap_form", :locals => {:f => f})%>
+
+<%= submit_tag "Update", :id =>'upload_button' %>
+<% end %>
+
+<div id ="dialog">
+	
+	<p>Are you sure you want to delete your image?</p>
+	<table summary = "delete scrap confirmation">
+		<tr>
+			<td> <%= link_to('Yes', {:action => 'destroy_image_to_scrap', :controller => 'scrap', :id => @scrap.id})%></td>
+			<td> <%= link_to('No', {:action => 'edit_scrap', :controller => 'scrap', :id => @scrap.id})%></td>
+		</tr>
+	</table>
+</div>

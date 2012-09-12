@@ -1,14 +1,13 @@
-<br/>
-
 <table summary ="collection view">
 	<tr>
-		<% @collection.each_with_index do |collection, index|%>
-		<th> <%= link_to image_tag(collection.photo.url(:medium)), {:action => detail, :id => collection.id}%> <br/>
-			<div id = 'scrap_name'><%= collection.name %></div>
+		<% images.each_with_index do |image, index|%>
+		<% if !image.blank? %>
+		<th> <%= link_to image_tag(image.photo.url(:medium)), {:action => detail, :id => image.id}%> <br/>
+			<div id = 'scrap_name'><%= image.name %></div>
 			<% if (index+1)%4==0 %>
-		</th> </tr>			
+		</th></tr><tr>
 			<% end %>		
+			<%end%>
 		<%end%>
-	</th> 
-</tr>
+	</th></tr>
 </table>

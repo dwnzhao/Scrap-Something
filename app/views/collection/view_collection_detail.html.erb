@@ -1,16 +1,5 @@
-<div id="arrow_backward"> <%= link_to('<< collection', {:action => 'view_collection'})%> </div>
-
-<div id="detailed_view_scrap_name"> <%=@scrap.name%><br/></div><hr>
-
 <table class="collection_details">
 	<tr>
 		<th>
-			<%= link_to('Edit', {:action => 'edit_scrap', :id => @scrap.id})%><br/><br/><br/>
-			<%= link_to('Delete', {:action => 'delete_scrap', :id => @scrap.id})%>
-		</th>
-		<th><div id="scrap_pic"><%= image_tag @scrap.photo.url%></div></th>
-		<th>
-			<div id="scrap_categories"><%= @categories.map { |i| i.to_s }.join(", ") %></div>
-			<div id="scrap_details"><%= simple_format(word_wrap(@scrap.description, 50))%></div></th>
-		</tr>
-	</table>
+			<%= link_to('Edit', {:action => 'edit_scrap', :controller => 'scrap', :id => @scrap.id})%><br/><br/><br/>
+			<div id = "delete_scrap"><%= link_to('Delete', {:action => 'delete_scrap', :controller => 'scrap', :id => @scrap.id})%></div></th>

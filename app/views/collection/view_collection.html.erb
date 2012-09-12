@@ -1,34 +1,39 @@
-<div id="arrow_forward"> <%= link_to('explore >>', {:action => 'browse_collection'})%> </div>
+<table>
+	<tr><div class ='inline'> VIEW &nbsp; </div></tr>
+	<tr><div id = 'filter_all', class = 'inline'><%= link_to("all", "#")%>&nbsp;</div></tr> 
+	<tr><div id = 'filter_my_collection', class ='inline'><%= link_to("my collection", "#")%>&nbsp;</div></tr> 
+	<tr><div id = 'filter_bookmarked_collection', class ='inline'><%= link_to("bookmarked collection", "#")%>&nbsp;</div></tr>
+	<tr><div class ='inline'> OR &nbsp; </div></tr>
+	<tr>
+
+	<%= form_tag(:action => 'search') do%>
+
+	<%= text_field_tag(:search, "", :size => 25, :maxlength => 40) %>
+	<%= submit_tag ("search")%>
+	<%end%></tr>
+	<hr>
+</table>
 
 <% if !@collection.blank?%>
-<h1>My Collection</h1><hr>
-<%= render(:partial => "collection_view", :locals => {:detail => 'view_collection_detail'})%>
+
+<div class = "my_scrap">
+<%= render(:partial => "collection_view", :locals => {:detail => 'view_collection_detail', :images => @collection})%>
+</div>
+<div class = "my_scrap"><hr></div>
 <%end%>
 
 <% if !@shared_collection.blank?%>
-<hr>
-<h1>Bookmarked Collection</h1>
+<div class = "bookmarked_scrap">
+<%= render(:partial => "collection_view", :locals => {:detail => 'browse_bookmarked_collection_detail', :images => @shared_collection})%>
+</div>
+<%end%>
 
-<table summary ="bookmarked collection view">
-	<tr>
-		<% @shared_collection.each_with_index do |collection, index|%>
-			<% if !collection.blank? %>
-				<th> <%= link_to image_tag(collection.photo.url(:medium)), {:action => 'browse_bookmarked_collection_detail', :id => collection.id}%><br/>
-				<div id ='scrap_name'><%= collection.name %></div>
-				<% if (index+1)%4==0 %>
-					</th> </tr>				
-				<% end %>		
-			<%end%>
-			</th>
-	 	<%end%>
-	</tr>
 </table>
-<% end%>
 
 <% if @collection.blank? && @shared_collection.blank?%>
 <div id = "instruction">	
 	<p>You have a pretty clean slate. <br/>
-	<%= link_to('add a scrap', {:action => 'add_scrap'})%> or 
+	<%= link_to('add a scrap', {:action => 'add_scrap', :controller => 'scrap'})%> or 
 	<%= link_to('explore', {:action => 'browse_collection'})%> 	
 	</p>
 </div>

@@ -11,13 +11,12 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120905061201) do
+ActiveRecord::Schema.define(:version => 20120909222745) do
 
   create_table "categories", :force => true do |t|
     t.string   "name"
-    t.integer  "scraps_count", :default => 0, :null => false
-    t.datetime "created_at",                  :null => false
-    t.datetime "updated_at",                  :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   add_index "categories", ["name"], :name => "index_categories_on_name"
@@ -29,21 +28,21 @@ ActiveRecord::Schema.define(:version => 20120905061201) do
 
   add_index "categories_scraps", ["category_id", "scrap_id"], :name => "index_categories_scraps_on_category_id_and_scrap_id"
 
-  create_table "pockets", :force => true do |t|
-    t.datetime "created_at",        :null => false
-    t.datetime "updated_at",        :null => false
-    t.string   "icon_file_name"
-    t.string   "icon_content_type"
-    t.integer  "icon_file_size"
-    t.datetime "icon_updated_at"
+  create_table "images", :force => true do |t|
+    t.integer  "scrap_id"
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
+    t.string   "description"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
   end
 
-  create_table "pockets_scraps", :id => false, :force => true do |t|
-    t.integer "pocket_id"
-    t.integer "scrap_id"
+  create_table "plans", :force => true do |t|
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
-
-  add_index "pockets_scraps", ["pocket_id", "scrap_id"], :name => "index_pockets_scraps_on_pocket_id_and_scrap_id"
 
   create_table "scraps", :force => true do |t|
     t.integer  "creator_id"
@@ -75,16 +74,19 @@ ActiveRecord::Schema.define(:version => 20120905061201) do
   create_table "users", :force => true do |t|
     t.string   "first_name",          :limit => 25
     t.string   "last_name",           :limit => 50
-    t.string   "user_name",                         :default => "",    :null => false
-    t.string   "email",                             :default => "",    :null => false
-    t.boolean  "email_confirmed",                   :default => false
+    t.string   "user_name",                          :default => "",    :null => false
+    t.string   "email",                              :default => "",    :null => false
+    t.boolean  "email_confirmed",                    :default => false
     t.string   "hashed_password"
     t.string   "salt"
     t.string   "website",             :limit => 50
     t.string   "company",             :limit => 50
+    t.string   "company_address",     :limit => 250
     t.string   "metro_area",          :limit => 20
-    t.datetime "created_at",                                           :null => false
-    t.datetime "updated_at",                                           :null => false
+    t.integer  "phone",               :limit => 20
+    t.integer  "user_level",          :limit => 3,   :default => 1
+    t.datetime "created_at",                                            :null => false
+    t.datetime "updated_at",                                            :null => false
     t.string   "avatar_file_name"
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"

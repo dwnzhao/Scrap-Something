@@ -3,19 +3,17 @@
 <head>
 	<title>Scrap Something | <%= @page_title || 'Home' %></title>
 	<%= stylesheet_link_tag('application', 'access', :media => "all" )%>
-	<%= javascript_include_tag "application" %>
+	<%= javascript_include_tag 'application', 'access' %>
 	<%= csrf_meta_tags %>
 </head>
 <body>
 <div style="min-width: 960px; margin: 0 auto;">
-
-
-	<br/><br/>
-
+<br/><br/>
 	<div id="left"></div>
 	<div id="right"></div>
 	<div id="top"></div>
 	<div id="bottom"></div>
+
 	<%= yield %>
 
 	<br/><br/>

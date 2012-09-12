@@ -20,15 +20,22 @@ margin-left:auto;
 margin-right:auto;
 }
 
-#arrow_forward a, #arrow_backward a{
-	display:block;
-	position:fixed;
-	font-size:18px;
+.header_menu{
+	position: fixed;
 	font-family:Courier New, monospace;
+	z-index:10;
+	margin-left: 44%;
+	margin-right: 44%;
+	top: 1px;
 }
 
-#arrow_forward a{right:10px;top:1%; display:block; color:white; z-index: 10;}
-#arrow_backward a{left:10px;top:1%;, display:block; color:white; z-index: 10;}
+table.header_menu tr th {vertical-align: baseline;}
+
+#big_menu a, #big_menu {color: white; font-size: 20px; text-decoration: bold;}
+
+#small_menu a, #small_menu {color: white;  font-size: 12px;}
+
+.big_white_divider {color: white; font-size: 20px;}
 
 #instruction {
 	resize: none;
@@ -44,7 +51,7 @@ margin-right:auto;
 	font-size:30px;
 }
 
-#inline{
+.inline{
 	display:inline;
 	vertical-align: center;
 	font-size: 12px;
@@ -62,3 +69,45 @@ margin-right:auto;
 
 #scrap_form {text-align: left;}
 
+#display_inline{display:inline;}
+
+#dialog a {outline: none;}
+
+#dialog {  
+	font-family: helvetica;
+	display:none;
+	z-index:2001; 
+	opacity:0.9; 
+	
+	margin-left: auto;
+	margin-right: auto;
+
+	/* This adds the border */
+	padding:4px;
+	border:none;
+	background-color:#181818;
+	color:white;	
+}
+#dialog a{color:white;}
+	
+.Overlay { 
+	position:fixed; 
+	top:0px; 
+	bottom:0px; 
+	left:0px; 
+	right:0px; 
+	overflow:hidden; 
+	padding:0; 
+	margin:0; 
+	background-color:#000;  
+	filter:alpha(opacity=50); 
+	opacity:0.5; 
+	z-index:1000;
+}
+
+#scrap_image{display:inline;}
+
+
+.thumb_to_delete:hover .delete_text, .scrap_photo:hover .scrap_name;{display:block;}
+
+.scrap_photo: {position: absolute;}

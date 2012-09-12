@@ -12,14 +12,13 @@
  */
 
 html { height: 100%; width: 100%;}
-body { font-family: Courier New, monospace; text-align: center; color: #181818; }
+body { font-family: Courier New, monospace; text-align: center; color: #181818; background: #FFFFFF;}
 table, #form {margin-left: auto; margin-right: auto;}
-table tr th, table tr td, .small_tagline {vertical-align: top; text-align: top; text-decoration: none; 
+table tr th, table tr td, .small_tagline {vertical-align: top; text-align: middle; text-decoration: none; 
 	font-size: 12px; font-weight: normal;}
 
 img{
 	/* This centers the image */
-	display: block;
 	margin-left: auto;
 	margin-right: auto;
 
@@ -33,11 +32,9 @@ img{
 
 h1 {text-align: center; font-size: 24px;}
 
-.form-buttons {margin-left: auto; margin-right: auto; display inline;}
-
 hr { 
   border: 1px dashed;
-  width: 70%;
+  width: 80%;
   color: #999;
 }
 
@@ -50,14 +47,7 @@ a {
 }
 
 a:hover {
-	color:#909090;
 	font-style:italic;
-}
-
-.notice {
-color: black;
-font-style:italic;
-font-size: 12px;
 }
 
 #bottom, #top {
@@ -71,6 +61,16 @@ font-size: 12px;
 #bottom {bottom: 0px;}
 #top {top: 0px}
 
+.form-buttons {margin-left: auto; margin-right: auto; display inline;}
+
+.notice {
+color: black;
+font-style:italic;
+font-size: 12px;
+}
+
+.field_with_errors {color: #F80000;	}
+
 #errorExplanation ul{margin: 0; padding: 0;}
 
 #errorExplanation ul li, #errorExplanation{
@@ -81,8 +81,4 @@ font-size: 12px;
 	font-size:11px;
 	font-family:"Lucida Sans Unicode", "Lucida Grande", sans-serif;
 	color:#F80000;
-}
-
-.field_with_errors {
-	color: #F80000;	
 }
