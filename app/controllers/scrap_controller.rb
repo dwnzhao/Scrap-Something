@@ -91,19 +91,7 @@ class ScrapController < ApplicationController
     array << @image
     @images = @scrap.images - array
     @creator_name = User.find(@scrap.creator_id).user_name
-    if (session[:user_id])
-      authorized = get_user_authorization(@scrap)
-      bookmarked = get_bookmark_status(@scrap)
-      if authorized
-        render :template => 'scrap/view_scrap_detail', :layout => 'scrap_detail'
-      elsif bookmarked
-        render :template => 'scrap/browse_bookmarked_scrap_detail', :layout => 'scrap_detail'
-      else 
-        render :template => 'scrap/browse_scrap_detail', :layout => 'scrap_detail'
-      end
-    else
-      render :template => 'scrap/browse_scrap_detail', :layout => 'scrap_detail'
-    end    
+    render :template => 'scrap/view_scrap_detail', :layout => 'scrap_detail'
   end
   
   

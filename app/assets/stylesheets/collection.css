@@ -5,7 +5,8 @@
 .scrap_link{text-align: right; padding: 1em;}
 
 .column, .icon_pic {display: table-cell; vertical-align: top;}
-.icon_pic, .icon_pic a, .icon_pic:visited{color: #ffffff; border:none;}
+.icon_pic img{color: #ffffff; border:none;}
+
 
 .scrap_description{text-align: left; padding: 0.8em 1em;}
 

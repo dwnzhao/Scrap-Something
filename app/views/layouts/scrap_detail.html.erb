@@ -12,7 +12,6 @@
 <br/><br/>
 
 
-<div id="scrap_name"> <%=@scrap.name%><br/></div>
 
 
 <div class="notice">
@@ -22,41 +21,6 @@
 </div><hr>
 
 <%= yield %>
-
-<div class = "column">
-<!-- if alternative picture is present (one that's other than the scrap photo), use that as the main image-->
-	<% if @image%>
-	<div id="scrap_pic"><%=image_tag @image.image.url%></div>
-	<%else%>
-	<div id="scrap_pic"><%= image_tag @scrap.photo.url%></div>
-	<%end%>
-
-<!-- if alternative picture is present (one that's other than the scrap photo), present the icon for scrap.photo-->
-	<div id = "icon_table">
-	<% if @image%>
-	<div class="icon_pic"><%= link_to image_tag(@scrap.photo.url(:thumb)), :action => 'view_scrap_detail', :controller => 'scrap', :id => @scrap.id%></div>
-	<%end%>
-
-	<% @images.each_with_index do |image, index|%>
-	<div class="icon_pic"><%= link_to image_tag(image.image.url(:thumb)), :action => 'switch_image', :controller => 'scrap', :id => image.id %></div>
-	<% if (index+1)%5==0 %>
-		</div><div class="row">
-	<%end%>		
-	<%end%>
-	</div>
-
-</div>
-
-<div class = "column">
-<div class="scrap_description", id="scrap_subtitle">What is it: <%=@scrap.name%> by <%= @creator_name%> </div>	
-<div class="scrap_description">category: <%= @categories.map { |i| i.to_s }.join(", ") %></div>
-<div class="scrap_description"><%= simple_format(word_wrap(@scrap.description, 50))%></div>
-<div id="scrap_available_link", class="scrap_description">available <%= link_to('here', {:controller => 'product_listing', :action => 'view_listing', :scrap_id => @scrap.id})%></div>
-
-</div></div>
-
-<div id ="holder"></div>
-
 
 
 <hr>
