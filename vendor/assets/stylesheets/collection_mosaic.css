@@ -1,0 +1,39 @@
+.mosaic-block {
+	float:left;
+	position:relative;
+	overflow:hidden;
+	width:210px;
+	height:310px;
+	margin:10px;
+	background:#111 url(../img/progress.gif) no-repeat center center;
+	border:1px solid #fff;
+	-webkit-box-shadow:0 1px 3px rgba(0,0,0,0.5);
+}
+
+.mosaic-backdrop {
+	display:none;
+	position:absolute;
+	top:0;
+	height:100%;
+	width:100%;
+	left: -5px;
+	background:#111;		
+}
+
+.mosaic-overlay {
+	display:none;
+	z-index:5;
+	position:absolute;
+	width:100%;
+	height:100%;
+	background:#111;
+	top:-15px;
+	height:15px;
+	background:url('http://upload.wikimedia.org/wikipedia/commons/d/d2/Solid_white.png');
+	color: #B8860B;
+	font-weight:normal;
+}
+
+img:hover {cursor:crosshair;}
+
+.mosaic-overlay:hover {color: #FFE4C4; font-style: normal;}

@@ -1,3 +1,7 @@
+<% content_for :header do %>
+<%= render "common/home_header" %>
+<%end%>
+
 <div id ="holder"></div>
 
 <h1>Edit</h1>
@@ -19,7 +23,7 @@
 	</tr>
 </table> 
 
-<hr>
+<br/><br/><hr>
 
 <%= form_for(:scrap, :url => {:action => 'update_scrap', :id => @scrap.id}, 
 :html => { :multipart => true, :id => "form" }) do |f| %>
@@ -29,13 +33,26 @@
 <%= submit_tag "Update", :id =>'upload_button' %>
 <% end %>
 
-<div id ="dialog">
+<div class='dialog', id ="dialog_icon">
 	
 	<p>Are you sure you want to delete your image?</p>
 	<table summary = "delete scrap confirmation">
 		<tr>
 			<td> <%= link_to('Yes', {:action => 'destroy_image_to_scrap', :controller => 'scrap', :id => @scrap.id})%></td>
-			<td> <%= link_to('No', {:action => 'edit_scrap', :controller => 'scrap', :id => @scrap.id})%></td>
+			<td> <%= link_to('No', :class => "close_dialog")%></td>
 		</tr>
 	</table>
 </div>
+
+<div class='dialog', id ="dialog_scrap">
+	
+	<p>Are you sure you want to delete your scrap?</p>
+	<table summary = "delete scrap confirmation">
+		<tr>
+			<td> <%= link_to('Yes', {:action => 'destroy_scrap', :controller => 'scrap', :id => @scrap.id})%></td>
+			<td> <%= link_to('No', :class => "close_dialog")%></td>
+		</tr>
+	</table>
+</div> <br/><br/><br/>
+
+<div id ="delete_scrap"><%= link_to "delete this scrap", {:action => "destroy_scrap"}%></div>

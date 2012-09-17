@@ -3,14 +3,10 @@ class AccessController < ApplicationController
   respond_to :html, :js
 
   before_filter :confirm_logged_in, :except => [:index, :signup, :login, 
-    :logout, :create_user, :authenticate]
+    :logout, :create_user, :authenticate, :landing_page]
 
     def index
-      if (session[:user_id])
-        redirect_to(:action => 'view_collection', :controller => 'collection')
-      else 
-        render('landing_page')
-      end
+    redirect_to(:controller => 'collection', :action => 'browse_collection')
     end
 
     def signup
@@ -52,8 +48,6 @@ class AccessController < ApplicationController
       if @user.save
         flash[:notice] = "... profile created ..."
         redirect_to(:action => 'index')
-      else
-        render('update_profile_pic')
       end
     end
 

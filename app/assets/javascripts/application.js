@@ -12,4 +12,5 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require mosaic.1.0.1.min.js
 

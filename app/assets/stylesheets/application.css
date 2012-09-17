@@ -11,8 +11,12 @@
  *= require_self
  */
 
+/*background-image:url('http://yoursolucion.com/sitebuilder/images/rainbow_smoke_-_lores-263x600.jpg'); background-repeat:no-repeat;*/
+
 html { height: 100%; width: 100%;}
-body { font-family: Courier New, monospace; text-align: center; color: #181818; background: #FFFFFF;}
+body { font-family: Courier New, monospace; text-align: center; color: #181818; background: #FFFFFF; text-decoration:none;
+	padding:0 5px 5px; font-size: 12px; 
+	}
 table, #form {margin-left: auto; margin-right: auto;}
 table tr th, table tr td, .small_tagline {vertical-align: top; text-align: middle; text-decoration: none; 
 	font-size: 12px; font-weight: normal;}
@@ -43,11 +47,12 @@ a {
 	color:#181818;
 	padding:0 5px 5px;
 	font-size: 12px;
-	font-weight: bold;
+	font-weight: normal;
 }
 
 a:hover {
 	font-style:italic;
+	color: #B8860B;
 }
 
 #bottom, #top {
@@ -55,7 +60,8 @@ a:hover {
 	position: fixed;
 	width: 120%;
 	left: -50px;
-	height: 30px;	
+	height: 30px;
+	z-index: 10;	
 }
 
 #bottom {bottom: 0px;}
@@ -82,3 +88,11 @@ font-size: 12px;
 	font-family:"Lucida Sans Unicode", "Lucida Grande", sans-serif;
 	color:#F80000;
 }
+
+#collection_edit_menu table tr th a {color: white; font-weight: normal; font-size: 11px; 
+	font-family: Courier New, monospace;}
+#collection_edit_menu table {position: fixed; left: 30px; bottom: 6px; z-index: 10;}
+
+#account_menu table {position: fixed; right:10px; bottom: 5px; z-index:10;}
+#account_menu table tr th a {color: white; font-weight: normal; font-size: 11px; 
+	font-family: Courier New, monospace;}

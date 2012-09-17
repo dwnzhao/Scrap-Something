@@ -30,9 +30,14 @@
 <br/><hr><br/>
 <table summary = "edit profile">
 	<tr>
+		<th> <%= link_to('Change Profile Picture', {:action => 'upload_profile_pic'})%></th>
 		<th> <%= link_to('Edit Profile', {:action => 'edit_profile'})%></th>
 		<th> <%= link_to('Delete Profile', {:action => 'delete_profile'})%></th>
-		<th> <%= link_to('Your Collections', {:controller=> 'collection', :action => 'view_collection'})%></th>
 		<th> <%= link_to('Log Out', {:action => 'logout'})%></th>
 	</tr>
 </table>
+
+<br/><br/><br/>
+
+<div id="collection_url">=> <%= link_to('home', {:controller=> 'collection', :action => 'view_collection'})%></div>
+

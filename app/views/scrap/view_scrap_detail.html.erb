@@ -1,0 +1,14 @@
+<% content_for :header do %>
+<%= render "common/home_header" %>
+<%end%>
+
+<div id ="dialog">
+	<p>Are you sure you want to delete your scrap?</p> <br/>
+	<%= link_to('Yes', {:action => 'destroy_scrap', :controller => 'scrap', :id => @scrap.id})%>
+	<%= link_to('No', "#", :id => "close_dialog" )%>
+</div>
+
+<div id = "scrap_detail_table">
+
+
+<!--end with links so the scrap_detail template can fill in the rest-->

@@ -1,40 +1,45 @@
-<table>
-	<tr><div class ='inline'> VIEW &nbsp; </div></tr>
-	<tr><div id = 'filter_all', class = 'inline'><%= link_to("all", "#")%>&nbsp;</div></tr> 
-	<tr><div id = 'filter_my_collection', class ='inline'><%= link_to("my collection", "#")%>&nbsp;</div></tr> 
-	<tr><div id = 'filter_bookmarked_collection', class ='inline'><%= link_to("bookmarked collection", "#")%>&nbsp;</div></tr>
-	<tr><div class ='inline'> OR &nbsp; </div></tr>
-	<tr>
+<% content_for :header do %>
+<%= render "common/home_header" %>
+<%end%>
 
-	<%= form_tag(:action => 'search') do%>
+<br/>
 
-	<%= text_field_tag(:search, "", :size => 25, :maxlength => 40) %>
-	<%= submit_tag ("search")%>
-	<%end%></tr>
-	<hr>
-</table>
+<%= form_tag(:action => 'search') do%>
+
+<%= text_field_tag(:search, "", :size => 25, :maxlength => 40) %>
+<%= submit_tag ("search")%>
+<%end%>
+<hr> 
+
+<!--my collection-->
 
 <% if !@collection.blank?%>
-
 <div class = "my_scrap">
-<%= render(:partial => "collection_view", :locals => {:detail => 'view_collection_detail', :images => @collection})%>
+	<br/>
+	<div id = "filter_my_collection"><%= link_to("my collection", "#", :class => "collection_name")%></div>
+	<%= render(:partial => "collection_view", :locals => {:images => @collection, :link_description => "edit", :method => "edit_scrap", :controller => "scrap"})%>
+	<hr></div>
 </div>
-<div class = "my_scrap"><hr></div>
+
 <%end%>
+
+
+<!--bookmarked collection-->
 
 <% if !@shared_collection.blank?%>
-<div class = "bookmarked_scrap">
-<%= render(:partial => "collection_view", :locals => {:detail => 'browse_bookmarked_collection_detail', :images => @shared_collection})%>
-</div>
-<%end%>
+<div class = "bookmarked_scrap">	
+	<br/>
+	<div id = 'filter_bookmarked_collection'><%= link_to("bookmarked", "#", :class => "collection_name")%></div>
+	<%= render(:partial => "collection_view", :locals => {:images => @shared_collection, :link_description => "remove bookmark", :method => "remove_bookmark", :controller => "share"})%>
+	<hr></div>
 
-</table>
+	<%end%>
 
-<% if @collection.blank? && @shared_collection.blank?%>
-<div id = "instruction">	
-	<p>You have a pretty clean slate. <br/>
-	<%= link_to('add a scrap', {:action => 'add_scrap', :controller => 'scrap'})%> or 
-	<%= link_to('explore', {:action => 'browse_collection'})%> 	
-	</p>
-</div>
-<%end%>
+	<% if @collection.blank? && @shared_collection.blank?%>
+	<div id = "instruction">	
+		<p>You have a pretty clean slate. <br/>
+			<%= link_to('add a scrap', {:action => 'add_scrap', :controller => 'scrap'})%> or 
+			<%= link_to('explore', {:action => 'browse_collection'})%> 	
+		</p>
+	</div>
+	<%end%>

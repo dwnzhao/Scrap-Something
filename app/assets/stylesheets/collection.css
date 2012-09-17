@@ -1,39 +1,55 @@
-#detailed_view_scrap_name {
-	text-align: center;
-	font-weight:bold;
-}
+#collection_table, #scrap_detail_table  {display: table;}
+.row {display: table-row;}
+#collection_table {margin-left:20%}
+#scrap_detail_table{margin-left: auto; margin-right:auto;}
+.scrap_link{text-align: right; padding: 1em;}
 
-#scrap_details, #scrap_categories{
+.column, .icon_pic {display: table-cell; vertical-align: top;}
+.icon_pic, .icon_pic a, .icon_pic:visited{color: #ffffff; border:none;}
+
+.scrap_description{text-align: left; padding: 0.8em 1em;}
+
+#scrap_name{ text-align: center; font-weight:bold; font-size: 1.5em; padding: 1em 0.5em 0.5em}
+#scrap_subtitle{font-weight: bold; font-size: 1.1em;}
+
+.collection_name{font-variant: small-caps; font-family:Courier New, monospace; font-size: 1.5em;}
+.collection_name:hover{text-decoration:underline;}
+
+.scrap_description{
 	text-align: left;
 	font-style:italic;
 	position:relative;
 }
+
+.dialog p{font-size: 16px;}
 
 #scrap_name{
 	text-align: center;
 	font-weight: bold;
 }
 
+#scrap_image{display:inline;}
+
 #scrap_pic{
-display:block;
-margin-left:auto;
-margin-right:auto;
+	display:block;
+	margin-left:auto;
+	margin-right:auto;
 }
 
 .header_menu{
 	position: fixed;
 	font-family:Courier New, monospace;
-	z-index:10;
+	z-index:15;
 	margin-left: 44%;
 	margin-right: 44%;
 	top: 1px;
 }
 
-table.header_menu tr th {vertical-align: baseline;}
+table.header_menu tr th {vertical-align: baseline; z-index: 15;}
 
-#big_menu a, #big_menu {color: white; font-size: 20px; text-decoration: bold;}
+#big_menu a, #big_menu {color: white; font-size: 20px; font-weight: bold; z-index: 15;}
 
-#small_menu a, #small_menu {color: white;  font-size: 12px;}
+#small_menu a, #small_menu {color: white;  font-size: 12px; z-index: 15;}
 
 .big_white_divider {color: white; font-size: 20px;}
 
@@ -48,7 +64,9 @@ table.header_menu tr th {vertical-align: baseline;}
 }
 
 #instruction a{
-	font-size:30px;
+	font-size:45px;
+	font-variant: small-caps;
+	font-family: Courier New, monospace;
 }
 
 .inline{
@@ -57,39 +75,30 @@ table.header_menu tr th {vertical-align: baseline;}
 	font-size: 12px;
 }
 
-#collection_edit_menu table tr th a {color: white; font-weight: normal; font-size: 11px; 
-	font-family: Courier New, monospace;}
-#collection_edit_menu table {position: fixed; left: 30px; bottom: 6px; z-index: 10;}
-
-#account_menu table {position: fixed; right:10px; bottom: 5px; z-index:10;}
-#account_menu table tr th a {color: white; font-weight: normal; font-size: 11px; 
-	font-family: Courier New, monospace;}
-
 #select_category_instruction {font-weight: bold;}
 
 #scrap_form {text-align: left;}
 
 #display_inline{display:inline;}
 
-#dialog a {outline: none;}
+.dialog a {outline: none;color:white;}
 
-#dialog {  
+.dialog {  
 	font-family: helvetica;
 	display:none;
 	z-index:2001; 
 	opacity:0.9; 
-	
+
 	margin-left: auto;
 	margin-right: auto;
 
 	/* This adds the border */
-	padding:4px;
+	padding:2px;
 	border:none;
 	background-color:#181818;
 	color:white;	
 }
-#dialog a{color:white;}
-	
+
 .Overlay { 
 	position:fixed; 
 	top:0px; 
@@ -105,9 +114,3 @@ table.header_menu tr th {vertical-align: baseline;}
 	z-index:1000;
 }
 
-#scrap_image{display:inline;}
-
-
-.thumb_to_delete:hover .delete_text, .scrap_photo:hover .scrap_name;{display:block;}
-
-.scrap_photo: {position: absolute;}
