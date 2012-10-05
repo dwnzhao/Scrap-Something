@@ -7,7 +7,7 @@
 
 <div id = "product_new">
 
-<%= form_for(:product_listing, :url => {:action => 'save_listing', :scrap_id => @scrap_id}) do |f| %>
+<%= form_for(:product_listing, :html => {:target => '_parent'}, :url => {:action => 'save_listing', :id => @scrap_id}) do |f| %>
 
 	<%= render(:partial => "listing_form", :locals => {:f => f})%>
 

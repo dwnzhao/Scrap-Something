@@ -7,7 +7,7 @@ class ScrapController < ApplicationController
     @categories = Category.all
   end
 
-  def edit_scrap
+  def edit
     @scrap = Scrap.find(params[:id])
     @categories = Category.all
     @images = @scrap.images
@@ -17,7 +17,12 @@ class ScrapController < ApplicationController
     @scrap = Scrap.find(params[:id])
     @categories = get_category_names(@scrap)
     @images = @scrap.images
-    @creator_name = User.find(@scrap.creator_id).user_name    
+    @creator_name = User.find(@scrap.creator_id).user_name  
+    if !@scrap.product_listings.blank? 
+      @listings = get_listing(params[:id])
+    else
+      @listings = []
+    end
     render :template => 'scrap/view_scrap_detail', :layout => 'scrap_detail'
 
   end
@@ -94,6 +99,10 @@ class ScrapController < ApplicationController
     render :template => 'scrap/view_scrap_detail', :layout => 'scrap_detail'
   end
   
+  def get_listing(id)
+    scrap = Scrap.find(id)
+    return scrap.product_listings
+  end
   
 
 

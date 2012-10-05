@@ -2,36 +2,29 @@
 <html>
 <head>
 	<title>Scrap Something | <%= @page_title || 'Collections' %></title>
-	<%= stylesheet_link_tag('collection', 'application', 'collection_mosaic', 'jquery.fancybox', :media => "all" )%>
-	<%= javascript_include_tag('application', 'collection', 'jquery.colorbox-min', 'jquery.fancybox.pack', 'scrap')%>
+	<%= stylesheet_link_tag('application', 'collection', 'scrap', 'jquery.fancybox', :media => "all" )%>
+	<%= javascript_include_tag('application', 'collection', 'jquery.fancybox.pack', 'scrap')%>
 	<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
 	<%= csrf_meta_tags %>
 
 </head>
 <body>
+	<div style="min-width: 1200px; margin: 0 auto;">	
+			
+		<%= render "common/border" %>
+		<%= render "common/account_menu" %>
+	
+	<%= yield :header%>
+
+	<%= yield %>
+
+
 	<div class="notice">
 		<% if !flash[:notice].blank?%>
 		<%= flash[:notice]%>
 		<%end%>
 	</div>
-
-	<div style="min-width: 960px; margin: 0 auto;">	
-
-	<%= yield :header%>
-	<br/><br/>
-
-
-
-	<%= yield %>
-
-
-	<%= render "common/border" %>
-	<%= render "common/footer_menu" %>
-
-	<br/><br/>
-
-
-
 </div>
+
 </body>
 </html>

@@ -18,7 +18,7 @@ class CollectionController < ApplicationController
     @categories = Category.all
     if (session[:user_id])
       user = get_session_user
-      shared_collection = user.bookmarked_scraps 
+      shared_collection = user.bookmarked_scraps.compact
       @collection = Scrap.where("creator_id != ?", session[:user_id]).where(:visibility => true) - shared_collection
     else 
       @collection = Scrap.all

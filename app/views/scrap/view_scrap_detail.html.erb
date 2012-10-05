@@ -6,16 +6,16 @@
 
 <div id = "scrap_detail_table">
 
-<div class = "column">
-<!-- if alternative picture is present (one that's other than the scrap photo), use that as the main image-->
-	<% if @image%>
-	<div id="scrap_pic"><%=image_tag @image.image.url%></div>
-	<%else%>
-	<div id="scrap_pic"><%= image_tag @scrap.photo.url%></div>
-	<%end%>
+	<div class = "column">
+		<!-- if alternative picture is present (one that's other than the scrap photo), use that as the main image-->
+		<% if @image%>
+		<div id="scrap_pic"><%=image_tag @image.image.url%></div>
+		<%else%>
+		<div id="scrap_pic"><%= image_tag @scrap.photo.url%></div>
+		<%end%>
 
 <!-- if alternative picture is present (one that's other than the scrap photo), present the icon for scrap.photo-->
-	<div id = "icon_table">
+<div id = "icon_table">
 	<% if @image%>
 	<%= link_to image_tag(@scrap.photo.url(:thumb)), {:action => 'view_scrap_detail', :controller => 'scrap', :id => @scrap.id}, :class => "icon_pic"%>
 	<%end%>
@@ -23,17 +23,27 @@
 	<% @images.each_with_index do |image, index|%>
 	<%= link_to image_tag(image.image.url(:thumb)), {:action => 'switch_image', :controller => 'scrap', :id => image.id}, :class => "icon_pic" %>
 	<% if (index+1)%5==0 %>
-		</div><div class="row">
+</div><div class="row">
 	<%end%>		
 	<%end%>
-	</div>
+</div>
 
 </div>
 
 <div class = "column">
-<div class="scrap_description", id="scrap_subtitle">What is it: <%=@scrap.name%> by <%= @creator_name%> </div>	
-<div class="scrap_description">category: <%= @categories.map { |i| i.to_s }.join(", ") %></div>
-<div class="scrap_description"><%= simple_format(word_wrap(@scrap.description, 50))%></div>
-<div id="scrap_available_link", class="scrap_description">available <%= link_to('here', {:controller => 'product_listing', :action => 'view_listing', :scrap_id => @scrap.id})%></div>
+	<div class="scrap_description", id="scrap_subtitle">What is it: <%=@scrap.name%> by <%= @creator_name%> </div>	
+	<div class="scrap_description">category: <%= @categories.map { |i| i.to_s }.join(", ") %></div>
+	<div class="scrap_description"><%= simple_format(word_wrap(@scrap.description, 50))%></div>
+	<%if @listings.blank?%>
+	<div id="scrap_list_link", class="scrap_description"><p>This item is currently unavailable.
+	</p>Have this item? <%= link_to('List it!', {:controller => 'product_listing', :action => 'add_listing', :scrap_id => @scrap.id})%></div>
+	<%else%>
+	<div id="scrap_available_link", class="scrap_description">available in: 
+		<% @listings.each_with_index do |listing|%>
+		<%= link_to listing.metro_area, url_with_protocol(listing.url), :target => '_parent' %>
+		<% end %>		
+	</div>
+	<%end%>
+
 
 </div></div>

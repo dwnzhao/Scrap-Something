@@ -7,7 +7,7 @@
 
 <table summary = "delete scrap confirmation">
 	<tr>
-		<th> <%= link_to('Yes', {:action => 'destroy_scrap', :id => @scrap.id})%></th>
+		<th> <%= link_to('Yes', {:action => 'destroy_scrap', :id => params[:id]})%></th>
 		<th> <%= link_to('No', {:action => 'view_collection', :controller => 'collection'})%></th>
 	</tr>
 </table>

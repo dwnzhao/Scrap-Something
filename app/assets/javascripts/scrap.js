@@ -1,5 +1,6 @@
 $(document).ready(function() {
 
+	// delete scrap dialog box
 	$( ".dialog" ).dialog({
 		closeOnEscape: true,
 		closeText: '',
@@ -14,16 +15,10 @@ $(document).ready(function() {
 		return false;
 	});
 
-	$( ".thumb_to_delete" ).click(function() {
-		$("#dialog_icon").dialog( "open" );
-		$("#holder").addClass("Overlay");
-		return false;
-	});
-
 	$('.close_dialog').bind('click', function() {
 		$(".dialog").dialog("close");
 		$("#holder").removeClass("Overlay");
 	});
-
-
+	
+	
 });

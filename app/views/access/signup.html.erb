@@ -5,7 +5,7 @@
 
 <div class = "user_new">
 
-<%= form_for(:user, :url => {:action => 'create_user'}) do |f| %>
+<%= form_for(:user, :url => {:action => 'create'}) do |f| %>
 
 	<%= render(:partial => "profile_form", :locals => {:f => f})%>
 

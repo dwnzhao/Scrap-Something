@@ -2,15 +2,14 @@
 <html>
 <head>
 	<title>Scrap Something | <%= @page_title || 'Collections' %></title>
-	<%= stylesheet_link_tag('collection', 'application', :media => "all" )%>
+	<%= stylesheet_link_tag('collection', 'application', 'scrap', :media => "all" )%>
 	<%= javascript_include_tag('application', 'scrap')%>
 	<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
+
+
 	<%= csrf_meta_tags %>
 
 </head>
-
-<br/><br/>
-
 
 
 
@@ -18,12 +17,9 @@
 <% if !flash[:notice].blank?%>
 	<%= flash[:notice]%>
 <%end%>
-</div><hr>
+</div>
 
 <%= yield %>
-
-
-<hr>
 
 
 <br/><br/>

@@ -1,0 +1,20 @@
+<div style="min-width: 960px; margin: 0 auto;">	
+
+	<div id="nav">
+		<li><a href="#" class="selected">Account</a>
+			<ul>
+				<li><%= link_to('Profile', {:controller => 'access', :action => 'profile'}, :id => 'account_link')%></li>
+				<li><%= link_to('Log out', {:controller => 'access', :action => 'logout'}, :id => 'logout_link')%></li>
+			</ul>
+				<li><a href="#" class="selected">Add</a>
+					<ul>
+						<li><%= link_to('Image', :controller => 'scrap', :action => 'add_scrap')%></li>
+					</ul>
+					<div class="clear"></div>
+				</li>
+				
+					</ul>
+	</div>
+</div>
+<br/><br/><br/>
+

@@ -2,22 +2,23 @@
 <%= render "common/browse_header" %>
 <%end%>
 
-<div id = "category_table">
-<table>
-	<tr>
-	<% @categories.each do |cat| %>
-	<tr><%= link_to(cat.name, {:action => 'filter', :id => cat.id})%>&nbsp;</tr>
-	<%end%>	
-	
-	<tr>
-	<%= form_tag(:action => 'search') do%>
-		<%= text_field_tag(:search, "", :size => 25, :maxlength => 40) %>
+<div id = "category_table", class = 'table'>
+	<div class = 'row'> 
+		<% @categories.each do |cat| %>
+		<%= link_to(cat.name, {:action => 'filter', :id => cat.id})%>&nbsp;
+		<%end%>	
+	</div>
+	<br/>
+	<div class = 'row'>
+		<%= form_tag(:action => 'search') do%>
+		<%= text_field_tag(:search_explore, "", :size => 25, :maxlength => 40, :class => 'search') %>
 		<%= submit_tag ("search")%>
-	<%end%>
-	</tr>
-	
-	<hr>
-</table> </div>
+		<%end%>
+	</div>
+
+</div>
+
+<div class="separator"></div>
 
 
 <%= render(:partial => "collection_view", :locals => {:images => @collection, :link_description => "bookmark", :method => "bookmark", :controller => "share"})%>

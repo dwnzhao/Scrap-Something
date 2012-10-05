@@ -1,14 +1,16 @@
 <div id = "collection_table">
 	<div class ="row">
 		<% images.each_with_index do |image, index|%>
-		<% if !image.blank? %>
-		<div class ="mosaic-block">
-		<%= link_to link_description, {:action => method, :controller => controller, :id => image.id}, :class => "mosaic-overlay"%> 
-		<div class="mosaic-backdrop"><%=link_to image_tag(image.photo.url(:medium)), {:action => "view_scrap_detail", :id => image.id, :controller => "scrap"}%></div></div>
+		<div class ="scrap_block">
+		<div class="scrap_asset"><%=link_to image_tag(image.photo.url(:medium)), {:action => "view_scrap_detail", :id => image.id, :controller => "scrap"}%></div>
+		<%= link_to link_description, {:action => method, :controller => controller, :id => image.id}, :class => "scrap_edit"%>
+		<div class = 'scrap_name'><%=image.name%></div>
+		</div>
 			<% if (index+1)%4==0 %>
 			</div><div class ="row">
 			<% end %>		
-			<%end%>
 		<%end%>
 	</div>
 </div>
+
+<br/><br/>

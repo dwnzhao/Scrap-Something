@@ -11,7 +11,7 @@ class Scrap < ActiveRecord::Base
   has_and_belongs_to_many :categories
   has_many :shared_scraps, :class_name => 'SharedScrap', :foreign_key => 'bookmarked_scrap_id'
   has_many :users, :through => :shared_scraps
-  has_many :product_listings 
+  has_many :product_listings, :dependent => :destroy
   belongs_to :creator, :class_name => 'User'
 
   scope :search, lambda {|query| where(["name LIKE ?", "%#{query}%"])}

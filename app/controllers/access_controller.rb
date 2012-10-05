@@ -3,7 +3,7 @@ class AccessController < ApplicationController
   respond_to :html, :js
 
   before_filter :confirm_logged_in, :except => [:index, :signup, :login, 
-    :logout, :create_user, :authenticate, :landing_page]
+    :logout, :create, :authenticate, :landing_page]
 
     def index
     redirect_to(:controller => 'collection', :action => 'browse_collection')
@@ -31,7 +31,7 @@ class AccessController < ApplicationController
       redirect_to(:action => 'index')
     end
 
-    def create_user
+    def create
       @user = User.new(params[:user])
       if @user.save
         session[:user_id] = @user.id
@@ -51,11 +51,11 @@ class AccessController < ApplicationController
       end
     end
 
-    def edit_profile
+    def edit
       @user = get_session_user
     end
 
-    def update_user
+    def update
       @user = get_session_user
       if @user.update_attributes(params[:user])
         flash[:notice] = "... profile updated ..."
@@ -69,12 +69,8 @@ class AccessController < ApplicationController
       @user = get_session_user
     end
 
-    def delete_profile
-      @user = get_session_user
-    end 
-
-    def destroy_profile
-      User.get_session_user.destroy
+    def delete
+      get_session_user.destroy
       session[:user_id] = nil
       session[:username] = nil
       flash[:notice] = "... profile deleted ..."
