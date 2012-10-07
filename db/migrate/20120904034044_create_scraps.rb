@@ -7,6 +7,7 @@ class CreateScraps < ActiveRecord::Migration
       t.integer :number_of_shares, :default => 0
       t.boolean :item_availability, :default => false
       t.boolean :visibility, :default => true
+      t.attachment :photo
       t.timestamps
     end
     add_index('scraps', 'creator_id')

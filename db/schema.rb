@@ -11,12 +11,13 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120913055751) do
+ActiveRecord::Schema.define(:version => 20121005223034) do
 
   create_table "categories", :force => true do |t|
     t.string   "name"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.integer  "scrap_count"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
   end
 
   add_index "categories", ["name"], :name => "index_categories_on_name"
@@ -27,6 +28,40 @@ ActiveRecord::Schema.define(:version => 20120913055751) do
   end
 
   add_index "categories_scraps", ["category_id", "scrap_id"], :name => "index_categories_scraps_on_category_id_and_scrap_id"
+
+  create_table "cities", :force => true do |t|
+    t.string   "city",       :limit => 50
+    t.string   "state",      :limit => 50
+    t.datetime "created_at",               :null => false
+    t.datetime "updated_at",               :null => false
+  end
+
+  create_table "cities_product_listings", :id => false, :force => true do |t|
+    t.integer "city_id"
+    t.integer "product_listing_id"
+  end
+
+  create_table "cities_vendors", :id => false, :force => true do |t|
+    t.integer "city_id"
+    t.integer "vendor_id"
+  end
+
+  create_table "collections", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "name"
+    t.integer  "scrap_count"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  add_index "collections", ["name"], :name => "index_collections_on_name"
+
+  create_table "collections_scraps", :id => false, :force => true do |t|
+    t.integer "collection_id"
+    t.integer "scrap_id"
+  end
+
+  add_index "collections_scraps", ["collection_id", "scrap_id"], :name => "index_collections_scraps_on_collection_id_and_scrap_id"
 
   create_table "images", :force => true do |t|
     t.integer  "scrap_id"
@@ -48,11 +83,9 @@ ActiveRecord::Schema.define(:version => 20120913055751) do
     t.integer  "vendor_id"
     t.integer  "scrap_id"
     t.string   "url"
-    t.string   "metro_area"
     t.integer  "price"
-    t.integer  "discount_percent"
-    t.datetime "created_at",       :null => false
-    t.datetime "updated_at",       :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   add_index "product_listings", ["vendor_id", "scrap_id"], :name => "index_product_listings_on_vendor_id_and_scrap_id"
@@ -64,48 +97,47 @@ ActiveRecord::Schema.define(:version => 20120913055751) do
     t.integer  "number_of_shares",   :default => 0
     t.boolean  "item_availability",  :default => false
     t.boolean  "visibility",         :default => true
-    t.datetime "created_at",                            :null => false
-    t.datetime "updated_at",                            :null => false
     t.string   "photo_file_name"
     t.string   "photo_content_type"
     t.integer  "photo_file_size"
     t.datetime "photo_updated_at"
+    t.datetime "created_at",                            :null => false
+    t.datetime "updated_at",                            :null => false
   end
 
   add_index "scraps", ["creator_id"], :name => "index_scraps_on_creator_id"
 
-  create_table "shared_scraps", :force => true do |t|
-    t.integer  "user_id"
-    t.integer  "bookmarked_scrap_id"
-    t.text     "notes"
-    t.datetime "created_at",          :null => false
-    t.datetime "updated_at",          :null => false
-  end
-
-  add_index "shared_scraps", ["user_id", "bookmarked_scrap_id"], :name => "index_shared_scraps_on_user_id_and_bookmarked_scrap_id"
-
   create_table "users", :force => true do |t|
     t.string   "first_name",          :limit => 25
     t.string   "last_name",           :limit => 50
-    t.string   "user_name",                          :default => "",    :null => false
-    t.string   "email",                              :default => "",    :null => false
-    t.boolean  "email_confirmed",                    :default => false
+    t.string   "user_name",                         :default => "",    :null => false
+    t.string   "email",                             :default => "",    :null => false
+    t.boolean  "email_confirmed",                   :default => false
     t.string   "hashed_password"
+    t.string   "password"
     t.string   "salt"
-    t.string   "website",             :limit => 50
-    t.string   "company",             :limit => 50
-    t.string   "company_address",     :limit => 250
     t.string   "metro_area",          :limit => 20
-    t.integer  "phone",               :limit => 20
-    t.integer  "user_level",          :limit => 3,   :default => 1
-    t.datetime "created_at",                                            :null => false
-    t.datetime "updated_at",                                            :null => false
+    t.integer  "user_level",          :limit => 3,  :default => 1
     t.string   "avatar_file_name"
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
+    t.datetime "created_at",                                           :null => false
+    t.datetime "updated_at",                                           :null => false
   end
 
   add_index "users", ["user_name"], :name => "index_users_on_user_name"
+
+  create_table "vendors", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "website",            :limit => 50
+    t.string   "company",            :limit => 50
+    t.string   "company_address",    :limit => 250
+    t.integer  "phone",              :limit => 20
+    t.integer  "number_of_listings",                :default => 0
+    t.integer  "rating",             :limit => 1,   :default => 0
+    t.datetime "created_at",                                       :null => false
+    t.datetime "updated_at",                                       :null => false
+  end
 
 end

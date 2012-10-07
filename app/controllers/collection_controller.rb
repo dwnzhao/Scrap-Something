@@ -8,19 +8,21 @@ class CollectionController < ApplicationController
   end
 
   def view_collection
-    user = get_session_user
+    @user = get_session_user
     @categories = Category.all
-    @collection = user.scraps
-    @shared_collection = user.bookmarked_scraps
+    @collection = @user.collections.all
+    if (params[:collection].blank?)
+      @selected_collection = get_all_user_scraps
+    else
+      @selected_collection = Collection.find(params[:collection]).scraps
+    end
   end
 
   def browse_collection
     @categories = Category.all
     if (session[:user_id])
-      user = get_session_user
-      shared_collection = user.bookmarked_scraps.compact
-      @collection = Scrap.where("creator_id != ?", session[:user_id]).where(:visibility => true) - shared_collection
-    else 
+      @collection = Scrap.all - get_all_user_scraps
+    else
       @collection = Scrap.all
     end
   end
@@ -29,7 +31,7 @@ class CollectionController < ApplicationController
     @categories = Category.all
     if (session[:user_id])
       user = get_session_user
-      shared_collection = user.bookmarked_scraps 
+      shared_collection = user.collections('bookmarked')
       user_owned = Scrap.where("creator_id == ?", session[:user_id])
       @collection = Scrap.search(params[:search]) - shared_collection - user_owned
     else
@@ -39,18 +41,28 @@ class CollectionController < ApplicationController
   end
 
   def filter
-    @categories = Category.all
-    if (session[:user_id])
-      user = get_session_user
-      shared_collection = user.bookmarked_scraps 
-      @collection = Category.find(params[:id]).scraps.where("creator_id != ?", session[:user_id]).where(:visibility => true) - shared_collection
+    if(params[:user_specific])
+      @selected_collection = Category.find(params[:id]).scraps & get_all_user_scraps
+      @user = get_session_user
+      @categories = Category.all
+      @collection = @user.collections.all
+      render("collection/view_collection")
     else
       @collection = Category.find(params[:id]).scraps
     end
-    render("collection/browse_collection")
   end
 
   def organize_collection
+  end
+
+  def get_all_user_scraps
+    user = get_session_user
+    collection_all = user.collections
+    selected_collection = []
+    collection_all.each_with_index do |collection, index|
+      selected_collection = selected_collection + collection.scraps
+    end
+    return selected_collection
   end
 
 

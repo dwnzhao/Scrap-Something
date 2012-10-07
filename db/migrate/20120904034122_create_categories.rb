@@ -1,7 +1,8 @@
 class CreateCategories < ActiveRecord::Migration
-  def up
+  def change
     create_table :categories do |t|
       t.string :name
+      t.integer :scrap_count
       t.timestamps
     end
     
@@ -19,11 +20,6 @@ class CreateCategories < ActiveRecord::Migration
     Category.create(:name => 'decor')
     Category.create(:name => 'stationery')
     Category.create(:name => 'venue')
-  end
-  
-  def down
-    drop_table :categories_scraps
-    drop_table :categories
   end
   
 end

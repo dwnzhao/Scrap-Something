@@ -2,42 +2,69 @@
 <%= render "common/home_header" %>
 <%end%>
 
-<%= form_tag(:action => 'search') do%>
+<div id = 'left_panel'>
 
-<%= text_field_tag(:search_home, "", :size => 25, :maxlength => 40, :class => 'search') %>
-<%= submit_tag ("search")%>
-<%end%>
-<div class ="separator"></div>
+	<div style="margin-top:90px">
+		<% if @user.avatar_file_name%>
+		<%= link_to image_tag(@user.avatar.url(:thumb), :size =>'50x50'), {:action => 'profile', :controller => 'access'}%>
+		<%else%>
+		<%= link_to(@user.user_name, {:action => 'profile', :controller => 'access'})%>
+		<%end%>
+	</div>
 
-<!--my collection-->
+	<h2>collections</h2>
 
-<% if !@collection.blank?%>
-<div class = "my_scrap">
-	<br/>
-	<div id = "filter_my_collection"><%= link_to("my collection", "#", :class => "collection_name")%></div>
-	<%= render(:partial => "collection_view", :locals => {:images => @collection, :link_description => "edit", :method => :edit, :controller => "scrap"})%>
-	<div class ="separator"</div></div>
-</div>
+	<div id = "collection_name">
+		<div class ="row">
+			<div class ="collection_name" style="margin-left:110px"><%=link_to('view all', {:action => "view_collection", :id => 'all', :controller => "collection"})%></div>
+			<% @collection.each_with_index do |collection, index|%>
+			<div class ="collection_name" style="margin-left:110px">
+				<%=link_to(collection.name, {:action => "view_collection", :id => collection.id, :controller => "collection", :collection => collection.id})%>
+			</div>
+			<%end%>
+		</div>
+	</div>
 
-<%end%>
+	<div class="separator"></div>
 
+	<h2>categories</h2>
 
-<!--bookmarked collection-->
+	<div id = "category_name">
+		<div class ="row">
+			<% @categories.each_with_index do |category, index|%>
+			<div class ="collection_name" style="margin-left:110px">
+				<%=link_to(category.name, {:action => "filter", :id => category.id, :controller => "collection", :user_specific => true})%>
+			</div>
+			<%end%>
+		</div>
+	</div>
 
-<% if !@shared_collection.blank?%>
-<div class = "bookmarked_scrap">	
-	<br/>
-	<div id = 'filter_bookmarked_collection'><%= link_to("bookmarked", "#", :class => "collection_name")%></div>
-	<%= render(:partial => "collection_view", :locals => {:images => @shared_collection, :link_description => "remove bookmark", :method => "remove_bookmark", :controller => "share"})%>
-	<div class="separator"></div></div>
+	<br>
+	<div class="separator"></div>
+	<br>
 
+	<%= form_tag(:action => 'search') do%>
+
+	<%= text_field_tag(:search_home, "", :size => 20, :maxlength => 25, :class => 'search') %>
+	<%= submit_tag "search", :class=>'button'%>
 	<%end%>
 
-	<% if @collection.blank? && @shared_collection.blank?%>
+</div>
+
+
+<div id = 'center_panel'>
+	<% if !@selected_collection.blank?%>
+	<div class = "my_scrap">
+		<%= render(:partial => "collection_view", :locals => {:images => @selected_collection, :images_per_row => 3, :link_description => "remove bookmark", :method => "remove_bookmark"})%>
+	</div>
+	<%else%>
+
 	<div id = "instruction">	
 		<p>You have a pretty clean slate. <br/>
-			<%= link_to('add a scrap', {:action => 'add_scrap', :controller => 'scrap'})%> or 
+			<%= link_to('add a scrap', {:action => 'upload_scrap', :controller => 'scrap'})%> or 
 			<%= link_to('explore', {:action => 'browse_collection'})%> 	
 		</p>
 	</div>
 	<%end%>
+</div>
+</div>

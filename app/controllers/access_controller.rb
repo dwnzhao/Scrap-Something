@@ -43,9 +43,9 @@ class AccessController < ApplicationController
     end
 
     def update_profile_pic
-      @user = get_session_user
-      @user.attributes = params[:user]
-      if @user.save
+      user = get_session_user
+      user.attributes = params[:user]
+      if user.save
         flash[:notice] = "... profile created ..."
         redirect_to(:action => 'index')
       end
@@ -56,8 +56,8 @@ class AccessController < ApplicationController
     end
 
     def update
-      @user = get_session_user
-      if @user.update_attributes(params[:user])
+      user = get_session_user
+      if user.update_attributes(params[:user])
         flash[:notice] = "... profile updated ..."
         redirect_to(:action => 'profile')
       else
@@ -78,10 +78,10 @@ class AccessController < ApplicationController
     end
 
     def authenticate
-      @authorized_user = User.authenticate(params[:username], params[:password])
-      if @authorized_user
-        session[:user_id] = @authorized_user.id
-        session[:username] = @authorized_user.user_name
+      authorized_user = User.authenticate(params[:username], params[:password])
+      if authorized_user
+        session[:user_id] = authorized_user.id
+        session[:username] = authorized_user.user_name
         flash[:notice] = "... you are now logged in ..."
         redirect_to(:action => 'index')
       else

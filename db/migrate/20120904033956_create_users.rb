@@ -7,13 +7,11 @@ class CreateUsers < ActiveRecord::Migration
         t.string :email, :default =>'', :null => false
         t.boolean :email_confirmed, :default => false 
         t.string :hashed_password
+        t.string :password
         t.string :salt
-        t.string :website, :limit => 50
-        t.string :company, :limit => 50
-        t.string :company_address, :limit => 250
         t.string :metro_area, :limit => 20
-        t.integer :phone, :limit => 20
         t.integer :user_level, :limit =>3, :default => 1
+        t.attachment :avatar
         t.timestamps
       end
     add_index('users', 'user_name')

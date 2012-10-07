@@ -1,20 +1,26 @@
 <div style="min-width: 960px; margin: 0 auto;">	
 
 	<div id="nav">
-		<li><a href="#" class="selected">Account</a>
-			<ul>
-				<li><%= link_to('Profile', {:controller => 'access', :action => 'profile'}, :id => 'account_link')%></li>
-				<li><%= link_to('Log out', {:controller => 'access', :action => 'logout'}, :id => 'logout_link')%></li>
-			</ul>
-				<li><a href="#" class="selected">Add</a>
-					<ul>
-						<li><%= link_to('Image', :controller => 'scrap', :action => 'add_scrap')%></li>
-					</ul>
-					<div class="clear"></div>
-				</li>
-				
-					</ul>
+		<%if session[:user_id] == nil%>
+		<%= link_to('Login', {:action => 'login', :controller => 'access'})%>
+		<%= link_to('Sign Up', {:action => 'signup', :controller => 'access'})%>
+		<%else%>
+		<a href="#" id="add_menu">Add</a>
+		<a href="#" id="">Organize</a> 
+		<a href="#" class="selected">Visualize</a>
+		<a href="#" id="account_menu">Account</a> 
+		<%end%>
 	</div>
+
+	<div id="account_menu_expand">
+		<div class="row"><%= link_to('profile', {:action => 'profile', :controller => 'access'})%></div>
+		<div class="row"><%= link_to('logout', {:action => 'logout', :controller => 'access'})%></div>
+	</div>	
+
+	<div id="add_menu_expand">
+		<div class="row"><%= link_to('image', {:action => 'upload_scrap', :controller => 'scrap'})%></div>
+		<div class="row"><%= link_to('collection', {:action => 'add_collection', :controller => 'collection'})%></div>
+	</div>
+
 </div>
 <br/><br/><br/>
-

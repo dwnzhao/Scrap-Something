@@ -2,7 +2,7 @@
 
 <h1>Your Profile </h1>
 
-<% if @user.avatar_file_name%>
+<% if @user.avatar_file_name%> 
 	<%= image_tag @user.avatar.url(:thumb) %>
 <%end%>
 

@@ -1,7 +1,7 @@
 $(document).ready(function() {
 
 	// searchbox animation
-	var newWidth = $('.search').outerWidth() + 40 + (15 * 2);
+	var newWidth = $('.search').outerWidth() + 10 + (15 * 2);
 	var orgWidth = $('.search').outerWidth()
 
 
@@ -90,16 +90,16 @@ $(document).ready(function() {
 
 	// menu
 
-	$('#nav li').hover(
-		function () {
-			//show its submenu
-			$('ul', this).stop().slideDown(100);
-
-		}, 
-		function () {
-			//hide its submenu
-			$('ul', this).stop().slideUp(100);          
-		}
+	$('#account_menu').toggle(
+		function () {$('#account_menu_expand').slideDown(100);},
+		function () {$('#account_menu_expand').slideUp(100);
+		}	
+	);
+	
+	$('#add_menu').toggle(
+		function () {$('#add_menu_expand').slideDown(100);},
+		function () {$('#add_menu_expand').slideUp(100);
+		}	
 	);
 
 

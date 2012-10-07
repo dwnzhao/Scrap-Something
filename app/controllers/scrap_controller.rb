@@ -2,9 +2,26 @@ class ScrapController < ApplicationController
   layout 'view_collection'
   before_filter :confirm_logged_in, :except => [:view_scrap_detail, :switch_image]
 
-  def add_scrap
+  def upload_scrap
     @scrap = Scrap.new
     @categories = Category.all
+  end
+  
+  def save_upload_scrap
+    @scrap = Scrap.new(params[:scrap])
+    @scrap.creator_id = session[:user_id]
+    @scrap.save
+    checked_categories = get_categories_from(params[:categories])
+    remove_categories = Category.all - checked_categories
+    if !@scrap.new_record?
+      checked_categories.each {|cat| @scrap.categories << cat if !@scrap.categories.include?(cat)}
+      remove_categories.each {|cat| @scrap.categories.destroy(cat) if @scrap.categories.include?(cat)}
+      get_session_user.collections.find_by_name('uploaded').scraps << @scrap
+      redirect_to(:action => 'view_collection', :controller => 'collection')
+    else
+      @categories = Category.all
+      render('upload_scrap')
+    end
   end
 
   def edit
@@ -42,22 +59,7 @@ class ScrapController < ApplicationController
     end
   end
 
-  def save_add_scrap
-    @scrap = Scrap.new(params[:scrap])
-    @scrap.creator_id = session[:user_id]
-    @scrap.save
-    checked_categories = get_categories_from(params[:categories])
-    remove_categories = Category.all - checked_categories
-    if !@scrap.new_record?
-      checked_categories.each {|cat| @scrap.categories << cat if !@scrap.categories.include?(cat)}
-      remove_categories.each {|cat| @scrap.categories.destroy(cat) if @scrap.categories.include?(cat)}
-      flash[:notice] = "... scrap added ..."
-      redirect_to(:action => 'view_collection', :controller => 'collection')
-    else
-      @categories = Category.all
-      render('add_scrap')
-    end
-  end
+
 
   def destroy_scrap
     Scrap.find(params[:id]).destroy

@@ -3,10 +3,15 @@
 		<% images.each_with_index do |image, index|%>
 		<div class ="scrap_block">
 		<div class="scrap_asset"><%=link_to image_tag(image.photo.url(:medium)), {:action => "view_scrap_detail", :id => image.id, :controller => "scrap"}%></div>
-		<%= link_to link_description, {:action => method, :controller => controller, :id => image.id}, :class => "scrap_edit"%>
+		<%if(image.creator_id == session[:user_id])%>
+		<%= link_to 'edit', {:action => 'edit', :controller => 'scrap', :id => image.id}, :class => "scrap_edit"%>
+		<%else%>
+		<%= link_to link_description, {:action => method, :controller => 'share', :id => image.id}, :class => "scrap_edit"%>
+		<%end%>
+		
 		<div class = 'scrap_name'><%=image.name%></div>
 		</div>
-			<% if (index+1)%4==0 %>
+			<% if (index+1)%images_per_row==0 %>
 			</div><div class ="row">
 			<% end %>		
 		<%end%>
