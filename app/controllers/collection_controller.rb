@@ -8,6 +8,7 @@ class CollectionController < ApplicationController
   end
 
   def view_collection
+    @scrap_total = get_all_user_scraps.size
     @user = get_session_user
     @categories = Category.all
     @collection = @user.collections.all
@@ -28,16 +29,17 @@ class CollectionController < ApplicationController
   end
 
   def search
-    @categories = Category.all
-    if (session[:user_id])
-      user = get_session_user
-      shared_collection = user.collections('bookmarked')
-      user_owned = Scrap.where("creator_id == ?", session[:user_id])
-      @collection = Scrap.search(params[:search]) - shared_collection - user_owned
+    if (params[:user_specific] = true)
+      @user = get_session_user
+      @categories = Category.all
+      @collection = @user.collections.all
+      @selected_collection = Scrap.search(params[:search_home]) & get_all_user_scraps
+      render(:template => "view_collection")
     else
-      @collection = Scrap.search(params[:search])
+      @categories = Category.all
+      @collection = Scrap.search(params[:search_explore])
+      render(:template => "browse_collection")
     end
-    render(:template => "collection/browse_collection")
   end
 
   def filter
@@ -63,6 +65,10 @@ class CollectionController < ApplicationController
       selected_collection = selected_collection + collection.scraps
     end
     return selected_collection
+  end
+  
+  def test
+    @selected_collection = get_all_user_scraps
   end
 
 

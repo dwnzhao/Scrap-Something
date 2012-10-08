@@ -56,12 +56,12 @@ class AccessController < ApplicationController
     end
 
     def update
-      user = get_session_user
-      if user.update_attributes(params[:user])
+      @user = get_session_user
+      if @user.update_attributes(params[:user])
         flash[:notice] = "... profile updated ..."
         redirect_to(:action => 'profile')
       else
-        render('edit_profile')
+        render('edit')
       end
     end
 

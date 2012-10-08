@@ -10,16 +10,32 @@
 		<%else%>
 		<%= link_to(@user.user_name, {:action => 'profile', :controller => 'access'})%>
 		<%end%>
-	</div>
+	</div> <br><br>	
+	
+	<%= form_tag(:action => 'search', :user_specific => true) do%>
+
+	<%= text_field_tag(:search_home, "", :size => 20, :maxlength => 25, :class => 'search') %>
+	<%= submit_tag "search", :class=>'button'%>
+	<%end%>
+
+	<div class="separator"></div>
 
 	<h2>collections</h2>
 
 	<div id = "collection_name">
 		<div class ="row">
-			<div class ="collection_name" style="margin-left:110px"><%=link_to('view all', {:action => "view_collection", :id => 'all', :controller => "collection"})%></div>
+			<div class ="collection_name" style="margin-left:90px">
+				<%= link_to "Test",  {:action => 'test'}, :remote=> true%>
+			</div>
+			
+			
+			
+			
+			<div class ="collection_name" style="margin-left:90px"><%=link_to_unless_current("view all (#{@scrap_total})", {:action => "view_collection", :id => 'all', :controller => "collection"})%>
+				</div>
 			<% @collection.each_with_index do |collection, index|%>
-			<div class ="collection_name" style="margin-left:110px">
-				<%=link_to(collection.name, {:action => "view_collection", :id => collection.id, :controller => "collection", :collection => collection.id})%>
+			<div class ="collection_name" style="margin-left:90px">
+				<%=link_to_unless_current("#{collection.name} (#{collection.scraps.size})", {:action => "view_collection", :id => collection.id, :controller => "collection", :collection => collection.id})%>
 			</div>
 			<%end%>
 		</div>
@@ -27,27 +43,19 @@
 
 	<div class="separator"></div>
 
-	<h2>categories</h2>
+	<h3>categories</h3>
 
 	<div id = "category_name">
-		<div class ="row">
+		<div class="table">
 			<% @categories.each_with_index do |category, index|%>
-			<div class ="collection_name" style="margin-left:110px">
-				<%=link_to(category.name, {:action => "filter", :id => category.id, :controller => "collection", :user_specific => true})%>
-			</div>
+				<%=link_to_unless_current(category.name, {:action => "filter", :id => category.id, :controller => "collection", :user_specific => true})%>
+				<% if (index+1)%3==0 %>
+				<br>
+				<% end %>		
+				
 			<%end%>
 		</div>
 	</div>
-
-	<br>
-	<div class="separator"></div>
-	<br>
-
-	<%= form_tag(:action => 'search') do%>
-
-	<%= text_field_tag(:search_home, "", :size => 20, :maxlength => 25, :class => 'search') %>
-	<%= submit_tag "search", :class=>'button'%>
-	<%end%>
 
 </div>
 
@@ -66,5 +74,4 @@
 		</p>
 	</div>
 	<%end%>
-</div>
 </div>

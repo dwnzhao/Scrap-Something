@@ -4,12 +4,14 @@
 	<title>Scrap Something | <%= @page_title || 'Collections' %></title>
 	<%= stylesheet_link_tag('application', 'collection', 'scrap', 'jquery.fancybox', :media => "all" )%>
 	<%= javascript_include_tag('application', 'collection', 'jquery.fancybox.pack', 'scrap')%>
+	
+	
 	<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
 	<%= csrf_meta_tags %>
 
 </head>
 <body>
-	<div style="min-width: 1200px; margin: 0 auto;">	
+	<div style="min-width: 1200px; margin: 0 auto; height:1px;">	
 			
 		<%= render "common/border" %>
 		<%= render "common/account_menu" %>

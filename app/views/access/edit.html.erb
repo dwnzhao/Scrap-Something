@@ -5,7 +5,7 @@
 
 <div class = "user_edit">
 
-<%= form_for(:user, :url => {:action => 'update_user'}) do |f| %>
+<%= form_for(:user, :url => {:action => 'update'}) do |f| %>
 
 	<%= render(:partial => "profile_form", :locals => {:f => f})%>
 

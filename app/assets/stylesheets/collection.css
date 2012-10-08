@@ -1,4 +1,3 @@
-
 .scrap_block {
 	float:left;
 	overflow:hidden;
@@ -42,7 +41,6 @@
 }
 
 .collection_name{font-variant: small-caps; font-size: 1.5em;}
-.collection_name:hover{text-decoration:underline;}
 
 #instruction {
 	resize: none;
@@ -94,10 +92,9 @@
 	background-color:black;
 	opacity:0.9;
 }
-#account_menu_expand a, #add_menu_expand a{
-	
+
+#account_menu_expand a, #add_menu_expand a{	
 	display:table-cell;
 	color:white;
-	
 	padding: 10px;
 }

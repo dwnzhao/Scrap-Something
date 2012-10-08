@@ -1,0 +1,5 @@
+$('#center_panel').html('');
+
+$('<%= escape_javascript(render(:partial => "collection_view", :locals => {:images => @selected_collection, 
+	:images_per_row => 3, :link_description => "remove bookmark", :method => 
+	"remove_bookmark"}))%>').appendTo('#center_panel');

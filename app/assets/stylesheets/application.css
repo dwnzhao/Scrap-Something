@@ -11,15 +11,13 @@
 *= require_self
 */
 
-
-
 /*positioning & layout*/
 html { height: 100%; width: 100%;}
-body { font-family: Helvetica; text-align: center; color: #181818; background: #FFFFFF; text-decoration:none;
-	padding:0 5px 5px; font-size: 12px; background-color: #ffffff; font-weight: normal;}
+body { font-family: Helvetica; text-align: center; color: #181818; background: #FFFFFF; text-decoration:none; 
+	font-size: 12px; background-color: #ffffff; font-weight: normal;}
 table, #form {margin-left: auto; margin-right: auto;}
 table tr th, table tr td {vertical-align: top; text-align: middle; 
-	text-decoration: none; font-size: 12px; font-weight: normal;}
+text-decoration: none; font-size: 12px; font-weight: normal;}
 .row {display: table-row;}
 .inline{display:inline; vertical-align: center}
 .table {display:table; margin-left: auto; margin-right: auto;}
@@ -29,13 +27,15 @@ table tr th, table tr td {vertical-align: top; text-align: middle;
 
 #left_panel{overflow:hidden; background-color: black; width:280px; left:-10px;
 	height:120%; position:fixed; top:30px; opacity:0.8; color:white;}
-
-#browse_image_area{overflow:scroll; margin-left: auto; margin-right:auto; background-color: none; width:1270px; height:90%; top:50px;}
+	
+#center_panel{overflow:scroll; margin-left: 350px; background-color: none; width:850px; height:90%; position:fixed; padding: 50px 0px; top:0px;}
+	
+#browse_image_area{overflow:scroll; margin-left: auto; margin-right:auto; background-color: none; width:1270px; top:50px;}
 
 #left_panel a {color:white}
 
-#center_panel{overflow:scroll; margin-left: 350px; background-color: none; width:850px; height:90%; position:fixed; top:50px;}
 
+/*lines & buttons*/
 .separator {
 	border-top: 1px solid rgba(0, 0, 0, 0.3);
 	border-bottom: 1px solid rgba(255, 255, 255, 0.9);
@@ -52,14 +52,6 @@ table tr th, table tr td {vertical-align: top; text-align: middle;
 	float:right;
 	width:3px;
 }
-
-
-/*font style*/
-
-h1 {text-align: center; font-size: 24px; }
-a {text-decoration:none; color:#181818; padding:0 5px 5px; font-size: 12px;}
-a:hover {font-style:italic; color: #B8860B;}
-
 
 .button {
 	-moz-box-shadow:inset 0px 1px 0px 0px #ffffff;
@@ -78,7 +70,14 @@ a:hover {font-style:italic; color: #B8860B;}
 	padding:2px 4px;
 	text-decoration:none;
 	text-shadow:1px 1px 0px #ffffff;
-	}
+	}.button:active{position:relative;top:1px;}
+
+
+/*font style*/
+
+h1 {text-align: center; font-size: 24px; }
+a {text-decoration:none; color:#181818; padding:0 5px 5px; font-size: 12px;}
+a:hover {font-style:italic; color: #B8860B;}
 
 .notice {
 	color: black;
