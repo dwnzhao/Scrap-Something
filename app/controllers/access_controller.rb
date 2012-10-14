@@ -6,13 +6,14 @@ class AccessController < ApplicationController
     :logout, :create, :authenticate, :landing_page]
 
     def index
-    redirect_to(:controller => 'collection', :action => 'browse_collection')
+      redirect_to(:controller => 'collection', :action => 'browse_collection')
     end
 
     def signup
       if (session[:user_id])
-        flash[:notice] = "... please first log out as #{session[:username]} ..."
-        redirect_to(:action => 'index')
+        @user = get_session_user
+        flash[:notice] = "... please first log out ..."
+        render(:template => 'access/profile')
       else 
         @user = User.new
       end
@@ -26,7 +27,6 @@ class AccessController < ApplicationController
 
     def logout      
       session[:user_id] = nil
-      session[:username] = nil
       flash[:notice] = "... you are now logged out ..."
       redirect_to(:action => 'index')
     end
@@ -35,7 +35,6 @@ class AccessController < ApplicationController
       @user = User.new(params[:user])
       if @user.save
         session[:user_id] = @user.id
-        session[:username] = @user.user_name
         render('upload_profile_pic')
       else
         render('signup')
@@ -72,22 +71,20 @@ class AccessController < ApplicationController
     def delete
       get_session_user.destroy
       session[:user_id] = nil
-      session[:username] = nil
       flash[:notice] = "... profile deleted ..."
       redirect_to(:action => 'index')
     end
 
     def authenticate
-      authorized_user = User.authenticate(params[:username], params[:password])
+      authorized_user = User.authenticate(params[:email], params[:password])
       if authorized_user
         session[:user_id] = authorized_user.id
-        session[:username] = authorized_user.user_name
         flash[:notice] = "... you are now logged in ..."
         redirect_to(:action => 'index')
       else
-        flash[:notice] = "Invalid username / password combination"
+        flash[:notice] = "Invalid email / password combination"
         render('login')
       end
     end
-    
-end
+
+  end

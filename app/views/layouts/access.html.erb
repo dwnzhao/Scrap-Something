@@ -7,22 +7,18 @@
 	<%= csrf_meta_tags %>
 </head>
 <body>
-<div style="min-width: 960px; margin: 0 auto;">
-<br/><br/>
-	<div id="left"></div>
-	<div id="right"></div>
-	<div id="top"></div>
-	<div id="bottom"></div>
+	<div style="min-width: 960px; margin: 0 auto;">
+		<br/><br/>
 
-	<%= yield %>
+		<%= yield %>
 
-	<br/><br/>
-	<div class="notice">
-	<% if !flash[:notice].blank?%>
-		<%= flash[:notice]%>
-		<%end%>
+		<br/><br/>
+		<div class="notice">
+			<% if !flash[:notice].blank?%>
+			<%= flash[:notice]%>
+			<%end%>
+		</div>
+
 	</div>
-
-</div>
 </body>
 </html>

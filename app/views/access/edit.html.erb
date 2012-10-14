@@ -6,16 +6,40 @@
 <div class = "user_edit">
 
 <%= form_for(:user, :url => {:action => 'update'}) do |f| %>
+<table summary="User form fields">
+	<tr>
+		<th><%= f.label(:first_name, "First Name")%></th>
+		<td><%= f.text_field(:first_name, :size => 30, :maxlength => 40) %></td>
+	</tr>
+	<tr>
+		<th><%= f.label(:last_name, "Last Name")%></th>
+		<td><%= f.text_field(:last_name, :size => 30, :maxlength => 40)%></td>
+	</tr>
+	<tr>
+		<th><%= f.label(:email, "Email")%></th>
+		<td><%= f.text_field(:email, :size => 30, :maxlength => 40)%></td>
+	</tr>
+	<tr>
+		<th><%= f.label(:metro_area, "Your City")%></th>
+		<td><%= f.text_field(:metro_area, :size => 30, :maxlength => 40)%></td>
+	</tr>
+	<tr>
+		<th><%= f.label(:user_level, "Are you a vendor?")%></th>
+		<th>
+			<%= f.radio_button(:user_level, 3, :id => 'vendor_yes') %>Yes
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<%= f.radio_button(:user_level, 1, :id => 'vendor_no') %>No
+		</th>
+	</tr>
+</table> <br><br><br>
 
-	<%= render(:partial => "profile_form", :locals => {:f => f})%>
-
-	<div class="form-buttons"><%= submit_tag("update")%> </div>
+<%= submit_tag "update", :class=>'button'%>
 
 <% end %>
 
-<br/><br/><br/>
+ <br><br><br>
 
-<%= link_to("no thanks. take me back.", {:action => 'profile'})%>
+no thanks.<span style='text-decoration:underline'><%= link_to("take me back.", {:action => 'profile'})%></span>
 
 
 </div>

@@ -1,77 +1,89 @@
-<% content_for :header do %>
-<%= render "common/home_header" %>
-<%end%>
+<div id ="holder"></div>
+<div class="overlay"></div>
 
-<div id = 'left_panel'>
-
-	<div style="margin-top:90px">
+<div id="left_panel">
+	<div id="avatar" style="padding-top:50px;">		
 		<% if @user.avatar_file_name%>
 		<%= link_to image_tag(@user.avatar.url(:thumb), :size =>'50x50'), {:action => 'profile', :controller => 'access'}%>
 		<%else%>
-		<%= link_to(@user.user_name, {:action => 'profile', :controller => 'access'})%>
+		<%= link_to(@user.email, {:action => 'profile', :controller => 'access'})%>
 		<%end%>
-	</div> <br><br>	
-	
-	<%= form_tag(:action => 'search', :user_specific => true) do%>
+	</div><br/>
 
+	<%= form_tag(:action => 'search', :user_specific => true, :class => 'row') do%>
 	<%= text_field_tag(:search_home, "", :size => 20, :maxlength => 25, :class => 'search') %>
-	<%= submit_tag "search", :class=>'button'%>
+	<button type="submit" class = 'button'><i class="icon-search"></i></button>
 	<%end%>
 
-	<div class="separator"></div>
+	<hr>
 
-	<h2>collections</h2>
+	<div id="category_table">
+		<h4>
+			<a href="#" id="category_menu"><i class="icon-chevron-down icon-white"></i></a>
+			categories
+		</h4>
+		<% @categories.each_with_index do |category, index|%>
+		<%=link_to_unless_current(category.name, {:action => "filter", :id => category.id, :controller => "collection", :user_specific => true})%>
+		<% if (index+1)%3==0 %>
+		<br>
+		<%end%>		
+		<%end%>
+	</div>
+</div>
 
-	<div id = "collection_name">
-		<div class ="row">
-			<div class ="collection_name" style="margin-left:90px">
-				<%= link_to "Test",  {:action => 'test'}, :remote=> true%>
+<div id="center_top_panel">
+		
+		<p class="lead" style="text-align:left"><%=@user.first_name%>'s Wedding Collection... </p>
+	  
+	
+	<div id = "collection_menu", class = 'table'>		
+		<ul class="nav nav-tabs">
+
+			<%if(params[:collection] == 'all' || params[:collection].blank?)%>
+			<li class = 'active'>
+				<%else%>
+				<li>
+					<%end%>		
+					<%=link_to("view all (#{@scrap_total})", {:action => "view_collection", :controller => "collection", :collection => 'all', :id => 'all'})%>
+				</li>
+
+				<% @collection.each_with_index do |collection, index|%>
+				<%if(params[:collection].to_i == collection.id)%>
+				<li class = 'active'>
+					<%else%>
+					<li>
+						<%end%>		
+						<%=link_to("#{collection.name} (#{collection.collection_items_count})", {:action => "view_collection",  :controller => "collection", :collection => collection.id})%> 
+					</li>
+					<%end%>	
+
+					<li>
+						<%= link_to "Test",  {:action => 'test'}, :remote=> true%>
+					</li>
+
+				</ul>
+
 			</div>
-			
-			
-			
-			
-			<div class ="collection_name" style="margin-left:90px"><%=link_to_unless_current("view all (#{@scrap_total})", {:action => "view_collection", :id => 'all', :controller => "collection"})%>
-				</div>
-			<% @collection.each_with_index do |collection, index|%>
-			<div class ="collection_name" style="margin-left:90px">
-				<%=link_to_unless_current("#{collection.name} (#{collection.scraps.size})", {:action => "view_collection", :id => collection.id, :controller => "collection", :collection => collection.id})%>
+		</div>
+
+
+
+		<div id="center_panel">
+
+
+			<% if !@selected_collection.blank?%>
+			<div class = "my_scrap">
+				<%= render(:partial => "collection_view", :locals => {:images => @selected_collection, :images_per_row => 3, :link_description => "remove bookmark", :method => "remove_bookmark"})%>
+			</div>
+
+			<%else%>
+
+			<div id = "instruction">	
+				<br><br><br><br>
+				<p>You have a pretty clean slate. <br/>
+					<%= link_to('add a scrap', {:action => 'upload_scrap', :controller => 'scrap'})%> or 
+					<%= link_to('explore', {:action => 'browse_collection'})%> 	
+				</p>
 			</div>
 			<%end%>
 		</div>
-	</div>
-
-	<div class="separator"></div>
-
-	<h3>categories</h3>
-
-	<div id = "category_name">
-		<div class="table">
-			<% @categories.each_with_index do |category, index|%>
-				<%=link_to_unless_current(category.name, {:action => "filter", :id => category.id, :controller => "collection", :user_specific => true})%>
-				<% if (index+1)%3==0 %>
-				<br>
-				<% end %>		
-				
-			<%end%>
-		</div>
-	</div>
-
-</div>
-
-
-<div id = 'center_panel'>
-	<% if !@selected_collection.blank?%>
-	<div class = "my_scrap">
-		<%= render(:partial => "collection_view", :locals => {:images => @selected_collection, :images_per_row => 3, :link_description => "remove bookmark", :method => "remove_bookmark"})%>
-	</div>
-	<%else%>
-
-	<div id = "instruction">	
-		<p>You have a pretty clean slate. <br/>
-			<%= link_to('add a scrap', {:action => 'upload_scrap', :controller => 'scrap'})%> or 
-			<%= link_to('explore', {:action => 'browse_collection'})%> 	
-		</p>
-	</div>
-	<%end%>
-</div>

@@ -53,30 +53,12 @@ $(document).ready(function() {
 			}
 		);
 
-
-		// collection toggle
-		var my_collection_visible = true;
-		var bookmarked_collection_visible = true;
-
-		$("#filter_my_collection").toggle(function() {
-			$(".bookmarked_scrap").slideUp();
-		}, function() {
-			$(".bookmarked_scrap").slideDown();
-		});
-
-		$("#filter_bookmarked_collection").toggle(function() {
-			$(".my_scrap").slideUp();
-		}, function() {
-			$(".my_scrap").slideDown();		
-		});
-
 		// scrap hover 
 		$(".scrap_block").hover(function() {
 			$(this).children(".scrap_edit").fadeIn();		
 		}, function() {
 			$(this).children(".scrap_edit").fadeOut();		
 		});
-
 
 		// scrap detail iframe
 		$(".scrap_asset a").fancybox({
@@ -87,7 +69,16 @@ $(document).ready(function() {
 			'transitionOut'		: 'none',
 			'type'				: 'iframe',
 			'showCloseButton'	: true,	
-		});	
+			'padding'			: '0',	        
+			 helpers : {
+			        overlay : {
+			            css : {
+			                'background' : 'rgba(0, 0, 0, 0.5)'
+			            }
+			        }
+			    }
+		}
+		);	
 
 		// menu
 

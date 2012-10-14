@@ -11,7 +11,12 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121005223034) do
+ActiveRecord::Schema.define(:version => 20121012032514) do
+
+  create_table "baskets", :force => true do |t|
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "categories", :force => true do |t|
     t.string   "name"
@@ -46,22 +51,24 @@ ActiveRecord::Schema.define(:version => 20121005223034) do
     t.integer "vendor_id"
   end
 
+  create_table "collection_items", :force => true do |t|
+    t.integer  "collection_id"
+    t.integer  "scrap_id"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
+
+  add_index "collection_items", ["collection_id", "scrap_id"], :name => "index_collection_items_on_collection_id_and_scrap_id"
+
   create_table "collections", :force => true do |t|
     t.integer  "user_id"
     t.string   "name"
-    t.integer  "scrap_count"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.integer  "collection_items_count", :default => 0
+    t.datetime "created_at",                            :null => false
+    t.datetime "updated_at",                            :null => false
   end
 
   add_index "collections", ["name"], :name => "index_collections_on_name"
-
-  create_table "collections_scraps", :id => false, :force => true do |t|
-    t.integer "collection_id"
-    t.integer "scrap_id"
-  end
-
-  add_index "collections_scraps", ["collection_id", "scrap_id"], :name => "index_collections_scraps_on_collection_id_and_scrap_id"
 
   create_table "images", :force => true do |t|
     t.integer  "scrap_id"
@@ -93,6 +100,7 @@ ActiveRecord::Schema.define(:version => 20121005223034) do
   create_table "scraps", :force => true do |t|
     t.integer  "creator_id"
     t.string   "name",               :default => ""
+    t.string   "source",             :default => ""
     t.text     "description"
     t.integer  "number_of_shares",   :default => 0
     t.boolean  "item_availability",  :default => false
@@ -110,11 +118,9 @@ ActiveRecord::Schema.define(:version => 20121005223034) do
   create_table "users", :force => true do |t|
     t.string   "first_name",          :limit => 25
     t.string   "last_name",           :limit => 50
-    t.string   "user_name",                         :default => "",    :null => false
     t.string   "email",                             :default => "",    :null => false
     t.boolean  "email_confirmed",                   :default => false
     t.string   "hashed_password"
-    t.string   "password"
     t.string   "salt"
     t.string   "metro_area",          :limit => 20
     t.integer  "user_level",          :limit => 3,  :default => 1
@@ -126,7 +132,7 @@ ActiveRecord::Schema.define(:version => 20121005223034) do
     t.datetime "updated_at",                                           :null => false
   end
 
-  add_index "users", ["user_name"], :name => "index_users_on_user_name"
+  add_index "users", ["email"], :name => "index_users_on_email"
 
   create_table "vendors", :force => true do |t|
     t.integer  "user_id"

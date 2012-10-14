@@ -1,26 +1,36 @@
-<div style="min-width: 960px; margin: 0 auto;">	
+<div id="tool_menu" >
+	<%if session[:user_id] == nil%>
+	<%= link_to('Login', {:action => 'login', :controller => 'access'})%>
+	<%= link_to('Sign Up', {:action => 'signup', :controller => 'access'})%>
+	<%else%>
+	<a href="#" id="add_menu"><i class="icon-plus icon-white"></i> ADD</a>
+	<a href="#" id="account_menu"><i class="icon-user icon-white"></i> ACCOUNT</a> 
+	<a href="#" id="account_menu"><i class="icon-search icon-white"></i> Search</a> 
+    
+	
+	<%end%>
+</div>
 
-	<div id="nav">
-		<%if session[:user_id] == nil%>
-		<%= link_to('Login', {:action => 'login', :controller => 'access'})%>
-		<%= link_to('Sign Up', {:action => 'signup', :controller => 'access'})%>
-		<%else%>
-		<a href="#" id="add_menu">Add</a>
-		<a href="#" id="">Organize</a> 
-		<a href="#" class="selected">Visualize</a>
-		<a href="#" id="account_menu">Account</a> 
-		<%end%>
-	</div>
+<div id="account_menu_expand">
+	<div class="row"><%= link_to('profile', {:action => 'profile', :controller => 'access'})%></div>
+	<div class="row"><%= link_to('logout', {:action => 'logout', :controller => 'access'})%></div>
+</div>	
 
-	<div id="account_menu_expand">
-		<div class="row"><%= link_to('profile', {:action => 'profile', :controller => 'access'})%></div>
-		<div class="row"><%= link_to('logout', {:action => 'logout', :controller => 'access'})%></div>
-	</div>	
+<div id="add_menu_expand">
+	<div class="row"><%= link_to('image', {:action => 'upload_scrap', :controller => 'scrap'})%></div>
+	<div class="row"><%= link_to('collection', {:action => 'add_collection', :controller => 'collection'})%></div>
+</div>
 
-	<div id="add_menu_expand">
-		<div class="row"><%= link_to('image', {:action => 'upload_scrap', :controller => 'scrap'})%></div>
-		<div class="row"><%= link_to('collection', {:action => 'add_collection', :controller => 'collection'})%></div>
-	</div>
+<div id= "home_menu">
+
+	<%= link_to_unless_current("home", :action => 'view_collection', :controller => 'collection') do %>
+	<i class="icon-home icon-white"></i>
+	Home
+	<%end%>
+	
+	<%= link_to_unless_current("explore", :action => 'browse_collection', :controller => 'collection') do%>
+	<i class="icon-globe icon-white"></i>
+	Explore
+	<%end%>
 
 </div>
-<br/><br/><br/>

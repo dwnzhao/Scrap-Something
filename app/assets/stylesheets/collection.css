@@ -14,42 +14,42 @@
 	cursor:crosshair;
 }
 
+#collection_menu {font-size: 13px}
+#collection_menu a {color: grey}
+
+
+#collection_name, #category_name {
+	margin: 10px 20px 10px 25px;
+}
+
 .scrap_edit {
 	position:relative;
 	float:right;
 	margin-top:-304px;
-	z-index:5000;
+	width:200px;
+	z-index:500;
 	background:white;
 	display:none;
-	/*	background:url(http://aux.iconpedia.net/uploads/1471978810475883531.png);*/
+	text-align: right;
 }
 
 .scrap_asset img{
-	/* This centers the image */
 	margin-left: auto;
 	margin-right: auto;
-
-
-	/* This adds the border */	
 }
 
 .scrap_name {
 	position:relative;
-	z-index:5000;
-	background-color:none;
+	z-index:500;
 	border:none;
 }
 
-.collection_name{font-variant: small-caps; font-size: 1.5em;}
-
 #instruction {
-	resize: none;
 	position:relative;
 	top:25%;
 	font-size:30px;
 	min-width: 600px;
-	margin-left:auto;
-	margin-right:auto;
+	margin-left:-500px;
 }
 
 #instruction a{
@@ -58,39 +58,25 @@
 	text-decoration: underline;
 }
 
-
-/* remove the list style */
-#nav {
-	position:fixed;
-	width:500px;
-	z-index:15;
-	right:10px;
-	top: 2px;
-}   
-
-#nav a {
-	display:table-cell;
-	color:white;
-	padding:10px;
-	float:right;
-}
-
 #account_menu_expand{
 	position:fixed;
 	display:none;
-	right:200px;
+	right:100px;
 	top: 30px;
 	background-color:black;
 	opacity:0.9;
+	text-align: center;
+	z-index:50;
 }
 
 #add_menu_expand{
 	display:none;
 	position:fixed;
-	right:15px;
+	right:155px;
 	top: 30px;
 	background-color:black;
 	opacity:0.9;
+	z-index:50;
 }
 
 #account_menu_expand a, #add_menu_expand a{	

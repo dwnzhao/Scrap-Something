@@ -8,6 +8,7 @@ class ExternalController < ApplicationController
       scrap = Scrap.new()
       scrap.creator_id = session[:user_id]
       scrap.name = params[:name]
+      scrap.source = params[:name]
       scrap.description = 'added from ' + params[:name]
       scrap.photo = external_image
       scrap.save

@@ -1,7 +1,9 @@
 class Collection < ActiveRecord::Base
   # attr_accessible :title, :body
   
-  has_and_belongs_to_many :scraps
+  has_many :collection_items
+  has_many :scraps, :through => :collection_items
+  
   belongs_to :user
   
 end

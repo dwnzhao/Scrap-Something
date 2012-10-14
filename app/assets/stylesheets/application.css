@@ -8,13 +8,13 @@
 * You're free to add application-wide styles to this file and they'll appear at the top of the
 * compiled file, but it's generally better to create a new file per style scope.
 *
+*= require bootstrap_and_overrides
 *= require_self
 */
 
 /*positioning & layout*/
 html { height: 100%; width: 100%;}
-body { font-family: Helvetica; text-align: center; color: #181818; background: #FFFFFF; text-decoration:none; 
-	font-size: 12px; background-color: #ffffff; font-weight: normal;}
+body { text-align: center; text-decoration:none; font-size: 11px}
 table, #form {margin-left: auto; margin-right: auto;}
 table tr th, table tr td {vertical-align: top; text-align: middle; 
 text-decoration: none; font-size: 12px; font-weight: normal;}
@@ -25,15 +25,20 @@ text-decoration: none; font-size: 12px; font-weight: normal;}
 #top {background: #000000; position: fixed; height: 30px; z-index: 10; top: 0px; 
 	width: 120%; left: -20px; opacity: 0.8;}
 
-#left_panel{overflow:hidden; background-color: black; width:280px; left:-10px;
-	height:120%; position:fixed; top:30px; opacity:0.8; color:white;}
-	
-#center_panel{overflow:scroll; margin-left: 350px; background-color: none; width:850px; height:90%; position:fixed; padding: 50px 0px; top:0px;}
-	
-#browse_image_area{overflow:scroll; margin-left: auto; margin-right:auto; background-color: none; width:1270px; top:50px;}
+#left_panel{width:270px; color:#181818;
+font-size: 15px; text-align: right; margin-left:-30px; margin-top: -30px; background-color: transparent; 
+padding: 0px 20px; height:900px;
+border-right: thin solid #D3D3D3 }
+#left_panel a {color:#181818}
 
-#left_panel a {color:white}
-
+#center_top_panel{
+	margin-left: 280px; background-color: none;
+		padding: 50px 30px; margin-top:-900px; 
+}
+	
+#center_panel{margin-left: 280px; background-color: none;
+	padding: 50px 30px; margin-top:-100px;min-width: 1400px;}
+	
 
 /*lines & buttons*/
 .separator {
@@ -67,17 +72,16 @@ text-decoration: none; font-size: 12px; font-weight: normal;}
 	font-family:arial;
 	font-size:10px;
 	font-weight:bold;
-	padding:2px 4px;
 	text-decoration:none;
 	text-shadow:1px 1px 0px #ffffff;
+	margin-bottom:6px;
 	}.button:active{position:relative;top:1px;}
 
 
 /*font style*/
 
-h1 {text-align: center; font-size: 24px; }
-a {text-decoration:none; color:#181818; padding:0 5px 5px; font-size: 12px;}
-a:hover {font-style:italic; color: #B8860B;}
+a {text-decoration:none; color:#181818; padding:0 5px 5px; font-size: 12px; opacity: 0.9}
+a:hover {opacity: 1}
 
 .notice {
 	color: black;
@@ -99,24 +103,29 @@ a:hover {font-style:italic; color: #B8860B;}
 	color:#F80000;
 }
 
-.search {
-    border:1px solid #ccc;
-    margin:0px 1px 0px 50px;
-	border-radius: 3px;
-}
+.search { height: 18px; width:130px; align:bottom;display}
 
-.header_menu{
+
+#home_menu{
 	position: fixed;
-	z-index:15;
-	margin-left: 44%;
-	margin-right: 44%;
-	top: 1px;
+	z-index:20;
+	margin-left: 40%;
+	margin-right: 40%;
+	top: 5px;
+	width:300px;
+	color:white;
+	overflow:none;
+	font-size:25px;
 }
 
-table.header_menu tr th {vertical-align: baseline; z-index: 15;}
+#tool_menu{
+	position: fixed;
+	z-index:20;
+	margin-left: 80%;
+	min-width:330px;
+	top: 5px;
+	color:white;
+	
+}
 
-#big_menu a, #big_menu {color: white; font-size: 20px; font-weight: normal; z-index: 15; }
-
-#small_menu a, #small_menu {color: #ffffff;  font-size: 12px; z-index: 15; }
-
-.big_white_divider {color: white; font-size: 20px;}
+#home_menu a, #tool_menu a {color:white}

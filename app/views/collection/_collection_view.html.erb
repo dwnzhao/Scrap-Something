@@ -3,8 +3,8 @@
 		<% images.each_with_index do |image, index|%>
 		<div class ="scrap_block">
 		<div class="scrap_asset"><%=link_to image_tag(image.photo.url(:medium)), {:action => "view_scrap_detail", :id => image.id, :controller => "scrap"}%></div>
-		<%if(image.creator_id == session[:user_id])%>
-		<%= link_to 'edit', {:action => 'edit', :controller => 'scrap', :id => image.id}, :class => "scrap_edit"%>
+		<%if(image.creator_id == session[:user_id])%>		
+		<%= link_to raw('<i class="icon-pencil"></i>'), {:action => 'edit', :controller => 'scrap', :id => image.id}, :class => "scrap_edit"%>
 		<%else%>
 		<%= link_to link_description, {:action => method, :controller => 'share', :id => image.id}, :class => "scrap_edit"%>
 		<%end%>

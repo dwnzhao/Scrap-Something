@@ -8,13 +8,12 @@ class CollectionController < ApplicationController
   end
 
   def view_collection
-    @scrap_total = get_all_user_scraps.size
+    @selected_collection = get_all_user_scraps
+    @scrap_total = @selected_collection.size
     @user = get_session_user
     @categories = Category.all
     @collection = @user.collections.all
-    if (params[:collection].blank?)
-      @selected_collection = get_all_user_scraps
-    else
+    if (!params[:collection].blank? && params[:collection] != 'all')
       @selected_collection = Collection.find(params[:collection]).scraps
     end
   end
@@ -29,16 +28,22 @@ class CollectionController < ApplicationController
   end
 
   def search
-    if (params[:user_specific] = true)
+    if (params[:user_specific] == 'true')
       @user = get_session_user
       @categories = Category.all
       @collection = @user.collections.all
       @selected_collection = Scrap.search(params[:search_home]) & get_all_user_scraps
-      render(:template => "view_collection")
+      if (@selected_collection.blank?)
+        flash[:notice] = "... sorry, nothing found ..."
+      end
+      render(:template => "collection/view_collection")
     else
       @categories = Category.all
       @collection = Scrap.search(params[:search_explore])
-      render(:template => "browse_collection")
+      if (@collection.blank?)
+        flash[:notice] = "... sorry, nothing found ..."
+      end
+      render(:template => "collection/browse_collection")
     end
   end
 
@@ -62,7 +67,7 @@ class CollectionController < ApplicationController
     collection_all = user.collections
     selected_collection = []
     collection_all.each_with_index do |collection, index|
-      selected_collection = selected_collection + collection.scraps
+    selected_collection = selected_collection + collection.scraps
     end
     return selected_collection
   end

@@ -3,11 +3,12 @@
 <%end%>
 
 <div id ="holder"></div>
+<div class="overlay"></div>
+
 
 <h1>Edit</h1>
 <hr>
 
-<div class="overlay"></div>
 
 <table summary ="collection detail">
 	<tr>
@@ -25,17 +26,17 @@
 	</tr>
 </table> 
 
-<br/><br/><hr>
+<br/><br/>
 
 <%= form_for(:scrap, :url => {:action => 'update_scrap', :id => @scrap.id}, 
 :html => { :multipart => true, :id => "form" }) do |f| %>
 
 <%= render(:partial => "scrap_form", :locals => {:f => f})%>
 
-<%= submit_tag "Update", :id =>'upload_button' %>
+<%= submit_tag "Update", :class=>'button' %>
 <% end %>
 
- <br/><br/><br/>
+ <br/>
 
 <div id ="delete_scrap"><%= link_to "delete this scrap", :method => :get, :action => :edit%></div>
 
@@ -45,7 +46,7 @@
 	<p>Are you sure you want to delete your image?</p>
 	<table summary = "delete scrap confirmation">
 		<tr>
-			<td> <%= link_to('Yes', {:action => 'destroy_image_to_scrap', :controller => 'scrap', :id => params[:id]})%></td>
+			<td> <%= link_to('Yes', {:action => 'destroy_image_to_scrap', :controller => 'scrap', :scrap_id => params[:id]})%></td>
 			<td> <%= link_to('No', :class => "close_dialog")%></td>
 		</tr>
 	</table>
@@ -56,7 +57,7 @@
 	<p>Are you sure you want to delete your scrap?</p>
 	<table summary = "delete scrap confirmation">
 		<tr>
-			<td> <%= link_to('Yes', {:action => 'destroy_scrap', :controller => 'scrap', :id => @scrap.id})%></td>
+			<td> <%= link_to('Yes', {:action => 'destroy_scrap', :controller => 'scrap', :scrap_id => params[:id]})%></td>
 			<td> <%= link_to('No', :class => "close_dialog")%></td>
 		</tr>
 	</table>
