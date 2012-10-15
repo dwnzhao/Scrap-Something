@@ -11,12 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121012032514) do
-
-  create_table "baskets", :force => true do |t|
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
+ActiveRecord::Schema.define(:version => 20121015052705) do
 
   create_table "categories", :force => true do |t|
     t.string   "name"
@@ -114,6 +109,25 @@ ActiveRecord::Schema.define(:version => 20121012032514) do
   end
 
   add_index "scraps", ["creator_id"], :name => "index_scraps_on_creator_id"
+
+  create_table "tab_items", :force => true do |t|
+    t.integer  "tab_id"
+    t.integer  "scrap_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "tab_items", ["tab_id", "scrap_id"], :name => "index_tab_items_on_tab_id_and_scrap_id"
+
+  create_table "tabs", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "name"
+    t.integer  "tab_items_count", :default => 0
+    t.datetime "created_at",                     :null => false
+    t.datetime "updated_at",                     :null => false
+  end
+
+  add_index "tabs", ["name"], :name => "index_tabs_on_name"
 
   create_table "users", :force => true do |t|
     t.string   "first_name",          :limit => 25

@@ -10,16 +10,16 @@
 	background-color:#FFFFFF;
 }
 
+.scrap_asset img{
+	margin-left: auto;
+	margin-right: auto;
+}
 .scrap_block img:hover {
 	cursor:crosshair;
 }
 
-#collection_menu {font-size: 13px}
-#collection_menu a {color: grey}
-
-
-#collection_name, #category_name {
-	margin: 10px 20px 10px 25px;
+.scrap_block a:hover {
+	text-decoration: none;
 }
 
 .scrap_edit {
@@ -27,16 +27,12 @@
 	float:right;
 	margin-top:-304px;
 	width:200px;
-	z-index:500;
+	z-index:50;
 	background:white;
 	display:none;
 	text-align: right;
 }
 
-.scrap_asset img{
-	margin-left: auto;
-	margin-right: auto;
-}
 
 .scrap_name {
 	position:relative;
@@ -44,7 +40,7 @@
 	border:none;
 }
 
-#instruction {
+#instruction p{
 	position:relative;
 	top:25%;
 	font-size:30px;
@@ -53,9 +49,9 @@
 }
 
 #instruction a{
-	font-size:35px;
-	font-variant: small-caps;
+	font-size:30px;
 	text-decoration: underline;
+	font-weight:bold;
 }
 
 #account_menu_expand{

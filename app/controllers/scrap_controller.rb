@@ -102,6 +102,14 @@ class ScrapController < ApplicationController
     render :template => 'scrap/view_scrap_detail', :layout => 'scrap_detail'
   end
   
+  def switch_scrap
+    @scrap = Scrap.find(params[:id])
+    @categories = get_category_names(@scrap)
+    @creator_name = User.find(@scrap.creator_id).email
+    @images = @scrap.images
+    render :template => 'scrap/view_scrap_detail', :layout => 'scrap_detail'
+  end
+  
   def get_listing(id)
     scrap = Scrap.find(id)
     return scrap.product_listings

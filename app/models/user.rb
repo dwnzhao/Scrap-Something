@@ -13,10 +13,12 @@ class User < ActiveRecord::Base
   has_attached_file :avatar, :styles => { :medium => '300x300>', :thumb => '100x100>' }
   has_many :owned_scraps, :class_name => 'Scrap', :foreign_key => 'creator_id', :order => 'updated_at DESC'
   has_many :collections, :dependent => :destroy
+  has_many :tabs, :dependent => :destroy
+  
  
   before_save :create_hashed_password
   after_save :clear_password
-  after_create :initiate_collections
+  after_create :initiate_collections, :initiate_tabs
 
   def self.authenticate(email="", user_input_password="")
     user = User.find_by_email(email)
@@ -66,7 +68,21 @@ class User < ActiveRecord::Base
     
     c = Collection.new()
     c.name = "bookmarked"
-    self.collections << c
+    self.collections << c  
+  end
+  
+  def initiate_tabs
+    t = Tab.new()
+    t.name = "pre-wedding day"
+    self.tabs << t
+    
+    t = Tab.new()
+    t.name = "bridal shower"
+    self.tabs << t
+    
+    t = Tab.new()
+    t.name = "the big day"
+    self.tabs << t
     
   end
 

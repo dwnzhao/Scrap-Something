@@ -5,12 +5,15 @@ class Scrap < ActiveRecord::Base
   
   validates :creator_id, :presence => true
   validates :photo, :attachment_presence => {:message => "must upload an image"}
-  validates :name, :presence => {:message => "is required"}, :length => {:maximum => 25}, :uniqueness => {:scope => :creator_id}
+  validates :name, :presence => {:message => "is required"}, :length => {:maximum => 25}
   
   has_many :images, :dependent => :destroy 
   has_and_belongs_to_many :categories
   has_many :collection_items
-  has_many :collections, :through => :collection_items
+  has_many :collections, :through => :tab_items
+  has_many :tab_items
+  has_many :tabs, :through => :tab_items
+
   has_many :product_listings, :dependent => :destroy
   belongs_to :creator, :class_name => 'User'
 

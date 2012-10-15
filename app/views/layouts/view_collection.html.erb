@@ -11,6 +11,7 @@
 
 </head>
 <body>
+	<div style="min-width:1200px">
   
 		<div id="top"></div>			
 
@@ -18,13 +19,8 @@
 
 		<%= yield %>
 		
-		<div class="notice">
-			<% if !flash[:notice].blank?%>
-			<%= flash[:notice]%>
-			<%end%>
-		</div>
 
-
+</div>
 
 
 </body>

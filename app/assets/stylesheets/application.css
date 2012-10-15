@@ -15,40 +15,23 @@
 /*positioning & layout*/
 html { height: 100%; width: 100%;}
 body { text-align: center; text-decoration:none; font-size: 11px}
-table, #form {margin-left: auto; margin-right: auto;}
-table tr th, table tr td {vertical-align: top; text-align: middle; 
-text-decoration: none; font-size: 12px; font-weight: normal;}
+table, .table  {display: table; margin-left: auto; margin-right: auto;}
 .row {display: table-row;}
-.inline{display:inline; vertical-align: center}
-.table {display:table; margin-left: auto; margin-right: auto;}
 
-#top {background: #000000; position: fixed; height: 30px; z-index: 10; top: 0px; 
-	width: 120%; left: -20px; opacity: 0.8;}
+#top {background: #000000; position: fixed; height: 30px; z-index: 500; top: 0px; 
+	width: 120%; left: -20px; opacity: 0.85;}
 
-#left_panel{width:270px; color:#181818;
-font-size: 15px; text-align: right; margin-left:-30px; margin-top: -30px; background-color: transparent; 
-padding: 0px 20px; height:900px;
-border-right: thin solid #D3D3D3 }
+#left_panel{width:270px; color:#181818; font-size: 15px; 
+	text-align: right; margin-left:-30px; margin-top: -30px; background-color: none; 
+	padding: 0px 20px; height:900px; border-right: thin solid #D3D3D3; }
+	
 #left_panel a {color:#181818}
 
-#center_top_panel{
-	margin-left: 280px; background-color: none;
-		padding: 50px 30px; margin-top:-900px; 
-}
+#center_top_panel, #center_panel{margin-left: 300px; background-color: none; margin-top:-850px; overflow: none}
 	
-#center_panel{margin-left: 280px; background-color: none;
-	padding: 50px 30px; margin-top:-100px;min-width: 1400px;}
-	
+#center_panel{margin-top:-50px; padding: 30px 50px}
 
 /*lines & buttons*/
-.separator {
-	border-top: 1px solid rgba(0, 0, 0, 0.3);
-	border-bottom: 1px solid rgba(255, 255, 255, 0.9);
-	margin:1.5em 0;
-	width: 60%;
-	margin-left:auto;
-	margin-right:auto;
-}
 
 .divider {
 	border-right: 1px solid rgba(0, 0, 0, 0.3);
@@ -77,11 +60,9 @@ border-right: thin solid #D3D3D3 }
 	margin-bottom:6px;
 	}.button:active{position:relative;top:1px;}
 
-
 /*font style*/
-
 a {text-decoration:none; color:#181818; padding:0 5px 5px; font-size: 12px; opacity: 0.9}
-a:hover {opacity: 1}
+a:hover {opacity: 1; color: #181818}
 
 .notice {
 	color: black;
@@ -105,10 +86,11 @@ a:hover {opacity: 1}
 
 .search { height: 18px; width:130px; align:bottom;display}
 
+#home_menu a, #tool_menu a {color:white}
 
 #home_menu{
 	position: fixed;
-	z-index:20;
+	z-index:1000;
 	margin-left: 40%;
 	margin-right: 40%;
 	top: 5px;
@@ -120,12 +102,10 @@ a:hover {opacity: 1}
 
 #tool_menu{
 	position: fixed;
-	z-index:20;
+	z-index:1000;
 	margin-left: 80%;
 	min-width:330px;
 	top: 5px;
-	color:white;
-	
+	color:white;	
 }
 
-#home_menu a, #tool_menu a {color:white}

@@ -4,9 +4,11 @@
 		<div class ="scrap_block">
 		<div class="scrap_asset"><%=link_to image_tag(image.photo.url(:medium)), {:action => "view_scrap_detail", :id => image.id, :controller => "scrap"}%></div>
 		<%if(image.creator_id == session[:user_id])%>		
-		<%= link_to raw('<i class="icon-pencil"></i>'), {:action => 'edit', :controller => 'scrap', :id => image.id}, :class => "scrap_edit"%>
+		<%= link_to raw('<i class="icon-pencil"></i>'), {:action => 'edit', :controller => 'scrap', :id => image.id}, :title => 'edit', :class => "scrap_edit"%>
+		<%elsif(link_description == 'remove bookmark')%>
+		<%= link_to raw('<i class="icon-remove-circle"></i>'), {:action => method, :controller => 'share', :id => image.id}, :title => 'remove bookmark', :class => "scrap_edit"%>
 		<%else%>
-		<%= link_to link_description, {:action => method, :controller => 'share', :id => image.id}, :class => "scrap_edit"%>
+		<%= link_to raw('<i class="icon-tag"></i>'), {:action => method, :controller => 'share', :id => image.id}, :title => 'bookmark', :class => "scrap_edit"%>
 		<%end%>
 		
 		<div class = 'scrap_name'><%=image.name%></div>

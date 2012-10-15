@@ -13,6 +13,7 @@ class CollectionController < ApplicationController
     @user = get_session_user
     @categories = Category.all
     @collection = @user.collections.all
+    @tabs = @user.tabs.all
     if (!params[:collection].blank? && params[:collection] != 'all')
       @selected_collection = Collection.find(params[:collection]).scraps
     end
@@ -33,33 +34,29 @@ class CollectionController < ApplicationController
       @categories = Category.all
       @collection = @user.collections.all
       @selected_collection = Scrap.search(params[:search_home]) & get_all_user_scraps
-      if (@selected_collection.blank?)
-        flash[:notice] = "... sorry, nothing found ..."
-      end
-      render(:template => "collection/view_collection")
+      flash[:notice] = "... sorry, nothing found ..." if (@selected_collection.size.to_i != 0)
+      render("collection/view_collection")
     else
       @categories = Category.all
       @collection = Scrap.search(params[:search_explore])
-      if (@collection.blank?)
-        flash[:notice] = "... sorry, nothing found ..."
-      end
+      flash[:notice] = "... sorry, nothing found ..." if (@collection.blank?)
       render(:template => "collection/browse_collection")
     end
   end
 
   def filter
     if(params[:user_specific])
+      @scrap_total = get_all_user_scraps.size
       @selected_collection = Category.find(params[:id]).scraps & get_all_user_scraps
       @user = get_session_user
       @categories = Category.all
       @collection = @user.collections.all
+      @tabs = @user.tabs.all
+      flash[:notice] = "... sorry, nothing found ..." if (@selected_collection.blank?)
       render("collection/view_collection")
     else
       @collection = Category.find(params[:id]).scraps
     end
-  end
-
-  def organize_collection
   end
 
   def get_all_user_scraps
@@ -67,11 +64,11 @@ class CollectionController < ApplicationController
     collection_all = user.collections
     selected_collection = []
     collection_all.each_with_index do |collection, index|
-    selected_collection = selected_collection + collection.scraps
+      selected_collection = selected_collection + collection.scraps
     end
     return selected_collection
   end
-  
+
   def test
     @selected_collection = get_all_user_scraps
   end

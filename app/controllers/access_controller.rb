@@ -6,7 +6,11 @@ class AccessController < ApplicationController
     :logout, :create, :authenticate, :landing_page]
 
     def index
-      redirect_to(:controller => 'collection', :action => 'browse_collection')
+      if (session[:user_id])
+        redirect_to(:action => 'view_collection', :controller => 'collection') 
+      else
+        redirect_to(:action => 'browse_collection', :controller => 'collection', )
+      end
     end
 
     def signup
@@ -20,9 +24,7 @@ class AccessController < ApplicationController
     end
 
     def login    
-      if (session[:user_id])
-        redirect_to(:action => 'index')
-      end
+      redirect_to(:action => 'index') if (session[:user_id])
     end
 
     def logout      
@@ -44,10 +46,8 @@ class AccessController < ApplicationController
     def update_profile_pic
       user = get_session_user
       user.attributes = params[:user]
-      if user.save
-        flash[:notice] = "... profile created ..."
-        redirect_to(:action => 'index')
-      end
+      flash[:notice] = "... profile created ..." if(user.save)
+      redirect_to(:action => 'index')
     end
 
     def edit
