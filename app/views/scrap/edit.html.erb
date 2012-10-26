@@ -25,7 +25,7 @@
 <br/><br/>
 
 <%= form_for(:scrap, :url => {:action => 'update_scrap', :id => @scrap.id}, 
-:html => { :multipart => true, :id => "form" }) do |f| %>
+:html => { :multipart => true, :id => "form", :target => '_parent' }) do |f| %>
 
 <%= render(:partial => "scrap_form", :locals => {:f => f})%>
 

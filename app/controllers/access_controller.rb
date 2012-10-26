@@ -15,9 +15,8 @@ class AccessController < ApplicationController
 
     def signup
       if (session[:user_id])
-        @user = get_session_user
-        flash[:notice] = "... please first log out ..."
-        render(:template => 'access/profile')
+        flash[:warning] = "... please first log out ..."
+        redirect_to(:action => "profile")
       else 
         @user = User.new
       end
@@ -29,7 +28,6 @@ class AccessController < ApplicationController
 
     def logout      
       session[:user_id] = nil
-      flash[:notice] = "... you are now logged out ..."
       redirect_to(:action => 'index')
     end
 
@@ -44,10 +42,9 @@ class AccessController < ApplicationController
     end
 
     def update_profile_pic
-      user = get_session_user
-      user.attributes = params[:user]
-      flash[:notice] = "... profile created ..." if(user.save)
-      redirect_to(:action => 'index')
+      get_session_user.attributes = params[:user]
+      flash[:notice] = "Profile picture saved!" if(@user.save)
+      redirect_to(:action => "profile")
     end
 
     def edit
@@ -57,8 +54,8 @@ class AccessController < ApplicationController
     def update
       @user = get_session_user
       if @user.update_attributes(params[:user])
-        flash[:notice] = "... profile updated ..."
-        redirect_to(:action => 'profile')
+        flash[:notice] = "Updated profile!"
+        redirect_to(:action => "profile")
       else
         render('edit')
       end
@@ -71,7 +68,7 @@ class AccessController < ApplicationController
     def delete
       get_session_user.destroy
       session[:user_id] = nil
-      flash[:notice] = "... profile deleted ..."
+      flash[:notice] = "Deleted profile..."
       redirect_to(:action => 'index')
     end
 
@@ -79,10 +76,9 @@ class AccessController < ApplicationController
       authorized_user = User.authenticate(params[:email], params[:password])
       if authorized_user
         session[:user_id] = authorized_user.id
-        flash[:notice] = "... you are now logged in ..."
         redirect_to(:action => 'index')
       else
-        flash[:notice] = "Invalid email / password combination"
+        flash[:warning] = "Invalid email / password combination"
         render('login')
       end
     end

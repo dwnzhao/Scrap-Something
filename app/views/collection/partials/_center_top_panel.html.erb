@@ -1,0 +1,23 @@
+<p class="lead" style="text-align:left"><%=user.first_name.capitalize%>'s Wedding Collection... </p>
+
+<ul class="nav nav-tabs">
+	<li class="active" click_tab>
+		<%= link_to('view all', {:action => 'tab_filter', :controller => 'tab'}, :remote => true)%>
+	</li>
+
+	<li click-tab ng-repeat="category in categories">
+		<a href="/tab/tab_filter/{{category.id}}" data-remote="true">{{category.name}}</a>
+	</li>
+
+	<li class="hide" id="category_form">
+		<form ng-submit="addCategory()">
+			<input class="input-medium" type="text" ng-model="tabText"
+			placeholder="name new tab">
+			<input class="button" type="submit" value="add">
+		</form>
+	</li>
+
+	<li>
+		<a ng-click="add_category_form_visible()" href="#" ><i class="icon-plus"></i> add tab</a>
+	</li>
+</ul>

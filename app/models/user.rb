@@ -13,7 +13,7 @@ class User < ActiveRecord::Base
   has_attached_file :avatar, :styles => { :medium => '300x300>', :thumb => '100x100>' }
   has_many :owned_scraps, :class_name => 'Scrap', :foreign_key => 'creator_id', :order => 'updated_at DESC'
   has_many :collections, :dependent => :destroy
-  has_many :tabs, :dependent => :destroy
+  has_many :tabs, :foreign_key => 'user_id', :dependent => :destroy
   
  
   before_save :create_hashed_password

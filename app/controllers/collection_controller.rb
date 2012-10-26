@@ -1,7 +1,7 @@
 class CollectionController < ApplicationController
   layout 'view_collection'
   respond_to :html, :js
-  before_filter :confirm_logged_in, :except => [:browse_collection, :search, :filter]
+  before_filter :confirm_logged_in, :except => [:browse_collection, :search, :category_filter]
 
   def index
     redirect_to(:action => 'browse_collection')
@@ -13,10 +13,6 @@ class CollectionController < ApplicationController
     @user = get_session_user
     @categories = Category.all
     @collection = @user.collections.all
-    @tabs = @user.tabs.all
-    if (!params[:collection].blank? && params[:collection] != 'all')
-      @selected_collection = Collection.find(params[:collection]).scraps
-    end
   end
 
   def browse_collection
@@ -30,48 +26,29 @@ class CollectionController < ApplicationController
 
   def search
     if (params[:user_specific] == 'true')
-      @user = get_session_user
-      @categories = Category.all
-      @collection = @user.collections.all
       @selected_collection = Scrap.search(params[:search_home]) & get_all_user_scraps
-      flash[:notice] = "... sorry, nothing found ..." if (@selected_collection.size.to_i != 0)
-      render("collection/view_collection")
+      render("collection/filter.js")
     else
       @categories = Category.all
       @collection = Scrap.search(params[:search_explore])
-      flash[:notice] = "... sorry, nothing found ..." if (@collection.blank?)
+      flash[:info] = "... sorry, nothing found ..." if (@collection.blank?)
       render(:template => "collection/browse_collection")
     end
   end
 
-  def filter
+  def category_filter
     if(params[:user_specific])
-      @scrap_total = get_all_user_scraps.size
       @selected_collection = Category.find(params[:id]).scraps & get_all_user_scraps
-      @user = get_session_user
-      @categories = Category.all
-      @collection = @user.collections.all
-      @tabs = @user.tabs.all
-      flash[:notice] = "... sorry, nothing found ..." if (@selected_collection.blank?)
-      render("collection/view_collection")
+      render("collection/filter.js")
     else
       @collection = Category.find(params[:id]).scraps
+      @categories = Category.all
+      render(:template => "collection/browse_collection")
     end
   end
-
-  def get_all_user_scraps
-    user = get_session_user
-    collection_all = user.collections
-    selected_collection = []
-    collection_all.each_with_index do |collection, index|
-      selected_collection = selected_collection + collection.scraps
-    end
-    return selected_collection
+  
+  def source_filter
+      @selected_collection = Collection.find(params[:id]).scraps
+      render("collection/filter.js")
   end
-
-  def test
-    @selected_collection = get_all_user_scraps
-  end
-
-
 end

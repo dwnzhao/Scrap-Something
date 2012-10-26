@@ -1,23 +1,36 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="MyApp">
 <head>
 	<title>Scrap Something | <%= @page_title || 'Home' %></title>
 	<%= stylesheet_link_tag('application', 'access', :media => "all" )%>
 	<%= javascript_include_tag 'application', 'access' %>
 	<%= csrf_meta_tags %>
 </head>
-<body>
-	<div style="min-width: 960px; margin: 0 auto;">
+<body bgcolor="#E6E6FA">
+	<div style="min-width: 960px; margin: 0 auto">
+
+		<% if !flash[:warning].blank?%>
+		<div class="alert">
+			<button type="button" class="close" data-dismiss="alert">×</button>
+			<strong><%= flash[:warning]%></strong>
+		</div>
+		<%flash[:warning] = ''%>
+		<%end%>
+
+		<% if !flash[:notice].blank?%>
+		<div class="alert alert-success">
+			<button type="button" class="close" data-dismiss="alert">×</button>
+			<strong><%= flash[:notice]%></strong>
+		</div>
+		<%flash[:notice] = ''%>
+		<%end%>
+
 		<br/><br/>
 
 		<%= yield %>
 
 		<br/><br/>
-		<div class="notice">
-			<% if !flash[:notice].blank?%>
-			<%= flash[:notice]%>
-			<%end%>
-		</div>
+
 
 	</div>
 </body>

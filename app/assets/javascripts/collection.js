@@ -64,6 +64,22 @@ $(document).ready(function() {
 			}
 		}
 	});	
+	
+	$(".scrap_edit").fancybox({
+		'width'				: '65%',
+		'height'			: '65%',
+		'autoScale'     	: false,
+		'transitionIn'		: 'none',
+		'transitionOut'		: 'none',
+		'type'				: 'iframe',
+		'showCloseButton'	: true,	
+		'padding'			: '0',	        
+		helpers : {
+			overlay : {
+				css : {'background' : 'rgba(0, 0, 0, 0.5)'}
+			}
+		}
+	});
 
 	// menu
 
@@ -83,7 +99,12 @@ $(document).ready(function() {
 		};
 		if ($('#add_menu_expand').is(':visible')) {
 			$('#add_menu').trigger('click');
-		} 
+		};
+		
+		if ($('#inserted_tab').length > 0) {
+			alert('hello');
+		};
+		
 	});
 
 

@@ -1,0 +1,5 @@
+var code = "<li id='inserted_tab'><input id='new_tab' type='text' class='input-medium' placeholder='name your tab'></input></li>";
+
+if ($('#inserted_tab').length == 0) {
+	$('#test').after(code).hide().fadeIn('10000');
+}

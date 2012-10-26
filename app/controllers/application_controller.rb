@@ -13,8 +13,8 @@ class ApplicationController < ActionController::Base
 
   def confirm_logged_in
     unless session[:user_id]
-      flash[:notice] = "please log in or sign up."
-      redirect_to(:action => 'landing_page', :controller => 'access')
+      flash[:warning] = "Please log in or sign up."
+      render('access/landing_page', :layout => 'layouts/access')
       return false
     else 
       return true
@@ -42,6 +42,16 @@ class ApplicationController < ActionController::Base
     else
       return false
     end
+  end
+
+  def get_all_user_scraps
+    user = get_session_user
+    collection_all = user.collections
+    selected_collection = []
+    collection_all.each_with_index do |collection, index|
+      selected_collection = selected_collection + collection.scraps
+    end
+    return selected_collection
   end
 
 end

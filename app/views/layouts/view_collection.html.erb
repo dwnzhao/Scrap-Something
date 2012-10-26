@@ -1,26 +1,50 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="MyApp">
 <head>
 	<title>Scrap Something | <%= @page_title || 'Collections' %></title>
 	<%= stylesheet_link_tag('application', 'collection', 'scrap', 'jquery.fancybox',  :media => "all" )%>
 	<%= javascript_include_tag('application', 'collection', 'jquery.fancybox.pack', 'scrap')%>
-
-
 	<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.2/angular.min.js"></script>
+	<script src="http://angular-ui.github.com/angular-ui/build/angular-ui.js"></script>	
 	<%= csrf_meta_tags %>
 
 </head>
 <body>
 	<div style="min-width:1200px">
-  
-		<div id="top"></div>			
+
+		<div id="top"></div><div style="height:30px"></div>
+
+		<% if !flash[:warning].blank?%>
+		<div class="alert">
+			<button type="button" class="close" data-dismiss="alert">×</button>
+			<strong><%= flash[:warning]%></strong>
+		</div>
+		<%flash[:warning] = ''%>
+		<%end%>
+
+		<% if !flash[:notice].blank?%>
+		<div class="alert alert-success">
+			<button type="button" class="close" data-dismiss="alert">×</button>
+			<strong><%= flash[:notice]%></strong>
+		</div>
+		<%flash[:notice] = ''%>
+		<%end%>
 
 		<%= render "common/account_menu" %>
 
 		<%= yield %>
-		
 
-</div>
+		<% if !flash[:info].blank?%>
+		<div class="alert alert-info">
+			<button type="button" class="close" data-dismiss="alert">×</button>
+			<strong><%= flash[:info]%></strong>
+		</div>
+		<%flash[:info] = ''%>
+		<%end%>
+
+
+	</div>
 
 
 </body>

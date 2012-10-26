@@ -1,12 +1,12 @@
 class ScrapController < ApplicationController
-  layout 'view_collection'
+  layout 'scrap_detail'
   before_filter :confirm_logged_in, :except => [:view_scrap_detail, :switch_image]
 
   def upload_scrap
     @scrap = Scrap.new
     @categories = Category.all
   end
-  
+
   def save_upload_scrap
     @scrap = Scrap.new(params[:scrap])
     @scrap.creator_id = session[:user_id]
@@ -18,7 +18,7 @@ class ScrapController < ApplicationController
       remove_categories.each {|cat| @scrap.categories.destroy(cat) if @scrap.categories.include?(cat)}
       collection = get_session_user.collections.find_by_name('uploaded')
       collection.scraps << @scrap
-      collection.save
+      flash[:notice] = "Added Scrap!"
       redirect_to(:action => 'view_collection', :controller => 'collection')
     else
       @categories = Category.all
@@ -37,13 +37,8 @@ class ScrapController < ApplicationController
     @categories = get_category_names(@scrap)
     @images = @scrap.images
     @creator_name = User.find(@scrap.creator_id).email  
-    if !@scrap.product_listings.blank? 
-      @listings = get_listing(params[:id])
-    else
-      @listings = []
-    end
+    @listings = get_listing(params[:id]).compact
     render :template => 'scrap/view_scrap_detail', :layout => 'scrap_detail'
-
   end
 
   def update_scrap
@@ -53,7 +48,7 @@ class ScrapController < ApplicationController
     if @scrap.update_attributes(params[:scrap])
       checked_categories.each {|cat| @scrap.categories << cat if !@scrap.categories.include?(cat)}
       remove_categories.each {|cat| @scrap.categories.destroy(cat) if @scrap.categories.include?(cat)}
-      flash[:notice] = "... edits saved ..."
+      flash[:notice] = "Edits saved!"
       redirect_to(:action => 'view_collection', :controller => 'collection')
     else
       @categories = Category.all
@@ -64,7 +59,7 @@ class ScrapController < ApplicationController
 
   def destroy_scrap
     Scrap.find(params[:scrap_id]).destroy
-    flash[:notice] = "... scrap deleted ..."
+    flash[:notice] = "Scrap deleted..."
     redirect_to(:action => 'view_collection', :controller => 'collection')
   end
 
@@ -78,7 +73,7 @@ class ScrapController < ApplicationController
     scrap = Scrap.find(params[:id])
     if image.save
       scrap.images << image
-      flash[:notice] = "... image added ..."
+      flash[:notice] = "Image added!"
       redirect_to(:action => 'view_collection', :controller => 'collection')
     else
       render('add_image_to_scrap')
@@ -87,7 +82,7 @@ class ScrapController < ApplicationController
 
   def destroy_image_to_scrap
     image = Image.find(params[:id]).destroy
-    flash[:notice] = "... image deleted ..."
+    flash[:notice] = "Image deleted ..."
     redirect_to(:action => 'view_collection', :controller => 'collection')
   end
 
@@ -101,7 +96,7 @@ class ScrapController < ApplicationController
     @creator_name = User.find(@scrap.creator_id).email
     render :template => 'scrap/view_scrap_detail', :layout => 'scrap_detail'
   end
-  
+
   def switch_scrap
     @scrap = Scrap.find(params[:id])
     @categories = get_category_names(@scrap)
@@ -109,12 +104,12 @@ class ScrapController < ApplicationController
     @images = @scrap.images
     render :template => 'scrap/view_scrap_detail', :layout => 'scrap_detail'
   end
-  
+
   def get_listing(id)
     scrap = Scrap.find(id)
     return scrap.product_listings
   end
-  
+
 
 
 end

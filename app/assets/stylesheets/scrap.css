@@ -1,4 +1,4 @@
-.dialog p{font-size: 16px; padding: 15px}
+.dialog{font-size: 16px; padding: 25px}
 
 .scrap_description{text-align: left; padding: 0.8em 1em;}
 
@@ -13,7 +13,8 @@
 
 #scrap_detail_table{margin-left: auto; margin-right:auto;}
 
-.column, .icon_pic {display: table-cell; vertical-align: top;}
+.column{display: table-cell; vertical-align: top;}
+.icon_pic {float:left}
 .icon_pic img{color: #ffffff; border:none;}
 
 #select_category_instruction {font-weight: bold;}

@@ -14,7 +14,7 @@
 
 /*positioning & layout*/
 html { height: 100%; width: 100%;}
-body { text-align: center; text-decoration:none; font-size: 11px}
+body { text-align: center; text-decoration:none; font-size: 11px;}
 table, .table  {display: table; margin-left: auto; margin-right: auto;}
 .row {display: table-row;}
 
@@ -22,24 +22,16 @@ table, .table  {display: table; margin-left: auto; margin-right: auto;}
 	width: 120%; left: -20px; opacity: 0.85;}
 
 #left_panel{width:270px; color:#181818; font-size: 15px; 
-	text-align: right; margin-left:-30px; margin-top: -30px; background-color: none; 
+	text-align: right; margin-left:-30px; margin-top: 0px; background-color: none; 
 	padding: 0px 20px; height:900px; border-right: thin solid #D3D3D3; }
 	
 #left_panel a {color:#181818}
 
-#center_top_panel, #center_panel{margin-left: 300px; background-color: none; margin-top:-850px; overflow: none}
+#center_top_panel, #center_panel{margin-left: 300px; background-color: none; margin-top:-830px; overflow: none}
 	
 #center_panel{margin-top:-50px; padding: 30px 50px}
 
 /*lines & buttons*/
-
-.divider {
-	border-right: 1px solid rgba(0, 0, 0, 0.3);
-	border-left: 1px solid rgba(255, 255, 255, 0.9);
-	height:120%;
-	float:right;
-	width:3px;
-}
 
 .button {
 	-moz-box-shadow:inset 0px 1px 0px 0px #ffffff;
@@ -84,7 +76,7 @@ a:hover {opacity: 1; color: #181818}
 	color:#F80000;
 }
 
-.search { height: 18px; width:130px; align:bottom;display}
+.search { height: 18px; width:130px; align:bottom; }
 
 #home_menu a, #tool_menu a {color:white}
 
