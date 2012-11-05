@@ -9,7 +9,7 @@ development:
     database: db6a84v31ggthv
     port: 5432
     host: ec2-107-20-196-14.compute-1.amazonaws.com
-    username: qelqwkkuwfkvm
+    username: lqelqwkkuwfkvm
     password: Zu8JJTsckMB1gJEZI0mmW2CC1O
     pool: 5
     timeout: 5000
@@ -23,7 +23,7 @@ test:
     database: db6a84v31ggthv
     port: 5432
     host: ec2-107-20-196-14.compute-1.amazonaws.com
-    username: qelqwkkuwfkvm
+    username: lqelqwkkuwfkvm
     password: Zu8JJTsckMB1gJEZI0mmW2CC1O
     pool: 5
     timeout: 5000
@@ -34,7 +34,7 @@ production:
   database: db6a84v31ggthv
   port: 5432
   host: ec2-107-20-196-14.compute-1.amazonaws.com
-  username: qelqwkkuwfkvm
+  username: lqelqwkkuwfkvm
   password: Zu8JJTsckMB1gJEZI0mmW2CC1O
   pool: 5
   timeout: 5000
