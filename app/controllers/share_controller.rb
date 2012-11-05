@@ -5,7 +5,7 @@ class ShareController < ApplicationController
   def bookmark
     scrap = Scrap.find(params[:id])
     user = get_session_user
-    user.collections.find_by_name('bookmarked').scraps << scrap
+    user.collections.bookmarked.scraps << scrap
     scrap.update_attribute(:number_of_shares, scrap.number_of_shares + 1)
     redirect_to(:action => 'browse_collection', :controller => 'collection')
   end
@@ -13,7 +13,9 @@ class ShareController < ApplicationController
   def remove_bookmark
     scrap = Scrap.find(params[:id])
     user = get_session_user
-    user.collections.find_by_name('bookmarked').scraps.destroy(scrap) if user.collections.find_by_name('bookmarked').scraps.include?(scrap)
+    if(user.collections.bookmarked.scraps.include?(scrap))
+      user.collections.bookmarked.scraps.destroy(scrap) 
+    end
     redirect_to(:action => 'view_collection', :controller => 'collection')
   end
 end

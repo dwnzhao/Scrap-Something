@@ -22,7 +22,7 @@
 	text-decoration: none;
 }
 
-.scrap_edit {
+.edit_icon {
 	position:relative;
 	float:right;
 	margin-top:-304px;
@@ -52,31 +52,4 @@
 	font-size:30px;
 	text-decoration: underline;
 	font-weight:bold;
-}
-
-#account_menu_expand{
-	position:fixed;
-	display:none;
-	right:100px;
-	top: 30px;
-	background-color:black;
-	opacity:0.9;
-	text-align: center;
-	z-index:50;
-}
-
-#add_menu_expand{
-	display:none;
-	position:fixed;
-	right:155px;
-	top: 30px;
-	background-color:black;
-	opacity:0.9;
-	z-index:50;
-}
-
-#account_menu_expand a, #add_menu_expand a{	
-	display:table-cell;
-	color:white;
-	padding: 10px;
 }

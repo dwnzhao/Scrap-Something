@@ -23,7 +23,7 @@
 	<br/>
 	<div class = 'row'>
 		<%= form_tag :action => 'search', :user_specific => false do%>
-		<%= text_field_tag(:search_explore, "", :size => 25, :maxlength => 40, :class => 'search') %>
+		<%= text_field_tag(:search_explore, "", :size => 25, :maxlength => 40, :class => 'search', :autocomplete => "off" ) %>
 		<button type="submit" class = 'button'><i class="icon-search"></i></button>
 		<%end%>
 	</div>

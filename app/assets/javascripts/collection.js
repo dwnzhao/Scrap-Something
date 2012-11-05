@@ -15,8 +15,8 @@ $(document).ready(function() {
 	});
 
 	$('.search').focus(function() {
-		$(".search").animate({width: newWidth});
-		$(".search").val("");
+		$(this).animate({width: newWidth});
+		$(this).val("");
 		$('input:text').css({
 			'color' : 'black',
 		});
@@ -26,26 +26,31 @@ $(document).ready(function() {
 	$('.search').blur(function () {
 		if ($('#search_explore').val() == "") 
 		{
-			$(".search").animate({width: orgWidth});
-			$('#search_explore').val("search for ideas");
+			$(this).animate({width: orgWidth});
+			$(this).val("search for ideas");
 			$('input:text').css({'color' : 'grey',});
 		};
 
 		if ($('#search_home').val() == "") 
 		{
-			$(".search").animate({width: orgWidth});
-			$('#search_home').val("search my stuff");
+			$(this).animate({width: orgWidth});
+			$(this).val("search my stuff");
 			$('input:text').css({
 				'color' : 'grey',});
 			};
 		}
 	);
+	
+	$('.dropdown-menu').find('form').click(function (e) {
+    e.stopPropagation();
+  });
+  
 
 	// scrap hover 
 	$(".scrap_block").hover(function() {
-		$(this).children(".scrap_edit").fadeIn();		
+		$(this).children(".edit_icon").fadeIn();		
 	}, function() {
-		$(this).children(".scrap_edit").fadeOut();		
+		$(this).children(".edit_icon").fadeOut();		
 	});
 
 	// scrap detail iframe
@@ -79,32 +84,6 @@ $(document).ready(function() {
 				css : {'background' : 'rgba(0, 0, 0, 0.5)'}
 			}
 		}
-	});
-
-	// menu
-
-	$('#account_menu').toggle(
-		function () {$('#account_menu_expand').slideDown(100);},
-		function () {$('#account_menu_expand').slideUp(100);}	
-	);
-
-	$('#add_menu').toggle(
-		function () {$('#add_menu_expand').slideDown(100);},
-		function () {$('#add_menu_expand').slideUp(100);}	
-	);
-
-	$("html").click(function() {
-		if ($('#account_menu_expand').is(':visible')) {
-			$('#account_menu').trigger('click');
-		};
-		if ($('#add_menu_expand').is(':visible')) {
-			$('#add_menu').trigger('click');
-		};
-		
-		if ($('#inserted_tab').length > 0) {
-			alert('hello');
-		};
-		
 	});
 
 

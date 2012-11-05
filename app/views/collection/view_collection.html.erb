@@ -3,17 +3,20 @@
 <div id ="holder"></div>
 <div class="overlay"></div>
 
+
 <div id="left_panel">
 	<%= render(:partial => "collection/partials/left_panel", :locals => {:user => @user, :categories => @categories})%>
 </div>
 
-<div id="center_top_panel" ng-controller="TabController">
+<div ng-controller = "TabController">
+<div id="center_top_panel" >
 	<%= render(:partial => "collection/partials/center_top_panel", :locals => {:user => @user})%>	
 </div>
 
-
 <div id="center_panel">
-	<%= render(:partial => "collection/partials/center_panel", :locals => {:user => @user, :selected_collection => @selected_collection, :scrap_total => @scrap_total})%>
+	<%= render(:partial => "collection/partials/center_panel", :locals => {:user => @user, :selected_collection => @selected_collection, :scrap_total => @scrap_total })%>
+</div>
+
 </div>
 
 <script>

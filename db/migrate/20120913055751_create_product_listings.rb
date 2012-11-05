@@ -4,6 +4,7 @@ class CreateProductListings < ActiveRecord::Migration
         t.references :vendor
         t.references :scrap
         t.string :url
+        t.string :metro_area
         t.integer :price
         t.timestamps
       end

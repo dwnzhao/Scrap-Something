@@ -35,7 +35,7 @@
 		<%if @listings.blank?%>
 		<p>This item is currently unavailable.</p>
 		<p>Have this item?
-			<strong><%= link_to('List it!', {:controller => 'product_listing', :action => 'add_listing', :scrap_id => @scrap.id})%></strong>
+			<strong><%= link_to('List it!', {:controller => 'product_listing', :action => 'add_listing', :scrap_id => @scrap.id}, {:target => '_parent'})%></strong>
 		</p>
 		<%else%>
 		available in: 
@@ -44,6 +44,22 @@
 		<% end %>		
 
 		<%end%>
+		<hr>
+		
+		<div class="add_to_tab btn-group">
+		  <a class="btn btn-mini dropdown-toggle" data-toggle="dropdown" href="#">
+		    Add To
+		    <span class="caret"></span>
+		  </a>
+		  <ul class="dropdown-menu">
+
+			<% @tabs.each_with_index do |tab|%>
+			<%= link_to(tab.name, {:controller => 'tab', :action => 'include_in_tab', :tab_id => tab.id, :scrap_id => @scrap.id}, {:target => '_parent'} )%>
+			<% end %>		
+		  </ul>
+		</div>		
+
+		
 	</div>
 	<hr>
 	

@@ -1,0 +1,14 @@
+<div class='dialog', id ="dialog_scrap">
+	<hr style="margin-top:-5px">
+	<p>Are you sure you want to delete your scrap?</p>
+
+	<%= link_to( {:action => 'destroy_scrap', :controller => 'scrap', :scrap_id => params[:id]}, {:target => "_parent"}) do %>	
+	<button class="btn btn-mini btn-primary" type="button" target="_parent">Yes</button>	
+	<%end%>
+
+	<%= link_to do %>	
+	<button class="btn btn-mini btn-secondary close_dialog" type="button" target="_parent">No</button>	
+	<%end%>
+
+
+</div>

@@ -1,0 +1,36 @@
+<%= error_messages_for(@scrap)%>
+
+<table id= "scrap_form">
+	<tr>
+		<th><%= f.label("Upload your scrap: ")%>&nbsp;&nbsp;</th> 
+		<td><%= f.file_field(:photo) %></td>
+	</tr>
+	<tr>
+		<th><%= f.label(:name, "Name your scrap: ")%></th>
+		<td><%= f.text_field(:name, :id => 'form_field', :size => 40, :maxlength => 40) %></td>
+	</tr>
+	<tr>
+		<th><%= f.label(:description, "Describe your scrap: ")%></th>
+		<td><%= f.text_area(:description, :id => 'form_field', :size => "30x7") %></td>
+	</tr>
+	<tr>
+		<th><%= f.label(:visible, "Visible to public?")%></th>
+		<th>
+			<%= f.radio_button(:visibility, true, :id => 'radio_buttons') %>Yes
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<%= f.radio_button(:visibility, false, :id => 'radio_buttons') %>No
+		</th>
+	</tr>	
+</table>
+<br/>
+
+<table class = "categories">
+	<tr><div class="small_tagline", id ="select_category_instruction"><%= label(:category, "This is a:")%></div></tr>
+	<tr>
+		<% @categories.each do |cat| %>
+		<th><%= check_box_tag('categories[]', cat.id, @scrap.categories.map {|c| c.id}.include?(cat.id))%>
+			<%= cat.name%> </th>
+		<%end%>	
+	</tr>	
+</table>
+<br/>

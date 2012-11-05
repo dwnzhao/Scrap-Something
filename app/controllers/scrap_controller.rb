@@ -16,7 +16,7 @@ class ScrapController < ApplicationController
     if !@scrap.new_record?
       checked_categories.each {|cat| @scrap.categories << cat if !@scrap.categories.include?(cat)}
       remove_categories.each {|cat| @scrap.categories.destroy(cat) if @scrap.categories.include?(cat)}
-      collection = get_session_user.collections.find_by_name('uploaded')
+      collection = get_session_user.collections.uploaded
       collection.scraps << @scrap
       flash[:notice] = "Added Scrap!"
       redirect_to(:action => 'view_collection', :controller => 'collection')
@@ -38,6 +38,7 @@ class ScrapController < ApplicationController
     @images = @scrap.images
     @creator_name = User.find(@scrap.creator_id).email  
     @listings = get_listing(params[:id]).compact
+    @tabs = get_session_user.tabs
     render :template => 'scrap/view_scrap_detail', :layout => 'scrap_detail'
   end
 

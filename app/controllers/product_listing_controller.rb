@@ -8,8 +8,8 @@ class ProductListingController < ApplicationController
       @listing = ProductListing.new
       @scrap_id = params[:scrap_id]
     else
-      flash[:notice] = "... you must be a vendor to list your item ..."
-      redirect_to(:action => 'view_scrap_detail', :controller => 'scrap', :id => params[:id])
+      flash[:warning] = "... you must be a vendor to list your item ..."
+      redirect_to(:action => 'view_collection', :controller => 'collection', :id => params[:id])
     end 
   end
   

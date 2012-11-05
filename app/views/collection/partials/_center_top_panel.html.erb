@@ -1,23 +1,32 @@
-<p class="lead" style="text-align:left"><%=user.first_name.capitalize%>'s Wedding Collection... </p>
+<p class="lead" style="text-align:left"><%=user.first_name.capitalize%>'s Wedding Collection: 
+	<span>{{currentTab.name}}
+	<sup style="vertical-align: super">
+		<a href = "/tab/delete_tab/?tab_id={{currentTab.id}}">
+			<i class="icon-trash" style="font-size: 10px"></i>
+		</a>
+	</sup> </span>
+</p>
 
 <ul class="nav nav-tabs">
 	<li class="active" click_tab>
-		<%= link_to('view all', {:action => 'tab_filter', :controller => 'tab'}, :remote => true)%>
+		<a href="/tab/tab_filter/" data-remote="true" ng-click="tabChange('')">home
+		</a>
 	</li>
 
-	<li click-tab ng-repeat="category in categories">
-		<a href="/tab/tab_filter/{{category.id}}" data-remote="true">{{category.name}}</a>
+	<li click-tab ng-repeat="tab in tabs">
+		<a href="/tab/tab_filter/{{tab.id}}" data-remote="true" ng-click="tabChange(tab)">
+			{{tab.name}}
+		</a>
 	</li>
 
-	<li class="hide" id="category_form">
-		<form ng-submit="addCategory()">
-			<input class="input-medium" type="text" ng-model="tabText"
-			placeholder="name new tab">
+	<li class="hide" id="tab_form">
+		<form ng-submit="addTab()">
+			<input class="input-medium" type="text" ng-model="tabText" placeholder="name new tab">
 			<input class="button" type="submit" value="add">
 		</form>
 	</li>
 
 	<li>
-		<a ng-click="add_category_form_visible()" href="#" ><i class="icon-plus"></i> add tab</a>
+		<a ng-click="add_tab_form_visible()" href="#" ><i class="icon-plus"></i> add tab</a>
 	</li>
 </ul>

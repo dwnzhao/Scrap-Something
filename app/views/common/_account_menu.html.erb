@@ -3,23 +3,52 @@
 	<%= link_to('Login', {:action => 'login', :controller => 'access'})%>
 	<%= link_to('Sign Up', {:action => 'signup', :controller => 'access'})%>
 	<%else%>
-	<a href="#" id="add_menu"><i class="icon-plus icon-white"></i> ADD</a>
-	<a href="#" id="account_menu"><i class="icon-user icon-white"></i> ACCOUNT</a> 
-	<a href="#" id="account_menu"><i class="icon-search icon-white"></i> SEARCH</a> 
-    
-	
+	<div class="btn-group btn-toolbar">
+		<div class="dropdown  btn btn-inverse btn-mini">
+			<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+				Add
+				<span class="caret"></span>
+			    
+			</a>
+			<div class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+				<%= link_to({:action => 'upload_scrap', :controller => 'scrap'}) do%>
+				<i class="icon-picture"></i> Scrap
+				<%end%>
+			</div>
+		</div>
+		<div class="dropdown btn btn-inverse btn-mini">
+			<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+				Account
+				<span class="caret"></span>
+			    
+			</a>
+			<div class="dropdown-menu pull-right">
+				<%= link_to({:action => 'profile', :controller => 'access'}) do%>
+				<i class="icon-user"></i> Profile
+				<%end%>
+				<%= link_to({:action => 'logout', :controller => 'access'}) do%>
+				<i class="icon-off"></i> Logout
+				<%end%>
+			</div>
+		</div>
+		<div class="dropdown btn btn-inverse btn-mini">
+			<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+				Search
+				<span class="caret"></span>
+			    
+			</a>
+			<div class="dropdown-menu pull-right" role="menu" aria-labelledby="dLabel">
+				<%= form_tag( {:action => 'search', :user_specific => false}, {:class => 'form-horizontal'}) do%>
+					<%= text_field_tag :search, "", :size => 5, :maxlength => 10, :placeholder => "search for ideas"%>
+					<button type="submit" class = 'button'><i class="icon-search"></i></button>
+					<%end%>
+				
+			</div>
+		</div>
+	</div>
 	<%end%>
 </div>
 
-<div id="account_menu_expand">
-	<div class="row"><%= link_to('profile', {:action => 'profile', :controller => 'access'})%></div>
-	<div class="row"><%= link_to('logout', {:action => 'logout', :controller => 'access'})%></div>
-</div>	
-
-<div id="add_menu_expand">
-	<div class="row"><%= link_to('image', {:action => 'upload_scrap', :controller => 'scrap'})%></div>
-	<div class="row"><%= link_to('collection', {:action => 'add_collection', :controller => 'collection'})%></div>
-</div>
 
 <div id= "home_menu">
 
@@ -27,7 +56,7 @@
 	<i class="icon-home icon-white"></i>
 	Home
 	<%end%>
-	
+
 	<%= link_to_unless_current("explore", :action => 'browse_collection', :controller => 'collection') do%>
 	<i class="icon-globe icon-white"></i>
 	Explore

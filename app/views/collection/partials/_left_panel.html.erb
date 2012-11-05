@@ -7,7 +7,7 @@
 </div><br/>
 
 <%= form_tag({:action => 'search', :controller => 'collection', :user_specific => true, :class => 'row'}, {:remote => true}) do%>
-<%= text_field_tag(:search_home, "", :size => 20, :maxlength => 25, :class => 'search') %>
+<%= text_field_tag(:search_home, "", :class => 'search', :autocomplete => "off" ) %>
 <button type="submit" class = 'button'><i class="icon-search"></i></button>
 <%end%>
 

@@ -16,9 +16,10 @@ $(document).ready(function() {
 	});
 
 	$('.close_dialog').bind('click', function() {
+		$(this).parent.fancybox.close();
 		$(".dialog").dialog("close");
 		$("#holder").removeClass("Overlay");
 	});
-	
-	
+
+
 });

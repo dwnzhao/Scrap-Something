@@ -28,6 +28,7 @@ class AccessController < ApplicationController
 
     def logout      
       session[:user_id] = nil
+      get_session_user(false)
       redirect_to(:action => 'index')
     end
 
@@ -42,8 +43,9 @@ class AccessController < ApplicationController
     end
 
     def update_profile_pic
-      get_session_user.attributes = params[:user]
-      flash[:notice] = "Profile picture saved!" if(@user.save)
+      user = get_session_user
+      user.update_attributes(params[:user])
+      flash[:notice] = "Profile picture saved!"
       redirect_to(:action => "profile")
     end
 
@@ -67,6 +69,7 @@ class AccessController < ApplicationController
 
     def delete
       get_session_user.destroy
+      get_session_user(false)
       session[:user_id] = nil
       flash[:notice] = "Deleted profile..."
       redirect_to(:action => 'index')

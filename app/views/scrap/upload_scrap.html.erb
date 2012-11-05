@@ -2,12 +2,12 @@
 <hr>
 </br>
 
-<%= form_for(:scrap, :url => {:action => 'save_upload_scrap'}, :html => {:multipart => true, :id => 'form' }) do |f| %>
+<%= form_for(:scrap, :url => {:action => 'save_upload_scrap'}, :html => {:multipart => true, :id => 'form'}) do |f| %>
 
-	<%= render(:partial => 'scrap_form', :locals => {:f => f})%><br/>
+	<%= render(:partial => 'scrap/partials/scrap_form', :locals => {:f => f})%><br/>
 	
 	
-	<%= submit_tag "Save", :id =>'upload_button' %>
+	<%= submit_tag "Save", :class =>'button' %>
 
 <% end %>
 

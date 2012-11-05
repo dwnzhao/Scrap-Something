@@ -2,11 +2,16 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
 
   protected 
-
-  def get_session_user
-    return User.find(session[:user_id])
+  
+  def get_session_user(*logged_in)
+    if (logged_in[0] == false)
+      @current_user = ''
+    else
+      @current_user ||= User.find(session[:user_id])
+      return @current_user
+    end
   end
-
+  
   def get_category_names(scrap)
     return scrap.categories.select("name").map {|x| x.name}
   end
@@ -36,8 +41,7 @@ class ApplicationController < ActionController::Base
 
   def get_bookmark_status(scrap)
     user = get_session_user
-    bookmarked_scraps = user.bookmarked_scraps
-    if bookmarked_scraps.include?(scrap)
+    if user.collections.bookmarked.scraps.include?(scrap)
       return true
     else
       return false

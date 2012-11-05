@@ -1,0 +1,11 @@
+<div class='dialog', id ="dialog_icon">
+	<p>Are you sure you want to delete your image?</p>
+	<%= link_to( {:action => 'destroy_image_to_scrap', :controller => 'scrap', :scrap_id => params[:id]}) do %>
+	
+	
+	<button class="btn btn-mini btn-primary" type="button"></button>
+	
+	
+	<%end%>
+	<%= link_to( 'No', {}, :class => "close_dialog")%>
+

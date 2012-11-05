@@ -10,7 +10,7 @@ class ExternalController < ApplicationController
     scrap.description = 'added from ' + params[:name]
     scrap.photo = external_image
     scrap.save
-    get_session_user.collections.find_by_name('external').scraps << scrap
+    get_session_user.collections.external.scraps << scrap
     if !scrap.new_record?
       redirect_to(:action => 'view_collection', :controller => 'collection')
     else

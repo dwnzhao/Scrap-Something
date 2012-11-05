@@ -1,6 +1,7 @@
 class CollectionController < ApplicationController
   layout 'view_collection'
   respond_to :html, :js
+  
   before_filter :confirm_logged_in, :except => [:browse_collection, :search, :category_filter]
 
   def index

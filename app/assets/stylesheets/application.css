@@ -78,15 +78,14 @@ a:hover {opacity: 1; color: #181818}
 
 .search { height: 18px; width:130px; align:bottom; }
 
-#home_menu a, #tool_menu a {color:white}
+#home_menu a, #tool_menu a.dropdown-toggle {color:white; opacity: 1}
 
 #home_menu{
 	position: fixed;
 	z-index:1000;
-	margin-left: 40%;
-	margin-right: 40%;
+	margin-left: 33%;
 	top: 5px;
-	width:300px;
+	width:40%;
 	color:white;
 	overflow:none;
 	font-size:25px;
@@ -95,9 +94,15 @@ a:hover {opacity: 1; color: #181818}
 #tool_menu{
 	position: fixed;
 	z-index:1000;
-	margin-left: 80%;
-	min-width:330px;
-	top: 5px;
-	color:white;	
+	margin-left: 83%;
+	top: -5px;
+	border: none;
+	text-align: left;
+	border:none;
+	width: 10%;
 }
 
+.dropdown-menu{
+	min-width: 30px;
+	min-height: 10px;
+}
