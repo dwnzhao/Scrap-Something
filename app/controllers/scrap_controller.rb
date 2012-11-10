@@ -40,7 +40,7 @@ class ScrapController < ApplicationController
     @creator_name = user.email  
     @listings = get_listing(params[:id]).compact
     @tabs = []
-    if !session[:user_id].nil?
+    if (session[:user_id])
       @tabs = get_session_user.tabs
     end 
     @vendor_items = user.owned_scraps - Array(@scrap)
