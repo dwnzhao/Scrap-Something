@@ -13,6 +13,11 @@
 
 ActiveRecord::Schema.define(:version => 20121015052705) do
 
+  create_table "baskets", :force => true do |t|
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "categories", :force => true do |t|
     t.string   "name"
     t.integer  "scrap_count"
@@ -81,6 +86,18 @@ ActiveRecord::Schema.define(:version => 20121015052705) do
     t.datetime "updated_at", :null => false
   end
 
+  create_table "pockets", :force => true do |t|
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "pockets_scraps", :id => false, :force => true do |t|
+    t.integer "pocket_id"
+    t.integer "scrap_id"
+  end
+
+  add_index "pockets_scraps", ["pocket_id", "scrap_id"], :name => "index_pockets_scraps_on_pocket_id_and_scrap_id"
+
   create_table "product_listings", :force => true do |t|
     t.integer  "vendor_id"
     t.integer  "scrap_id"
@@ -110,6 +127,16 @@ ActiveRecord::Schema.define(:version => 20121015052705) do
   end
 
   add_index "scraps", ["creator_id"], :name => "index_scraps_on_creator_id"
+
+  create_table "shared_scraps", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "bookmarked_scrap_id"
+    t.text     "notes"
+    t.datetime "created_at",          :null => false
+    t.datetime "updated_at",          :null => false
+  end
+
+  add_index "shared_scraps", ["user_id", "bookmarked_scrap_id"], :name => "index_shared_scraps_on_user_id_and_bookmarked_scrap_id"
 
   create_table "tab_items", :force => true do |t|
     t.integer  "tab_id"

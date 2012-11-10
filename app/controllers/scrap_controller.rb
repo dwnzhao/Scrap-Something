@@ -34,11 +34,13 @@ class ScrapController < ApplicationController
 
   def view_scrap_detail
     @scrap = Scrap.find(params[:id])
+    user = User.find(@scrap.creator_id)
     @categories = get_category_names(@scrap)
     @images = @scrap.images
-    @creator_name = User.find(@scrap.creator_id).email  
+    @creator_name = user.email  
     @listings = get_listing(params[:id]).compact
-    @tabs = get_session_user.tabs
+    @tabs = user.tabs
+    @vendor_items = user.owned_scraps - Array(@scrap)
     render :template => 'scrap/view_scrap_detail', :layout => 'scrap_detail'
   end
 
@@ -100,9 +102,12 @@ class ScrapController < ApplicationController
 
   def switch_scrap
     @scrap = Scrap.find(params[:id])
+    user = User.find(@scrap.creator_id)
     @categories = get_category_names(@scrap)
     @creator_name = User.find(@scrap.creator_id).email
     @images = @scrap.images
+    @tabs = get_session_user.tabs
+    @vendor_items = user.owned_scraps - Array(@scrap)
     render :template => 'scrap/view_scrap_detail', :layout => 'scrap_detail'
   end
 

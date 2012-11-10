@@ -2,321 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="631b409b-ab61-44eb-8aaa-60ba18423dbf" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/assets/javascripts/category_filter.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/assets/javascripts/category_filter.js.coffee" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/assets/javascripts/product_listing.js.coffee" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/assets/javascripts/share.js.coffee" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/assets/stylesheets/product_listing.css.scss" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/helpers/category_filter_helper.rb" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/models/basket.rb" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/models/pocket.rb" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/models/shared_scrap.rb" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/views/access/_profile_form.html.erb" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/views/access/delete.html.erb" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/views/access/delete_profile.html.erb" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/views/access/edit_profile.html.erb" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/views/collection/_center_panel.html.erb" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/views/collection/_center_top_panel.html.erb" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/views/collection/_hello.html.erb" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/views/collection/_left_panel.html.erb" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/views/collection/_scrap_form.html.erb" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/views/collection/add_scrap.html.erb" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/views/collection/browse_bookmarked_collection_detail.html.erb" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/views/collection/browse_collection_detail.html.erb" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/views/collection/delete_scrap.html.erb" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/views/collection/edit_scrap.html.erb" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/views/collection/filter.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/views/collection/organize_collection.html.erb" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/views/collection/test.html.erb" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/views/collection/test.js.erb" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/views/collection/view_collection_detail.html.erb" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/views/common/_border.html.erb" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/views/common/_browse_header.html.erb" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/views/common/_footer_menu.html.erb" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/views/common/_home_header.html.erb" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/views/layouts/browse_collection.html.erb" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/views/layouts/collection.html.erb" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/views/layouts/collection_detail.html.erb" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/views/product_listing/view_listing.html.erb" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/views/scrap/_scrap_form.html.erb" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/views/scrap/add_scrap.html.erb" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/views/scrap/browse_bookmarked_scrap_detail.html.erb" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/views/scrap/browse_scrap_detail.html.erb" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/views/scrap/destroy_scrap.js.erb" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/views/scrap/edit_scrap.html.erb" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/db/migrate/20120904034051_create_pockets.rb" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/db/migrate/20120904034635_add_attachment_avatar_to_users.rb" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/db/migrate/20120904034645_add_attachment_photo_to_scraps.rb" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/db/migrate/20120904034656_add_attachment_icon_to_pockets.rb" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/db/migrate/20120904040455_create_shared_scraps.rb" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/db/migrate/20120905060906_create_categories_scraps_join.rb" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/db/migrate/20120905061201_create_pockets_scraps_join.rb" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/db/migrate/20121011044626_create_baskets.rb" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/images/images/000/000/001/medium/image475x475-2.jpeg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/images/images/000/000/001/original/image475x475-2.jpeg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/images/images/000/000/001/thumb/image475x475-2.jpeg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/images/images/000/000/003/medium/open-uri20121006-2638-bu7hwr" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/images/images/000/000/003/original/open-uri20121006-2638-bu7hwr" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/images/images/000/000/003/thumb/open-uri20121006-2638-bu7hwr" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/images/images/000/000/004/medium/larger_image-2.jpeg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/images/images/000/000/004/medium/open-uri20121006-2638-1nnkz1k" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/images/images/000/000/004/original/larger_image-2.jpeg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/images/images/000/000/004/original/open-uri20121006-2638-1nnkz1k" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/images/images/000/000/004/thumb/larger_image-2.jpeg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/images/images/000/000/004/thumb/open-uri20121006-2638-1nnkz1k" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/images/images/000/000/005/medium/larger_image-7.jpeg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/images/images/000/000/005/medium/open-uri20121006-2638-hmutqj" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/images/images/000/000/005/original/larger_image-7.jpeg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/images/images/000/000/005/original/open-uri20121006-2638-hmutqj" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/images/images/000/000/005/thumb/larger_image-7.jpeg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/images/images/000/000/005/thumb/open-uri20121006-2638-hmutqj" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/images/images/000/000/007/medium/larger_image.jpeg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/images/images/000/000/007/original/larger_image.jpeg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/images/images/000/000/007/thumb/larger_image.jpeg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/images/images/000/000/008/medium/larger_image.jpeg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/images/images/000/000/008/original/larger_image.jpeg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/images/images/000/000/008/thumb/larger_image.jpeg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/images/images/000/000/014/medium/image475x475-2.jpeg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/images/images/000/000/014/original/image475x475-2.jpeg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/images/images/000/000/014/thumb/image475x475-2.jpeg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/images/images/000/000/017/medium/larger_image-2.jpeg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/images/images/000/000/017/original/larger_image-2.jpeg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/images/images/000/000/017/thumb/larger_image-2.jpeg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/images/images/000/000/018/medium/larger_image-3.jpeg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/images/images/000/000/018/original/larger_image-3.jpeg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/images/images/000/000/018/thumb/larger_image-3.jpeg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/images/images/000/000/019/medium/larger_image-4.jpeg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/images/images/000/000/019/original/larger_image-4.jpeg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/images/images/000/000/019/thumb/larger_image-4.jpeg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/images/images/000/000/020/medium/larger_image-8.jpeg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/images/images/000/000/020/original/larger_image-8.jpeg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/images/images/000/000/020/thumb/larger_image-8.jpeg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/images/images/000/000/021/medium/larger_image-5.jpeg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/images/images/000/000/021/original/larger_image-5.jpeg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/images/images/000/000/021/thumb/larger_image-5.jpeg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/images/images/000/000/023/medium/larger_image-2.jpeg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/images/images/000/000/023/original/larger_image-2.jpeg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/images/images/000/000/023/thumb/larger_image-2.jpeg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/images/images/000/000/024/medium/intro_image.jpeg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/images/images/000/000/024/original/intro_image.jpeg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/images/images/000/000/024/thumb/intro_image.jpeg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/images/images/000/000/025/medium/larger_image-4.jpeg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/images/images/000/000/025/original/larger_image-4.jpeg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/images/images/000/000/025/thumb/larger_image-4.jpeg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/scraps/photos/000/000/001/medium/282389839104974971_n8nXJ8Qo_f.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/scraps/photos/000/000/001/medium/DSC_0002.JPG" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/scraps/photos/000/000/001/medium/dress_1.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/scraps/photos/000/000/001/medium/dress_2.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/scraps/photos/000/000/001/medium/dress_3.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/scraps/photos/000/000/001/medium/flowers_1.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/scraps/photos/000/000/001/medium/image475x475-1.jpeg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/scraps/photos/000/000/001/medium/image475x475-3.jpeg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/scraps/photos/000/000/001/original/282389839104974971_n8nXJ8Qo_f.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/scraps/photos/000/000/001/original/DSC_0002.JPG" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/scraps/photos/000/000/001/original/dress_1.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/scraps/photos/000/000/001/original/dress_2.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/scraps/photos/000/000/001/original/dress_3.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/scraps/photos/000/000/001/original/flowers_1.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/scraps/photos/000/000/001/original/image475x475-1.jpeg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/scraps/photos/000/000/001/original/image475x475-3.jpeg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/scraps/photos/000/000/001/thumb/282389839104974971_n8nXJ8Qo_f.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/scraps/photos/000/000/001/thumb/DSC_0002.JPG" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/scraps/photos/000/000/001/thumb/dress_1.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/scraps/photos/000/000/001/thumb/dress_2.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/scraps/photos/000/000/001/thumb/dress_3.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/scraps/photos/000/000/001/thumb/flowers_1.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/scraps/photos/000/000/001/thumb/image475x475-1.jpeg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/scraps/photos/000/000/001/thumb/image475x475-3.jpeg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/scraps/photos/000/000/002/medium/278801033151939287_itQ6Oi0G_f.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/scraps/photos/000/000/002/medium/cake_1.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/scraps/photos/000/000/002/medium/cake_2.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/scraps/photos/000/000/002/medium/dress_3.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/scraps/photos/000/000/002/medium/flowers_1.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/scraps/photos/000/000/002/medium/image475x475.jpeg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/scraps/photos/000/000/002/medium/larger_image-1.jpeg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/scraps/photos/000/000/002/original/278801033151939287_itQ6Oi0G_f.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/scraps/photos/000/000/002/original/cake_1.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/scraps/photos/000/000/002/original/cake_2.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/scraps/photos/000/000/002/original/dress_3.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/scraps/photos/000/000/002/original/flowers_1.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/scraps/photos/000/000/002/original/image475x475.jpeg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/scraps/photos/000/000/002/original/larger_image-1.jpeg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/scraps/photos/000/000/002/thumb/278801033151939287_itQ6Oi0G_f.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/scraps/photos/000/000/002/thumb/cake_1.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/scraps/photos/000/000/002/thumb/cake_2.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/scraps/photos/000/000/002/thumb/dress_3.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/scraps/photos/000/000/002/thumb/flowers_1.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/scraps/photos/000/000/002/thumb/image475x475.jpeg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/scraps/photos/000/000/002/thumb/larger_image-1.jpeg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/scraps/photos/000/000/003/medium/cake_1.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/scraps/photos/000/000/003/medium/cake_2.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/scraps/photos/000/000/003/medium/dress_1.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/scraps/photos/000/000/003/medium/flowers_1.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/scraps/photos/000/000/003/medium/image475x475-3.jpeg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/scraps/photos/000/000/003/medium/intro_image.jpeg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/scraps/photos/000/000/003/original/cake_1.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/scraps/photos/000/000/003/original/cake_2.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/scraps/photos/000/000/003/original/dress_1.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/scraps/photos/000/000/003/original/flowers_1.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/scraps/photos/000/000/003/original/image475x475-3.jpeg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/scraps/photos/000/000/003/original/intro_image.jpeg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/scraps/photos/000/000/003/thumb/cake_1.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/scraps/photos/000/000/003/thumb/cake_2.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/scraps/photos/000/000/003/thumb/dress_1.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/scraps/photos/000/000/003/thumb/flowers_1.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/scraps/photos/000/000/003/thumb/image475x475-3.jpeg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/scraps/photos/000/000/003/thumb/intro_image.jpeg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/scraps/photos/000/000/004/medium/cake_2.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/scraps/photos/000/000/004/medium/dress_1.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/scraps/photos/000/000/004/medium/larger_image-1.jpeg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/scraps/photos/000/000/004/original/cake_2.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/scraps/photos/000/000/004/original/dress_1.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/scraps/photos/000/000/004/original/larger_image-1.jpeg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/scraps/photos/000/000/004/thumb/cake_2.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/scraps/photos/000/000/004/thumb/dress_1.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/scraps/photos/000/000/004/thumb/larger_image-1.jpeg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/scraps/photos/000/000/005/medium/117234396520160618_Z8m8MlRR_f.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/scraps/photos/000/000/005/medium/cake_2.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/scraps/photos/000/000/005/medium/dress_2.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/scraps/photos/000/000/005/medium/larger_image-2.jpeg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/scraps/photos/000/000/005/original/117234396520160618_Z8m8MlRR_f.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/scraps/photos/000/000/005/original/cake_2.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/scraps/photos/000/000/005/original/dress_2.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/scraps/photos/000/000/005/original/larger_image-2.jpeg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/scraps/photos/000/000/005/thumb/117234396520160618_Z8m8MlRR_f.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/scraps/photos/000/000/005/thumb/cake_2.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/scraps/photos/000/000/005/thumb/dress_2.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/scraps/photos/000/000/005/thumb/larger_image-2.jpeg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/scraps/photos/000/000/006/medium/dress_3.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/scraps/photos/000/000/006/medium/flowers_1.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/scraps/photos/000/000/006/medium/larger_image-3.jpeg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/scraps/photos/000/000/006/original/dress_3.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/scraps/photos/000/000/006/original/flowers_1.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/scraps/photos/000/000/006/original/larger_image-3.jpeg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/scraps/photos/000/000/006/thumb/dress_3.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/scraps/photos/000/000/006/thumb/flowers_1.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/scraps/photos/000/000/006/thumb/larger_image-3.jpeg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/scraps/photos/000/000/007/medium/282389839104974971_n8nXJ8Qo_f.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/scraps/photos/000/000/007/medium/cake_1.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/scraps/photos/000/000/007/medium/larger_image-4.jpeg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/scraps/photos/000/000/007/original/282389839104974971_n8nXJ8Qo_f.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/scraps/photos/000/000/007/original/cake_1.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/scraps/photos/000/000/007/original/larger_image-4.jpeg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/scraps/photos/000/000/007/thumb/282389839104974971_n8nXJ8Qo_f.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/scraps/photos/000/000/007/thumb/cake_1.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/scraps/photos/000/000/007/thumb/larger_image-4.jpeg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/scraps/photos/000/000/008/medium/117234396520160618_Z8m8MlRR_f.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/scraps/photos/000/000/008/medium/dress_1.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/scraps/photos/000/000/008/medium/larger_image-5.jpeg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/scraps/photos/000/000/008/original/117234396520160618_Z8m8MlRR_f.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/scraps/photos/000/000/008/original/dress_1.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/scraps/photos/000/000/008/original/larger_image-5.jpeg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/scraps/photos/000/000/008/thumb/117234396520160618_Z8m8MlRR_f.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/scraps/photos/000/000/008/thumb/dress_1.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/scraps/photos/000/000/008/thumb/larger_image-5.jpeg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/scraps/photos/000/000/009/medium/cake_2.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/scraps/photos/000/000/009/medium/image475x475-1.jpeg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/scraps/photos/000/000/009/medium/larger_image.jpeg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/scraps/photos/000/000/009/original/cake_2.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/scraps/photos/000/000/009/original/image475x475-1.jpeg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/scraps/photos/000/000/009/original/larger_image.jpeg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/scraps/photos/000/000/009/thumb/cake_2.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/scraps/photos/000/000/009/thumb/image475x475-1.jpeg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/scraps/photos/000/000/009/thumb/larger_image.jpeg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/scraps/photos/000/000/010/medium/dress_2.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/scraps/photos/000/000/010/medium/marriage_-_hands.jpeg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/scraps/photos/000/000/010/original/dress_2.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/scraps/photos/000/000/010/original/marriage_-_hands.jpeg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/scraps/photos/000/000/010/thumb/dress_2.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/scraps/photos/000/000/010/thumb/marriage_-_hands.jpeg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/scraps/photos/000/000/011/medium/dress_3.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/scraps/photos/000/000/011/medium/open-uri20121006-2638-s670ys" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/scraps/photos/000/000/011/original/dress_3.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/scraps/photos/000/000/011/original/open-uri20121006-2638-s670ys" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/scraps/photos/000/000/011/thumb/dress_3.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/scraps/photos/000/000/011/thumb/open-uri20121006-2638-s670ys" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/scraps/photos/000/000/012/medium/117234396520160618_Z8m8MlRR_f.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/scraps/photos/000/000/012/medium/bahamas-wedding.jpeg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/scraps/photos/000/000/012/medium/cake_1.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/scraps/photos/000/000/012/medium/open-uri20121006-2638-1pw6yur" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/scraps/photos/000/000/012/original/117234396520160618_Z8m8MlRR_f.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/scraps/photos/000/000/012/original/bahamas-wedding.jpeg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/scraps/photos/000/000/012/original/cake_1.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/scraps/photos/000/000/012/original/open-uri20121006-2638-1pw6yur" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/scraps/photos/000/000/012/thumb/117234396520160618_Z8m8MlRR_f.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/scraps/photos/000/000/012/thumb/bahamas-wedding.jpeg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/scraps/photos/000/000/012/thumb/cake_1.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/scraps/photos/000/000/012/thumb/open-uri20121006-2638-1pw6yur" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/scraps/photos/000/000/013/medium/282389839104974971_n8nXJ8Qo_f.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/scraps/photos/000/000/013/medium/dress_1.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/scraps/photos/000/000/013/original/282389839104974971_n8nXJ8Qo_f.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/scraps/photos/000/000/013/original/dress_1.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/scraps/photos/000/000/013/thumb/282389839104974971_n8nXJ8Qo_f.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/scraps/photos/000/000/013/thumb/dress_1.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/scraps/photos/000/000/014/medium/117234396520160618_Z8m8MlRR_f.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/scraps/photos/000/000/014/medium/cake_2.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/scraps/photos/000/000/014/original/117234396520160618_Z8m8MlRR_f.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/scraps/photos/000/000/014/original/cake_2.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/scraps/photos/000/000/014/thumb/117234396520160618_Z8m8MlRR_f.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/scraps/photos/000/000/014/thumb/cake_2.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/scraps/photos/000/000/015/medium/278801033151939287_itQ6Oi0G_f.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/scraps/photos/000/000/015/medium/flowers_1.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/scraps/photos/000/000/015/original/278801033151939287_itQ6Oi0G_f.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/scraps/photos/000/000/015/original/flowers_1.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/scraps/photos/000/000/015/thumb/278801033151939287_itQ6Oi0G_f.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/scraps/photos/000/000/015/thumb/flowers_1.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/scraps/photos/000/000/016/medium/117234396520160618_Z8m8MlRR_f.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/scraps/photos/000/000/016/medium/282389839104974971_n8nXJ8Qo_f.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/scraps/photos/000/000/016/original/117234396520160618_Z8m8MlRR_f.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/scraps/photos/000/000/016/original/282389839104974971_n8nXJ8Qo_f.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/scraps/photos/000/000/016/thumb/117234396520160618_Z8m8MlRR_f.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/scraps/photos/000/000/016/thumb/282389839104974971_n8nXJ8Qo_f.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/scraps/photos/000/000/017/medium/222787512786513047_zJn1CpSQ_b.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/scraps/photos/000/000/017/original/222787512786513047_zJn1CpSQ_b.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/scraps/photos/000/000/017/thumb/222787512786513047_zJn1CpSQ_b.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/scraps/photos/000/000/021/medium/image475x475-2.jpeg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/scraps/photos/000/000/021/original/image475x475-2.jpeg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/scraps/photos/000/000/021/thumb/image475x475-2.jpeg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/scraps/photos/000/000/022/medium/image475x475-6.jpeg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/scraps/photos/000/000/022/original/image475x475-6.jpeg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/scraps/photos/000/000/022/thumb/image475x475-6.jpeg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/scraps/photos/000/000/023/medium/image475x475-4.jpeg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/scraps/photos/000/000/023/original/image475x475-4.jpeg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/scraps/photos/000/000/023/thumb/image475x475-4.jpeg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/scraps/photos/000/000/024/medium/image475x475-5.jpeg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/scraps/photos/000/000/024/original/image475x475-5.jpeg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/scraps/photos/000/000/024/thumb/image475x475-5.jpeg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/scraps/photos/000/000/025/medium/image475x475-3.jpeg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/scraps/photos/000/000/025/original/image475x475-3.jpeg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/scraps/photos/000/000/025/thumb/image475x475-3.jpeg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/users/avatars/000/000/001/medium/Hot-Pot.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/users/avatars/000/000/001/medium/Pointy.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/users/avatars/000/000/001/medium/back_enabled_hover.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/users/avatars/000/000/001/medium/star_silver.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/users/avatars/000/000/001/original/Hot-Pot.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/users/avatars/000/000/001/original/Pointy.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/users/avatars/000/000/001/original/back_enabled_hover.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/users/avatars/000/000/001/original/star_silver.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/users/avatars/000/000/001/thumb/Hot-Pot.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/users/avatars/000/000/001/thumb/Pointy.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/users/avatars/000/000/001/thumb/back_enabled_hover.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/users/avatars/000/000/001/thumb/star_silver.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/users/avatars/000/000/002/medium/179138_3520884829991_2104032589_n.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/users/avatars/000/000/002/medium/Belgium.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/users/avatars/000/000/002/medium/Pointy.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/users/avatars/000/000/002/original/179138_3520884829991_2104032589_n.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/users/avatars/000/000/002/original/Belgium.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/users/avatars/000/000/002/original/Pointy.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/users/avatars/000/000/002/thumb/179138_3520884829991_2104032589_n.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/users/avatars/000/000/002/thumb/Belgium.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/users/avatars/000/000/002/thumb/Pointy.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/test/fixtures/pockets.yml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/test/functional/category_filter_controller_test.rb" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/test/unit/pocket_test.rb" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/vendor/assets/javascripts/jquery.colorbox-min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/vendor/assets/javascripts/modal.popup.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/vendor/assets/javascripts/mosaic.1.0.1.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/vendor/assets/stylesheets/collection_mosaic.css" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="scrap_something.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -339,7 +25,7 @@
       <file leaf-file-name="controller.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/views/collection/controller.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="49" column="9" selection-start="1210" selection-end="1210" vertical-scroll-proportion="0.77310926">
+            <state line="49" column="9" selection-start="1210" selection-end="1210" vertical-scroll-proportion="0.7647059">
               <folding />
             </state>
           </provider>
@@ -394,6 +80,7 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -494,7 +181,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -515,12 +201,12 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="149" y="22" width="1263" height="743" extended-state="1" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.329582" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.27258065" sideWeight="0.670418" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.27258065" sideWeight="0.670418" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -590,6 +276,20 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/app/views/collection/controller.js">
       <provider selected="true" editor-type-id="text-editor">
+        <state line="49" column="9" selection-start="1210" selection-end="1210" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/collection/controller.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="49" column="9" selection-start="1210" selection-end="1210" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/collection/controller.js">
+      <provider selected="true" editor-type-id="text-editor">
         <state line="20" column="59" selection-start="765" selection-end="765" vertical-scroll-proportion="0.0">
           <folding />
         </state>
@@ -621,14 +321,12 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/collection/filter.js.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/collection/controller.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="49" column="9" selection-start="1210" selection-end="1210" vertical-scroll-proportion="0.77310926">
+        <state line="49" column="9" selection-start="1210" selection-end="1210" vertical-scroll-proportion="0.7647059">
           <folding />
         </state>
       </provider>

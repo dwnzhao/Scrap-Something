@@ -63,6 +63,8 @@
 	</div>
 	<hr>
 	
+	
+	<%if !@vendor_items.blank? %>
 	<p class="lead" style="text-align: 'right';">Also by this vendor:</p>
 	
 	<div id = "icon_table" style="display:inline">
@@ -70,10 +72,12 @@
 		<%= link_to image_tag(@scrap.photo.url(:thumb)), {:action => 'view_scrap_detail', :controller => 'scrap', :id => @scrap.id}, :class => "icon_pic"%>
 		<%end%>
 
-		<% User.find_by_email(@creator_name).owned_scraps.each_with_index do |scrap, index|%>
+		<% @vendor_items.each_with_index do |scrap, index|%>
 		<%= link_to image_tag(scrap.photo.url(:thumb)), {:action => 'switch_scrap', :controller => 'scrap', :id => scrap.id}, :class => "icon_pic" %>
 		<%end%>
 	</div>
+	
+	<%end%>
 	
 	
 </div>
