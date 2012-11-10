@@ -39,7 +39,10 @@ class ScrapController < ApplicationController
     @images = @scrap.images
     @creator_name = user.email  
     @listings = get_listing(params[:id]).compact
-    @tabs = get_session_user.tabs
+    @tabs = []
+    if !session[:user_id].nil?
+      @tabs = get_session_user.tabs
+    end 
     @vendor_items = user.owned_scraps - Array(@scrap)
     render :template => 'scrap/view_scrap_detail', :layout => 'scrap_detail'
   end
