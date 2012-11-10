@@ -2,7 +2,6 @@ class TabController < ApplicationController
   layout 'scrap_detail'
   before_filter :confirm_logged_in, :except => [:view_scrap_detail, :switch_image]
 
-
   def get_tabs
     user = get_session_user
     @tabs = user.tabs.to_json
