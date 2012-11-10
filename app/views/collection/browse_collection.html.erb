@@ -16,9 +16,9 @@
 <div id = "category_table", class = "table">
 	<div class = 'row'> 
 		<% @categories.each do |cat| %>
-		<%= link_to(cat.name, {:action => 'filter', :id => cat.id})%>&nbsp;
+		<%= link_to(cat.name, {:action => 'category_filter', :id => cat.id})%>&nbsp;
 		<%end%>	
-		<%= link_to('...', {:action => 'filter', :id => 'other'})%>
+		<%= link_to('...', {:action => 'category_filter', :id => 'other'})%>
 	</div>
 	<br/>
 	<div class = 'row'>
