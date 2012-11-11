@@ -32,7 +32,7 @@
 		<%= link_to(cat.name, {:action => 'category_filter', :id => cat.id})%>&nbsp;
 		<%end%>	<br><br>
 		
-		<%= form_tag :ation => 'search', :user_specific => false do%>
+		<%= form_tag :action => 'search', :user_specific => false do%>
 		<%= text_field_tag(:search_explore, "", :size => 25, :maxlength => 40, :class => 'search', :autocomplete => "off" ) %>
 		<button type="submit" class = 'button'><i class="icon-search"></i></button>
 		
