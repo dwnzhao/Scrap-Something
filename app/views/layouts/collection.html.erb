@@ -9,28 +9,8 @@
 
 <body>
 <div style="min-width: 960px; margin: 0 auto;">
-	
-<div id="account_menu">
-<table summary = "account menu">
-	<tr>
-		<th> <%= link_to('Account', {:controller => 'access', :action => 'profile'})%></th>
-		<th> <%= link_to('Log out', {:controller => 'access', :action => 'logout'})%></th>
-	</tr>
-</table>
-</div>
-<br/><br/>
-
 
 <%= yield %>
-
-<div id="collection_edit_menu">
-<table summary = "edit menu">
-	<tr> <th><%= link_to('+Scrap', {:action => 'add_scrap'})%></th>
-	<th><%= link_to('+Pocket', {:action => 'add_pocket'})%></th>
-	<th><%= link_to('Organize', {:action => 'organize_collection'})%></th></tr>
-</table>
-<br/><br/>
-</div>
 
 <div id="left"></div>
 <div id="right"></div>

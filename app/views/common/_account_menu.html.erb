@@ -1,8 +1,5 @@
 <div id="tool_menu" >
-	<%if session[:user_id] == nil%>
-	<%= link_to('Login', {:action => 'login', :controller => 'access'})%>
-	<%= link_to('Sign Up', {:action => 'signup', :controller => 'access'})%>
-	<%else%>
+	<%if session[:user_id] != nil%>
 	<div class="btn-group btn-toolbar">
 		<div class="dropdown  btn btn-inverse btn-mini">
 			<a class="dropdown-toggle" data-toggle="dropdown" href="#">

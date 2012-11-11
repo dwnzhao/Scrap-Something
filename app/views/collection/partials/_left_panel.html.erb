@@ -1,6 +1,6 @@
 <div id="avatar" style="padding-top:50px;">		
 	<% if user.avatar_file_name%>
-	<%= link_to image_tag(user.avatar.url(:thumb), :size =>'50x50'), {:action => 'profile', :controller => 'access'}%>
+	<%= link_to image_tag(user.avatar.url(:thumb), :size =>'50x50', :class => "img-rounded"), {:action => 'profile', :controller => 'access'}%>
 	<%else%>
 	<%= link_to(user.email, {:action => 'profile', :controller => 'access'})%>
 	<%end%>

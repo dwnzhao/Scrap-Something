@@ -1,5 +1,7 @@
 $(document).ready(function() {
 
+	$('.carousel').carousel({interval: 4000});
+
 	// searchbox animation
 	var newWidth = $('.search').outerWidth() + 10 + (15 * 2);
 	var orgWidth = $('.search').outerWidth()
