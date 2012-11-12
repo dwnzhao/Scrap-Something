@@ -13,6 +13,7 @@
 		<th><%= f.label(:description, "Describe your scrap: ")%></th>
 		<td><%= f.text_area(:description, :id => 'form_field', :size => "30x7") %></td>
 	</tr>
+	<% if @authorization%>
 	<tr>
 		<th><%= f.label(:visible, "Visible to public?")%></th>
 		<th>
@@ -21,6 +22,7 @@
 			<%= f.radio_button(:visibility, false, :id => 'radio_buttons') %>No
 		</th>
 	</tr>	
+	<%end%>
 </table>
 <br/>
 

@@ -5,7 +5,7 @@
 			<a class="dropdown-toggle" data-toggle="dropdown" href="#">
 				Add
 				<span class="caret"></span>
-			    
+
 			</a>
 			<div class="dropdown-menu" role="menu" aria-labelledby="dLabel">
 				<%= link_to({:action => 'upload_scrap', :controller => 'scrap'}) do%>
@@ -17,7 +17,7 @@
 			<a class="dropdown-toggle" data-toggle="dropdown" href="#">
 				Account
 				<span class="caret"></span>
-			    
+
 			</a>
 			<div class="dropdown-menu pull-right">
 				<%= link_to({:action => 'profile', :controller => 'access'}) do%>
@@ -32,14 +32,14 @@
 			<a class="dropdown-toggle" data-toggle="dropdown" href="#">
 				Search
 				<span class="caret"></span>
-			    
+
 			</a>
 			<div class="dropdown-menu pull-right" role="menu" aria-labelledby="dLabel">
 				<%= form_tag( {:action => 'search', :user_specific => false}, {:class => 'form-horizontal'}) do%>
-					<%= text_field_tag :search, "", :size => 5, :maxlength => 10, :placeholder => "search for ideas"%>
-					<button type="submit" class = 'button'><i class="icon-search"></i></button>
-					<%end%>
-				
+				<%= text_field_tag :search, "", :size => 5, :maxlength => 10, :placeholder => "search for ideas"%>
+				<button type="submit" class = 'button'><i class="icon-search"></i></button>
+				<%end%>
+
 			</div>
 		</div>
 	</div>
@@ -47,13 +47,11 @@
 </div>
 
 
-<div id= "home_menu">
-
+<div id= "home_menu">	
 	<%= link_to_unless_current("home", :action => 'view_collection', :controller => 'collection') do %>
 	<i class="icon-home icon-white"></i>
 	Home
 	<%end%>
-
 	<%= link_to_unless_current("explore", :action => 'browse_collection', :controller => 'collection') do%>
 	<i class="icon-globe icon-white"></i>
 	Explore

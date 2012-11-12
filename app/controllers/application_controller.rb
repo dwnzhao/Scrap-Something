@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
 
   protected 
-  
+
   def get_session_user(*logged_in)
     if (logged_in[0] == false)
       @current_user = ''
@@ -11,7 +11,7 @@ class ApplicationController < ActionController::Base
       return @current_user
     end
   end
-  
+
   def get_category_names(scrap)
     return scrap.categories.select("name").map {|x| x.name}
   end
@@ -23,6 +23,20 @@ class ApplicationController < ActionController::Base
       return false
     else 
       return true
+    end
+  end
+
+  def confirm_vendor_authorization
+    unless session[:user_id]
+      flash[:warning] = "Please log in or sign up."
+      render('access/landing_page', :layout => 'layouts/access')
+      return false 
+    else
+      if (get_session_user.user_level > 1)
+        return true
+      else 
+        return false
+      end
     end
   end
 
@@ -56,6 +70,15 @@ class ApplicationController < ActionController::Base
       selected_collection = selected_collection + collection.scraps
     end
     return selected_collection
+  end
+
+  def get_all_user_categories
+    scrap_all = get_all_user_scraps
+    user_categories = []
+    scrap_all.each_with_index do |scrap, index|
+      user_categories = user_categories + scrap.categories
+    end
+    return user_categories.uniq
   end
 
 end

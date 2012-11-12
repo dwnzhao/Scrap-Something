@@ -6,7 +6,9 @@
 	<%end%>
 </div><br/>
 
-<%= form_tag({:action => 'search', :controller => 'collection', :user_specific => true, :class => 'row'}, {:remote => true}) do%>
+<%= form_tag({:action => 'search', :user_specific => true,}, {:remote => true}) do%>
+
+
 <%= text_field_tag(:search_home, "", :class => 'search', :autocomplete => "off" ) %>
 <button type="submit" class = 'button'><i class="icon-search"></i></button>
 <%end%>
@@ -28,14 +30,3 @@
 </div>
 
 <hr>
-
-<div id = "collection_menu", class = 'table'>
-	<h4>
-		sources
-	</h4>		
-
-	<% @collection.each_with_index do |collection, index|%>
-	<%=link_to(collection.name, {:action => "source_filter", :id => collection.id, :controller => "collection", :collection => collection.id}, :remote => true)%>
-
-	<%end%>	
-</div>

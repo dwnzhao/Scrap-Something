@@ -5,6 +5,7 @@ class ScrapController < ApplicationController
   def upload_scrap
     @scrap = Scrap.new
     @categories = Category.all
+    @authorization = confirm_vendor_authorization
   end
 
   def save_upload_scrap
@@ -16,10 +17,13 @@ class ScrapController < ApplicationController
     if !@scrap.new_record?
       checked_categories.each {|cat| @scrap.categories << cat if !@scrap.categories.include?(cat)}
       remove_categories.each {|cat| @scrap.categories.destroy(cat) if @scrap.categories.include?(cat)}
-      collection = get_session_user.collections.uploaded
-      collection.scraps << @scrap
+      get_session_user.collections.uploaded.scraps << @scrap
       flash[:notice] = "Added Scrap!"
+      if (confirm_vendor_authorization)
+        redirect_to(:action => "add_listing", :controller => 'product_listing', :scrap_id => @scrap)
+      else
       redirect_to(:action => 'view_collection', :controller => 'collection')
+    end
     else
       @categories = Category.all
       render('upload_scrap')
@@ -30,6 +34,7 @@ class ScrapController < ApplicationController
     @scrap = Scrap.find(params[:id])
     @categories = Category.all
     @images = @scrap.images
+    @authorization = confirm_vendor_authorization
   end
 
   def view_scrap_detail
@@ -37,11 +42,16 @@ class ScrapController < ApplicationController
     user = User.find(@scrap.creator_id)
     @categories = get_category_names(@scrap)
     @images = @scrap.images
-    @creator_name = user.email  
+    if !user.vendor.blank?
+    @creator_name = user.vendor.company  
+    @phone = user.vendor.phone
+  end
     @listings = get_listing(params[:id]).compact
     @tabs = []
+    @remove_tabs = []
     if (session[:user_id])
-      @tabs = get_session_user.tabs
+      @tabs = get_session_user.tabs.uniq
+      @remove_tabs = @scrap.tabs.uniq
     end 
     @vendor_items = user.owned_scraps - Array(@scrap)
     render :template => 'scrap/view_scrap_detail', :layout => 'scrap_detail'
@@ -61,7 +71,6 @@ class ScrapController < ApplicationController
       render('edit_scrap')
     end
   end
-
 
   def destroy_scrap
     Scrap.find(params[:scrap_id]).destroy

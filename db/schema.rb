@@ -13,11 +13,6 @@
 
 ActiveRecord::Schema.define(:version => 20121015052705) do
 
-  create_table "baskets", :force => true do |t|
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
   create_table "categories", :force => true do |t|
     t.string   "name"
     t.integer  "scrap_count"
@@ -35,8 +30,8 @@ ActiveRecord::Schema.define(:version => 20121015052705) do
   add_index "categories_scraps", ["category_id", "scrap_id"], :name => "index_categories_scraps_on_category_id_and_scrap_id"
 
   create_table "cities", :force => true do |t|
-    t.string   "city",       :limit => 50
-    t.string   "state",      :limit => 50
+    t.string   "city",       :limit => 15
+    t.string   "state",      :limit => 2
     t.datetime "created_at",               :null => false
     t.datetime "updated_at",               :null => false
   end
@@ -81,23 +76,6 @@ ActiveRecord::Schema.define(:version => 20121015052705) do
     t.datetime "updated_at",         :null => false
   end
 
-  create_table "plans", :force => true do |t|
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
-  create_table "pockets", :force => true do |t|
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
-  create_table "pockets_scraps", :id => false, :force => true do |t|
-    t.integer "pocket_id"
-    t.integer "scrap_id"
-  end
-
-  add_index "pockets_scraps", ["pocket_id", "scrap_id"], :name => "index_pockets_scraps_on_pocket_id_and_scrap_id"
-
   create_table "product_listings", :force => true do |t|
     t.integer  "vendor_id"
     t.integer  "scrap_id"
@@ -117,7 +95,7 @@ ActiveRecord::Schema.define(:version => 20121015052705) do
     t.text     "description"
     t.integer  "number_of_shares",   :default => 0
     t.boolean  "item_availability",  :default => false
-    t.boolean  "visibility",         :default => true
+    t.boolean  "visibility",         :default => false
     t.string   "photo_file_name"
     t.string   "photo_content_type"
     t.integer  "photo_file_size"
@@ -184,6 +162,7 @@ ActiveRecord::Schema.define(:version => 20121015052705) do
     t.integer  "phone",              :limit => 20
     t.integer  "number_of_listings",                :default => 0
     t.integer  "rating",             :limit => 1,   :default => 0
+    t.string   "business_type",      :limit => 250
     t.datetime "created_at",                                       :null => false
     t.datetime "updated_at",                                       :null => false
   end

@@ -20,42 +20,41 @@
 		<a class="btn btn-link btn-large" href="/access/login">
 			Log In
 		</a>
-	</p>
+	</p> <br>
 </div> <hr>
 <%end%>
 
 
-<div id = "category_table", class = "row">
+<div class="row">
 	<div class = 'span8 offset1' style="border-right: dashed thin grey"> 
 		<p class="lead" style="margin-top: 30px; margin-bottom:10px"> by category...</p>
 		<% @categories.each do |cat| %>
-		<%= link_to(cat.name, {:action => 'category_filter', :id => cat.id})%>&nbsp;
+		<%= link_to(cat.name, {:action => 'category_filter', :id => cat.id}, {:remote => true})%>&nbsp;
 		<%end%>	<br><br>
-		
-		<%= form_tag :action => 'search', :user_specific => false do%>
-		<%= text_field_tag(:search_explore, "", :size => 25, :maxlength => 40, :class => 'search', :autocomplete => "off" ) %>
+
+		<%= form_tag({:action => 'search', :user_specific => false,}, {:remote => true})   do%>
+		<%= text_field_tag(:search_explore, "", :size => 25, :maxlength => 40, :class => 'search', :autocomplete => "off") %>
 		<button type="submit" class = 'button'><i class="icon-search"></i></button>
-		
+
 		<%end%>
-		
+
 	</div>
-	
+
 	<div class = 'span8' >
 		<p class="lead" style="margin-top: 30px">by local vendors...</p>
 		<select class="span2">
-		  <option>location</option>
-		  <option>San Francisco</option>
-		  <option>New York</option>
-		  <option>LA</option>
-		  <option>Chicago</option>
+			<option>location</option>
+			<% @cities.each do |city| %>
+			<option><%= city.city%></option>
+			<%end%>
 		</select>
 
 		<select class="span2">
-		  <option>type</option>
-		  <option>catering</option>
-		  <option>dress & tux</option>
-		  <option>photographer</option>
-		  <option>venu</option>
+			<option>type</option>
+			<option>catering</option>
+			<option>dress & tux</option>
+			<option>photographer</option>
+			<option>venue</option>
 		</select> <br><br><br>
 
 	</div>

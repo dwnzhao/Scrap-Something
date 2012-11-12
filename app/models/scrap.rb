@@ -10,7 +10,7 @@ class Scrap < ActiveRecord::Base
   has_many :images, :dependent => :destroy 
   has_and_belongs_to_many :categories
   has_many :collection_items
-  has_many :collections, :through => :tab_items
+  has_many :collections, :through => :collection_items
   has_many :tab_items
   has_many :tabs, :through => :tab_items
 
@@ -18,5 +18,10 @@ class Scrap < ActiveRecord::Base
   belongs_to :creator, :class_name => 'User'
 
   scope :search, lambda {|query| where(["name LIKE ?", "%#{query}%"])}
+  
+  
+  def self.public_scraps
+   find_all_by_visibility(true)
+  end
   
 end

@@ -7,7 +7,7 @@ class CreateScraps < ActiveRecord::Migration
       t.text :description
       t.integer :number_of_shares, :default => 0
       t.boolean :item_availability, :default => false
-      t.boolean :visibility, :default => true
+      t.boolean :visibility, :default => false
       t.attachment :photo
       t.timestamps
     end

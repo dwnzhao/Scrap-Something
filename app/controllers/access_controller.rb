@@ -6,7 +6,9 @@ class AccessController < ApplicationController
     :logout, :create, :authenticate, :landing_page]
 
     def index
-      if (session[:user_id])
+      if (session[:user_id] && confirm_vendor_authorization)
+        redirect_to(:action => 'vendor_profile', :controller => 'vendor') 
+      elsif (session[:user_id])
         redirect_to(:action => 'view_collection', :controller => 'collection') 
       else
         redirect_to(:action => 'browse_collection', :controller => 'collection', )
@@ -36,10 +38,29 @@ class AccessController < ApplicationController
       @user = User.new(params[:user])
       if @user.save
         session[:user_id] = @user.id
-        render('upload_profile_pic')
+        if (@user.user_level > 1)
+          redirect_to(:action => 'vendor_signup')
+        else
+          render('upload_profile_pic')
+        end
       else
         render('signup')
       end
+    end
+
+    def vendor_signup
+      @vendor = Vendor.new
+      render('vendor_form')
+    end
+
+    def create_vendor
+      vendor = Vendor.new(params[:vendor])
+      if vendor.save
+        get_session_user.vendor = vendor
+      else
+        render('vendor_form')
+      end
+      redirect_to(:action => "vendor_profile", :controller => "vendor")
     end
 
     def update_profile_pic
@@ -64,7 +85,11 @@ class AccessController < ApplicationController
     end
 
     def profile
-      @user = get_session_user
+      if (confirm_vendor_authorization)
+        redirect_to(:action => "vendor_profile", :controller => 'vendor')
+      else      
+        @user = get_session_user
+      end
     end
 
     def delete

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html ng-app="MyApp">
+<html>
 <head>
-	<title>Scrap Something | <%= @page_title || 'Collections' %></title>
+	<title>Scrap Something | <%= @page_title || 'Vendor' %></title>
 	<%= stylesheet_link_tag('application', 'collection', 'scrap', 'jquery.fancybox',  :media => "all" )%>
 	<%= javascript_include_tag('application', 'collection', 'jquery.fancybox.pack', 'scrap')%>
 	<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
@@ -31,7 +31,7 @@
 		<%flash[:notice] = ''%>
 		<%end%>
 
-		<%= render "common/account_menu" %>
+		<%= render "common/vendor_menu" %> <br>
 
 		<%= yield %>
 

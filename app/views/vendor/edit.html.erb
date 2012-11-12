@@ -1,0 +1,28 @@
+<%= form_for(:vendor, :url => {:action => 'update'}) do |f| %>
+
+<div id = "hidden_form">
+	<table summary ="Vendor form fields">
+
+		<tr>
+			<th><%="Company Name"%></th>
+			<td><%= f.text_field(:company, :size => 30, :maxlength => 40)%></td>
+		</tr>
+		<tr>
+			<th><%="Company Website"%>&nbsp;&nbsp;</th>
+			<td><%= f.text_field(:website, :size => 30, :maxlength => 40)%></td>
+		</tr>
+		<tr>
+			<th><%="Company Address"%>&nbsp;&nbsp;</th>
+			<td><%= f.text_field(:company_address, :size => 30, :maxlength => 40)%></td>
+		</tr>
+		<tr>
+			<th><%="Phone Number"%>&nbsp;&nbsp;</th>
+			<td><%= f.text_field(:phone, :size => 30, :maxlength => 40)%></td>
+		</tr>
+		</table> <br/>
+		
+</div>
+
+<%= submit_tag "update", :class=>'button'%>
+
+<%end%>

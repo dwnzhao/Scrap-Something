@@ -1,7 +1,7 @@
 <div id = "scrap_detail_table" style="padding:10px 30px">
 	<h4> <%=@scrap.name%> </h4> 
-	
-<hr>
+
+	<hr>
 	<div class = "column">
 		<!-- if alternative picture is present (one that's other than the scrap photo), use that as the main image-->
 		<% if @image%>
@@ -27,50 +27,72 @@
 			<%end%>		
 			<%end%>
 		</div>
+				
 		
+		<%if !@creator_name.blank?%>
 		<h6>by <%= @creator_name%> </h6>
+
+		<%= simple_format(word_wrap(@scrap.description, 50))%>
+		<hr>
 		
-		<p>category: <%= @categories.map { |i| i.to_s }.join(", ") %></p>
-			<%= simple_format(word_wrap(@scrap.description, 50))%>
 		<%if @listings.blank?%>
 		<p>This item is currently unavailable.</p>
-		<p>Have this item?
-			<strong><%= link_to('List it!', {:controller => 'product_listing', :action => 'add_listing', :scrap_id => @scrap.id}, {:target => '_parent'})%></strong>
-		</p>
 		<%else%>
 		available in: 
 		<% @listings.each_with_index do |listing|%>
 		<%= link_to listing.metro_area, url_with_protocol(listing.url), :target => '_parent' %>
 		<% end %>		
-
+		<p><i class='icon-hand-right'></i> Call:  <%=number_to_phone(@phone)%></p>
 		<%end%>
-		<hr>
 		
-		<%if !@tabs.blank? %>
+		<%end%>
 		
-		<div class="add_to_tab btn-group">
-		  <a class="btn btn-mini dropdown-toggle" data-toggle="dropdown" href="#">
-		    Add To
-		    <span class="caret"></span>
-		  </a>
-		  <ul class="dropdown-menu">
+		
 
-			<% @tabs.each_with_index do |tab|%>
-			<%= link_to(tab.name, {:controller => 'tab', :action => 'include_in_tab', :tab_id => tab.id, :scrap_id => @scrap.id}, {:target => '_parent'} )%>
-			<% end %>		
-		  </ul>
-		</div>	
-		
-		<%end%>	
+		<div class="row btn-toolbar">
+			<%if !@tabs.blank? %>
 
-		
+			<div class="btn-group">
+				<a class="btn btn-mini dropdown-toggle" data-toggle="dropdown" href="#">
+					Add To
+					<span class="caret"></span>
+				</a>
+				<ul class="dropdown-menu">
+
+					<% @tabs.each_with_index do |tab|%>
+					<%= link_to(tab.name, {:controller => 'tab', :action => 'include_in_tab', :tab_id => tab.id, :scrap_id => @scrap.id}, {:target => '_parent'} )%>
+					<% end %>		
+				</ul>
+			</div>	
+
+			<%end%>	
+
+			<%if !@remove_tabs.blank? %>
+
+			<div class="remove_from_tab btn-group">
+				<a class="btn btn-mini dropdown-toggle" data-toggle="dropdown" href="#">
+					Remove From
+					<span class="caret"></span>
+				</a>
+				<ul class="dropdown-menu">
+
+					<% @remove_tabs.each_with_index do |tab|%>
+					<%= link_to(tab.name, {:controller => 'tab', :action => 'remove_from_tab', :tab_id => tab.id, :scrap_id => @scrap.id}, {:target => '_parent'} )%>
+					<% end %>		
+				</ul>
+			</div>	
+
+			<%end%>	
+		</div>
+
+
 	</div>
 	<hr>
-	
-	
+
+
 	<%if !@vendor_items.blank? %>
 	<p class="lead" style="text-align: 'right';">Also by this vendor:</p>
-	
+
 	<div id = "icon_table" style="display:inline">
 		<% if @image%>
 		<%= link_to image_tag(@scrap.photo.url(:thumb)), {:action => 'view_scrap_detail', :controller => 'scrap', :id => @scrap.id}, :class => "icon_pic"%>
@@ -80,8 +102,8 @@
 		<%= link_to image_tag(scrap.photo.url(:thumb)), {:action => 'switch_scrap', :controller => 'scrap', :id => scrap.id}, :class => "icon_pic" %>
 		<%end%>
 	</div>
-	
+
 	<%end%>
-	
-	
+
+
 </div>

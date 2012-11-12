@@ -8,6 +8,7 @@ class CreateVendors < ActiveRecord::Migration
       t.integer :phone, :limit => 20
       t.integer :number_of_listings, :default => 0
       t.integer :rating, :default => 0, :limit => 1
+      t.string :business_type, :limit => 250
       t.timestamps
     end
     

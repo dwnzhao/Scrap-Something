@@ -14,7 +14,7 @@ class User < ActiveRecord::Base
   has_many :owned_scraps, :class_name => 'Scrap', :foreign_key => 'creator_id', :order => 'updated_at DESC'
   has_many :collections, :dependent => :destroy
   has_many :tabs, :foreign_key => 'user_id', :dependent => :destroy
-  
+  has_one :vendor, :dependent => :destroy
  
   before_save :create_hashed_password
   after_save :clear_password

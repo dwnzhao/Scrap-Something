@@ -1,0 +1,9 @@
+<div class="btn-group" style="margin-top:30px">
+  <button class="btn"><%= link_to('add an item', {:action => 'upload_scrap', :controller => 'scrap'}, {:rel => "tooltip", :title=> "upload images."})%></button>
+</div>
+
+
+<div class = "my_scrap row"> <br> <br>
+	<%= render(:partial => "/collection/collection_view", :locals => {:images => @selected_collection, :images_per_row => 5, :link_description => "remove bookmark", :method => "remove_bookmark"})%>
+</div>
+
