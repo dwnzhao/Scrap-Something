@@ -1,6 +1,8 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
 
+  helper_method :confirm_vendor_authorization
+
   protected 
 
   def get_session_user(*logged_in)
@@ -13,7 +15,7 @@ class ApplicationController < ActionController::Base
   end
 
   def get_category_names(scrap)
-    return scrap.categories.select("name").map {|x| x.name}
+    return scrap.categories.collect(&:name)
   end
 
   def confirm_logged_in
@@ -42,7 +44,7 @@ class ApplicationController < ActionController::Base
 
   def get_categories_from(cat_list)
     cat_list = [] if cat_list.blank?
-    return cat_list.collect {|cid| Category.find_by_id(cid.to_i)}.compact
+    return cat_list.collect {|cat| Category.find_by_id(cat.to_i)}
   end
 
   def get_user_authorization(scrap)
@@ -67,7 +69,7 @@ class ApplicationController < ActionController::Base
     collection_all = user.collections
     selected_collection = []
     collection_all.each_with_index do |collection, index|
-      selected_collection = selected_collection + collection.scraps
+      selected_collection += collection.scraps
     end
     return selected_collection
   end
@@ -76,7 +78,7 @@ class ApplicationController < ActionController::Base
     scrap_all = get_all_user_scraps
     user_categories = []
     scrap_all.each_with_index do |scrap, index|
-      user_categories = user_categories + scrap.categories
+      user_categories += scrap.categories
     end
     return user_categories.uniq
   end

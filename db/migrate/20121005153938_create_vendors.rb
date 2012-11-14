@@ -5,10 +5,12 @@ class CreateVendors < ActiveRecord::Migration
       t.string :website, :limit => 50
       t.string :company, :limit => 50
       t.string :company_address, :limit => 250
+      t.string :metro_area, :limit => 50
       t.integer :phone, :limit => 20
       t.integer :number_of_listings, :default => 0
       t.integer :rating, :default => 0, :limit => 1
       t.string :business_type, :limit => 250
+      t.attachment :avatar
       t.timestamps
     end
     

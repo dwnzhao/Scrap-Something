@@ -81,9 +81,9 @@ ActiveRecord::Schema.define(:version => 20121015052705) do
     t.integer  "scrap_id"
     t.string   "url"
     t.string   "metro_area"
-    t.integer  "price"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.integer  "price",      :limit => 50, :default => 1
+    t.datetime "created_at",                              :null => false
+    t.datetime "updated_at",                              :null => false
   end
 
   add_index "product_listings", ["vendor_id", "scrap_id"], :name => "index_product_listings_on_vendor_id_and_scrap_id"
@@ -156,15 +156,20 @@ ActiveRecord::Schema.define(:version => 20121015052705) do
 
   create_table "vendors", :force => true do |t|
     t.integer  "user_id"
-    t.string   "website",            :limit => 50
-    t.string   "company",            :limit => 50
-    t.string   "company_address",    :limit => 250
-    t.integer  "phone",              :limit => 20
-    t.integer  "number_of_listings",                :default => 0
-    t.integer  "rating",             :limit => 1,   :default => 0
-    t.string   "business_type",      :limit => 250
-    t.datetime "created_at",                                       :null => false
-    t.datetime "updated_at",                                       :null => false
+    t.string   "website",             :limit => 50
+    t.string   "company",             :limit => 50
+    t.string   "company_address",     :limit => 250
+    t.string   "metro_area",          :limit => 50
+    t.integer  "phone",               :limit => 20
+    t.integer  "number_of_listings",                 :default => 0
+    t.integer  "rating",              :limit => 1,   :default => 0
+    t.string   "business_type",       :limit => 250
+    t.string   "avatar_file_name"
+    t.string   "avatar_content_type"
+    t.integer  "avatar_file_size"
+    t.datetime "avatar_updated_at"
+    t.datetime "created_at",                                        :null => false
+    t.datetime "updated_at",                                        :null => false
   end
 
 end

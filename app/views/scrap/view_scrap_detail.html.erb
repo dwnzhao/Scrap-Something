@@ -27,27 +27,30 @@
 			<%end%>		
 			<%end%>
 		</div>
-				
-		
+
+
 		<%if !@creator_name.blank?%>
 		<h6>by <%= @creator_name%> </h6>
 
 		<%= simple_format(word_wrap(@scrap.description, 50))%>
 		<hr>
-		
+
 		<%if @listings.blank?%>
 		<p>This item is currently unavailable.</p>
 		<%else%>
 		available in: 
 		<% @listings.each_with_index do |listing|%>
-		<%= link_to listing.metro_area, url_with_protocol(listing.url), :target => '_parent' %>
+		<%= link_to listing.metro_area, url_with_protocol(listing.url), :target => '_parent' %> <br>
+		<p>price: 
+		<% listing.price.times do -%>$<% end -%>
+		</p>
 		<% end %>		
 		<p><i class='icon-hand-right'></i> Call:  <%=number_to_phone(@phone)%></p>
 		<%end%>
-		
+
 		<%end%>
-		
-		
+
+
 
 		<div class="row btn-toolbar">
 			<%if !@tabs.blank? %>

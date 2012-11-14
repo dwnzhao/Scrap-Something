@@ -2,7 +2,10 @@
 
 <div id = "hidden_form">
 	<table summary ="Vendor form fields">
-
+		<tr>
+			<th><%="Icon"%></th>
+			<td><%= f.file_field :avatar %></td>
+		</tr>
 		<tr>
 			<th><%="Company Name"%></th>
 			<td><%= f.text_field(:company, :size => 30, :maxlength => 40)%></td>
@@ -16,11 +19,18 @@
 			<td><%= f.text_field(:company_address, :size => 30, :maxlength => 40)%></td>
 		</tr>
 		<tr>
+			<th><%="Metro Area"%>&nbsp;&nbsp;</th>
+			<td><%= f.text_field(:metro_area, :size => 30, :maxlength => 40)%></td>
+		</tr>
+		<tr>
 			<th><%="Phone Number"%>&nbsp;&nbsp;</th>
 			<td><%= f.text_field(:phone, :size => 30, :maxlength => 40)%></td>
 		</tr>
+		<tr>
+			<th><%="Business Type"%>&nbsp;&nbsp;</th>
+			<td><%= f.select(:business_type, ['catering', 'dress & tux', 'photographer', 'venue'])%></td>
+		</tr>
 		</table> <br/>
-		
 </div>
 
 <%= submit_tag "update", :class=>'button'%>

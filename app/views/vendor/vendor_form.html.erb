@@ -1,8 +1,13 @@
+<%= error_messages_for(@vendor)%>
+
 <%= form_for(:vendor, :url => {:action => 'create_vendor'}) do |f| %>
 
 <div id = "hidden_form">
 	<table summary ="Vendor form fields">
-
+		<tr>
+			<th><%="Icon"%></th>
+			<td><%= f.file_field :avatar %></td>
+		</tr>
 		<tr>
 			<th><%="Company Name"%></th>
 			<td><%= f.text_field(:company, :size => 30, :maxlength => 40)%></td>
@@ -14,6 +19,10 @@
 		<tr>
 			<th><%="Company Address"%>&nbsp;&nbsp;</th>
 			<td><%= f.text_field(:company_address, :size => 30, :maxlength => 40)%></td>
+		</tr>
+		<tr>
+			<th><%="Metro Area"%>&nbsp;&nbsp;</th>
+			<td><%= f.text_field(:metro_area, :size => 30, :maxlength => 40)%></td>
 		</tr>
 		<tr>
 			<th><%="Phone Number"%>&nbsp;&nbsp;</th>

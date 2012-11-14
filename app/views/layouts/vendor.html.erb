@@ -20,7 +20,6 @@
 			<button type="button" class="close" data-dismiss="alert">×</button>
 			<strong><%= flash[:warning]%></strong>
 		</div>
-		<%flash[:warning] = ''%>
 		<%end%>
 
 		<% if !flash[:notice].blank?%>
@@ -28,7 +27,6 @@
 			<button type="button" class="close" data-dismiss="alert">×</button>
 			<strong><%= flash[:notice]%></strong>
 		</div>
-		<%flash[:notice] = ''%>
 		<%end%>
 
 		<%= render "common/vendor_menu" %> <br>
@@ -40,7 +38,6 @@
 			<button type="button" class="close" data-dismiss="alert">×</button>
 			<strong><%= flash[:info]%></strong>
 		</div>
-		<%flash[:info] = ''%>
 		<%end%>
 
 	</div>

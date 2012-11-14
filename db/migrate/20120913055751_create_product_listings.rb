@@ -5,7 +5,7 @@ class CreateProductListings < ActiveRecord::Migration
         t.references :scrap
         t.string :url
         t.string :metro_area
-        t.integer :price
+        t.integer :price, :limit => 50, :default => 1
         t.timestamps
       end
       

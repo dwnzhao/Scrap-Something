@@ -42,21 +42,12 @@
 
 	<div class = 'span8' >
 		<p class="lead" style="margin-top: 30px">by local vendors...</p>
-		<select class="span2">
-			<option>location</option>
-			<% @cities.each do |city| %>
-			<option><%= city.city%></option>
-			<%end%>
-		</select>
-
-		<select class="span2">
-			<option>type</option>
-			<option>catering</option>
-			<option>dress & tux</option>
-			<option>photographer</option>
-			<option>venue</option>
-		</select> <br><br><br>
-
+		<%= form_tag({:action => 'vendor_filter', :controller => 'vendor'}) do %>
+		<%= select_tag(:city, options_for_select(@cities.collect(&:city)))%>
+		<%= select_tag(:business_type, options_for_select(['catering', 'dress & tux', 'photographer', 'venue']))%>
+		<button type="submit" class = 'button'>go</button>
+		
+		<%end%>
 	</div>
 
 </div>

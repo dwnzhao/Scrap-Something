@@ -3,15 +3,18 @@
 <h1>Your Company Profile </h1>
 
 <table class="profile">
-<tr>
-	<td> <%= @vendor.company%></td>
-</tr>
-<tr>
-	<td> <%= link_to(@vendor.website, url_with_protocol(@vendor.website), :target => '_blank') %></td>
-</tr>
-<tr>
-	<td> <%= @vendor.company_address%></td>
-</tr>
+	<tr>
+		<td> <%= image_tag @vendor.avatar.url(:thumb)%></td>
+	</tr>
+	<tr>
+		<td> <%= @vendor.company%></td>
+	</tr>
+	<tr>
+		<td> <%= link_to(@vendor.website, url_with_protocol(@vendor.website), :target => '_blank') %></td>
+	</tr>
+	<tr>
+		<td> <%= @vendor.company_address%></td>
+	</tr>
 </table>
 
 <br/><hr><br/>
@@ -20,7 +23,6 @@
 		<th> <%= link_to 'Change Profile Picture', :action => 'upload_profile_pic', :controller => "access"%></th>
 		<th> <%= link_to 'Edit User Profile', :action => 'edit', :controller => "access" %></th>
 		<th> <%= link_to('Edit Company Profile', :action => 'edit', :controller => "vendor")%></th>
-		<th> <%= link_to 'Delete Profile', :action => 'delete', :controller => 'access'%></th>
 		<th> <%= link_to('Log Out', :action => 'logout', :controller => "access")%></th>
 	</tr>
 </table>

@@ -3,7 +3,27 @@
 </div>
 
 
-<div class = "my_scrap row"> <br> <br>
-	<%= render(:partial => "/collection/collection_view", :locals => {:images => @selected_collection, :images_per_row => 5, :link_description => "remove bookmark", :method => "remove_bookmark"})%>
-</div>
+<table class="table table-striped" style="width:50%; margin-top:50px">
+	<tr>
+	<th>item</th>
+	<th>name</th>
+	<th>action</th>
+	</tr>
+	<% @selected_collection.each_with_index do |scrap, index|%>
+	<tr>
+	<th>
+	<%=link_to image_tag(scrap.photo.url(:thumb)), {:action => "view_scrap_detail", :id => scrap.id, :controller => "scrap"}%>
+	</th>
+	<th><%=scrap.name%></th>
+	<th>
+	<%= link_to('edit item details', {:action => 'edit', :controller => 'scrap', :id => scrap.id})%> 	
+	<%= link_to('delete item', {:action => 'destroy_scrap', :controller => 'scrap', :scrap_id => scrap.id})%>
+	<br>
+	<%= link_to('edit listing details', {:action => 'edit', :controller => 'product_listing', :scrap_id => scrap.id})%>
+	<%= link_to('delete listing details', {:action => 'delete', :controller => 'product_listing', :scrap_id => scrap.id})%> <br>
+	</th>
+	<%end%>
+	
+
+</table>
 

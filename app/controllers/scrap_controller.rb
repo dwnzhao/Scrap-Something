@@ -5,7 +5,6 @@ class ScrapController < ApplicationController
   def upload_scrap
     @scrap = Scrap.new
     @categories = Category.all
-    @authorization = confirm_vendor_authorization
   end
 
   def save_upload_scrap
@@ -22,8 +21,8 @@ class ScrapController < ApplicationController
       if (confirm_vendor_authorization)
         redirect_to(:action => "add_listing", :controller => 'product_listing', :scrap_id => @scrap)
       else
-      redirect_to(:action => 'view_collection', :controller => 'collection')
-    end
+        redirect_to(:action => 'view_collection', :controller => 'collection')
+      end
     else
       @categories = Category.all
       render('upload_scrap')
@@ -34,7 +33,6 @@ class ScrapController < ApplicationController
     @scrap = Scrap.find(params[:id])
     @categories = Category.all
     @images = @scrap.images
-    @authorization = confirm_vendor_authorization
   end
 
   def view_scrap_detail
@@ -42,14 +40,12 @@ class ScrapController < ApplicationController
     user = User.find(@scrap.creator_id)
     @categories = get_category_names(@scrap)
     @images = @scrap.images
-    if !user.vendor.blank?
-    @creator_name = user.vendor.company  
-    @phone = user.vendor.phone
-  end
+    unless user.vendor.blank?
+      @creator_name = user.vendor.company  
+      @phone = user.vendor.phone
+    end
     @listings = get_listing(params[:id]).compact
-    @tabs = []
-    @remove_tabs = []
-    if (session[:user_id])
+    if (session[:user_id] && !confirm_vendor_authorization)
       @tabs = get_session_user.tabs.uniq
       @remove_tabs = @scrap.tabs.uniq
     end 
@@ -108,7 +104,7 @@ class ScrapController < ApplicationController
     array = []
     array << @image
     @images = @scrap.images - array
-    @creator_name = User.find(@scrap.creator_id).email
+    
     render :template => 'scrap/view_scrap_detail', :layout => 'scrap_detail'
   end
 
@@ -118,9 +114,17 @@ class ScrapController < ApplicationController
     @categories = get_category_names(@scrap)
     @creator_name = User.find(@scrap.creator_id).email
     @images = @scrap.images
-    if (session[:user_id])
-      @tabs = user.tabs
+    unless user.vendor.blank?
+      @creator_name = user.vendor.company  
+      @phone = user.vendor.phone
     end
+    @listings = get_listing(params[:id]).compact
+    if (session[:user_id] && !confirm_vendor_authorization)
+      @tabs = get_session_user.tabs.uniq
+      @remove_tabs = @scrap.tabs.uniq
+    end 
+    
+    
     @vendor_items = user.owned_scraps - Array(@scrap)
     render :template => 'scrap/view_scrap_detail', :layout => 'scrap_detail'
   end

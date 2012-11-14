@@ -7,10 +7,10 @@
 	</tr>
 	<tr>
 		<th><%= f.label(:metro_area, "Physical city")%></th>
-		<td><%= f.text_field(:metro_area, :size => 30, :maxlength => 40)%></td>
+		<td><%= f.select(:metro_area, options_for_select(@cities) ) %></td>
 	</tr>
 	<tr>
 		<th><%= f.label(:price, "Price")%></th>
-		<td><%= f.text_field(:price, :size => 30, :maxlength => 40)%></td>
+		<td><%= f.select(:price, options_for_select([['$', 1], ['$$', 2], ['$$$', 3], ['$$$$', 4], ['$$$$$', 5] ]) )%></td>
 	</tr>
 </table>

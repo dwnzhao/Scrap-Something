@@ -39,28 +39,13 @@ class AccessController < ApplicationController
       if @user.save
         session[:user_id] = @user.id
         if (@user.user_level > 1)
-          redirect_to(:action => 'vendor_signup')
+          redirect_to(:action => 'vendor_signup', :controller => 'vendor')
         else
           render('upload_profile_pic')
         end
       else
         render('signup')
       end
-    end
-
-    def vendor_signup
-      @vendor = Vendor.new
-      render('vendor_form')
-    end
-
-    def create_vendor
-      vendor = Vendor.new(params[:vendor])
-      if vendor.save
-        get_session_user.vendor = vendor
-      else
-        render('vendor_form')
-      end
-      redirect_to(:action => "vendor_profile", :controller => "vendor")
     end
 
     def update_profile_pic
