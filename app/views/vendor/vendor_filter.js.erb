@@ -1,0 +1,9 @@
+$('#browse_image_area').html('');
+
+<%if @vendors.empty?%>
+$('<div style="margin:30px" class="alert alert-info">sorry, nothing found</div>').appendTo('#browse_image_area').hide().fadeIn('10000');
+
+<%else%>
+$('<%= escape_javascript(render(:partial => "vendor/vendor_view", :locals => {:vendors => @vendors}))%>').appendTo('#browse_image_area').hide().fadeIn('1000');
+
+<%end%>

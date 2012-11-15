@@ -52,7 +52,8 @@ class VendorController < ApplicationController
     @categories = Category.all
     @cities = City.all
     @vendors = Vendor.where("business_type LIKE ? AND metro_area LIKE ?", params[:business_type], params[:city])
-    render :text => @vendors[0].company
+    render("vendor/vendor_filter.js")
+    
   end
 
 end

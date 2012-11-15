@@ -1,0 +1,18 @@
+<div id = "vendor_table">
+	<ul class="thumbnails">
+	
+	<% vendors.each_with_index do |vendor, index|%>
+	  <li class="span3">
+			<%= link_to image_tag(vendor.avatar.url(:medium)), url_with_protocol(vendor.website)%> <br>
+			<%= link_to vendor.company, url_with_protocol(vendor.website)%> <br>
+			
+			<%= vendor.business_type%>, <%= vendor.metro_area%>
+			
+			<hr>
+			
+			
+	  </li>
+
+	<%end%>
+</ul>
+</div> <br><br><br>
