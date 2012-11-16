@@ -14,6 +14,8 @@ group :production do
   gem 'thin'
 end
 
+gem 'safe_attributes'
+
 gem "heroku"
 
 gem "paperclip", "~> 3.0"
