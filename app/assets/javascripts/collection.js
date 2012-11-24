@@ -6,18 +6,14 @@ $(document).ready(function() {
 	var newWidth = $('.search').outerWidth() + 10 + (15 * 2);
 	var orgWidth = $('.search').outerWidth()
 
-	$('#search_explore').val("search for ideas");
-	$('#search_home').val("search my stuff");
-
-	$('input:text').css({
-		'font-size' : '11px',
-		'color' : 'grey',
-		'outline' : 'none',
-		'cursor' : 'text'
+	$('.search').val(function(i, val) {
+		val = $(this).attr("field");
+		if (val != "") {return val.toUpperCase();}
+		
 	});
 
 	$('.search').focus(function() {
-		$(this).animate({width: newWidth});
+		if ($('#search_home').val() == "") {$(this).animate({width: newWidth})};
 		$(this).val("");
 		$('input:text').css({
 			'color' : 'black',
@@ -26,27 +22,17 @@ $(document).ready(function() {
 
 
 	$('.search').blur(function () {
-		if ($('#search_explore').val() == "") 
+		if ($('.search').val() == "") 
 		{
-			$(this).animate({width: orgWidth});
-			$(this).val("search for ideas");
-			$('input:text').css({'color' : 'grey',});
-		};
-
-		if ($('#search_home').val() == "") 
-		{
-			$(this).animate({width: orgWidth});
-			$(this).val("search my stuff");
+			$('.search').val(function(i, val) {
+				val = $(this).attr("field");
+				return val.toUpperCase();
+			});
 			$('input:text').css({
-				'color' : 'grey',});
-			};
-		}
-	);
-	
-	$('.dropdown-menu').find('form').click(function (e) {
-    e.stopPropagation();
-  });
-  
+				'color' : 'grey',
+			});		
+		};
+	});
 
 	// scrap hover 
 	$(".scrap_block").hover(function() {
@@ -55,29 +41,11 @@ $(document).ready(function() {
 		$(this).children(".edit_icon").fadeOut();		
 	});
 
-	// scrap detail iframe
-	$(".scrap_asset a").fancybox({
+	// fancybox animation
+	$(".fancybox").fancybox({
 		'width'				: '65%',
 		'height'			: '65%',
 		'autoScale'     	: false,
-		'transitionIn'		: 'none',
-		'transitionOut'		: 'none',
-		'type'				: 'iframe',
-		'showCloseButton'	: true,	
-		'padding'			: '0',	        
-		helpers : {
-			overlay : {
-				css : {'background' : 'rgba(0, 0, 0, 0.5)'}
-			}
-		}
-	});	
-	
-	$(".scrap_edit").fancybox({
-		'width'				: '65%',
-		'height'			: '65%',
-		'autoScale'     	: false,
-		'transitionIn'		: 'none',
-		'transitionOut'		: 'none',
 		'type'				: 'iframe',
 		'showCloseButton'	: true,	
 		'padding'			: '0',	        

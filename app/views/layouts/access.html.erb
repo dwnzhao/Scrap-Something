@@ -7,29 +7,27 @@
 	<%= csrf_meta_tags %>
 </head>
 <body bgcolor="#E6E6FA">
-	<div style="min-width: 960px; margin: 0 auto">
 
-		<% if !flash[:warning].blank?%>
-		<div class="alert">
-			<button type="button" class="close" data-dismiss="alert">×</button>
-			<strong><%= flash[:warning]%></strong>
-		</div>
-		<%end%>
-
-		<% if !flash[:notice].blank?%>
-		<div class="alert alert-success">
-			<button type="button" class="close" data-dismiss="alert">×</button>
-			<strong><%= flash[:notice]%></strong>
-		</div>
-		<%end%>
-
-		<br/><br/>
-
-		<%= yield %>
-
-		<br/><br/>
-
-
+	<% if !flash[:warning].blank?%>
+	<div class="alert">
+		<button type="button" class="close" data-dismiss="alert">×</button>
+		<strong><%= flash[:warning]%></strong>
 	</div>
+	<%end%>
+
+	<% if !flash[:notice].blank?%>
+	<div class="alert alert-success">
+		<button type="button" class="close" data-dismiss="alert">×</button>
+		<strong><%= flash[:notice]%></strong>
+	</div>
+	<%end%>
+
+	<br/><br/>
+
+	<%= yield %>
+
+	<br/><br/>
+
+
 </body>
 </html>

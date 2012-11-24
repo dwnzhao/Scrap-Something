@@ -1,4 +1,5 @@
 class VendorController < ApplicationController
+  require 'will_paginate/array'
 
   layout 'vendor'
   before_filter :confirm_vendor_authorization, :except => [:vendor_filter]
@@ -6,6 +7,7 @@ class VendorController < ApplicationController
 
   def vendor_signup
     @vendor = Vendor.new
+    @cities = City.all
     render('vendor_form')
   end
 
@@ -22,12 +24,13 @@ class VendorController < ApplicationController
   def vendor_profile
     @vendor = get_session_user.vendor
     if @vendor.blank?
-      redirect_to(:action => 'vendor_signup', :controller => 'access')
+      redirect_to(:action => 'vendor_signup', :controller => 'vendor')
     end
   end
 
   def edit
     @vendor = get_session_user.vendor
+    @cities = City.all
   end
 
   def update
@@ -41,7 +44,7 @@ class VendorController < ApplicationController
   end
 
   def view_items
-    @selected_collection = get_all_user_scraps
+    @selected_collection = get_all_user_scraps.paginate(:page => params[:page], :per_page => 10)
   end
 
   def dashboard

@@ -1,27 +1,12 @@
 .dialog{font-size: 16px; padding: 25px}
 
-.scrap_description{text-align: left; padding: 0.8em 1em;}
-
-#scrap_name{ text-align: center; font-weight:bold; font-size: 1.5em; padding: 1em 0.5em 0.5em}
-
-#scrap_subtitle{font-weight: bold; font-size: 1.1em;}
-.scrap_description{
-	text-align: left;
-	font-style:italic;
-	position:relative;
-}
-
 #scrap_detail_table{margin-left: auto; margin-right:auto;}
 
 .column{display: table-cell; vertical-align: top;}
 .icon_pic {float:left}
 .icon_pic img{color: #ffffff; border:none;}
 
-#select_category_instruction {font-weight: bold;}
-
-#scrap_form {text-align: left;}
-
-.dialog a {outline: none; color:white;}
+.dialog a {outline: none; color:white; text-decoration: none}
 
 .dialog {  
 	font-family: helvetica;

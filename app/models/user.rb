@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  attr_accessible :first_name, :last_name, :email, :user_level, :avatar, :metro_area, :password, :password_confirmation
+  attr_accessible :first_name, :last_name, :email, :user_level, :avatar, :metro_area, :password, :password_confirmation, :terms_and_conditions, :zipcode
   attr_accessor :password
 
   EMAIL_REGEX = /^[A-Z0-9._%+_]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i
@@ -8,10 +8,12 @@ class User < ActiveRecord::Base
   validates :last_name, :presence => {:message => 'is required'}, :length => {:maximum => 25}
   validates :email, :uniqueness => true, :presence => {:message => 'is required'}, :length => {:maximum => 35}, :format => {:with => EMAIL_REGEX, :on => :save}  
   validates :password, :confirmation => true
+  validates :zipcode, :numericality => {:message => 'must be a valid number (no hashes)'}, :allow_nil => true 
+  validates_acceptance_of :terms_and_conditions
   validates_length_of :password, :within => 5..25, :on => :create
 
   has_attached_file :avatar, :styles => { :medium => '300x300>', :thumb => '100x100>' }
-  has_many :owned_scraps, :class_name => 'Scrap', :foreign_key => 'creator_id', :order => 'updated_at DESC'
+  has_many :owned_scraps, :class_name => 'Scrap', :foreign_key => 'creator_id', :order => 'updated_at DESC', :dependent => :destroy 
   has_many :collections, :dependent => :destroy
   has_many :tabs, :foreign_key => 'user_id', :dependent => :destroy
   has_one :vendor, :dependent => :destroy

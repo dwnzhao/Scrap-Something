@@ -1,4 +1,7 @@
 class CollectionController < ApplicationController
+  require 'will_paginate/array'
+  
+  
   layout 'view_collection'
   respond_to :html, :js
 
@@ -23,9 +26,9 @@ class CollectionController < ApplicationController
     @categories = Category.all
     @cities = City.all
     if (session[:user_id])
-      @collection = Scrap.public_scraps - get_all_user_scraps
+      @collection = (Scrap.public_scraps - get_all_user_scraps).paginate(:page => params[:page], :per_page => 10)
     else
-      @collection = Scrap.public_scraps
+      @collection = Scrap.where(:visibility => true).paginate(:page => params[:page], :per_page => 10)
     end
   end
 

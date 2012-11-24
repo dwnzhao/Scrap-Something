@@ -31,8 +31,12 @@ class ScrapController < ApplicationController
 
   def edit
     @scrap = Scrap.find(params[:id])
-    @categories = Category.all
-    @images = @scrap.images
+    if (get_user_authorization(@scrap))
+      @categories = Category.all
+      @images = @scrap.images
+    else
+      redirect_to(:action => 'view_collection', :controller => 'collection')
+    end
   end
 
   def view_scrap_detail
@@ -104,7 +108,7 @@ class ScrapController < ApplicationController
     array = []
     array << @image
     @images = @scrap.images - array
-    
+
     render :template => 'scrap/view_scrap_detail', :layout => 'scrap_detail'
   end
 
@@ -123,8 +127,8 @@ class ScrapController < ApplicationController
       @tabs = get_session_user.tabs.uniq
       @remove_tabs = @scrap.tabs.uniq
     end 
-    
-    
+
+
     @vendor_items = user.owned_scraps - Array(@scrap)
     render :template => 'scrap/view_scrap_detail', :layout => 'scrap_detail'
   end

@@ -20,7 +20,7 @@ class ApplicationController < ActionController::Base
 
   def confirm_logged_in
     unless session[:user_id]
-      flash[:warning] = "Please log in or sign up."
+      flash.now[:warning] = "Please log in or sign up."
       render('access/landing_page', :layout => 'layouts/access')
       return false
     else 
@@ -30,7 +30,7 @@ class ApplicationController < ActionController::Base
 
   def confirm_vendor_authorization
     unless session[:user_id]
-      flash[:warning] = "Please log in or sign up."
+      flash.now[:warning] = "Please log in or sign up."
       render('access/landing_page', :layout => 'layouts/access')
       return false 
     else
@@ -51,6 +51,7 @@ class ApplicationController < ActionController::Base
     if scrap.creator_id == session[:user_id]
       return true
     else
+      flash[:warning] = "You have no authorization to perform this task."
       return false
     end
   end

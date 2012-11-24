@@ -8,6 +8,7 @@ class CreateUsers < ActiveRecord::Migration
         t.string :hashed_password
         t.string :salt
         t.string :metro_area, :limit => 20
+        t.string :zipcode, :limit =>5
         t.integer :user_level, :limit =>3, :default => 1
         t.attachment :avatar
         t.timestamps
