@@ -40,8 +40,8 @@
 		<%else%>
 		available in: 
 		<% @listings.each_with_index do |listing|%>
-		<%= link_to listing.metro_area, url_with_protocol(listing.url), :target => '_parent' %> <br>
-		<p>price: 
+		<p>
+		<%= link_to listing.metro_area, url_with_protocol(listing.url), :target => '_parent' %>
 		<% listing.price.times do -%>$<% end -%>
 		</p>
 		<% end %>		

@@ -18,7 +18,7 @@ class TabController < ApplicationController
 
   def tab_filter
     if (params[:id].blank?)
-      @selected_collection = get_all_user_scraps
+      @selected_collection = get_all_user_scraps.uniq
     else
       @selected_collection = Tab.find(params[:id]).scraps
     end

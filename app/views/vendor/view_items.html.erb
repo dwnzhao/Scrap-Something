@@ -1,29 +1,46 @@
-<div class="btn-group" style="margin-top:30px">
-  <button class="btn"><%= link_to('add an item', {:action => 'upload_scrap', :controller => 'scrap'}, {:rel => "tooltip", :title=> "upload images."})%></button>
-</div>
-
-
 <table class="table table-striped" style="width:50%; margin-top:50px">
 	<tr>
-	<th>item</th>
-	<th>name</th>
-	<th>action</th>
+		<th>item</th>
+		<th>name</th>
+		<th>listed in</th>
 	</tr>
+	<tr><td colspan="3">
+		<button class="btn btn-small">
+			<%= link_to('add an item', {:action => 'upload_scrap', :controller => 'scrap'})%>
+		</button>
+	</td></tr>
 	<% @selected_collection.each_with_index do |scrap, index|%>
 	<tr>
-	<th>
-	<%=link_to image_tag(scrap.photo.url(:thumb)), {:action => "view_scrap_detail", :id => scrap.id, :controller => "scrap"}%>
-	</th>
-	<th><%=scrap.name%></th>
-	<th>
-	<%= link_to('edit item details', {:action => 'edit', :controller => 'scrap', :id => scrap.id})%> 	
-	<%= link_to('delete item', {:action => 'destroy_scrap', :controller => 'scrap', :scrap_id => scrap.id})%>
-	<br>
-	<%= link_to('edit listing details', {:action => 'edit', :controller => 'product_listing', :scrap_id => scrap.id})%>
-	<%= link_to('delete listing details', {:action => 'delete', :controller => 'product_listing', :scrap_id => scrap.id})%> <br>
-	</th>
-	<%end%>
-	
+		<th>
+			<%=link_to image_tag(scrap.photo.url(:thumb)), {:action => "view_scrap_detail", :id => scrap.id, :controller => "scrap"}, :class => 'fancybox'%>		
+		</th>
+		<th>
+			<%=scrap.name%> <br>
+			<%= link_to raw('<i class="icon-pencil"></i>'), {:action => 'edit', :controller => 'scrap', :id => scrap.id}%>
+			<%= link_to raw('<i class="icon-trash"></i>'), {:action => 'destroy_scrap', :controller => 'scrap', :id => scrap.id}%>
+			<% if scrap.visibility %>
+			<%= link_to raw('<i class="icon-eye-open"></i>'), {:action => 'make_invisible', :controller => 'scrap', :id => scrap.id}%>
+			<% else%>
+			<%= link_to raw('<i class="icon-eye-close"></i>'), {:action => 'make_visible', :controller => 'scrap', :id => scrap.id}%>
+			<%end%>
+		</th>
+		<th>
+			<% scrap.product_listings.each_with_index do |listing|%>
+			<%= link_to listing.metro_area, url_with_protocol(listing.url), :target => '_parent' %>
+			<%= link_to raw('<i class="icon-pencil"></i>'), {:action => 'edit_listing', :controller => 'product_listing', :listing_id => listing.id}%>
+			<%= link_to raw('<i class="icon-trash"></i>'), {:action => 'delete_listing', :controller => 'product_listing', :listing_id => listing.id}%>
+			<br>
+
+			<% end %>	
+			
+			<%= link_to(:action => 'add_listing', :controller => 'product_listing', :scrap_id => scrap.id) do%>
+			<i class="icon-plus"></i>
+			<%end%>
+
+		</th>
+		<%end%>
+	</tr>
+
 
 </table>
 

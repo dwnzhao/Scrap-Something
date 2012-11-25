@@ -1,5 +1,5 @@
 class ScrapController < ApplicationController
-  layout 'scrap_detail'
+  layout 'view_collection'
   before_filter :confirm_logged_in, :except => [:view_scrap_detail, :switch_image, :switch_scrap]
 
   def upload_scrap
@@ -11,18 +11,12 @@ class ScrapController < ApplicationController
     @scrap = Scrap.new(params[:scrap])
     @scrap.creator_id = session[:user_id]
     @scrap.save
-    checked_categories = get_categories_from(params[:categories])
-    remove_categories = Category.all - checked_categories
     if !@scrap.new_record?
-      checked_categories.each {|cat| @scrap.categories << cat if !@scrap.categories.include?(cat)}
-      remove_categories.each {|cat| @scrap.categories.destroy(cat) if @scrap.categories.include?(cat)}
+      process_categories(params[:categories], @scrap)
       get_session_user.collections.uploaded.scraps << @scrap
       flash[:notice] = "Added Scrap!"
-      if (confirm_vendor_authorization)
-        redirect_to(:action => "add_listing", :controller => 'product_listing', :scrap_id => @scrap)
-      else
-        redirect_to(:action => 'view_collection', :controller => 'collection')
-      end
+      redirect_to(:action => "add_listing", :controller => 'product_listing', :scrap_id => @scrap.id) if (confirm_vendor_authorization)
+      redirect_to(:action => 'view_collection', :controller => 'collection')
     else
       @categories = Category.all
       render('upload_scrap')
@@ -30,7 +24,7 @@ class ScrapController < ApplicationController
   end
 
   def edit
-    @scrap = Scrap.find(params[:id])
+    @scrap = Scrap.find(params[:scrap_id])
     if (get_user_authorization(@scrap))
       @categories = Category.all
       @images = @scrap.images
@@ -40,7 +34,7 @@ class ScrapController < ApplicationController
   end
 
   def view_scrap_detail
-    @scrap = Scrap.find(params[:id])
+    @scrap = Scrap.find(params[:scrap_id])
     user = User.find(@scrap.creator_id)
     @categories = get_category_names(@scrap)
     @images = @scrap.images
@@ -48,7 +42,7 @@ class ScrapController < ApplicationController
       @creator_name = user.vendor.company  
       @phone = user.vendor.phone
     end
-    @listings = get_listing(params[:id]).compact
+    @listings = get_listing(params[:scrap_id]).compact
     if (session[:user_id] && !confirm_vendor_authorization)
       @tabs = get_session_user.tabs.uniq
       @remove_tabs = @scrap.tabs.uniq
@@ -108,7 +102,6 @@ class ScrapController < ApplicationController
     array = []
     array << @image
     @images = @scrap.images - array
-
     render :template => 'scrap/view_scrap_detail', :layout => 'scrap_detail'
   end
 
@@ -127,17 +120,35 @@ class ScrapController < ApplicationController
       @tabs = get_session_user.tabs.uniq
       @remove_tabs = @scrap.tabs.uniq
     end 
-
-
     @vendor_items = user.owned_scraps - Array(@scrap)
     render :template => 'scrap/view_scrap_detail', :layout => 'scrap_detail'
   end
 
-  def get_listing(id)
-    scrap = Scrap.find(id)
-    return scrap.product_listings
+  def make_invisible
+    scrap = Scrap.find(params[:id])
+    scrap.visibility = false
+    scrap.save
+    redirect_to(:action => 'view_collection', :controller => 'collection')
   end
 
-
+  def make_visible
+    scrap = Scrap.find(params[:id])
+    scrap.visibility = true
+    scrap.save
+    redirect_to(:action => 'view_collection', :controller => 'collection')
+  end
+  
+  def favor
+    scrap = Scrap.find(params[:scrap_id])
+    get_session_user.collections.favorite.scraps << scrap
+    redirect_to(:action => 'view_collection', :controller => 'collection')
+  end
+  
+  def defavor
+    scrap = Scrap.find(params[:scrap_id])
+    get_session_user.collections.favorite.scraps.destroy(scrap)
+    redirect_to(:action => 'view_collection', :controller => 'collection')
+    
+  end
 
 end

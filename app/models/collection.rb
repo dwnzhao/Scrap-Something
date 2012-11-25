@@ -17,7 +17,8 @@ class Collection < ActiveRecord::Base
   def self.bookmarked
     find_by_name('bookmarked')
   end
-  
-  
 
+  def self.favorite
+    find_by_name('favorite')
+  end
 end

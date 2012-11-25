@@ -1,0 +1,16 @@
+<h1>Edit Your Product Listing</h1>
+<hr><br/>
+
+<div id = "product_new">
+
+<%= form_for(:product_listing, :url => {:action => 'update_listing', :listing_id => @product_listing.id}) do |f| %>
+
+	<%= render(:partial => "listing_form", :locals => {:f => f})%>
+
+	<div class="form-buttons"><%= submit_tag("List")%></div>
+	
+
+
+<% end %>
+
+</div>

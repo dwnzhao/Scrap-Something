@@ -1,7 +1,6 @@
 class CollectionController < ApplicationController
   require 'will_paginate/array'
-  
-  
+
   layout 'view_collection'
   respond_to :html, :js
 
@@ -15,8 +14,7 @@ class CollectionController < ApplicationController
     if (confirm_vendor_authorization)
       redirect_to(:action => "view_items", :controller => 'vendor')
     else
-      @selected_collection = get_all_user_scraps
-      @scrap_total = @selected_collection.size
+      @selected_collection = get_all_user_scraps.uniq
       @user = get_session_user
       @categories = get_all_user_categories
     end
@@ -25,11 +23,8 @@ class CollectionController < ApplicationController
   def browse_collection
     @categories = Category.all
     @cities = City.all
-    if (session[:user_id])
-      @collection = (Scrap.public_scraps - get_all_user_scraps).paginate(:page => params[:page], :per_page => 10)
-    else
-      @collection = Scrap.where(:visibility => true).paginate(:page => params[:page], :per_page => 10)
-    end
+    @collection = (Scrap.public_scraps - get_all_user_scraps).paginate(:page => params[:page], :per_page => 10) if (session[:user_id])
+    @collection = Scrap.where(:visibility => true).paginate(:page => params[:page], :per_page => 10)
   end
 
   def search

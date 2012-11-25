@@ -10,8 +10,7 @@
 
 </head>
 <body>
-
-	<div id="top"></div> <br>
+	<%= render "common/general_menu" %> <br>
 
 	<% if !flash[:warning].blank?%>
 	<div class="alert">
@@ -26,8 +25,6 @@
 		<strong><%= flash[:notice]%></strong>
 	</div>
 	<%end%>
-
-	<%= render "common/vendor_menu" %> <br>
 
 	<%= yield %>
 

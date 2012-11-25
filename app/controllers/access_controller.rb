@@ -6,9 +6,10 @@ class AccessController < ApplicationController
     :logout, :create, :authenticate, :landing_page]
 
     def index
-      if (session[:user_id] && confirm_vendor_authorization)
-        redirect_to(:action => "vendor_profile", :controller => "vendor") 
+      if (confirm_vendor_authorization)
+        redirect_to(:action => "view_items", :controller => "vendor")
       elsif (session[:user_id])
+        @user = get_session_user
         redirect_to(:action => "view_collection", :controller => "collection") 
       else
         redirect_to(:action => "browse_collection", :controller => "collection", )
@@ -32,7 +33,7 @@ class AccessController < ApplicationController
     def logout      
       session[:user_id] = nil
       get_session_user(false)
-      redirect_to(:action => "index")
+      redirect_to(:action => "browse_collection", :controller => 'collection')
     end
 
     def create
@@ -59,28 +60,26 @@ class AccessController < ApplicationController
 
     def edit
       @user = get_session_user
-      @cities = City.all
-      
+      @cities = City.all    
     end
 
     def update
       @user = get_session_user
       if @user.update_attributes(params[:user])
         flash[:notice] = "Updated profile!"
-        if (confirm_vendor_authorization)
-          redirect_to(:action => "vendor_profile", :controller => "vendor")
-        else
-          redirect_to(:action => "profile")
-        end
+        redirect_to(:action => "vendor_profile", :controller => "vendor") if confirm_vendor_authorization
+        redirect_to(:action => "profile")
       else
         render("edit")
       end
     end
 
     def profile
-      if (confirm_vendor_authorization)
-        redirect_to(:action => "vendor_profile", :controller => "vendor")
-      else      
+      if confirm_vendor_authorization
+        @vendor = get_session_user.vendor
+        render(:template => 'vendor/vendor_signup', :layout => 'vendor') if @vendor.blank?
+        render(:template => 'vendor/vendor_profile', :layout => 'vendor')
+      else
         @user = get_session_user
       end
     end

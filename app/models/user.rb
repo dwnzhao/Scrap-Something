@@ -17,7 +17,7 @@ class User < ActiveRecord::Base
   has_many :collections, :dependent => :destroy
   has_many :tabs, :foreign_key => 'user_id', :dependent => :destroy
   has_one :vendor, :dependent => :destroy
- 
+
   before_save :create_hashed_password
   after_save :clear_password
   after_create :initiate_collections, :initiate_tabs
@@ -30,24 +30,27 @@ class User < ActiveRecord::Base
       return false
     end
   end
-  
-  
+
+  def fullname
+    name = first_name + ' ' + last_name
+    return name
+  end
+
   def password_match?(password="")
     hashed_password == User.hash_with_salt(password, salt)
   end
-  
-  
+
   private
 
   def self.make_salt(email="")
-     Digest::SHA1.hexdigest("time #{email} is #{Time.now} precious")
-   end
+    Digest::SHA1.hexdigest("time #{email} is #{Time.now} precious")
+  end
 
-   def self.hash_with_salt(password="", salt="")
-     Digest::SHA1.hexdigest("Put #{salt} on the #{password}")
-   end
+  def self.hash_with_salt(password="", salt="")
+    Digest::SHA1.hexdigest("Put #{salt} on the #{password}")
+  end
 
-  
+
   def create_hashed_password
     unless password.blank?
       self.salt = User.make_salt(email) if salt.blank?
@@ -58,34 +61,38 @@ class User < ActiveRecord::Base
   def clear_password
     self.password = nil
   end
-  
+
   def initiate_collections
     c = Collection.new()
     c.name = "uploaded"
     self.collections << c
-    
+
     c = Collection.new()
     c.name = "external"
     self.collections << c
-    
+
     c = Collection.new()
     c.name = "bookmarked"
-    self.collections << c  
+    self.collections << c 
+    
+    c = Collection.new()
+    c.name = "favorite"
+    self.collections << c 
   end
-  
+
   def initiate_tabs
     t = Tab.new()
     t.name = "pre-wedding day"
     self.tabs << t
-    
+
     t = Tab.new()
     t.name = "bridal shower"
     self.tabs << t
-    
+
     t = Tab.new()
     t.name = "the big day"
     self.tabs << t
-    
+
   end
 
 end

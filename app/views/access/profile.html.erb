@@ -8,7 +8,7 @@
 
 <table class="profile">
 <tr>
-	<td> <%= @user.first_name  + " " + @user.last_name %></td>
+	<td> <%= @user.fullname%></td>
 </tr>
 <tr>
 	<td> <%= mail_to(@user.email) %></td>
@@ -18,9 +18,9 @@
 <br/><hr><br/>
 <table summary = "edit profile">
 	<tr>
-		<th> <%= link_to 'Change Profile Picture', :action => 'upload_profile_pic'%></th>
-		<th> <%= link_to 'Edit Profile', :action => :edit %></th>
-		<th> <%= link_to('Log Out', :action => 'logout')%></th>
+		<th> <%= link_to('Change Profile Picture', {:action => 'upload_profile_pic'})%></th>
+		<th> <%= link_to('Edit Profile', {:action => :edit}) %></th>
+		<th> <%= link_to('Log Out', {:action => 'logout'})%></th>
 	</tr>
 </table>
 

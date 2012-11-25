@@ -19,17 +19,20 @@ table, .table  {display: table; margin-left: auto; margin-right: auto;}
 .row {display: table-row;}
 
 #top {background: #000000; position: fixed; height: 30px; z-index: 500; top: 0px; 
-	width: 120%; left: -20px; opacity: 0.85;}
+	width: 103%; left: -20px; opacity: 0.85;
+}
 
-	#left_panel{width:270px; color:#181818; font-size: 15px; 
-		text-align: right; margin-left:-30px; margin-top: 0px; background-color: none; 
-		padding: 0px 20px; height:900px; border-right: thin solid #D3D3D3; }
+#left_panel{
+	width:270px; color:#181818; font-size: 15px; 
+	text-align: right; margin-left:-30px; margin-top: 0px; background-color: none; 
+	padding: 0px 20px; height:900px; border-right: thin solid #D3D3D3; 
+}
 
-		#left_panel a {color:#181818}
+#left_panel a {color:#181818}
 
-		#center_top_panel, #center_panel{margin-left: 300px; background-color: none; margin-top:-830px; overflow: none}
+#center_top_panel, #center_panel{margin-left: 300px; background-color: none; margin-top:-830px; overflow: none}
 
-		#center_panel{margin-top:-50px; padding: 30px 50px}
+#center_panel{margin-top:-50px; padding: 30px 50px}
 
 /*lines & buttons*/
 
@@ -54,7 +57,7 @@ table, .table  {display: table; margin-left: auto; margin-right: auto;}
 
 /*font style*/
 a {text-decoration:none; color:#181818; padding:0 5px 5px; font-size: 12px; opacity: 0.9}
-a:hover {opacity: 1; color: #181818}
+a:hover {opacity: 1; color: #181818; text-decoration: none;}
 
 .notice {
 	color: black;
@@ -66,6 +69,12 @@ input[type=text]{
 	font-size: 11px;
 	color: grey;
 	outline: none;	
+}
+
+.btn-inverse a {
+	color:white;
+	font-weight:bold;
+	opacity:1;
 }
 
 .field_with_errors {color: #F80000;	}
@@ -84,32 +93,3 @@ input[type=text]{
 
 .search { height: 18px; width:160px; align:bottom; }
 
-#home_menu a, #tool_menu a.dropdown-toggle {color:white; opacity: 1}
-
-#home_menu{
-	position: fixed;
-	z-index:1000;
-	margin-left: 31%;
-	margin-right: 31%;
-	top: 5px;
-	width:40%;
-	color:white;
-	overflow:none;
-	font-size:25px;
-}
-
-#tool_menu{
-	position: fixed;
-	z-index:1000;
-	margin-left: 83%;
-	top: -5px;
-	border: none;
-	text-align: left;
-	border:none;
-	width: 10%;
-}
-
-.dropdown-menu{
-	min-width: 30px;
-	min-height: 10px;
-}

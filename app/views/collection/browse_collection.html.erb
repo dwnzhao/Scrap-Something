@@ -1,27 +1,5 @@
 <%if(session[:user_id].blank?)%>
-
-<div class="hero-unit" style="background-color:#FFffff">
-	<h1>The ultimate wedding planner.</h1>
-	<div id="myCarousel" class="carousel slide">
-		<!-- Carousel items -->
-		<h3>
-			<div class="carousel-inner">
-				<div class="active item">Browse thousands of pictures from real vendors</div>
-				<div class="item">Add pictures from desktop, phone, and other sites</div>
-				<div class="item">Organize your wedding</div>
-			</div>
-		</h3>
-	</div>
-	<br>
-	<p>
-		<a class="btn btn-primary btn-large" href="/access/signup">
-			Sign Up
-		</a>
-		<a class="btn btn-link btn-large" href="/access/login">
-			Log In
-		</a>
-	</p> <br>
-</div> <hr>
+<%= render(:partial => "collection/partials/landing_banner") %>
 <%end%>
 
 
@@ -32,12 +10,10 @@
 		<%= link_to(cat.name, {:action => 'category_filter', :id => cat.id}, {:remote => true})%>&nbsp;
 		<%end%>	<br><br>
 
-		<%= form_tag({:action => 'search', :user_specific => false,}, {:remote => true})   do%>
-		<%= text_field_tag(:search_explore, "", :size => 25, :maxlength => 40, :class => 'search', :field => 'search for ideas...', :autocomplete => "off") %>
+		<%= form_tag({:action => 'search', :user_specific => false,}, {:remote => true}) do%>
+		<%= text_field_tag(:search_explore, "", {:class => 'search', :field => 'search for ideas...', :autocomplete => "off"}) %>
 		<button type="submit" class = 'button'><i class="icon-search"></i></button>
-
-		<%end%>
-
+		<%end%>		
 	</div>
 
 	<div class = 'span8' >
@@ -53,9 +29,9 @@
 </div>
 
 <hr>
-<div id = "browse_image_area" style="padding: 0px 80px; min-width: 1400px;">
+<div id = "browse_image_area" style="padding: 0px 80px;">
 
-	<%= render(:partial => "collection_view", :locals => {:images => @collection, :link_description => "bookmark", :method => "bookmark", :images_per_row => 5})%>
+	<%= render(:partial => "collection/partials/collection_view", :locals => {:images => @collection, :link_description => "bookmark", :method => "bookmark", :images_per_row => 5})%>
 </div>
 
 <%= will_paginate @collection%>

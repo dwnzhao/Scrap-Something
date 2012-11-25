@@ -1,18 +1,18 @@
 <!DOCTYPE html>
-<html ng-app="MyApp">
+<html>
 <head>
 	<title>Scrap Something | <%= @page_title || 'Collections' %></title>
-	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.2/angular.min.js"></script>
-	<script src="http://angular-ui.github.com/angular-ui/build/angular-ui.js"></script>	
 	<%= stylesheet_link_tag('application', 'collection', 'scrap', 'jquery.fancybox',  :media => "all" )%>
-	<%= javascript_include_tag('application', 'collection', 'jquery.fancybox.pack', 'scrap')%>
+	<%= javascript_include_tag('application') %>
+	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.2/angular.min.js"></script>
+	<script src="http://angular-ui.github.com/angular-ui/build/angular-ui.js"></script>		
+	<%= javascript_include_tag('collection', 'jquery.fancybox.pack', 'scrap')%>
 
 	<%= csrf_meta_tags %>
 
 </head>
 <body>
-
-	<div id="top"></div> <br>
+	<%= render "common/general_menu" %>
 
 	<% if !flash[:warning].blank?%>
 	<div class="alert">
@@ -27,8 +27,6 @@
 		<strong><%= flash[:notice]%></strong>
 	</div>
 	<%end%>
-
-	<%= render "common/account_menu" %>
 
 	<%= yield %>
 

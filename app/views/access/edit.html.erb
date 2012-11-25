@@ -2,8 +2,6 @@
 <h1>Edit Profile</h1>
 <hr><br>
 
-<div class = "user_edit">
-
 <%= form_for(:user, :url => {:action => 'update'}) do |f| %>
 
 <%= render(:partial => "access/profile_form", :locals => {:f => f, :password_display => false})%>	
@@ -13,14 +11,11 @@
 <% end %>
 
 
- <br><br><br>
+<br><br><br>
 
 <span style='text-decoration:underline'>
 <%= link_to 'Delete Profile', :action => 'delete', :controller => 'access'%>
 
 </span>
-
-
-</div>
 
 

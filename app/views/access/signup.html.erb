@@ -9,18 +9,13 @@
 
 <%= render(:partial => "access/profile_form", :locals => {:f => f, :password_display => true})%>	
 
-<%= f.label(:terms_and_conditions) do %>
-I agree to <a href="#">terms and conditions</a>
-<%end%>
-<%= f.check_box(:terms_and_conditions)%>
+<%= f.check_box(:terms_and_conditions)%> I agree to <a href="#">terms and conditions</a>
+
  <br><br>
 
 <%= submit_tag "sign up", :class=>'button'%>
 
 <% end %>
-
-
-
 </div>
 
 <div id ="navigation_link"> Already have an account? <span style="text-decoration:underline;"><%= link_to('Log in', {:action => 'login'})%></span> </div>

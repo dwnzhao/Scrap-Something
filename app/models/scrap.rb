@@ -21,7 +21,12 @@ class Scrap < ActiveRecord::Base
   
   
   def self.public_scraps
-   find_all_by_visibility(true)
+   find_all_by_visibility(true, :order => 'updated_at ASC') 
+  end
+  
+  
+  def self.owned_scraps(id)
+   find_all_by_creator_id(id, :order => 'updated_at DESC') 
   end
   
 end

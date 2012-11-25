@@ -4,29 +4,32 @@
 	<%else%>
 	<%= link_to(user.email, {:action => 'profile', :controller => 'access'})%>
 	<%end%>
-</div><br/>
+</div>
+<br/>
 
 <%= form_tag({:action => 'search', :user_specific => true,}, {:remote => true}) do%>
 
 
-<%= text_field_tag(:search_home, "", :class => 'search', :field => 'search my stuff...', :autocomplete => "off" ) %>
-<button type="submit" class = 'button'><i class="icon-search"></i></button>
-<%end%>
-
-<hr>
-
-<div id="category_table">
-	<h4>
-		categories
-	</h4>
-	<% categories.each_with_index do |category, index|%>
-
-	<%= link_to(category.name, {:action => "category_filter", :id => category.id, :controller => "collection", :user_specific => true}, :remote => true) %>
-
-	<% if (index+1)%3==0 %>
-	<br>
-	<%end%>		
+	<%= text_field_tag(:search_home, "", :class => 'search', :field => 'search my stuff...', :autocomplete => "off" ) %>
+	<button type="submit" class = 'button'><i class="icon-search"></i></button>
 	<%end%>
-</div>
 
-<hr>
+	<hr>
+
+	<%if !categories.blank?%>
+	<div id="category_table">
+		<h4>
+			categories
+		</h4>
+
+		<% categories.each_with_index do |category, index|%>
+		<%= link_to(category.name, {:action => "category_filter", :id => category.id, :controller => "collection", :user_specific => true}, :remote => true) %>
+
+		<% if (index+1)%3==0 %>
+		<br>
+		<%end%>		
+		<%end%>
+	</div>
+
+	<hr>
+	<%end%>

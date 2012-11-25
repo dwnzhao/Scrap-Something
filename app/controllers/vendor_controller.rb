@@ -4,7 +4,6 @@ class VendorController < ApplicationController
   layout 'vendor'
   before_filter :confirm_vendor_authorization, :except => [:vendor_filter]
 
-
   def vendor_signup
     @vendor = Vendor.new
     @cities = City.all
@@ -21,13 +20,6 @@ class VendorController < ApplicationController
     end
   end
   
-  def vendor_profile
-    @vendor = get_session_user.vendor
-    if @vendor.blank?
-      redirect_to(:action => 'vendor_signup', :controller => 'vendor')
-    end
-  end
-
   def edit
     @vendor = get_session_user.vendor
     @cities = City.all
@@ -44,7 +36,7 @@ class VendorController < ApplicationController
   end
 
   def view_items
-    @selected_collection = get_all_user_scraps.paginate(:page => params[:page], :per_page => 10)
+    @selected_collection = Scrap.owned_scraps(get_session_user.id).paginate(:page => params[:page], :per_page => 10)
   end
 
   def dashboard

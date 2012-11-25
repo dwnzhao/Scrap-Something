@@ -4,7 +4,7 @@ $('#browse_image_area').html('');
 $('<div style="margin:30px" class="alert alert-info">sorry, nothing found</div>').appendTo('#browse_image_area').hide().fadeIn('10000');
 
 <%else%>
-$('<%= escape_javascript(render(:partial => "collection/collection_view", :locals => {:images => @selected_collection, :images_per_row => 5, :link_description => "bookmark", :method => "bookmark"}))%>').appendTo('#browse_image_area').hide().fadeIn('1000');
+$('<%= escape_javascript(render(:partial => "collection/partials/collection_view", :locals => {:images => @selected_collection, :images_per_row => 5, :link_description => "bookmark", :method => "bookmark"}))%>').appendTo('#browse_image_area').hide().fadeIn('1000');
 
 <%end%>
 

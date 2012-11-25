@@ -14,8 +14,8 @@
 		<th><%= f.label(:email, "Email")%></th>
 		<td><%= f.text_field(:email)%></td>
 	</tr>
-	
-	<% if( password_display)%>
+
+	<% if(password_display)%>
 	<tr>
 		<th><%= f.label(:password, "Password")%></th>
 		<td><%= f.password_field(:password)%></td>
@@ -25,6 +25,7 @@
 		<td><%= f.password_field(:password_confirmation)%></td>
 	</tr>
 	<%end%>
+
 	<tr>
 		<th><%= f.label(:metro_area, "Your City")%></th>
 		<td><%= f.select(:metro_area, options_for_select(@cities.collect(&:city)))%></td>		

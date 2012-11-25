@@ -1,8 +1,8 @@
 <div id='center_panel_content'>
-<% if !@selected_collection.blank?%>
+<% if !@selected_collection.empty?%>
 
 <div class = "my_scrap">
-	<%= render(:partial => "collection_view", :locals => {:images => selected_collection, :images_per_row => 3, :link_description => "remove bookmark", :method => "remove_bookmark"})%>
+	<%= render(:partial => "collection/partials/collection_view", :locals => {:images => selected_collection, :images_per_row => 3, :link_description => "remove bookmark", :method => "remove_bookmark"})%>
 </div>
 
 <%else%>
@@ -11,8 +11,9 @@
 	<h2 style = "font-weight:normal; margin-left: -200px">You have a pretty clean slate. 
 		<br/>
 		<%= link_to('add a scrap', {:action => 'upload_scrap', :controller => 'scrap'}, {:rel => "tooltip", :title=> "upload images."})%> or 
-		<%= link_to('explore', {:action => 'browse_collection'}, {:rel => "tooltip", :title=> "bookmark images."})%> 	</h2>
-	</div>
+		<%= link_to('explore', {:action => 'browse_collection'}, {:rel => "tooltip", :title=> "bookmark images."})%> 	
+	</h2>
+</div>
 
-	<%end%>
+<%end%>
 </div>

@@ -1,5 +1,3 @@
-<%= error_messages_for(@user)%>
-
 <table summary="Listing form fields">
 	<tr>
 		<th><%= f.label(:url, "Purchase link")%></th>
@@ -11,6 +9,6 @@
 	</tr>
 	<tr>
 		<th><%= f.label(:price, "Price")%></th>
-		<td><%= f.select(:price, options_for_select([['$', 1], ['$$', 2], ['$$$', 3], ['$$$$', 4], ['$$$$$', 5] ]) )%></td>
+		<td><%= f.select(:price, [['$', 1], ['$$', 2], ['$$$', 3], ['$$$$', 4], ['$$$$$', 5]] )%></td>
 	</tr>
 </table>
