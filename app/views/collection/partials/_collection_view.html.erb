@@ -10,7 +10,7 @@
 
 			<%elsif(link_description == 'remove bookmark')%>
 			<% unless scrap_favorite?(image)%>
-			<%= link_to raw('<i class="icon-remove-circle"></i>'), {:action => method, :controller => 'share', :image_id => image.id}, :title => 'remove bookmark', :class => "edit_icon"%>
+			<%= link_to raw('<i class="icon-remove-circle"></i>'), {:action => method, :controller => 'share', :scrap_id => image.id}, :title => 'remove bookmark', :class => "edit_icon"%>
 			<%end%>
 
 			<%end%>
