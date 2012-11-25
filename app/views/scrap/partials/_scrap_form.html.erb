@@ -13,7 +13,7 @@
 		<th><%= f.label(:description, "Describe your scrap: ")%></th>
 		<td><%= f.text_area(:description, :id => 'form_field', :size => "30x7") %></td>
 	</tr>
-	<% if confirm_vendor_authorization%>
+	<% if vendor_authorization?%>
 	<tr>
 		<th><%= f.label(:visible, "Visible to public?")%></th>
 		<th>

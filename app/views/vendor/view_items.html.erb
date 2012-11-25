@@ -12,16 +12,16 @@
 	<% @selected_collection.each_with_index do |scrap, index|%>
 	<tr>
 		<th>
-			<%=link_to image_tag(scrap.photo.url(:thumb)), {:action => "view_scrap_detail", :id => scrap.id, :controller => "scrap"}, :class => 'fancybox'%>		
+			<%=link_to image_tag(scrap.photo.url(:thumb)), {:action => "view_scrap_detail", :scrap_id => scrap.id, :controller => "scrap"}, :class => 'fancybox'%>		
 		</th>
 		<th>
 			<%=scrap.name%> <br>
-			<%= link_to raw('<i class="icon-pencil"></i>'), {:action => 'edit', :controller => 'scrap', :id => scrap.id}%>
-			<%= link_to raw('<i class="icon-trash"></i>'), {:action => 'destroy_scrap', :controller => 'scrap', :id => scrap.id}%>
+			<%= link_to raw('<i class="icon-pencil"></i>'), {:action => 'edit', :controller => 'scrap', :scrap_id => scrap.id}%>
+			<%= link_to raw('<i class="icon-trash"></i>'), {:action => 'destroy_scrap', :controller => 'scrap', :scrap_id => scrap.id}%>
 			<% if scrap.visibility %>
-			<%= link_to raw('<i class="icon-eye-open"></i>'), {:action => 'make_invisible', :controller => 'scrap', :id => scrap.id}%>
+			<%= link_to raw('<i class="icon-eye-open"></i>'), {:action => 'make_invisible', :controller => 'scrap', :scrap_id => scrap.id}%>
 			<% else%>
-			<%= link_to raw('<i class="icon-eye-close"></i>'), {:action => 'make_visible', :controller => 'scrap', :id => scrap.id}%>
+			<%= link_to raw('<i class="icon-eye-close"></i>'), {:action => 'make_visible', :controller => 'scrap', :scrap_id => scrap.id}%>
 			<%end%>
 		</th>
 		<th>

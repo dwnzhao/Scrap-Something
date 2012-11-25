@@ -1,14 +1,14 @@
-<%if(session[:user_id].blank?)%>
+<%if session[:user_id].blank?%>
 <%= render(:partial => "collection/partials/landing_banner") %>
 <%end%>
-
 
 <div class="row container">
 	<div class = 'span6 offset1' style="border-right: dashed thin grey; padding: 0px 80px"> 
 		<p class="lead" style="margin-top: 30px; margin-bottom:10px"> find by category...</p>
 		<% @categories.each do |cat| %>
-		<%= link_to(cat.name, {:action => 'category_filter', :id => cat.id}, {:remote => true})%>&nbsp;
-		<%end%>	<br><br>
+		<%= link_to(cat.name, {:action => 'category_filter', :category_id => cat.id}, {:remote => true})%>&nbsp;
+		<%end%>	
+		<br><br>
 
 		<%= form_tag({:action => 'search', :user_specific => false,}, {:remote => true}) do%>
 		<%= text_field_tag(:search_explore, "", {:class => 'search', :field => 'search for ideas...', :autocomplete => "off"}) %>
@@ -19,7 +19,7 @@
 	<div class = 'span8' >
 		<p class="lead" style="margin-top: 30px">find local vendors...</p>
 		<%= form_tag({:action => 'vendor_filter', :controller => 'vendor'}, {:remote => true}) do %>
-		<%= select_tag(:city, options_for_select(@cities.collect(&:city)))%>
+		<%= select_tag(:city, options_for_select(@cities))%>
 		<%= select_tag(:business_type, options_for_select(['catering', 'dress & tux', 'photographer', 'venue']))%>
 		<button type="submit" class = 'button'>go</button>
 

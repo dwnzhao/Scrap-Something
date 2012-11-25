@@ -1,0 +1,3 @@
+class VisionBoard < ActiveRecord::Base
+  # attr_accessible :title, :body
+end

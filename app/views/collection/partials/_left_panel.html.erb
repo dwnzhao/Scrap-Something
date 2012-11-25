@@ -7,7 +7,7 @@
 </div>
 <br/>
 
-<%= form_tag({:action => 'search', :user_specific => true,}, {:remote => true}) do%>
+<%= form_tag({:action => 'search', :user_specific => true}, {:remote => true}) do%>
 
 
 	<%= text_field_tag(:search_home, "", :class => 'search', :field => 'search my stuff...', :autocomplete => "off" ) %>
@@ -23,7 +23,7 @@
 		</h4>
 
 		<% categories.each_with_index do |category, index|%>
-		<%= link_to(category.name, {:action => "category_filter", :id => category.id, :controller => "collection", :user_specific => true}, :remote => true) %>
+		<%= link_to(category.name, {:action => "category_filter", :category_id => category.id, :controller => "collection", :user_specific => true}, :remote => true) %>
 
 		<% if (index+1)%3==0 %>
 		<br>

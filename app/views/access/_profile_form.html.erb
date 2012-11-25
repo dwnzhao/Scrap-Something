@@ -28,7 +28,7 @@
 
 	<tr>
 		<th><%= f.label(:metro_area, "Your City")%></th>
-		<td><%= f.select(:metro_area, options_for_select(@cities.collect(&:city)))%></td>		
+		<td><%= f.select(:metro_area, options_for_select(@cities))%></td>		
 	</tr>
 	<tr>
 		<th><%= f.label(:zipcode, "Your Zipcode")%></th>

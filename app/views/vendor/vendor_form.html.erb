@@ -22,7 +22,7 @@
 		</tr>
 		<tr>
 			<th><%="Metro Area"%>&nbsp;&nbsp;</th>
-			<td><%= f.select(:metro_area, options_for_select(@cities.collect(&:city)))%></td>
+			<td><%= f.select(:metro_area, options_for_select(@cities))%></td>
 		</tr>
 		<tr>
 			<th><%="Phone Number"%>&nbsp;&nbsp;</th>

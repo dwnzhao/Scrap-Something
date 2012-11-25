@@ -6,8 +6,12 @@ class VendorController < ApplicationController
 
   def vendor_signup
     @vendor = Vendor.new
-    @cities = City.all
+    @cities = City.all.collect(&:city)
     render('vendor_form')
+  end
+
+  def vendor_profile
+    @vendor = get_session_user.vendor
   end
 
   def create_vendor
@@ -22,7 +26,7 @@ class VendorController < ApplicationController
   
   def edit
     @vendor = get_session_user.vendor
-    @cities = City.all
+    @cities = City.all.collect(&:city)
   end
 
   def update
@@ -45,7 +49,7 @@ class VendorController < ApplicationController
   
   def vendor_filter
     @categories = Category.all
-    @cities = City.all
+    @cities = City.all.collect(&:city)
     @vendors = Vendor.where("business_type LIKE ? AND metro_area LIKE ?", params[:business_type], params[:city])
     render("vendor/vendor_filter.js")
     

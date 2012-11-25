@@ -2,7 +2,7 @@
 	<hr style="margin-top:-5px">
 	<p>Are you sure you want to delete your scrap?</p>
 
-	<%= link_to( {:action => 'destroy_scrap', :controller => 'scrap', :scrap_id => params[:id]}, {:target => "_parent"}) do %>	
+	<%= link_to( {:action => 'destroy_scrap', :controller => 'scrap', :scrap_id => params[:scrap_id]}, {:target => "_parent"}) do %>	
 	<button class="btn btn-mini btn-primary" type="button" target="_parent">Yes</button>	
 	<%end%>
 

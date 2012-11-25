@@ -6,7 +6,7 @@ class AccessController < ApplicationController
     :logout, :create, :authenticate, :landing_page]
 
     def index
-      if (confirm_vendor_authorization)
+      if vendor_authorization?
         redirect_to(:action => "view_items", :controller => "vendor")
       elsif (session[:user_id])
         @user = get_session_user
@@ -22,7 +22,7 @@ class AccessController < ApplicationController
         redirect_to(:action => "profile")
       else 
         @user = User.new
-        @cities = City.all
+        @cities = City.all.collect(&:city)
       end
     end
 
@@ -46,7 +46,7 @@ class AccessController < ApplicationController
           render("upload_profile_pic")
         end
       else
-        @cities = City.all
+        @cities = City.all.collect(&:city)
         render("signup")
       end
     end
@@ -60,14 +60,14 @@ class AccessController < ApplicationController
 
     def edit
       @user = get_session_user
-      @cities = City.all    
+      @cities = City.all.collect(&:city)   
     end
 
     def update
       @user = get_session_user
       if @user.update_attributes(params[:user])
         flash[:notice] = "Updated profile!"
-        redirect_to(:action => "vendor_profile", :controller => "vendor") if confirm_vendor_authorization
+        redirect_to(:action => "vendor_profile", :controller => "vendor") if vendor_authorization?
         redirect_to(:action => "profile")
       else
         render("edit")
@@ -75,7 +75,7 @@ class AccessController < ApplicationController
     end
 
     def profile
-      if confirm_vendor_authorization
+      if vendor_authorization?
         @vendor = get_session_user.vendor
         render(:template => 'vendor/vendor_signup', :layout => 'vendor') if @vendor.blank?
         render(:template => 'vendor/vendor_profile', :layout => 'vendor')

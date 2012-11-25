@@ -37,13 +37,12 @@ class TabController < ApplicationController
     flash[:notice] = "Saved to tab!"
     redirect_to(:controller => 'collection', :action => 'view_collection')
   end
-  
+
   def remove_from_tab
     tab = Tab.find(params[:tab_id])
     scrap = Scrap.find(params[:scrap_id])
     if (get_bookmark_status(scrap))
-      user = get_session_user
-      user.collections.find_by_name('bookmarked').scraps.destroy(scrap)
+      get_session_user.collections.bookmarked.scraps.destroy(scrap)
     end
     tab.scraps.destroy(scrap)
     flash[:notice] = "Deleted from tab!"

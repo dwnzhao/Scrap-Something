@@ -27,7 +27,6 @@ function TabController($scope, $http) {
 
 	$scope.add_tab_form_visible = function(elm) {
 		angular.element('#tab_form').removeClass('hide');
-
     };
 
 	$scope.addTab = function() {

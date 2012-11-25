@@ -10,21 +10,21 @@
 	<tr>
 		<th> <%= image_tag @scrap.photo.url(:thumb) %>
 			<% @images.each_with_index do |image, index|%>
-			<th><div class="thumb_to_delete", id="scrap_image"><%= link_to image_tag(image.image.url(:thumb)), {:action => "destroy_image_to_scrap", :id => image.id}, {:target => "_parent"}%> 
+			<th><div class="thumb_to_delete", id="scrap_image"><%= link_to image_tag(image.image.url(:thumb)), {:action => "destroy_image_to_scrap", :image_id => image.id}, {:target => "_parent"}%> 
 				<div class="delete_text">click to<br/> delete</div>
 				</div>
 			<% if (index+1)%3==0 %>	
 		</th></tr><tr>
 			<% end %>		
 			<%end%>
-		<th><%= link_to('+image', {:action => 'add_img_to_scrap', :controller => 'scrap', :id => @scrap.id})%>
+		<th><%= link_to('+image', {:action => 'add_img_to_scrap', :controller => 'scrap', :scrap_id => @scrap.id})%>
 		</th>
 	</tr>
 </table> 
 
 <br/><br/>
 
-<%= form_for(:scrap, :url => {:action => 'update_scrap', :id => @scrap.id}, 
+<%= form_for(:scrap, :url => {:action => 'update_scrap', :scrap_id => @scrap.id}, 
 :html => { :multipart => true, :id => "form", :target => '_parent' }) do |f| %>
 
 <%= render(:partial => "scrap/partials/scrap_form", :locals => {:f => f})%>

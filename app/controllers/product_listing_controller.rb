@@ -4,20 +4,15 @@ class ProductListingController < ApplicationController
 
   def add_listing
     user = get_session_user
-    if(user.user_level >= 3)
       @listing = ProductListing.new
       @scrap_id = params[:scrap_id]
       @cities = City.all.collect(&:city)
-    else
-      flash[:warning] = "... you must be a vendor to list your item ..."
-      redirect_to(:action => 'view_collection', :controller => 'collection', :id => params[:id])
-    end 
   end
 
   def save_listing
     listing = ProductListing.new(params[:product_listing])
     listing.vendor_id = session[:user_id]
-    listing.scrap_id = params[:id]
+    listing.scrap_id = params[:scrap_id]
     listing.save
     if !listing.new_record?
       flash[:notice] = "... listing added ..."
@@ -29,13 +24,8 @@ class ProductListingController < ApplicationController
 
   def edit_listing
     user = get_session_user
-    if(user.user_level >= 3)
       @product_listing = ProductListing.find(params[:listing_id])
       @cities = City.all.collect(&:city)
-    else
-      flash[:warning] = "... you must be a vendor to list your item ..."
-      redirect_to(:action => 'view_collection', :controller => 'collection', :id => params[:id])
-    end 
   end
 
   def update_listing
@@ -52,7 +42,6 @@ class ProductListingController < ApplicationController
     ProductListing.find(params[:listing_id]).destroy
     flash[:notice] = "Listing deleted!"
     redirect_to(:controller => 'vendor', :action => 'view_items')   
-    
   end
 
 

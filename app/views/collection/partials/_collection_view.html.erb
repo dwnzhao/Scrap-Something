@@ -6,27 +6,32 @@
 			</div>
 
 			<%if (image.creator_id == session[:user_id])%>		
-			<%= link_to(raw('<i class="icon-pencil"></i>'), {:action => 'edit', :controller => 'scrap', :scrap_id => image.id}, :title => 'edit', :class => "edit_icon fancybox")%>
+			<%= link_to(raw('<i class="icon-pencil"></i>'), {:action => 'edit', :controller => 'scrap', :scrap_id => image.id}, {:title => 'edit', :class => "edit_icon fancybox"})%>
 
 			<%elsif(link_description == 'remove bookmark')%>
 			<% unless scrap_favorite?(image)%>
-			<%= link_to raw('<i class="icon-remove-circle"></i>'), {:action => method, :controller => 'share', :id => image.id}, :title => 'remove bookmark', :class => "edit_icon"%>
+			<%= link_to raw('<i class="icon-remove-circle"></i>'), {:action => method, :controller => 'share', :image_id => image.id}, :title => 'remove bookmark', :class => "edit_icon"%>
 			<%end%>
-			
+
 			<%end%>
 			<div class = 'scrap_name'>
+				<%if !vendor_authorization?%>
 				<%if scrap_favorite?(image)%>
-				<%= link_to raw('<i class="icon-star"></i>'), {:action => 'defavor', :controller => 'scrap', :scrap_id => image.id}%>
+				<%= link_to raw('<i class="icon-star"></i>'), {:action => 'defavor', :controller => 'share', :scrap_id => image.id}%>
 				<%else%>
-				<%= link_to raw('<i class="icon-star-empty"></i>'), {:action => 'favor', :controller => 'scrap', :scrap_id => image.id}%>
+				<%= link_to(raw('<i class="icon-star-empty"></i>'), {:action => 'favor', :controller => 'share', :scrap_id => image.id}, {:title => "mark as favorite"})%>
+				<%end%>
 				<%end%>
 				<%=image.name%>
+
 			</div>
 		</div>
 		<% if (index+1)%images_per_row==0 %>
-	</div><div class ="row">
-		<% end %>		
+	</div>
+	<div class ="row">
+		<%end%>		
 		<%end%>
 	</div>
+</div>
 
-	<br/><br/>
+<br/><br/>

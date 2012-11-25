@@ -1,13 +1,15 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
 
-  helper_method :confirm_vendor_authorization, :vendor_authorization?, :user_favorite
+  helper_method :vendor_authorization?, :user_favorite
 
   protected 
 
   def get_session_user(*logged_in)
     if (logged_in[0] == false)
       @current_user = ''
+    elsif session[:user_id].blank?
+      return ''
     else
       @current_user ||= User.find(session[:user_id])
       return @current_user
@@ -15,6 +17,7 @@ class ApplicationController < ActionController::Base
   end
   
   def user_favorite
+    return [] if session[:user_id].blank? || get_session_user.collections.favorite.nil?
     return get_session_user.collections.favorite.scraps
   end
 
@@ -31,15 +34,14 @@ class ApplicationController < ActionController::Base
       return true
     end
   end
-
+  
   def confirm_vendor_authorization
-    unless session[:user_id]
-      flash.now[:warning] = "Please log in or sign up."
-      render('access/landing_page', :layout => 'layouts/access')
-      return false 
-    else
-      return true if (get_session_user.user_level > 1)
+    unless (get_session_user.user_level > 1)
+      flash.now[:warning] = "You must be a vendor to perform this task"
+      redirect_to(:action => "view_collection", :controller => "collection")
       return false
+    else 
+      return true
     end
   end
   
@@ -78,6 +80,7 @@ class ApplicationController < ActionController::Base
   
   def get_favorite_status(scrap)
     user = get_session_user
+    return false if user.blank?
     return true if user.collections.favorite.scraps.include?(scrap)
     return false
   end
@@ -104,7 +107,7 @@ class ApplicationController < ActionController::Base
   
   def get_listing(id)
     scrap = Scrap.find(id)
-    return scrap.product_listings
+    return scrap.product_listings.compact
   end
 
 end

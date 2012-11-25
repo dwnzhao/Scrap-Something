@@ -3,7 +3,7 @@
 <hr>
 <br/><br/>
 
-<%= form_for(:image, :url => {:action => 'save_image_to_scrap', :id => @scrap_id}, :html => { :multipart => true, :id => "form", :target => '_parent' }) do |f| %>
+<%= form_for(:image, :url => {:action => 'save_image_to_scrap', :scrap_id => @scrap_id}, :html => { :multipart => true, :id => "form", :target => '_parent' }) do |f| %>
 	<%= f.file_field :image %>
 	<br/><br/><br/>
 	<%= submit_tag "Upload", :class =>'button' %>

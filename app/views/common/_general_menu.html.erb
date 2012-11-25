@@ -7,16 +7,18 @@
 			<% if vendor_authorization?%>
 
 			<ul class="nav pull-right">
-				<%if current_page?(:action => 'view_items')%> 
+				<%if current_page?(:action => 'view_items') %> 
 				<li class="active">
 					<%else%>
 					<li>
 						<%end%>
 						<%= link_to("My Home", :action => 'view_items', :controller => 'vendor') %>		
 					</li>
+					<li class="divider-vertical"></li>
 					<li>
 						<%= link_to("Dashboard", :action => 'dashboard', :controller => 'vendor') %>		
 					</li>
+					<li class="divider-vertical"></li>
 					<li>
 						<%= link_to("Log out", :action => 'logout', :controller => 'access') %>		
 					</li>
@@ -32,10 +34,11 @@
 							<%end%>
 							<%= link_to("My Home", :action => 'view_collection', :controller => 'collection') %>		
 						</li>
+					  <li class="divider-vertical"></li>
 
 						<li class="dropdown">
 							<a class="dropdown-toggle" data-toggle="dropdown" href="#">
-								Add
+								Upload
 								<span class="caret"></span>
 							</a>
 							<div class="dropdown-menu" role="menu" aria-labelledby="dLabel">
@@ -44,6 +47,7 @@
 								<%end%>
 							</div>
 						</li>
+					  <li class="divider-vertical"></li>
 
 						<li class="dropdown">
 							<a class="dropdown-toggle" data-toggle="dropdown" href="#">
@@ -68,6 +72,8 @@
 						<li>
 							<%= link_to("Sign Up", :action => 'signup', :controller => 'access') %>		
 						</li>
+						<li class="divider-vertical"></li>
+					  
 						<li>
 							<%= link_to("Log In", :action => 'login', :controller => 'access') %>		
 						</li>
