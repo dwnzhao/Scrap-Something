@@ -2,7 +2,7 @@
 	<div class="navbar navbar-inverse">
 		<div class="navbar-inner">
 			<!-- Be sure to leave the brand out there if you want it shown -->
-			<%= link_to('Scrap Something', {:action => 'browse_collection', :controller => 'collection'}, {:class => "brand"})%>
+			<%= link_to('LittleBlueBinder', {:action => 'browse_collection', :controller => 'collection'}, {:class => "brand"})%>
 
 			<% if vendor_authorization?%>
 
@@ -34,6 +34,16 @@
 							<%end%>
 							<%= link_to("My Home", :action => 'view_collection', :controller => 'collection') %>		
 						</li>
+					  <li class="divider-vertical"></li>
+					<%if current_page?(:controller => 'visualize')%> 
+					<li class="active">
+						<%else%>
+						<li>
+							<%end%>
+							<%= link_to("Visualize", :action => 'index', :controller => 'visualize') %>		
+						</li>
+
+
 					  <li class="divider-vertical"></li>
 
 						<li class="dropdown">

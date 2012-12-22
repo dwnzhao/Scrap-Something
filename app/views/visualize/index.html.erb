@@ -1,0 +1,72 @@
+<head>
+	<script src="http://code.jquery.com/jquery-1.8.3.js"></script>
+	<script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
+	<%= stylesheet_link_tag('application')%>
+	<style>
+	#catalog { float:left; width: 300px; margin-right: 2em; }
+	#selection {list-style-type: none}
+	#vision_board { width: 700px; float:left; border:thin solid black; height:600px; list-style: none; overflow: hidden}
+	.small {height: 80px; width: 55px}
+	.big:hover {cursor: move}
+	/* style the list to maximize the droppable hitarea */
+	</style>
+
+	<script>
+	$(function() {
+		$( "#catalog li img" ).draggable({
+			helper: "clone"
+		});
+		// 
+		
+
+		$( "#vision_board" ).droppable({
+			accept: "#catalog li img",
+			drop: function( event, ui ) {
+				$( this ).find( ".placeholder" ).remove();
+				ui.draggable.clone().appendTo( this );
+				$("#vision_board").children(".small").removeClass("small").addClass("big");
+
+				var x1 = $("#vision_board").offset().left;
+				var y1 = $("#vision_board").offset().top + 70;
+
+				var x2 = $("#vision_board").offset().left + 700 - 200;
+				var y2 = $("#vision_board").offset().top + 300;
+
+				$(".big").draggable({
+					containment: [x1, y1, x2, y2 ],
+					start: function() {
+						$(".big").css("z-index", "1");
+						$(this).css("z-index", "10")
+					}
+				});
+						
+			}
+		});
+
+
+
+	});
+	</script>
+</head>
+
+<body>
+	<%= render "common/general_menu" %>
+
+	<div id="catalog">
+		<h2>catalog</h2>
+		<ul id="selection">
+			<% @images.each do |image|%>
+			<li><%=image_tag(image.photo.url(:medium), :class => "small")%></li>
+			<%end%>
+
+		</ul>
+	</div>
+
+	<div id="vision_board">
+		<h1 id="ui-widget-header">vision board</h1>
+		<hr>
+		<span class="placeholder">Add your items here</span>
+	</div>
+
+
+</body>
