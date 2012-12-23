@@ -1,51 +1,87 @@
 <head>
+	<%= javascript_include_tag('application') %>
+
 	<script src="http://code.jquery.com/jquery-1.8.3.js"></script>
 	<script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
-	<%= stylesheet_link_tag('application')%>
+	<%= stylesheet_link_tag('application', 'jquery.fancybox')%>
+	<%= javascript_include_tag('jquery.fancybox.pack')%>
+
+
+	<link rel="stylesheet" href="http://code.jquery.com/ui/1.9.2/themes/base/jquery-ui.css" />
+
 	<style>
 	#catalog { float:left; width: 300px; margin-right: 2em; }
 	#selection {list-style-type: none}
 	#vision_board { width: 700px; float:left; border:thin solid black; height:600px; list-style: none; overflow: hidden}
 	.small {height: 80px; width: 55px}
 	.big:hover {cursor: move}
+	.image{position:absolute}
 	/* style the list to maximize the droppable hitarea */
 	</style>
 
 	<script>
+
 	$(function() {
 		$( "#catalog li img" ).draggable({
 			helper: "clone"
 		});
 		// 
-		
 
 		$( "#vision_board" ).droppable({
 			accept: "#catalog li img",
 			drop: function( event, ui ) {
 				$( this ).find( ".placeholder" ).remove();
-				ui.draggable.clone().appendTo( this );
-				$("#vision_board").children(".small").removeClass("small").addClass("big");
+				$(".big").css("z-index", "1");
 
-				var x1 = $("#vision_board").offset().left;
-				var y1 = $("#vision_board").offset().top + 70;
+				ui.draggable.clone().prependTo("#image-area" ).wrap('<div class="image">');
+				$(".image").children(".small").removeClass("small").addClass("big resizable");
 
-				var x2 = $("#vision_board").offset().left + 700 - 200;
-				var y2 = $("#vision_board").offset().top + 300;
+				var left = $("#vision_board").offset().left;
+				var top = $("#vision_board").offset().top + 70;
 
-				$(".big").draggable({
-					containment: [x1, y1, x2, y2 ],
+				var right = $("#vision_board").offset().left + 700 - 220;
+				var bottom = $("#vision_board").offset().top + 300;
+
+				$(".big").resizable().parent().draggable({
+					containment: [left, top, right, bottom ],
 					start: function() {
-						$(".big").css("z-index", "1");
-						$(this).css("z-index", "10")
+						$(".ui-draggable").css("z-index", "1");
+						$(this).css("z-index", "10");
 					}
 				});
-						
 			}
 		});
 
+		$("#export").click(function() {		
+			var c=document.getElementById("myCanvas");
+			var ctx=c.getContext("2d");
+			ctx.clearRect(0, 0, c.width, c.height);
+			$(".big").each(function() {
+				var left = $(this).parent().offset().left - 320;
+				var top = $(this).parent().offset().top - 100;
+				var img = $(this);
+				ctx.drawImage(img[0],left,top);
+			});
 
+			var dataURL = c.toDataURL();
+			var img = '<a href="visualize/save' + dataURL + '"><i class="icon-share"> save image</i></a><hr><img style="width:700px; height:600px" src="'+dataURL+'"/>'
+						
+		    $.fancybox(
+			img,
+		{
+			'width'				: '80%',
+			'height'			: '80%',
+			'autoScale'     	: false,
+			'showCloseButton'	: true,	
+			'padding'			: '0',	        
+        	
+		});
+			
+
+		})	
 
 	});
+
 	</script>
 </head>
 
@@ -55,8 +91,11 @@
 	<div id="catalog">
 		<h2>catalog</h2>
 		<ul id="selection">
-			<% @images.each do |image|%>
-			<li><%=image_tag(image.photo.url(:medium), :class => "small")%></li>
+			<% @images.each_with_index do |image, index|%>
+			<li style="float: left"><%=image_tag(image.photo.url(:medium), {:class => "small"})%></li>
+			<% if (index+1)%5==0 %>
+			<br>
+			<%end%>
 			<%end%>
 
 		</ul>
@@ -65,8 +104,19 @@
 	<div id="vision_board">
 		<h1 id="ui-widget-header">vision board</h1>
 		<hr>
-		<span class="placeholder">Add your items here</span>
+		<div id="image-area">
+			<span class="placeholder">Add your items here</span>
+		</div>
 	</div>
 
+	<div id="control" style="float:left; margin:30px; text-align:left;">
+		<%= link_to(raw('<i class="icon-file"> save vision board</i>'), {:action => 'save', :controller => 'visualize'}, {:style => 'font-size: 16px;'})%> <br><br>
+
+		<%= link_to(raw('<i class="icon-repeat"> start over</i>'), {}, {:style => 'font-size: 16px;'})%><br><br>
+
+		<%= link_to(raw('<i class="icon-share"> export to image</i>'), "#", {:style => 'font-size: 16px', :id => "export", :remote => true})%> <br>		
+
+		<canvas id="myCanvas" width="700" height="600" style="border:1px solid #d3d3d3; display:none"></canvas>
+	</div>
 
 </body>
