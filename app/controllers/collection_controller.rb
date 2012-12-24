@@ -17,6 +17,7 @@ class CollectionController < ApplicationController
       @selected_collection = get_all_user_scraps.uniq
       @user = get_session_user
       @categories = get_all_user_categories
+      @vb = get_session_user.vision_boards
     end
   end
 

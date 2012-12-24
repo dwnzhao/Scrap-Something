@@ -52,10 +52,13 @@
 			}
 		});
 
-		$("#export").click(function() {		
+		$("#save").click(function() {
 			var c=document.getElementById("myCanvas");
 			var ctx=c.getContext("2d");
 			ctx.clearRect(0, 0, c.width, c.height);
+			ctx.fillStyle="#FFF";
+			ctx.fillRect(0, 0, c.width, c.height);
+			
 			$(".big").each(function() {
 				var left = $(this).parent().offset().left - 320;
 				var top = $(this).parent().offset().top - 100;
@@ -63,20 +66,55 @@
 				ctx.drawImage(img[0],left,top);
 			});
 
-			var dataURL = c.toDataURL();
-			var img = '<a href="visualize/save' + dataURL + '"><i class="icon-share"> save image</i></a><hr><img style="width:700px; height:600px" src="'+dataURL+'"/>'
-						
-		    $.fancybox(
-			img,
-		{
-			'width'				: '80%',
-			'height'			: '80%',
-			'autoScale'     	: false,
-			'showCloseButton'	: true,	
-			'padding'			: '0',	        
-        	
+			var dataURL = c.toDataURL("image/png").replace("data:image/png;base64,", "");    
+
+			$.ajax({ url: '/visualize/save',
+			type: 'POST',
+			beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
+			data: {img_url: dataURL},
+			success: function(data, textStatus) {
+		        if (data.redirect) {
+		            // data.redirect contains the string URL to redirect to
+		            window.location.href = data.redirect;
+		        }
+		        else {
+		            // data.form contains the HTML for the replacement form
+		        }
+		    }
 		});
-			
+
+
+
+	})
+
+	$("#export").click(function() {		
+		var c=document.getElementById("myCanvas");
+		var ctx=c.getContext("2d");
+		ctx.clearRect(0, 0, c.width, c.height);
+		ctx.fillStyle="#FFF";
+		ctx.fillRect(0, 0, c.width, c.height);
+		
+		$(".big").each(function() {
+			var left = $(this).parent().offset().left - 320;
+			var top = $(this).parent().offset().top - 100;
+			var img = $(this);
+			ctx.drawImage(img[0],left,top);
+		});
+
+		var dataURL = c.toDataURL();
+		var img = '<img style="width:700px; height:600px" src="'+dataURL+'"/>'
+
+		$.fancybox(
+			img,
+			{
+				'width'				: '80%',
+				'height'			: '80%',
+				'autoScale'     	: false,
+				'showCloseButton'	: true,	
+				'padding'			: '0',	        
+
+			});
+
 
 		})	
 
@@ -110,7 +148,7 @@
 	</div>
 
 	<div id="control" style="float:left; margin:30px; text-align:left;">
-		<%= link_to(raw('<i class="icon-file"> save vision board</i>'), {:action => 'save', :controller => 'visualize'}, {:style => 'font-size: 16px;'})%> <br><br>
+		<%= link_to(raw('<i class="icon-file"> save to binder</i>'), "#", {:style => 'font-size: 16px;', :id => "save", :remote => true})%> <br><br>
 
 		<%= link_to(raw('<i class="icon-repeat"> start over</i>'), {}, {:style => 'font-size: 16px;'})%><br><br>
 

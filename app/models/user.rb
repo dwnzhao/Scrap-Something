@@ -17,6 +17,7 @@ class User < ActiveRecord::Base
   has_many :collections, :dependent => :destroy
   has_many :tabs, :foreign_key => 'user_id', :dependent => :destroy
   has_one :vendor, :dependent => :destroy
+  has_many :vision_boards, :class_name => 'VisionBoard', :foreign_key => 'creator_id', :order => 'updated_at DESC', :dependent => :destroy 
 
   before_save :create_hashed_password
   after_save :clear_password
