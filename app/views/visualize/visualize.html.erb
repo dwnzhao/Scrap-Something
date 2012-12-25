@@ -1,0 +1,171 @@
+<head>
+	<%= javascript_include_tag('application') %>
+
+	<script src="http://code.jquery.com/jquery-1.8.3.js"></script>
+	<script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
+	<%= stylesheet_link_tag('application', 'jquery.fancybox')%>
+	<%= javascript_include_tag('jquery.fancybox.pack')%>
+
+
+	<link rel="stylesheet" href="http://code.jquery.com/ui/1.9.2/themes/base/jquery-ui.css" />
+
+	<style>
+	#catalog { float:left; width: 300px; margin-right: 2em; }
+	#selection {list-style-type: none}
+	#vision_board { width: 700px; float:left; border:thin solid black; height:600px; list-style: none; overflow: hidden}
+	.small {height: 80px; width: 55px}
+	.big:hover {cursor: move}
+	.image{position:absolute}
+	/* style the list to maximize the droppable hitarea */
+	</style>
+
+	<script>
+
+	$(function() {
+		$( "#catalog li img" ).draggable({
+			helper: "clone"
+		});
+		// 
+
+		function convert_to_image() {
+			var c=document.getElementById("myCanvas");
+			var ctx=c.getContext("2d");
+			ctx.clearRect(0, 0, c.width, c.height);
+			ctx.fillStyle="#FFF";
+			ctx.fillRect(0, 0, c.width, c.height);
+
+			ctx.strokeStyle = '#C0C0C0';
+			ctx.lineWidth   = 2;		
+			ctx.strokeRect(2, 2, c.width-4, c.height-4);
+
+			$(".big").each(function() {
+				var left = $(this).parent().offset().left - 320;
+				var top = $(this).parent().offset().top - 100;
+				var img = $(this);
+				ctx.drawImage(img[0],left,top);
+			});
+
+			return c.toDataURL();
+		};
+
+		$( "#vision_board" ).droppable({
+			accept: "#catalog li img",
+			drop: function( event, ui ) {
+				$( this ).find( ".placeholder" ).remove();
+				$(".big").css("z-index", "1");
+
+				ui.draggable.clone().prependTo("#image-area" ).wrap('<div class="image">');
+				$(".image").children(".small").removeClass("small").addClass("big resizable");
+
+				var left = $("#vision_board").offset().left;
+				var top = $("#vision_board").offset().top + 70;
+
+				var right = $("#vision_board").offset().left + 700 - 220;
+				var bottom = $("#vision_board").offset().top + 300;
+
+				$(".big").resizable().parent().draggable({
+					containment: [left, top, right, bottom ],
+					start: function() {
+						$(".ui-draggable").css("z-index", "1");
+						$(this).css("z-index", "10");
+					}
+				});
+			}
+		});
+
+		$("#confirm_save").click(function() {
+
+			var dataURL = convert_to_image();
+
+
+			var form = '<input id="vb_name" placeholder="name your vision board..." class="txt" /><br><img style="width:150px; height:150px" src="'+dataURL+'"/><br><br><button class="button" id="save_vision_board">save</button>'
+
+			$.fancybox(
+				form,
+				{
+					'width'				: '80%',
+					'height'			: '80%',
+					'autoScale'     	: false,
+					'showCloseButton'	: true,	
+					'padding'			: '0',	 
+				});
+				
+					$("#save_vision_board").click(function() {						
+							var dataURL = convert_to_image().replace("data:image/png;base64,", "");    
+
+							$.ajax({ url: '/visualize/save',
+							type: 'POST',
+							beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
+							data: {img_url: dataURL, vb_name: $('#vb_name').val()},
+							success: function(data, textStatus) {
+								if (data.redirect) {
+									window.location.href = data.redirect;
+								}
+							}
+
+
+						});
+						
+				});
+		});
+			
+		
+
+
+
+		$("#export").click(function() {		
+
+			var dataURL = convert_to_image();
+			var img = '<img style="width:700px; height:600px" src="'+dataURL+'"/>'
+
+			$.fancybox(
+				img,
+				{
+					'width'				: '80%',
+					'height'			: '80%',
+					'autoScale'     	: false,
+					'showCloseButton'	: true,	
+					'padding'			: '0',	        
+				});
+			});	
+
+		});
+
+		</script>
+	</head>
+
+	<body>
+		<%= render "common/general_menu" %>
+
+		<div id="catalog">
+			<h2>catalog</h2>
+			<ul id="selection">
+				<% @images.each_with_index do |image, index|%>
+				<li style="float: left"><%=image_tag(image.photo.url(:medium), {:class => "small"})%></li>
+				<% if (index+1)%5==0 %>
+				<br>
+				<%end%>
+				<%end%>
+
+			</ul>
+		</div>
+
+		<div id="vision_board">
+			<h1 id="ui-widget-header">create a page</h1>
+			<hr>
+			<div id="image-area">
+				<span class="placeholder">Add your items here</span>
+			</div>
+		</div>
+
+		<div id="control" style="float:left; margin:30px; text-align:left;">
+			<%= link_to(raw('<i class="icon-file"> save to binder</i>'), "#", {:style => 'font-size: 16px;', :id => "confirm_save", :remote => true})%> <br><br>
+
+			<%= link_to(raw('<i class="icon-repeat"> start over</i>'), {}, {:style => 'font-size: 16px;'})%><br><br>
+
+			<%= link_to(raw('<i class="icon-share"> export to image</i>'), "#", {:style => 'font-size: 16px', :id => "export", :remote => true})%> <br>		
+
+			<canvas id="myCanvas" width="700" height="600" style="border:1px solid #d3d3d3; display:none"></canvas>
+		</div>
+
+	</body>

@@ -177,6 +177,7 @@ ActiveRecord::Schema.define(:version => 20121125102602) do
 
   create_table "vision_boards", :force => true do |t|
     t.integer  "creator_id"
+    t.string   "name"
     t.string   "photo_file_name"
     t.string   "photo_content_type"
     t.integer  "photo_file_size"

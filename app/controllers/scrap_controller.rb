@@ -1,5 +1,5 @@
 class ScrapController < ApplicationController
-  layout 'view_collection'
+  layout 'scrap_detail'
   before_filter :confirm_logged_in, :except => [:view_scrap_detail, :switch_image, :switch_scrap]
 
   def upload_scrap

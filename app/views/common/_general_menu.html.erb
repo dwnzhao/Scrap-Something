@@ -1,96 +1,109 @@
-<div id="top">
+<div id="top" style="min-width: 900px">
 	<div class="navbar navbar-inverse">
 		<div class="navbar-inner">
-			<!-- Be sure to leave the brand out there if you want it shown -->
+			<%if logged_in?%>
+			<%= link_to('LittleBlueBinder', {:action => 'view_collection', :controller => 'collection'}, {:class => "brand"})%>
+			<%else%>
 			<%= link_to('LittleBlueBinder', {:action => 'browse_collection', :controller => 'collection'}, {:class => "brand"})%>
+			<%end%>
 
 			<% if vendor_authorization?%>
 
 			<ul class="nav pull-right">
-				<%if current_page?(:action => 'view_items') %> 
-				<li class="active">
-					<%else%>
-					<li>
+
+				<%=menu_nav_current?('view_items') %> 
+
+				<%= link_to("Home", :action => 'view_items', :controller => 'vendor') %></li>
+
+				<li class="divider-vertical"></li>
+
+				<%=menu_nav_current?('dashboard') %> 
+
+				<%= link_to("Dashboard", :action => 'dashboard', :controller => 'vendor') %></li>
+
+				<li class="divider-vertical"></li>
+				<li>
+					<%= link_to("Log out", :action => 'logout', :controller => 'access') %>		
+				</li>
+			</ul>
+
+
+			<% elsif logged_in?%>
+			<ul class="nav pull-right">
+				<%=menu_nav_current?('browse_collection') %> 
+
+				<%= link_to("Browse", :action => 'browse_collection', :controller => 'collection') %></li>
+				<li class="divider-vertical"></li>
+
+
+				<%=menu_nav_current?('view_collection') %> 
+
+				<%= link_to("Organize", :action => 'view_collection', :controller => 'collection') %></li>
+
+				<li class="divider-vertical"></li>
+
+				<%=menu_nav_current?('visualize') %> 
+
+				<%= link_to("Visualize", :action => 'visualize', :controller => 'visualize') %></li>
+
+				<li class="divider-vertical"></li>
+				<li class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						<i class="icon-plus icon-white"></i>Clip 
+						<span class="caret"></span>
+					</a>
+
+					<div class="dropdown-menu pull-right">
+						<%= link_to({:action => 'upload_scrap', :controller => 'scrap'}) do%>
+						<i class="icon-picture"></i> from file
 						<%end%>
-						<%= link_to("Home", :action => 'view_items', :controller => 'vendor') %>		
-					</li>
-					<li class="divider-vertical"></li>
-					<li>
-						<%= link_to("Dashboard", :action => 'dashboard', :controller => 'vendor') %>		
-					</li>
-					<li class="divider-vertical"></li>
-					<li>
-						<%= link_to("Log out", :action => 'logout', :controller => 'access') %>		
-					</li>
-				</ul>
+
+						<%= link_to({:action => 'upload_scrap', :controller => 'scrap'}) do%>
+						<i class="icon-globe"></i> from web
+						<%end%>
 
 
-				<% elsif logged_in?%>
-				<ul class="nav pull-right">
-					<%if current_page?(:action => 'view_collection')%> 
-					<li class="active">
-						<%else%>
-						<li>
-							<%end%>
-							<%= link_to("Home", :action => 'view_collection', :controller => 'collection') %>		
-						</li>
-					  <li class="divider-vertical"></li>
-					<%if current_page?(:controller => 'visualize')%> 
-					<li class="active">
-						<%else%>
-						<li>
-							<%end%>
-							<%= link_to("Visualize", :action => 'index', :controller => 'visualize') %>		
-						</li>
+						<div class="divider"></div>
 
+						<%= link_to({:action => 'clip_help', :controller => 'static'}) do%>
+						need help?
+						<%end%>
+					</div>
+				</li>
 
-					  <li class="divider-vertical"></li>
+				<li class="divider-vertical"></li>
 
-						<li class="dropdown">
-							<a class="dropdown-toggle" data-toggle="dropdown" href="#">
-								Upload
-								<span class="caret"></span>
-							</a>
-							<div class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-								<%= link_to({:action => 'upload_scrap', :controller => 'scrap'}) do%>
-								<i class="icon-picture"></i> Scrap
-								<%end%>
-							</div>
-						</li>
-					  <li class="divider-vertical"></li>
+				<li class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Account
+						<span class="caret"></span>
 
-						<li class="dropdown">
-							<a class="dropdown-toggle" data-toggle="dropdown" href="#">
-								Account
-								<span class="caret"></span>
+					</a>
+					<div class="dropdown-menu pull-right">
+						<%= link_to({:action => 'profile', :controller => 'access'}) do%>
+						<i class="icon-user"></i> Profile
+						<%end%>
+						<%= link_to({:action => 'logout', :controller => 'access'}) do%>
+						<i class="icon-off"></i> Logout
+						<%end%>
+					</div>
+				</li>
 
-							</a>
-							<div class="dropdown-menu pull-right">
-								<%= link_to({:action => 'profile', :controller => 'access'}) do%>
-								<i class="icon-user"></i> Profile
-								<%end%>
-								<%= link_to({:action => 'logout', :controller => 'access'}) do%>
-								<i class="icon-off"></i> Logout
-								<%end%>
-							</div>
-						</li>
+			</ul>
 
-					</ul>
+			<%else%>
+			<ul class="nav pull-right">
+				<li>
+					<%= link_to("Sign Up", :action => 'signup', :controller => 'access') %>		
+				</li>
+				<li class="divider-vertical"></li>
 
-					<%else%>
-					<ul class="nav pull-right">
-						<li>
-							<%= link_to("Sign Up", :action => 'signup', :controller => 'access') %>		
-						</li>
-						<li class="divider-vertical"></li>
-					  
-						<li>
-							<%= link_to("Log In", :action => 'login', :controller => 'access') %>		
-						</li>
-					</ul>		
-					<%end%>
-				</div>
-
-			</div>
+				<li>
+					<%= link_to("Log In", :action => 'login', :controller => 'access') %>		
+				</li>
+			</ul>		
+			<%end%>
 		</div>
-		<br><br>
+	</div>
+</div>
+<br><br>

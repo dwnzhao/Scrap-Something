@@ -3,7 +3,7 @@ class VisualizeController < ApplicationController
   require 'base64'
 
 
-  def index
+  def visualize
     @images = get_all_user_scraps.uniq
   end
 
@@ -15,9 +15,17 @@ class VisualizeController < ApplicationController
       vb.photo = file
       file.close
     end
+    vb.name = params[:vb_name]
     vb.save
     get_session_user.vision_boards << vb
     render :js => "window.location = '/collection/view_collection'"
+  end
+  
+  def delete
+    VisionBoard.find(params[:vb_id]).destroy
+    flash[:notice] = "Vision Board deleted..."
+    redirect_to(:action => 'view_collection', :controller => 'collection')
+    
   end
 
 end

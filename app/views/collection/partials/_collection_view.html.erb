@@ -1,7 +1,13 @@
 <div id = "collection_table">
 	<div class ="row">
+		<%if images_per_row == 3%>
+		<div class="scrap_block">
+			<div class="scrap_asset"><%=link_to(image_tag('/assets/AddClip.png', {:style => "width:200px; height:300px"}), {:action => "upload_scrap", :controller => "scrap"})%></div>
+		</div>
+		<%end%>
 		<% images.each_with_index do |image, index|%>
 		<div class ="scrap_block">
+
 			<div class="scrap_asset"><%=link_to(image_tag(image.photo.url(:medium)), {:action => "view_scrap_detail", :scrap_id => image.id, :controller => "scrap"}, {:class => 'fancybox'})%>
 			</div>
 
@@ -26,6 +32,9 @@
 
 			</div>
 		</div>
+		<%if images_per_row == 3%>
+		<% index = index+1%>
+		<%end%>
 		<% if (index+1)%images_per_row==0 %>
 	</div>
 	<div class ="row">

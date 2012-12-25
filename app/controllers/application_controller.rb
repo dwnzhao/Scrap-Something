@@ -85,7 +85,6 @@ class ApplicationController < ActionController::Base
     return false
   end
   
-
   def get_all_user_scraps
     user = get_session_user
     collection_all = user.collections
@@ -96,6 +95,13 @@ class ApplicationController < ActionController::Base
     return selected_collection
   end
 
+  def get_all_user_favorite_scraps
+    user = get_session_user
+    collection_all = user.collections
+    selected_collection = user.collections.favorite.scraps
+    return selected_collection
+  end
+  
   def get_all_user_categories
     scrap_all = get_all_user_scraps
     user_categories = []

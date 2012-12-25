@@ -39,7 +39,10 @@ class CollectionController < ApplicationController
   end
 
   def category_filter
-    if params[:user_specific]
+    if params[:favorite]
+      @selected_collection = get_all_user_favorite_scraps
+      render("collection/filter_home.js")
+    elsif params[:user_specific]
       @selected_collection = Category.find(params[:category_id]).scraps & get_all_user_scraps
       render("collection/filter_home.js")
     else

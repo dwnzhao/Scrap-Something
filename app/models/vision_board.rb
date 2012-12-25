@@ -1,5 +1,5 @@
 class VisionBoard < ActiveRecord::Base
-  attr_accessible :photo
+  attr_accessible :photo, :name
 
   has_attached_file :photo
     
