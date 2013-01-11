@@ -1,0 +1,18 @@
+<div class="hero-unit page-shadow">
+
+<p class="title">Add a clip from the web </p> <hr>
+</br>
+
+<%= form_for(:scrap, :url => {:action => 'save_link_scrap', :controller => 'external'}, :html => {:multipart => true, :class => "form-horizontal"}) do |f| %>
+<div style="text-align: left; margin-left: 30%">
+
+<%= render(:partial => 'scrap/partials/scrap_form', :locals => {:f => f, @form => 'link'})%><br/>
+
+
+<div style="margin-left: 25%"><%= submit_tag "Save", :class =>'button' %></div>
+</div>
+
+<% end %>
+
+<div>
+<br/><br/><br/>

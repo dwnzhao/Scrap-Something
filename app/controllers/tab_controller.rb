@@ -1,5 +1,4 @@
 class TabController < ApplicationController
-  layout 'scrap_detail'
   before_filter :confirm_logged_in, :except => [:view_scrap_detail, :switch_image]
 
   def get_tabs
@@ -9,11 +8,17 @@ class TabController < ApplicationController
   end
 
   def create_tab
-    user = get_session_user
-    tab = Tab.new()
-    tab.name = params[:name]
-    user.tabs << tab
-    render :nothing => true
+    begin
+      user = get_session_user
+      tab = Tab.new()
+      tab.name = params[:name]
+      user.tabs << tab
+    rescue
+      flash[:warning] = "cannot add any more tabs (max is 7)"
+      render :js => "<script>window.location = '/collection/view_collection'</script>"
+    else
+      render :nothing => true
+    end
   end
 
   def tab_filter

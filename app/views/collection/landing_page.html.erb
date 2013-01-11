@@ -1,0 +1,62 @@
+<img src="/assets/ring.png" height="70px" width="70px" style="position:relative; top:5px; left: 980px; z-index: 3">
+<img src="/assets/ring.png" height="70px" width="70px" style="position:relative; top:5px; left: 260px; z-index: 3">
+<div id="landing_banner" >
+	<%=image_tag('/assets/landing_page_img.png', :style=>"margin-left: 25px")%>
+
+	<div class="circles">
+		<div class="circle front" style="top: 300px; left: 200px; z-index: 10"><br><br><br><br>
+			<%= link_to('clip', {:action => 'upload_scrap', :controller => 'scrap'})%>			
+		</div>
+		<div class="circle back" style="top: 300px; left: 200px;"><br><br><br>
+			<%= link_to({:action => 'upload_scrap', :controller => 'scrap'}) do%>			
+			collect photos from your computer or the internet that inspire your dream wedding
+			<%end%>
+		</div>
+	</div>
+
+	<div class="circles">
+		<div class="circle front" style="top: 300px; left: 390px; z-index: 10"><br><br><br><br>
+			<%= link_to('browse', {:action => 'browse_collection', :controller => 'collection'})%>			
+		</div>
+		<div class="circle back" style="top: 300px; left: 390px;"><br><br><br>
+			<%= link_to({:action => 'browse_collection', :controller => 'collection'}) do%>			
+			browse our high quality photo gallery and local vendors to select what inspires you
+			<%end%>
+		</div>
+	</div>
+
+	<div class="circles">
+		<div class="circle front" style="top: 300px; left: 590px; z-index: 10"><br><br><br><br>
+			<%= link_to('organize', {:action => 'view_collection', :controller => 'collection'})%>			
+		</div>
+		<div class="circle back" style="top: 300px; left: 590px;"><br><br><br>
+			<%= link_to({:action => 'view_collection', :controller => 'collection'}) do%>			
+			organize your photos into clips of inspiration to pull together the details as you plan your big day
+			<%end%>
+		</div>
+	</div>
+	
+	<div class="circles">
+		<div class="circle front" style="top: 300px; left: 790px; z-index: 10"><br><br><br><br>
+			<%= link_to('visualize', {:controller => 'visualize'})%>			
+		</div>
+		<div class="circle back" style="top: 300px; left: 790px;"><br><br><br>
+			<%= link_to({:controller => 'visualize'}) do%>			
+			visualize your wedding with beautiful photo collages that bring everything together
+			<%end%>
+		</div>
+	</div>
+	
+
+<div id="buttons">
+	<div class="fancy_button" style="top: 500px; left: 330px;"><a href="/collection/browse_collection" style="font-size: 18px">try it out</a></div>
+	<div class="fancy_button" style="top: 500px; left: 630px; width: 130px"><a href="/access/signup" style="font-size: 18px">join for free</a></div>
+</div>
+
+<p style="position: relative; top: -45px; left: 450px; left-margin: 10%; color: grey; font-size: 16px">find us: <%=link_to(image_tag('/assets/twitter.png', :size => "30x30"), "#")%>
+	<%=link_to(image_tag('/assets/facebook.png', :size => "30x30"), "#")%>
+	<%=link_to(image_tag('/assets/mail.png', :size => "30x30"), "#")%>
+
+</p>
+
+</div>

@@ -1,0 +1,30 @@
+
+<%if @scrap.blank?%>
+
+<% for tab in @tabs %>
+<%= check_box_tag('tabs[]', tab.id, :class => "tab_check_box")%>
+<%= tab.name%> <br>
+<%end%>
+
+<%else%>
+
+<% for tab in @tabs %>
+<%= check_box_tag('tabs[]', tab.id, @scrap.tabs.map {|c| c.id}.include?(tab.id), :class => "tab_check_box")%>
+<%= tab.name%> <br>
+<%end%>	
+<%end%>
+
+<script>
+
+$(".tab_check_box").click(function() {
+
+	$("#tab_update").fadeIn();
+});
+
+$("#create_tab_in_scrap_detail").click(function(){
+
+	$("#tab_field").fadeIn();
+	$("#tab_update").fadeIn();
+	$("#create_tab_in_scrap_detail").fadeOut();
+});
+</script>

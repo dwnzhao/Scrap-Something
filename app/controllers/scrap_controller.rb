@@ -1,20 +1,44 @@
 class ScrapController < ApplicationController
   layout 'scrap_detail'
   before_filter :confirm_logged_in, :except => [:view_scrap_detail, :switch_image, :switch_scrap]
+  respond_to :html, :js
 
   def upload_scrap
     @scrap = Scrap.new
-    @categories = Category.all
+    @categories = Category.all.collect(&:name)
+    @tabs = get_session_user.tabs.uniq
+    @from_url = params[:from_url]
+    render(:layout => 'standard')
   end
+
+  def view_scrap_detail
+    @scrap = Scrap.find(params[:scrap_id])
+    user = User.find(@scrap.creator_id)
+    @categories = @scrap.category
+    @image = @scrap.photo
+    @icons = @scrap.images - Array(@image)
+    @keywords = @scrap.keywords
+    unless user.vendor.blank?
+      @vendor = user.vendor  
+      @vendor_items = Scrap.owned_scraps(@vendor.id) - Array(@scrap)
+    end
+    @listings = get_listing(params[:scrap_id])
+    if (session[:user_id] && !vendor_authorization?)
+      @tabs = get_session_user.tabs.uniq
+      @remove_tabs = @scrap.tabs.uniq
+    end 
+  end
+
 
   def save_upload_scrap
     @scrap = Scrap.new(params[:scrap])
     @scrap.creator_id = session[:user_id]
-    @scrap.save
+    Category.find_by_name(params[:category]).scraps << @scrap
     if !@scrap.new_record?
-      process_categories(params[:categories], @scrap)
+      process_keywords(params[:keywords], @scrap) if params[:keywords]
+      process_tabs(params[:tabs], @scrap)
       get_session_user.collections.uploaded.scraps << @scrap
-      flash[:notice] = "Added Scrap!"
+      flash[:notice] = "Clip added!"
       if vendor_authorization?
         redirect_to(:action => "add_listing", :controller => 'product_listing', :scrap_id => @scrap.id) 
         return
@@ -22,9 +46,16 @@ class ScrapController < ApplicationController
       redirect_to(:action => 'view_collection', :controller => 'collection')
       return
     else
-      @categories = Category.all
-      render('upload_scrap')
+      @categories = Category.all.collect(&:name)
+      render('upload_scrap', :layout => 'standard')
     end
+  end
+
+  def update_tabs
+    scrap = Scrap.find(params[:scrap_id])
+    process_tabs(params[:tabs], scrap)
+    flash[:notice] = "Change saved!"
+    redirect_to(:action => 'view_collection', :controller => 'collection')
   end
 
   def edit
@@ -32,33 +63,33 @@ class ScrapController < ApplicationController
     if (get_user_authorization(@scrap))
       @categories = Category.all
       @images = @scrap.images
+      @tabs = get_session_user.tabs
     else
       redirect_to(:action => 'view_collection', :controller => 'collection')
     end
   end
 
-  def view_scrap_detail
-    @scrap = Scrap.find(params[:scrap_id])
-    user = User.find(@scrap.creator_id)
-    @categories = get_category_names(@scrap)
-    @images = @scrap.images
-    unless user.vendor.blank?
-      @creator_name = user.vendor.company  
-      @phone = user.vendor.phone
-    end
-    @listings = get_listing(params[:scrap_id])
-    if (session[:user_id] && !vendor_authorization?)
+  def create_tab
+    user = get_session_user
+    tab = Tab.new()
+    tab.name = params[:name]
+    user.tabs << tab
+    url = params[:url]
+    begin 
+      parse = url.split("=")
+      scrap_id = parse.last.to_s.gsub(/[^0-9]/i, '')
+    ensure
+      @scrap = Scrap.find(scrap_id) if scrap_id
       @tabs = get_session_user.tabs.uniq
-      @remove_tabs = @scrap.tabs.uniq
-    end 
-    @vendor_items = user.owned_scraps - Array(@scrap)
-    render :template => 'scrap/view_scrap_detail', :layout => 'scrap_detail'
+      render(:partial => 'scrap/partials/create_tab')
+    end
   end
 
   def update_scrap
     @scrap = Scrap.find(params[:scrap_id])
     if @scrap.update_attributes(params[:scrap])
       process_categories(params[:categories], @scrap)
+      process_tabs(params[:tabs], @scrap)
       flash[:notice] = "Edits saved!"
       redirect_to(:action => 'view_collection', :controller => 'collection')
     else

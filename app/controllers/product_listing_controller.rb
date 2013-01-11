@@ -1,5 +1,5 @@
 class ProductListingController < ApplicationController
-  layout 'view_collection' 
+  layout 'standard' 
   before_filter :confirm_vendor_authorization, :except => []
 
   def add_listing

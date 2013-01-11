@@ -1,6 +1,10 @@
 class Category < ActiveRecord::Base
   attr_accessible :name
   
-  has_and_belongs_to_many :scraps
+  has_many :scraps
+  
+  def self.all
+    Category.order('name ASC').all
+  end
   
 end

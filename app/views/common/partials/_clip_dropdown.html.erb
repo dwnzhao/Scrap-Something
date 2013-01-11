@@ -1,0 +1,22 @@
+<%= link_to({:action => 'upload_scrap', :controller => 'scrap'}, {:class => "dropdown-toggle"}) do%>
+Clip
+<span class="caret"></span>  
+<%end%>
+
+<ul class="dropdown-menu pull-right">
+	<li>
+		<%= link_to({:action => 'upload_scrap', :controller => 'scrap'}) do%>
+		<i class="icon-picture"></i> from file
+		<%end%>
+	</li>
+
+	<li>
+		<%= link_to({:action => 'upload_scrap', :controller => 'scrap', :from_url => true}) do%>
+		<i class="icon-globe"></i> from web
+		<%end%>
+	</li>
+</ul>
+
+
+
+

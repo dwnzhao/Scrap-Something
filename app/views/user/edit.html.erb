@@ -1,0 +1,24 @@
+<% @page_title ="Edit Profile"%>
+<div class="hero-unit page-shadow">
+	<p class="title">Edit Profile </p>
+
+<hr><br/>
+
+<%= form_for :user, :url => {:action => 'update'}, :html => {:class => 'form-horizontal'} do |f| %>
+
+<%= render(:partial => "access/profile_form", :locals => {:f => f, :password_display => false})%>	
+
+<%= submit_tag "update", :class=>'button'%>
+
+<% end %>
+
+
+<br><br><br>
+
+<span style='text-decoration:underline'>
+<%= link_to 'Delete account', :action => 'delete', :controller => 'access'%>
+
+</span>
+
+</div>
+

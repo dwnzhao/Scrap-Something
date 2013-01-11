@@ -1,9 +1,9 @@
 class VisualizeController < ApplicationController
   before_filter :confirm_logged_in, :except => []
   require 'base64'
+  layout 'standard'
 
-
-  def visualize
+  def index
     @images = get_all_user_scraps.uniq
   end
 

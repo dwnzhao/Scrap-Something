@@ -5,6 +5,7 @@ class CreateUsers < ActiveRecord::Migration
         t.string :last_name, :limit => 50
         t.string :email, :default =>'', :null => false
         t.boolean :email_confirmed, :default => false 
+        t.boolean :instructed, :default => false 
         t.string :hashed_password
         t.string :salt
         t.string :metro_area, :limit => 20

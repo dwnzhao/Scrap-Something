@@ -1,21 +1,23 @@
 <% @page_title ="Sign Up"%>
 
-<h1>Sign Up</h1>
+<div class="hero-unit page-shadow">
+	<p class="title">Sign Up </p>
+
 <hr><br/>
 
-<div class = "user_new">
 
-<%= form_for(:user, :url => {:action => 'create'}) do |f| %>
+<%= form_for :user, :url => {:action => 'create'}, :html => {:class => 'form-horizontal'} do |f| %>
 
 <%= render(:partial => "access/profile_form", :locals => {:f => f, :password_display => true})%>	
 
 <%= f.check_box(:terms_and_conditions)%> I agree to <a href="#">terms and conditions</a>
 
- <br><br>
+<br><br>
 
 <%= submit_tag "sign up", :class=>'button'%>
 
 <% end %>
-</div>
 
 <div id ="navigation_link"> Already have an account? <span style="text-decoration:underline;"><%= link_to('Log in', {:action => 'login'})%></span> </div>
+
+</div>

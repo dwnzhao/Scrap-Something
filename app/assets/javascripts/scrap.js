@@ -1,25 +1,14 @@
-$(document).ready(function() {
-
-	// delete scrap dialog box
-	$( ".dialog" ).dialog({
-		closeOnEscape: true,
-		closeText: '',
-		autoOpen: false,
-		show: "blind", 
-		hide: "blind",
+$(function() {
+	
+	$(".tab_check_box").click(function() {
+	
+		$("#tab_update").fadeIn();
 	});
+	
+	$("#create_tab_in_scrap_detail").click(function(){
 
-	$( "#delete_scrap" ).click(function() {
-		$( "#dialog_scrap" ).dialog( "open" );
-		$("#holder").addClass("Overlay");
-		return false;
+		$("#tab_field").fadeIn();
+		$("#tab_update").fadeIn();
+		$("#create_tab_in_scrap_detail").fadeOut();
 	});
-
-	$('.close_dialog').bind('click', function() {
-		$(this).parent.fancybox.close();
-		$(".dialog").dialog("close");
-		$("#holder").removeClass("Overlay");
-	});
-
-
-});
+})

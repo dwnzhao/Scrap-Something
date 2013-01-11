@@ -1,23 +1,34 @@
-<script src="controller.js"></script>
+<div class="hero-unit page-shadow" style="height: 70px">
+		<% if @user.avatar_file_name%>
+		<%= link_to image_tag(@user.avatar.url(:thumb), :size =>'40x40', :class => "img-rounded"), {:action => 'profile', :controller => 'access'}%>
+		<%end%>	
 
-<div id ="holder"></div>
-<div class="overlay"></div>
-
-
-<div id="left_panel">
-	<%= render(:partial => "collection/partials/left_panel", :locals => {:user => @user, :categories => @categories})%>
+		<%=link_to(@user.first_name.capitalize + "'s Wedding Binder", {:action => "view_collection"}, {:class => "gold"})%>
+	 
+	<%= form_tag({:action => 'search', :controller => "collection", :user_specific => true}) do%>
+	<%= text_field_tag(:search_home, "", :class => 'search', :field => 'search my stuff...', :autocomplete => "off" ) %>
+	<button type="submit" class = 'button'><i class="icon-search"></i></button>
+	<%end%>
 </div>
 
-<div ng-app="MyApp" ng-controller = "TabController">
-<div id="center_top_panel" >
-	<%= render(:partial => "collection/partials/center_top_panel", :locals => {:user => @user})%>	
+<img src="/assets/ring.png" height="70px" width="70px" style="position:absolute; top:215px; left: 170px; z-index: 3">
+<img src="/assets/ring.png" height="70px" width="70px" style="position:absolute; top:215px; left: 210px; z-index: 3">
+
+<div id="mainpage">
+
+	<br><br><br><hr class="dashed">
+
+	<div id="left_panel" >
+		<%= render(:partial => "collection/partials/left_panel", :locals => {:user => @user, :categories => @categories})%>
+	</div>
+
+	<div ng-app="MyApp" ng-controller = "TabController" id="center_panel" style="position: absolute; top: 399px; margin-top:-370px;">
+		<%= render(:partial => "collection/partials/home_center_top_panel", :locals => {:user => @user})%>	
+
+		<%= render(:partial => "collection/partials/home_center_panel", :locals => {:user => @user, :selected_collection => @selected_collection})%>
+
+		<div style="margin-left: 25%">	<%= will_paginate @selected_collection%>	</div>
+
 </div>
 
-<div id="center_panel">
-	<%= render(:partial => "collection/partials/center_panel", :locals => {:user => @user, :selected_collection => @selected_collection})%>
-</div>
 
-</div>
-
-<script>
-</script>

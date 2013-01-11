@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
 
-  helper_method :vendor_authorization?, :user_favorite
+  helper_method :vendor_authorization?, :user_favorite, :get_session_user
 
   protected 
 
@@ -15,26 +15,22 @@ class ApplicationController < ActionController::Base
       return @current_user
     end
   end
-  
+
   def user_favorite
     return [] if session[:user_id].blank? || get_session_user.collections.favorite.nil?
     return get_session_user.collections.favorite.scraps
   end
 
-  def get_category_names(scrap)
-    return scrap.categories.collect(&:name)
-  end
-
   def confirm_logged_in
     unless session[:user_id]
       flash.now[:warning] = "Please log in or sign up."
-      render('access/landing_page', :layout => 'layouts/access')
+      render('/collection/landing_page', :layout => 'standard')
       return false
     else 
       return true
     end
   end
-  
+
   def confirm_vendor_authorization
     unless (get_session_user.user_level > 1)
       flash.now[:warning] = "You must be a vendor to perform this task"
@@ -44,32 +40,42 @@ class ApplicationController < ActionController::Base
       return true
     end
   end
-  
+
   def vendor_authorization?
     return false unless session[:user_id]
     return true if (get_session_user.user_level > 1)
     return false    
   end
-  
-  def process_categories(categories, scrap)
-    checked_categories = get_categories_from(categories)
-    remove_categories = Category.all - checked_categories
-    checked_categories.each {|cat| scrap.categories << cat if !scrap.categories.include?(cat)}
-    remove_categories.each {|cat| scrap.categories.destroy(cat) if scrap.categories.include?(cat)}
-  end
-    
 
-  def get_categories_from(cat_list)
-    cat_list = [] if cat_list.blank?
-    return cat_list.collect {|cat| Category.find_by_id(cat.to_i)}
+  def process_tabs(tabs, scrap)
+    checked_tabs = get_tabs_from(tabs)
+    remove_tabs = get_session_user.tabs - checked_tabs
+    checked_tabs.each {|tab| scrap.tabs << tab if !scrap.tabs.include?(tab)}
+    remove_tabs.each {|tab| scrap.tabs.destroy(tab) if scrap.tabs.include?(tab)}
+  end
+
+  def process_keywords(keywords, scrap)
+    full_list = keywords.split(",")
+    clean_list = []
+    full_list.each {|keyword| clean_list << keyword.strip}
+    clean_list.each do |keyword|
+      k = Keyword.find_by_name(keyword)
+      if k.nil?  
+        k = Keyword.new()
+        k.name = keyword
+      end
+      scrap.keywords << k
+    end
+  end
+
+  def get_tabs_from(tab_list)
+    return [] if tab_list.blank?
+    return tab_list.collect {|tab| Tab.find_by_id(tab.to_i)}
   end
 
   def get_user_authorization(scrap)
-    if scrap.creator_id == session[:user_id]
-      return true
-    else
-      return false
-    end
+    return true if scrap.creator_id == session[:user_id]
+    return false
   end
 
   def get_bookmark_status(scrap)
@@ -77,14 +83,14 @@ class ApplicationController < ActionController::Base
     return true if user.collections.bookmarked.scraps.include?(scrap)
     return false
   end
-  
+
   def get_favorite_status(scrap)
     user = get_session_user
     return false if user.blank?
     return true if user.collections.favorite.scraps.include?(scrap)
     return false
   end
-  
+
   def get_all_user_scraps
     user = get_session_user
     collection_all = user.collections
@@ -101,19 +107,34 @@ class ApplicationController < ActionController::Base
     selected_collection = user.collections.favorite.scraps
     return selected_collection
   end
-  
+
   def get_all_user_categories
     scrap_all = get_all_user_scraps
     user_categories = []
     scrap_all.each_with_index do |scrap, index|
-      user_categories += scrap.categories
+      user_categories << scrap.category
     end
     return user_categories.uniq
   end
-  
+
   def get_listing(id)
     scrap = Scrap.find(id)
     return scrap.product_listings.compact
+  end
+
+  def calculate_price(price_range)
+    price_array = price_range.split(" - ")
+    return [price_array[0].length, price_array[1].length]
+  end
+
+  def find_scraps_by_city_and_category(city, category_id)
+    if city == 'all' && !category_id
+      return Scrap.all
+    elsif city == 'all' && category_id
+      Category.find(category_id).scraps
+    else
+      return ProductListing.find_all_by_metro_area(city).collect(&:scrap)
+    end
   end
 
 end

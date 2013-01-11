@@ -12,6 +12,7 @@ class CreateVendors < ActiveRecord::Migration
       t.integer :rating, :default => 0, :limit => 1
       t.string :business_type, :limit => 250
       t.attachment :avatar
+      t.integer :price, :limit => 50, :default => 1
       t.timestamps
     end
     

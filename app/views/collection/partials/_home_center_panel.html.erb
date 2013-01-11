@@ -1,0 +1,48 @@
+<div id='center_panel_content'>
+
+<%if get_session_user.instructed == false%>
+<p class="subtitle"> 
+	<br>
+	Hi, <%=@user.first_name%>! Welcome to your Little Blue Binder. Let's get started
+	<hr>
+</p>			
+
+<ul id = "instruction" >	
+	<li class="instruction">Have some cool wedding photos you want to add to your binder? 
+		<%=link_to("Add a clip", {:action => 'upload_scrap', :controller => 'scrap'}, {:class => 'link'})%>
+	</li> <hr><br>
+
+	<li class="instruction">Don't have any photos yet? Don't worry. 
+		<%=link_to("Browse", {:action => 'browse_collection', :controller => 'collection'}, {:class => 'link'})%>
+
+		to find your wedding inspiration.</li> <hr><br>
+
+		<li class="instruction">
+			As you add photos, organize your binder by adding clips to tabs or save as favorites for later.
+		</li>	<hr><br>
+		
+		<li class="instruction">Want to see how your wedding is going to look? 
+			<%=link_to("Create collages", {:action => 'visualize', :controller => 'visualize'}, {:class => 'link'})%>
+			and share them with family and friends. 
+		</li> 	<hr><br>
+		
+	</ul>
+	<br>		
+</ul>
+
+<div class="fancy_button_black">
+<%=link_to("got it!", {:action => 'instructed', :controller => 'user'})%>
+</div>
+
+<% elsif !@selected_collection.empty?%>
+
+<div class = "my_scrap">
+	<%= render(:partial => "collection/partials/collection_view", :locals => {:images => @selected_collection, :images_per_row => 3, :link_description => "remove bookmark", :method => "remove_bookmark"})%>
+</div>
+
+<%else%>
+<%= render(:partial => "collection/partials/collection_view", :locals => {:images => [], :link_description => "remove bookmark", :method => "remove_bookmark"})%>
+
+<%end%>
+</div>
+

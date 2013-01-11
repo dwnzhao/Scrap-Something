@@ -1,109 +1,76 @@
-<div id="top" style="min-width: 900px">
-	<div class="navbar navbar-inverse">
-		<div class="navbar-inner">
-			<%if logged_in?%>
-			<%= link_to('LittleBlueBinder', {:action => 'view_collection', :controller => 'collection'}, {:class => "brand"})%>
-			<%else%>
-			<%= link_to('LittleBlueBinder', {:action => 'browse_collection', :controller => 'collection'}, {:class => "brand"})%>
-			<%end%>
+<div class="navbar navbar-fixed-top" style="margin-left: auto; margin-right:auto; width: 80%; background-color: white; opacity: 1; height: 44px"></div>
 
-			<% if vendor_authorization?%>
+<div class="navbar navbar-fixed-top" style="margin-left: auto; margin-right:auto; width: 80%; ">
+	<div class="navbar-inner" style ="border-top: 3px dotted white; border-bottom: 3px dotted white; padding: 0px 10px; min-width: 1000px">
+		
+		<%if logged_in?%>
+		<%= link_to('LittleBlueBinder', {:action => 'view_collection', :controller => 'collection'}, {:class => "brand"})%>
 
-			<ul class="nav pull-right">
+		<%else%>
+		<%= link_to('LittleBlueBinder', {:action => 'landing_page', :controller => 'collection'}, {:class => "brand", :style => "padding: 10px 30px"})%>
 
-				<%=menu_nav_current?('view_items') %> 
-
-				<%= link_to("Home", :action => 'view_items', :controller => 'vendor') %></li>
-
-				<li class="divider-vertical"></li>
-
-				<%=menu_nav_current?('dashboard') %> 
-
-				<%= link_to("Dashboard", :action => 'dashboard', :controller => 'vendor') %></li>
-
-				<li class="divider-vertical"></li>
-				<li>
-					<%= link_to("Log out", :action => 'logout', :controller => 'access') %>		
-				</li>
-			</ul>
+		<%end%>
 
 
-			<% elsif logged_in?%>
-			<ul class="nav pull-right">
-				<%=menu_nav_current?('browse_collection') %> 
-
-				<%= link_to("Browse", :action => 'browse_collection', :controller => 'collection') %></li>
-				<li class="divider-vertical"></li>
+		<%= render(:partial => "common/partials/navbar_search")%>	
 
 
-				<%=menu_nav_current?('view_collection') %> 
+		<% if vendor_authorization?%>
 
-				<%= link_to("Organize", :action => 'view_collection', :controller => 'collection') %></li>
+		<ul class="nav pull-right">
 
-				<li class="divider-vertical"></li>
-
-				<%=menu_nav_current?('visualize') %> 
-
-				<%= link_to("Visualize", :action => 'visualize', :controller => 'visualize') %></li>
-
-				<li class="divider-vertical"></li>
-				<li class="dropdown">
-					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
-						<i class="icon-plus icon-white"></i>Clip 
-						<span class="caret"></span>
-					</a>
-
-					<div class="dropdown-menu pull-right">
-						<%= link_to({:action => 'upload_scrap', :controller => 'scrap'}) do%>
-						<i class="icon-picture"></i> from file
-						<%end%>
-
-						<%= link_to({:action => 'upload_scrap', :controller => 'scrap'}) do%>
-						<i class="icon-globe"></i> from web
-						<%end%>
+			<%=menu_nav_current?('view_items') %> 
+			<%= link_to("Home", :action => 'view_items', :controller => 'vendor') %></li>
 
 
-						<div class="divider"></div>
+			<%=menu_nav_current?('dashboard') %> 
+			<%= link_to("Dashboard", :action => 'dashboard', :controller => 'vendor') %></li>
 
-						<%= link_to({:action => 'clip_help', :controller => 'static'}) do%>
-						need help?
-						<%end%>
-					</div>
-				</li>
+			<%=menu_nav_current?('logout') %> 
+			<%= link_to("Log out", :action => 'logout', :controller => 'access') %></li>
+		</ul>
 
-				<li class="divider-vertical"></li>
 
-				<li class="dropdown">
-					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
-						Account
-						<span class="caret"></span>
+		<% elsif logged_in?%>
+		<ul class="nav pull-right">
 
-					</a>
-					<div class="dropdown-menu pull-right">
-						<%= link_to({:action => 'profile', :controller => 'access'}) do%>
-						<i class="icon-user"></i> Profile
-						<%end%>
-						<%= link_to({:action => 'logout', :controller => 'access'}) do%>
-						<i class="icon-off"></i> Logout
-						<%end%>
-					</div>
-				</li>
+			<%=menu_nav_current?('view_collection', 'tab_filter') %> 
+			<%= link_to(user_binder, :action => 'view_collection', :controller => 'collection') %></li>
 
-			</ul>
 
-			<%else%>
-			<ul class="nav pull-right">
-				<li>
-					<%= link_to("Sign Up", :action => 'signup', :controller => 'access') %>		
-				</li>
-				<li class="divider-vertical"></li>
+			<%=menu_nav_current?('browse_collection', 'browse_vendors') %> 
+			<%= render(:partial => "common/partials/browse_dropdown")%>	
 
-				<li>
-					<%= link_to("Log In", :action => 'login', :controller => 'access') %>		
-				</li>
-			</ul>		
-			<%end%>
-		</div>
+
+			<%=menu_nav_current?('index') %> 
+			<%= link_to("Visualize", :controller => 'visualize') %></li>
+
+			<%=menu_nav_current?('upload_scrap') %> 
+			<%= render(:partial => "common/partials/clip_dropdown")%>	
+
+
+			<%=menu_nav_current?('profile') %> 
+			<%= render(:partial => "common/partials/profile_dropdown")%>	
+
+
+		</ul>
+
+		<%else%>
+		<ul class="nav pull-right">
+
+			<%=menu_nav_current?('browse_collection', 'browse_vendors') %> 
+			<%= render(:partial => "common/partials/browse_dropdown")%>	
+
+
+			<%=menu_nav_current?('signup') %> 
+			<%= link_to("Sign Up", {:action => 'signup', :controller => 'access'}) %></li>
+
+			<%=menu_nav_current?('login') %> 
+			<%= link_to("Log In", :action => 'login', :controller => 'access') %></li>
+
+		</ul>		
+		<%end%>
 	</div>
 </div>
+
 <br><br>

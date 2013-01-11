@@ -1,42 +1,71 @@
 <%= error_messages_for(@vendor)%>
 
-<%= form_for(:vendor, :url => {:action => 'create_vendor'}) do |f| %>
+<%= form_for(:vendor, :url => {:action => 'create_vendor'}, :html => {:class => "form-horizontal"}) do |f| %>
 
-<div id = "hidden_form">
-	<table summary ="Vendor form fields">
-		<tr>
-			<th><%="Icon"%></th>
-			<td><%= f.file_field :avatar %></td>
-		</tr>
-		<tr>
-			<th><%="Company Name"%></th>
-			<td><%= f.text_field(:company, :size => 30, :maxlength => 40)%></td>
-		</tr>
-		<tr>
-			<th><%="Company Website"%>&nbsp;&nbsp;</th>
-			<td><%= f.text_field(:website, :size => 30, :maxlength => 40)%></td>
-		</tr>
-		<tr>
-			<th><%="Company Address"%>&nbsp;&nbsp;</th>
-			<td><%= f.text_field(:company_address, :size => 30, :maxlength => 40)%></td>
-		</tr>
-		<tr>
-			<th><%="Metro Area"%>&nbsp;&nbsp;</th>
-			<td><%= f.select(:metro_area, options_for_select(@cities))%></td>
-		</tr>
-		<tr>
-			<th><%="Phone Number"%>&nbsp;&nbsp;</th>
-			<td><%= f.text_field(:phone, :size => 30, :maxlength => 40)%></td>
-		</tr>
-		<tr>
-			<th><%= "Your Zipcode"%></th>
-			<td><%= f.text_field(:zipcode)%></td>		
-		</tr>
-		<tr>
-			<th><%="Business Type"%>&nbsp;&nbsp;</th>
-			<td><%= f.select(:business_type, ['catering', 'dress & tux', 'photographer', 'venue'])%></td>
-		</tr>
-		</table> <br/>
+<div style="text-align: left; margin-left: 450px">
+	<div class="control-group">
+		<%= f.label(:avatar, "Upload a company pic", :class=> 'control-label')%>	
+		<div class="controls">
+			<%= f.file_field :avatar %>
+		</div>
+	</div>
+
+	<div class="control-group">
+		<%= f.label(:company, "Company name", :class=> 'control-label')%>
+		<div class="controls">
+			<%= f.text_field(:company, :size => 30, :maxlength => 40)%>
+		</div>
+	</div>
+
+	<div class="control-group">
+		<%= f.label(:website, "Company Website", :class=> 'control-label')%>
+		<div class="controls">
+			<%= f.text_field(:website, :size => 30, :maxlength => 40)%>
+		</div>
+	</div>
+
+	<div class="control-group">
+		<%= f.label(:company_address, "Company Address", :class=> 'control-label')%>
+		<div class="controls">
+			<%= f.text_field(:company_address, :size => 30, :maxlength => 40)%>
+		</div>
+	</div>
+
+	<div class="control-group">
+		<%= f.label(:metro_area, "City", :class=> 'control-label')%>
+		<div class="controls">
+			<%= f.select(:metro_area, options_for_select(@cities))%>
+		</div>
+	</div>
+
+	<div class="control-group">
+		<%= f.label(:zipcode, "Zipcode", :class=> 'control-label')%>
+		<div class="controls">
+			<%= f.text_field(:zipcode)%>
+		</div>
+	</div>
+
+	<div class="control-group">
+		<%= f.label(:phone, "Contact phone number", :class=> 'control-label')%>
+		<div class="controls">
+			<%= f.text_field(:phone, :size => 30, :maxlength => 40)%>
+		</div>
+	</div>
+
+	<div class="control-group">
+		<%= f.label(:business_type, "Business Type", :class=> 'control-label')%>
+		<div class="controls">
+			<%= f.select(:business_type, ['catering', 'dress & tux', 'photographer', 'venue'])%>
+		</div>
+	</div>
+
+	<div class="control-group">
+		<%= f.label(:price, "Price", :class=> 'control-label')%>
+		<div class="controls">
+			<%= f.select(:price, [['$', 1], ['$$', 2], ['$$$', 3], ['$$$$', 4], ['$$$$$', 5]] )%>
+		</div>
+	</div>
+
 </div>
 
 <%= submit_tag "sign up", :class=>'button'%>

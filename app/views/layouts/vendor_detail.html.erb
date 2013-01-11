@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<%= javascript_include_tag('application', 'scrap', 'collection')%>
+	<%= stylesheet_link_tag('collection', 'application', 'scrap', 'vendor', :media => "all" )%>
+
+	<%= csrf_meta_tags %>
+
+</head>
+
+<body style="width:100px; height:350px; padding: 30px; overflow: hidden">
+
+<%= yield %>
+
+</body>
+
+</div>
+</body>
+</html>

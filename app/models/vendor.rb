@@ -1,5 +1,5 @@
 class Vendor < ActiveRecord::Base
-  attr_accessible :website, :company, :company_address, :phone, :business_type, :avatar, :metro_area, :zipcode
+  attr_accessible :website, :company, :company_address, :phone, :business_type, :avatar, :metro_area, :zipcode, :price
   
   validates :phone, :numericality => {:message => 'must be a valid number (no hashes)'}, :allow_nil => true
   validates :zipcode, :numericality => {:message => 'must be a valid number (no hashes)'}, :allow_nil => true 

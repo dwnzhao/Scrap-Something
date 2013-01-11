@@ -1,0 +1,28 @@
+<%= link_to({:action => 'profile', :controller => 'user'}, {:class => "dropdown-toggle"}) do%>
+Account
+<span class="caret"></span>  
+<%end%>
+
+<ul class="dropdown-menu pull-right">
+	<li>
+		<%= link_to({:action => 'profile', :controller => 'user'}) do%>
+		<i class="icon-user"></i> Profile
+		<%end%>
+	</li>
+
+	<li>
+		<%= link_to({:action => 'logout', :controller => 'access'}) do%>
+		<i class="icon-off"></i> Logout
+		<%end%>
+	</li>
+
+	<li>
+		<%= link_to({:action => 'reinstruct', :controller => 'user'}) do%>
+		need help?
+		<%end%>
+	</li>
+</ul>
+
+
+
+

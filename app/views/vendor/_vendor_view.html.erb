@@ -1,18 +1,18 @@
-<div id = "vendor_table">
-	<ul class="thumbnails">
-	
-	<% vendors.each_with_index do |vendor, index|%>
-	  <li class="span3">
-			<%= link_to image_tag(vendor.avatar.url(:medium)), url_with_protocol(vendor.website)%> <br>
-			<%= link_to vendor.company, url_with_protocol(vendor.website)%> <br>
-			
-			<%= vendor.business_type%>, <%= vendor.metro_area%>
-			
-			<hr>
-			
-			
-	  </li>
+<div class = "table vendor_browse_table">
+	<% vendors.in_groups_of(4, false) do |row_of_vendors|%>
+	<div class="row">
+	<% for vendor in row_of_vendors%>
 
+	<div class="span3" style="text-align: center">
+		<%= link_to image_tag(vendor.avatar.url(:medium)), {:action => 'vendor_detail', :controller => 'vendor', :vendor_id => vendor.id}, {:class => 'fancybox'}%> <br>
+
+		<%= link_to vendor.company, {:action => 'vendor_detail', :controller => 'vendor', :vendor_id => vendor.id}, {:class => 'fancybox vendor'}%> <br>
+
+		<%= vendor.business_type%>, <%= vendor.metro_area%>
+
+		<hr>		
+	</div>
 	<%end%>
-</ul>
+	</div>
+	<%end%>
 </div> <br><br><br>

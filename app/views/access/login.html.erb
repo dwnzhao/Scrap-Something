@@ -1,7 +1,9 @@
 <% @page_title = "Log In"%>
 
-<h1>Log In </h1> <hr>
-<div style="text-align: left; margin-left: 450px">
+<div class="hero-unit page-shadow">
+
+<p class="title">Log In </p> <hr>
+<div style="text-align: left; margin-left: 250px">
 <%= form_tag({:action => "authenticate"}, :class => 'form-horizontal') do %>
 <div class="control-group">
 	<%= label_tag 'inputEmail:', 'Email:', :class=> 'control-label'%>
@@ -24,5 +26,5 @@
 <div id ="navigation_link">Need a new account? <span style="text-decoration:underline;"> <%= link_to('sign up', {:action => 'signup'})%></span> </div>
 
 
-
+</div>
 

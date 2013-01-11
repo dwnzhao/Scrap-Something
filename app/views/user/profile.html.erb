@@ -1,0 +1,25 @@
+<% @page_title ="Profile"%>
+
+<div class="hero-unit page-shadow">
+	<p class="title">Your Profile </p>
+
+	<hr><br/>
+
+	<% if @user.avatar_file_name%> 
+	<%= image_tag @user.avatar.url(:thumb) %>
+	<%end%>
+	<br><br>
+	<%= @user.fullname%>
+	<br><br>
+	<%= mail_to(@user.email) %>
+	<br><br>
+
+	<br/><br/>
+
+	<div id="profile_control">
+	<%= link_to('Edit Profile', {:action => :edit}) %>
+	<%= link_to('Log Out', {:action => 'logout', :controller => "access"})%>
+	<%= link_to(raw('<i class="icon-home icon-white"></i>
+	go home'), {:controller=> 'collection', :action => 'view_collection'})%>
+</div>
+</div>

@@ -1,0 +1,4 @@
+<%= form_tag({:action => 'search', :user_specific => false,}, {:class => "navbar-search pull-left"}) do%>
+<%= text_field_tag(:query, {}, {:class => 'search', :field => 'search for ideas', :autocomplete => "off"}) %>
+<button type="submit" class = 'button'><i class="icon-search"></i></button>
+<%end%>		

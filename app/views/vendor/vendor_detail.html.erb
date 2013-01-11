@@ -1,0 +1,33 @@
+<div id ="vendor-card">
+	<table class = "vendor_profile">
+		<tr>
+			<th colspan = "2" align="center"> <span class="lead gold"> <%= @vendor.company%></span><hr></th>
+		</tr>
+		<tr>
+			<td rowspan = "6"> <%= image_tag @vendor.avatar.url(:medium)%></td>
+		</tr>
+		<tr>
+			<td valign = "top">business type: <%= @vendor.business_type%></td>
+		</tr>
+		<tr>
+			<td valign = "top">visit: <%= link_to(@vendor.website, url_with_protocol(@vendor.website), :target => '_blank', :style => "color: grey") %></td>
+		</tr>
+		<tr>
+			<td>phone: <%= @vendor.phone%></td>
+		</tr>
+		<tr>
+			<td>address: <%= @vendor.company_address%> <br><%= @vendor.metro_area%> </td>
+		</tr>
+	</table>
+
+	<hr>
+	<%if !@vendor_items.blank? %>
+	<table>
+		<tr><td>
+		<% @vendor_items.each_with_index do |scrap, index|%>
+		<%= link_to image_tag(scrap.photo.url(:thumb)), {:action => 'view_scrap_detail', :controller => 'scrap', :scrap_id => scrap.id}, :class => "icon_pic" %>
+		<%end%>
+		</td></tr>
+	</table>
+	<%end%> 
+</div>

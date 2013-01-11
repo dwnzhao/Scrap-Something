@@ -1,37 +1,56 @@
-<%if session[:user_id].blank?%>
-<%= render(:partial => "collection/partials/landing_banner") %>
-<%end%>
+<div class="hero-unit page-shadow browse_category">
+	<%= link_to(raw('<p class="title">Browse clips</p>'), {:action => "browse_collection", :controller => "collection"}) %>
 
-<div class="row container">
-	<div class = 'span6 offset1' style="border-right: dashed thin grey; padding: 0px 80px"> 
-		<p class="lead" style="margin-top: 30px; margin-bottom:10px"> find by category...</p>
-		<% @categories.each do |cat| %>
-		<%= link_to(cat.name, {:action => 'category_filter', :category_id => cat.id}, {:remote => true})%>&nbsp;
-		<%end%>	
-		<br><br>
+	<%for cat in @categories.to_a%>
+	<%= link_to_unless_current(cat.name, {:action => "browse_collection", :category_id => cat.id, :controller => "collection", :user_specific => false}) %> &nbsp;
+	<%end%>	
+</div>
 
-		<%= form_tag({:action => 'search', :user_specific => false,}, {:remote => true}) do%>
-		<%= text_field_tag(:search_explore, "", {:class => 'search', :field => 'search for ideas...', :autocomplete => "off"}) %>
-		<button type="submit" class = 'button'><i class="icon-search"></i></button>
-		<%end%>		
-	</div>
+<img src="/assets/ring.png" height="70px" width="70px" style="position:absolute; top:215px; left: 170px; z-index: 3">
+<img src="/assets/ring.png" height="70px" width="70px" style="position:absolute; top:215px; left: 210px; z-index: 3">
 
-	<div class = 'span8' >
-		<p class="lead" style="margin-top: 30px">find local vendors...</p>
-		<%= form_tag({:action => 'vendor_filter', :controller => 'vendor'}, {:remote => true}) do %>
-		<%= select_tag(:city, options_for_select(@cities))%>
-		<%= select_tag(:business_type, options_for_select(['catering', 'dress & tux', 'photographer', 'venue']))%>
-		<button type="submit" class = 'button'>go</button>
+<div id="mainpage">
+
+	<br><br><br><hr class="dashed">
+
+	<div id="left_panel">
+		<p id="title">narrow your search</p>
+
+		<br><br><br><br><br><br>
+
+		<%= form_tag({:action => "advanced_category_filter", :controller => "collection", :category_id => params[:category_id]}) do %>
+
+		price range 
+
+		<%= text_field_tag(:price_range, "$ - $$$$$", :id => 'amount', :readonly => "true")%>
+
+		<div id="slider" style="width: 200px; float: right; height: 10px"></div>
+		<br><br><br><br><br><br>
+
+		location
+		<%= select_tag(:city, options_for_select(["all"] + @cities), :style => "width:150px; height:20px")%>
+
+		<br><br><br><br>
+
+		keywords <br>
+		<%= text_field_tag(:keywords, "", {:class => 'search', :field => 'ex: traditional, floral', :autocomplete => "off"}) %> <br><br><br>
+		<button type="submit" class = 'button'>update</button>
 
 		<%end%>
+
 	</div>
 
+	<div id="center_panel">
+		
+		<% if !flash[:info].blank?%>
+		<div class="alert alert-info">
+			<button type="button" class="close" data-dismiss="alert">×</button>
+			<%= flash[:info]%>
+		</div>
+		<%end%>
+		
+		<%= render(:partial => "collection/partials/collection_view", :locals => {:images => @collection, :link_description => "bookmark", :method => "bookmark", :images_per_row => 5})%>
+
+	</div>
+	<%= will_paginate @collection%>
 </div>
-
-<hr>
-<div id ="browse_image_area" style="padding: 0px 80px;">
-
-	<%= render(:partial => "collection/partials/collection_view", :locals => {:images => @collection, :link_description => "bookmark", :method => "bookmark", :images_per_row => 5})%>
-</div>
-
-<%= will_paginate @collection%>

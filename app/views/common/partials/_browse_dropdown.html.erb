@@ -1,0 +1,18 @@
+<%= link_to({:action => 'browse_collection', :controller => 'collection'}, {:class => "dropdown-toggle"}) do%>
+	Browse
+	<span class="caret"></span>  
+<%end%>
+
+
+<ul class="dropdown-menu pull-right">
+	<li><%= link_to({:action => 'browse_collection', :controller => 'collection'}) do%>
+	clips
+	<%end%>
+	</li>
+
+	<li>
+	<%= link_to({:action => 'browse_vendors', :controller => 'vendor'}) do%>
+	vendors
+	<%end%>
+	</li>
+</ul></li>

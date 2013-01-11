@@ -1,41 +1,31 @@
 class AccessController < ApplicationController
-  layout "access"
+  layout "standard"
   respond_to :html, :js
-
-  before_filter :confirm_logged_in, :except => [:index, :signup, :login, 
-    :logout, :create, :authenticate, :landing_page]
 
     def index
       if vendor_authorization?
         redirect_to(:action => "view_items", :controller => "vendor")
       elsif (session[:user_id])
-        @user = get_session_user
         redirect_to(:action => "view_collection", :controller => "collection") 
       else
         redirect_to(:action => "browse_collection", :controller => "collection", )
       end
     end
-
+  
     def signup
       if (session[:user_id])
         flash[:warning] = "... please first log out ..."
-        redirect_to(:action => "profile")
+        redirect_to(:action => "view_collection", :controller => "collection")
       else 
         @user = User.new
         @cities = City.all.collect(&:city)
-      end
+      end      
     end
 
     def login    
       redirect_to(:action => "index") if (session[:user_id])
     end
-
-    def logout      
-      session[:user_id] = nil
-      get_session_user(false)
-      redirect_to(:action => "browse_collection", :controller => 'collection')
-    end
-
+    
     def create
       @user = User.new(params[:user])
       if @user.save
@@ -43,7 +33,7 @@ class AccessController < ApplicationController
         if (@user.user_level > 1)
           redirect_to(:action => "vendor_signup", :controller => "vendor")
         else
-          render("upload_profile_pic")
+          redirect_to(:action => "view_collection", :controller => "collection")
         end
       else
         @cities = City.all.collect(&:city)
@@ -51,45 +41,10 @@ class AccessController < ApplicationController
       end
     end
 
-    def update_profile_pic
-      user = get_session_user
-      user.update_attributes(params[:user])
-      flash[:notice] = "Profile picture saved!"
-      redirect_to(:action => "profile")
-    end
-
-    def edit
-      @user = get_session_user
-      @cities = City.all.collect(&:city)   
-    end
-
-    def update
-      @user = get_session_user
-      if @user.update_attributes(params[:user])
-        flash[:notice] = "Updated profile!"
-        redirect_to(:action => "vendor_profile", :controller => "vendor") if vendor_authorization?
-        redirect_to(:action => "profile")
-      else
-        render("edit")
-      end
-    end
-
-    def profile
-      if vendor_authorization?
-        @vendor = get_session_user.vendor
-        render(:template => 'vendor/vendor_signup', :layout => 'vendor') if @vendor.blank?
-        render(:template => 'vendor/vendor_profile', :layout => 'vendor')
-      else
-        @user = get_session_user
-      end
-    end
-
-    def delete
-      get_session_user.destroy
-      get_session_user(false)
+    def logout      
       session[:user_id] = nil
-      flash[:notice] = "Deleted profile..."
-      redirect_to(:action => "index")
+      get_session_user(false)
+      redirect_to(:action => "browse_collection", :controller => 'collection')
     end
 
     def authenticate

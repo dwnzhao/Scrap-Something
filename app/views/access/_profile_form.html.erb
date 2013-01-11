@@ -1,47 +1,69 @@
 <%= error_messages_for(@user)%>
 
+<div style="text-align: left; margin-left: 250px">
+	<div class="control-group">
+		<%= f.label(:avatar, "Upload a profile pic", :class=> 'control-label')%>	
+		<div class="controls">
+			<%= f.file_field(:avatar, {:style => "left: 50px"}) %>
+		</div>
+	</div>
 
-<table summary="User form fields">
-	<tr>
-		<th><%= f.label(:first_name, "First Name")%></th>
-		<td><%= f.text_field(:first_name) %></td>
-	</tr>
-	<tr>
-		<th><%= f.label(:last_name, "Last Name")%></th>
-		<td><%= f.text_field(:last_name)%></td>
-	</tr>
-	<tr>
-		<th><%= f.label(:email, "Email")%></th>
-		<td><%= f.text_field(:email)%></td>
-	</tr>
+	<div class="control-group">
+		<%= f.label(:first_name, "First Name", :class=> 'control-label')%>
+		<div class="controls">
+			<%= f.text_field(:first_name) %>
+		</div>
+	</div>
+
+	<div class="control-group">
+		<%= f.label(:last_name, "Last Name", :class=> 'control-label')%>
+		<div class="controls">
+			<%= f.text_field(:last_name)%>
+		</div>
+	</div>
+
+	<div class="control-group">
+		<%= f.label(:email, "Email", :class=> 'control-label')%>
+		<div class="controls">
+			<%= f.text_field(:email)%>
+		</div>
+	</div>
 
 	<% if(password_display)%>
-	<tr>
-		<th><%= f.label(:password, "Password")%></th>
-		<td><%= f.password_field(:password)%></td>
-	</tr>
-	<tr>
-		<th><%= f.label(:password_confirmation, "Retype Password")%></th>
-		<td><%= f.password_field(:password_confirmation)%></td>
-	</tr>
+	<div class="control-group">
+		<%= f.label(:password, "Password", :class=> 'control-label')%>
+		<div class="controls">
+			<%= f.password_field(:password)%>
+		</div>
+	</div>
+	<div class="control-group">
+		<%= f.label(:password_confirmation, "Retype Password", :class=> 'control-label')%>
+		<div class="controls">
+			<%= f.password_field(:password_confirmation)%>
+		</div>
+	</div>				
 	<%end%>
 
-	<tr>
-		<th><%= f.label(:metro_area, "Your City")%></th>
-		<td><%= f.select(:metro_area, options_for_select(@cities))%></td>		
-	</tr>
-	<tr>
-		<th><%= f.label(:zipcode, "Your Zipcode")%></th>
-		<td><%= f.text_field(:zipcode)%></td>		
-	</tr>
-	<tr>
-		<th><%= f.label(:user_level, "Are you a vendor?")%></th>
-		<th>
+	<div class="control-group">
+		<%= f.label(:metro_area, "Your City", :class=> 'control-label')%>
+		<div class="controls">
+			<%= f.select(:metro_area, options_for_select(@cities))%>
+		</div>
+	</div>	
+	<div class="control-group">			
+		<%= f.label(:zipcode, "Your Zipcode", :class=> 'control-label')%>
+		<div class="controls">
+			<%= f.text_field(:zipcode)%>
+		</div>
+	</div>	
+	<div class="control-group">			
+		<%= f.label(:user_level, "Are you a vendor?", :class=> 'control-label')%>
+		<div class="controls">
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 			<%= f.radio_button(:user_level, 3, :id => 'vendor_yes') %>Yes
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 			<%= f.radio_button(:user_level, 1, :id => 'vendor_no') %>No
-		</th>
-	</tr>
-</table>
-
+		</div>
+	</div>				
+</div>
 <br/><br/>

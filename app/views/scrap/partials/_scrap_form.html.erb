@@ -1,38 +1,68 @@
 <%= error_messages_for(@scrap)%>
 
-<table id= "scrap_form">
-	<tr>
-		<th><%= f.label("Upload your scrap: ")%>&nbsp;&nbsp;</th> 
-		<td><%= f.file_field(:photo) %></td>
-	</tr>
-	<tr>
-		<th><%= f.label(:name, "Name your scrap: ")%></th>
-		<td><%= f.text_field(:name, :id => 'form_field', :size => 40, :maxlength => 40) %></td>
-	</tr>
-	<tr>
-		<th><%= f.label(:description, "Describe your scrap: ")%></th>
-		<td><%= f.text_area(:description, :id => 'form_field', :size => "30x7") %></td>
-	</tr>
-	<% if vendor_authorization?%>
-	<tr>
-		<th><%= f.label(:visible, "Visible to public?")%></th>
-		<th>
-			<%= f.radio_button(:visibility, true, :id => 'radio_buttons') %>Yes
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			<%= f.radio_button(:visibility, false, :id => 'radio_buttons') %>No
-		</th>
-	</tr>	
-	<%end%>
-</table>
-<br/>
+<%if @from_url%>
 
-<table class = "categories">
-	<tr><div class="small_tagline", id ="select_category_instruction"><%= label(:category, "This is a:")%></div></tr>
-	<tr>
-		<% @categories.each do |cat| %>
-		<th><%= check_box_tag('categories[]', cat.id, @scrap.categories.map {|c| c.id}.include?(cat.id))%>
-			<%= cat.name%> </th>
-		<%end%>	
-	</tr>	
-</table>
-<br/>
+<div class="control-group">
+	<%= f.label("Link your clip to url: ", :class=> 'control-label')%>
+	<div class="controls">
+		<%= text_field_tag(:img_url) %>
+	</div>
+</div>
+
+
+<%else%>
+<div class="control-group">
+	<%= f.label("Upload your clip: ", :class=> 'control-label')%>
+	<div class="controls">
+		<%= f.file_field(:photo) %>
+	</div>
+</div>
+
+<%end%>
+
+<div class="control-group">
+	<%= f.label(:name, "Name your clip: ", :class=> 'control-label')%>
+	<div class="controls">
+		<%= f.text_field(:name, :id => 'form_field', :size => 40, :maxlength => 40) %>
+	</div>
+</div>
+
+<div class="control-group">
+	<%= f.label(:description, "Describe your clip: ", :class=> 'control-label')%>
+	<div class="controls">
+		<%= f.text_area(:description, :id => 'form_field', :size => "30x7") %>
+	</div>
+</div>
+
+<% if vendor_authorization?%>
+<div class="control-group">
+	<%= f.label(:visible, "Visible to public?", :class=> 'control-label')%>
+	<div class="controls">
+		<%= f.radio_button(:visibility, true, :id => 'radio_buttons') %>Yes
+		<%= f.radio_button(:visibility, false, :id => 'radio_buttons') %>No
+	</div>
+</div>
+
+<div class="control-group">
+	<%= label_tag('inputKeywords', raw("Keywords - separate with <br> commas (ex. traditional, floral):"), :class=> 'control-label')%>
+	<div class="controls">
+		<%= text_field_tag(:keywords, params[:keywords])%>
+	</div>
+</div>
+<%end%>
+
+<div class="control-group">
+	<%= f.label(:category, "Category", :class=> 'control-label')%>
+	<div class="controls">
+		<%= select_tag(:category, options_for_select(@categories))%>
+	</div>
+</div>	
+
+<div class="control-group" >
+	<%= f.label(:tabs, "Save to tabs", :class=> 'control-label')%>
+	<div class="controls" id="tabs">
+		<%= render(:partial => "scrap/partials/create_tab", :locals => {:tabs => @tabs, :scrap => @scrap})%>	
+	</div>
+</div>	
+
+

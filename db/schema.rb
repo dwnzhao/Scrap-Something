@@ -11,23 +11,16 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121125102602) do
+ActiveRecord::Schema.define(:version => 20130104070318) do
 
   create_table "categories", :force => true do |t|
     t.string   "name"
-    t.integer  "scrap_count"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.integer  "scraps_count"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
   end
 
   add_index "categories", ["name"], :name => "index_categories_on_name"
-
-  create_table "categories_scraps", :id => false, :force => true do |t|
-    t.integer "category_id"
-    t.integer "scrap_id"
-  end
-
-  add_index "categories_scraps", ["category_id", "scrap_id"], :name => "index_categories_scraps_on_category_id_and_scrap_id"
 
   create_table "cities", :force => true do |t|
     t.string   "city",       :limit => 15
@@ -76,6 +69,22 @@ ActiveRecord::Schema.define(:version => 20121125102602) do
     t.datetime "updated_at",         :null => false
   end
 
+  create_table "keywords", :force => true do |t|
+    t.string   "name"
+    t.integer  "scrap_count"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  add_index "keywords", ["name"], :name => "index_keywords_on_name"
+
+  create_table "keywords_scraps", :id => false, :force => true do |t|
+    t.integer "keyword_id"
+    t.integer "scrap_id"
+  end
+
+  add_index "keywords_scraps", ["keyword_id", "scrap_id"], :name => "index_keywords_scraps_on_keyword_id_and_scrap_id"
+
   create_table "product_listings", :force => true do |t|
     t.integer  "vendor_id"
     t.integer  "scrap_id"
@@ -90,6 +99,7 @@ ActiveRecord::Schema.define(:version => 20121125102602) do
 
   create_table "scraps", :force => true do |t|
     t.integer  "creator_id"
+    t.integer  "category_id"
     t.string   "name",               :default => ""
     t.string   "source",             :default => ""
     t.text     "description"
@@ -140,6 +150,7 @@ ActiveRecord::Schema.define(:version => 20121125102602) do
     t.string   "last_name",           :limit => 50
     t.string   "email",                             :default => "",    :null => false
     t.boolean  "email_confirmed",                   :default => false
+    t.boolean  "instructed",                        :default => false
     t.string   "hashed_password"
     t.string   "salt"
     t.string   "metro_area",          :limit => 20
@@ -171,6 +182,7 @@ ActiveRecord::Schema.define(:version => 20121125102602) do
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
+    t.integer  "price",                              :default => 1
     t.datetime "created_at",                                        :null => false
     t.datetime "updated_at",                                        :null => false
   end

@@ -1,46 +1,34 @@
-<div id = "collection_table">
-	<div class ="row">
-		<%if images_per_row == 3%>
-		<div class="scrap_block">
-			<div class="scrap_asset"><%=link_to(image_tag('/assets/AddClip.png', {:style => "width:200px; height:300px"}), {:action => "upload_scrap", :controller => "scrap"})%></div>
-		</div>
-		<%end%>
-		<% images.each_with_index do |image, index|%>
-		<div class ="scrap_block">
-
-			<div class="scrap_asset"><%=link_to(image_tag(image.photo.url(:medium)), {:action => "view_scrap_detail", :scrap_id => image.id, :controller => "scrap"}, {:class => 'fancybox'})%>
-			</div>
-
-			<%if (image.creator_id == session[:user_id])%>		
-			<%= link_to(raw('<i class="icon-pencil"></i>'), {:action => 'edit', :controller => 'scrap', :scrap_id => image.id}, {:title => 'edit', :class => "edit_icon fancybox"})%>
-
-			<%elsif(link_description == 'remove bookmark')%>
-			<% unless scrap_favorite?(image)%>
-			<%= link_to raw('<i class="icon-remove-circle"></i>'), {:action => method, :controller => 'share', :scrap_id => image.id}, :title => 'remove bookmark', :class => "edit_icon"%>
-			<%end%>
-
-			<%end%>
-			<div class = 'scrap_name'>
-				<%if !vendor_authorization?%>
-				<%if scrap_favorite?(image)%>
-				<%= link_to raw('<i class="icon-star"></i>'), {:action => 'defavor', :controller => 'share', :scrap_id => image.id}%>
-				<%else%>
-				<%= link_to(raw('<i class="icon-star-empty"></i>'), {:action => 'favor', :controller => 'share', :scrap_id => image.id}, {:title => "mark as favorite"})%>
-				<%end%>
-				<%end%>
-				<%=image.name%>
-
-			</div>
-		</div>
-		<%if images_per_row == 3%>
-		<% index = index+1%>
-		<%end%>
-		<% if (index+1)%images_per_row==0 %>
+<%if current_page?(:action => 'view_collection')%>
+<div class="scrap_block_blank">
+	<div class="scrap_asset"><%=link_to(image_tag('/assets/AddClip.png', {:style => "width:200px; height:290px"}), {:action => "upload_scrap", :controller => "scrap"})%>
 	</div>
-	<div class ="row">
-		<%end%>		
+</div>
+<%end%>
+
+<% images.in_groups_of(3, false) do |row_of_images|%>
+<% for image in row_of_images%>
+<div class ="scrap_block">
+	<div class="scrap_asset">
+		<%=link_to(image_tag(image.photo.url(:medium)), {:action => "view_scrap_detail", :scrap_id => image.id, :controller => "scrap"}, {:class => 'fancybox'})%>
+	</div>
+
+	<div class = 'scrap_name'>
+		<%=image.name%>  <br>
+		<%if image.visibility%>
+		by <%= link_to(image.creator.vendor.company, {:action => 'vendor_detail', :controller => 'vendor', :vendor_id => image.creator.vendor.id}, {:class => "fancybox vendor"})%>
+		<%end%>
+
+		<%= process_favorite(image)%>
+	</div>
+
+	<div class="scrap_hover"><br>
+		<%=link_to({:action => "view_scrap_detail", :scrap_id => image.id, :controller => "scrap"}, {:class => 'fancybox', :remote => true}) do%>
+		<h6><%= image.name%></h6>
+		<p><%= truncate(image.description, :length => 300)%></p>
 		<%end%>
 	</div>
 </div>
+<%end%>
 
-<br/><br/>
+<br>	
+<%end%>		

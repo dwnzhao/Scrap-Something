@@ -174,7 +174,7 @@
 	overflow: hidden;
 	display: none;
 	z-index: 8010;
-	background: url('fancybox_overlay.png');
+	background-color: rgba(0,0,0,0.5);
 }
 
 .fancybox-overlay-fixed {
@@ -191,9 +191,10 @@
 /* Title helper */
 
 .fancybox-title {
-	visibility: hidden;
+	visibility: visible;
 	font: normal 13px/20px "Helvetica Neue",Helvetica,Arial,sans-serif;
-	position: relative;
+	position: absolute;
+	top: 0;
 	text-shadow: none;
 	z-index: 8050;
 }
@@ -213,14 +214,14 @@
 
 .fancybox-title-float-wrap .child {
 	display: inline-block;
-	margin-right: -100%;
 	padding: 2px 20px;
 	background: transparent; /* Fallback for web browsers that doesn't support RGBa */
 	background: rgba(0, 0, 0, 0.8);
-	-webkit-border-radius: 15px;
-	   -moz-border-radius: 15px;
-	        border-radius: 15px;
+	-webkit-border-radius: 5px;
+	   -moz-border-radius: 5px;
+	        border-radius: 5px;
 	text-shadow: 0 1px 2px #222;
+	width: 100%;
 	color: #FFF;
 	font-weight: bold;
 	line-height: 24px;

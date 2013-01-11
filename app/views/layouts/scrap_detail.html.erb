@@ -2,21 +2,26 @@
 <html>
 <head>
 	<title>Scrap Something | <%= @page_title || 'Collections' %></title>
-	<%= javascript_include_tag('jquery.fancybox.pack', 'application', 'scrap', 'collection')%>
-	<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
+	<%= stylesheet_link_tag('application', 'collection', 'scrap', 'jquery.fancybox', 'visualize', 'vendor', :media => "all" )%>
+	<link rel="stylesheet" href="http://code.jquery.com/ui/1.9.2/themes/base/jquery-ui.css" />
 
-	<%= stylesheet_link_tag('collection', 'application', 'scrap', :media => "all" )%>
+	<%= javascript_include_tag('application') %>	
+
+	<script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.2/angular.min.js"></script>
+	<script src="http://angular-ui.github.com/angular-ui/build/angular-ui.js"></script>	
+
+	<%= javascript_include_tag('jquery.fancybox.pack', 'collection', 'scrap', 'tab_angular_controller')%>
 
 	<%= csrf_meta_tags %>
 
 </head>
 
-<body style="min-width:500px">
+<body style="min-width:500px; padding: 30px; background-color: white; color: grey; border: 10px solid rgba(102, 153, 204, 0.5)">
 
 <%= yield %>
 
 </body>
 
-</div>
 </body>
 </html>

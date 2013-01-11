@@ -1,0 +1,76 @@
+@mixin center{
+margin-left: auto;	
+margin-right: auto;
+}
+
+@mixin scrap_size{
+	height:220px;
+	width:170px;
+}
+
+$light_green: #b4cbd4;
+$standard_font_size: 12px;
+
+
+/*----------------------------------------------------*/
+
+#scrap_detail_table{
+	@include center;
+	padding:10px 30px;
+}
+
+#scrap_detail_table .column{
+	text-align: left; 
+	padding: 0px 10px
+}
+
+.scrap_block{
+	float:left;
+	overflow:hidden;
+	height:270px;
+	margin: 10px 25px;
+	padding:5px 5px 5px 5px;
+	border:solid;
+	border-color: #dddddd #aaaaaa #aaaaaa #dddddd;
+	border-width: 1px 2px 2px 1px;
+	background-color:#FFFFFF;
+	text-align: center;
+	font-size: 10px;
+}
+
+.keywords, .keywords a{
+	font-size: $standard_font_size;
+	color: $light_green;
+}
+
+.scrap_block_blank {
+	float:left;
+	overflow:visible;
+	height:270;
+	margin: 1px 13px;
+	padding:5px 5px 5px 5px;
+	text-align: center;
+	font-size: 10px;
+}
+
+.scrap_hover{
+	position: relative; 
+	top:-252px; 
+	background-color: rgba(250, 250, 250, 0.9); 
+	display: none;
+	@include scrap_size
+}
+
+.scrap_asset img{
+	@include center;
+	@include scrap_size;
+}
+
+.scrap_name {
+	position:relative;
+	top: 7px;
+	z-index:500;
+	border:none;
+}
+
+a.city{color: $light-green;}

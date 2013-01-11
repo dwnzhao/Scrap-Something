@@ -8,7 +8,8 @@ class Scrap < ActiveRecord::Base
   validates :name, :presence => {:message => "is required"}, :length => {:maximum => 25}
   
   has_many :images, :dependent => :destroy 
-  has_and_belongs_to_many :categories
+  belongs_to :category, :counter_cache => true
+  has_and_belongs_to_many :keywords
   has_many :collection_items
   has_many :collections, :through => :collection_items
   has_many :tab_items
@@ -17,7 +18,8 @@ class Scrap < ActiveRecord::Base
   has_many :product_listings, :dependent => :destroy
   belongs_to :creator, :class_name => 'User'
 
-  scope :search, lambda {|query| where(["name LIKE ?", "%#{query}%"])}
+  scope :public_search, lambda {|query| where(["name LIKE ? AND visibility = ?", "%#{query}%", true])}
+  scope :private_search, lambda {|query, user_id| where(["name LIKE ? AND creator_id = ?", "%#{query}%", user_id])}
   
   
   def self.public_scraps

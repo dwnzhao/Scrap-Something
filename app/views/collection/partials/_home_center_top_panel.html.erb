@@ -1,0 +1,25 @@
+<ul class="nav nav-tabs">
+	<li class="active" click_tab>
+		<a href="/tab/tab_filter/" data-remote="true" ng-click="tabChange('')">show all
+		</a>
+	</li>
+
+	<li click-tab ng-repeat="tab in tabs">
+		<a href="/tab/delete_tab?tab_id={{tab.id}}" class='delete' style="position: absolute; top: -20px; background-color: transparent; border: none; display: none"><i class="icon-trash"></i>
+		</a>
+		<a href="/tab/tab_filter/{{tab.id}}" data-remote="true" ng-click="tabChange(tab)" >
+			{{tab.name}}
+		</a>
+	</li>
+
+	<li class="hide" id="tab_form">
+		<form ng-submit="addTab()">
+			<input class="input-medium" type="text" ng-model="tabText" placeholder="name new tab">
+			<input class="button" type="submit" value="add">
+		</form>
+	</li>
+
+	<li>
+		<a add-tab-button href="#" ><i class="icon-plus"></i> add tab</a>
+	</li>
+</ul>
