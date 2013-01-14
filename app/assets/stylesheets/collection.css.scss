@@ -1,0 +1,200 @@
+$gold: #D6A44B;
+$light_blue: rgba(102, 153, 204, 0.9); 
+$light_blue_border: rgba(102, 153, 204, 0.5); 
+$light_blue_background: rgba(102, 153, 204, 0.3); 
+$dark_blue: #104E8B;
+
+$standard_font_size: 12px;
+$medium_font_size: 14px;
+$medium_large_font_size: 14px;
+$large_font_size: 28px;
+$left_border_size: 10px;
+
+$center_align_min_width: 900px;
+$center_align_width: 1109px;
+
+$mainpage_height: 1100px;
+$mainpage_top_margin: 10px;
+
+@mixin center-align {
+margin-left: 10%; 
+margin-right: 10%;
+overflow: none;
+}
+
+@mixin center{
+margin-left: auto;	
+margin-right: auto;
+}
+
+@mixin box-shadow {
+box-shadow:
+1px 1px 1px rgba(0,0,0,0.15), /* The top layer shadow */
+10px 10px 0 -5px #eee, /* The second layer */
+10px 10px 1px -4px rgba(0,0,0,0.15), /* The second layer shadow */
+20px 20px 0 -10px #eee, /* The third layer */
+20px 20px 1px -9px rgba(0,0,0,0.15); /* The third layer shadow */
+}
+
+@mixin page-shadow {
+-webkit-box-shadow: 0 0 4px rgba(0, 0, 0, 0.2), inset 0 0 50px rgba(0, 0, 0, 0.1);
+-moz-box-shadow: 0 0 4px rgba(0, 0, 0, 0.2), inset 0 0 50px rgba(0, 0, 0, 0.1);
+box-shadow: 0 0 5px rgba(0, 0, 0, 0.2), inset 0 0 50px rgba(0, 0, 0, 0.1);
+}
+
+/*----------------------------------------------------*/
+
+.hero-unit {
+background-color: white; 
+min-width: $center_align_min_width;
+text-align: center;
+@include center-align;
+@include box-shadow;
+border-left: $left_border_size solid $light_blue_border; 
+}
+
+.hero-unit p.title, .gold{
+font-size: $large_font_size; 
+color: $gold;
+}
+
+.browse_category{color: $light_blue;}
+
+#mainpage {
+position: relative; 
+background-color: white; 
+height: $mainpage_height; 
+top: -$mainpage_top_margin;
+border-left: $left_border_size solid $light_blue_border; 
+min-width: $center_align_min_width;
+@include center-align;
+@include box-shadow;
+}
+
+#landing_banner{
+width: $center_align_width; 
+position: relative; 
+top: -60px;
+height:700px; 
+overflow: hidden;
+padding: 30px 0px 0px 0px;
+min-width: $center_align_min_width;
+@include center;
+@include page-shadow;
+background-color: $light_blue_background;
+border-top: 35px solid rgba(255, 255, 255, 0.2);
+}
+
+.circle{
+position: absolute;
+text-align: center;
+background: white;
+width: 150px;
+height: 150px;
+border-radius: 50%;
+opacity: 0.8;
+background-color: white;
+padding: 4px;
+}
+
+.circle.back{ background-color: $light_blue; display:none;}
+
+.circle.front a{
+font-size: 20px; color: #CC9933;
+}
+
+.circle.back a{
+font-size: 12px; color: white
+}
+
+
+#left_panel{
+width:250px; 
+float:left;
+font-size: $standard_font_size; 
+text-align: right; 
+background-color: $light_blue_background; 
+padding: 0px 20px; 	
+ a {
+	color: $light_blue;
+ }
+}
+
+#left_panel #title {
+@extend .fancy_button;
+color: $light_blue;
+font-size: $medium_font_size;
+}
+
+#left_panel:hover #title{
+opacity: 1;
+outline: 10px solid rgba(255, 255, 255, 0.7)
+}
+
+.fancy_button{
+background-color: white; 
+padding: 15px 30px; 
+left: 40px;
+position: absolute;  
+opacity: 0.9; 
+outline: 10px solid rgba(255, 255, 255, 0.4);
+width: 150px; 
+height: 13px; 
+text-align: center;
+}
+
+.fancy_button_black{
+background-color: rgba(0, 0, 0, 0.2); 
+width: 100px; 
+height: 13px; 
+padding: 15px 30px; 
+position: absolute;  
+margin-left: 30px;
+opacity: 0.9; 
+outline: 10px solid rgba(0, 0, 0, 0.1);
+text-align: center;
+opacity: 0.6;	
+}
+
+.fancy_button_black a{
+color: black;
+font-size: 18px;
+}
+
+.fancy_button_black:hover{
+opacity: 1;
+background-color: rgba(0, 0, 0, 0.4); 
+outline: 10px solid rgba(0, 0, 0, 0.3);
+}
+
+.fancy_button:hover{
+opacity: 1;
+outline: 10px solid rgba(255, 255, 255, 0.7)	
+}
+
+.subtitle {
+font-size: $medium_large_font_size;
+text-align: center;
+}
+
+.instruction{font-size: $medium_font_size;}
+
+#center_panel{
+margin-left: 300px; 
+}
+
+#center_panel ul li{
+text-align: left; 
+}
+
+#center_panel a.link{
+color: $dark_blue; 	
+font-size: $medium_font_size;
+}
+
+#amount{
+border: 0; 
+font-weight: bold; 
+position: relative; 
+float: right; width: 80px
+}

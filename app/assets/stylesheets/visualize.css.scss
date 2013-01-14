@@ -1,3 +1,41 @@
-// Place all the styles related to the visualize controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+@mixin page-shadow {
+	-webkit-box-shadow: 0 0 4px rgba(0, 0, 0, 0.2), inset 0 0 50px rgba(0, 0, 0, 0.1);
+	-moz-box-shadow: 0 0 4px rgba(0, 0, 0, 0.2), inset 0 0 50px rgba(0, 0, 0, 0.1);
+	box-shadow: 0 0 5px rgba(0, 0, 0, 0.2), inset 0 0 50px rgba(0, 0, 0, 0.1);
+	background-image: url('/assets/cream_dust.png');
+}
+
+@mixin vision-board-size{
+	width: 700px; 
+	height:600px; 
+	min-width: 700px;
+}
+
+
+#catalog { 
+	float:left; 
+	width: 20%; 
+	margin-left: 10%; 
+	border-radius: 5px;
+	padding: 30px 3px;
+	min-width: 200px;
+	text-align: center;
+}
+
+#selection {list-style-type: none}
+
+#vision_board { 
+	float:left; 
+	list-style: none; 
+	overflow: hidden;
+	padding: 30px 0px 0px 0px;
+	text-align: center;
+	@include page-shadow;
+	@include vision-board-size;
+}
+
+.small {height: 80px; width: 55px}
+
+.big:hover {cursor: move;}
+
+.image{position:absolute}

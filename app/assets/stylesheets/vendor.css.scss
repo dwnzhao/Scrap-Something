@@ -1,3 +1,29 @@
-// Place all the styles related to the Vendor controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+$light_blue: rgba(102, 153, 204, 0.9); 
+$gold: #D6A44B;
+$grey: #616161;
+
+@mixin center{
+margin-left: auto;	
+margin-right: auto;
+}
+
+$standard_font_size: 12px;
+
+
+/*----------------------------------------------------*/
+
+.vendor{color: $light_blue;}
+
+#vendor-card{
+	background-color: white; 
+	padding: 10px;
+	border: 10px solid $gold;
+	color: $grey;
+	width: 600px;
+	line-height: 1.5em;
+	@include center;
+}
+
+.vendor_browse_table, .vendor_browse_table a{
+	font-size: $standard_font_size;
+}

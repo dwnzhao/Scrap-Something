@@ -1,0 +1,102 @@
+/*
+* This is a manifest file that'll be compiled into application.css, which will include all the files
+* listed below.
+*
+* Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+* or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+*
+* You're free to add application-wide styles to this file and they'll appear at the top of the
+* compiled file, but it's generally better to create a new file per style scope.
+*
+*= require bootstrap_and_overrides
+*= require_self
+*/
+
+$grey: #616161;
+$orange: #ff9900;
+
+$font-family: verdana;
+
+@mixin center{
+margin-left: auto;	
+margin-right: auto;
+}
+
+$standard_font_size_small: 11px;
+
+
+/*----------------------------------------------------*/
+
+body, p, h1, h2, h3, h4, h5, table, th, td, a{text-decoration:none; font-family: $font-family; font-weight: 100; color: $grey}
+
+table, .table{display: table; @include center}
+
+body, div, p, a {font-size: $standard_font_size_small}
+
+h1, h2, h3, h4, .dropdown-menu, .alert {text-align: center}
+
+td {text-align: left;}
+
+li{list-style: none}
+
+a {color: $grey; opacity: 0.8;}
+
+a:hover {opacity: 1; text-decoration: none; color: $grey}
+
+
+/*lines & buttons & text-boxes*/
+.button {
+	-moz-box-shadow:inset 0px 1px 0px 0px #ffffff;
+	-webkit-box-shadow:inset 0px 1px 0px 0px #ffffff;
+	box-shadow:inset 0px 1px 0px 0px #ffffff;
+	background-color:white;
+	-moz-border-radius:6px;
+	-webkit-border-radius:6px;
+	border-radius:6px;
+	border:1px solid #dcdcdc;
+	display:inline-block;
+	color:#777777;
+	font-family:arial;
+	font-size:10px;
+	font-weight:bold;
+	text-decoration:none;
+	text-shadow:1px 1px 0px #ffffff;
+	margin-bottom:6px;
+	}.button:active{position:relative;top:1px;}
+
+	.dashed {
+		border: 0; 
+		border-bottom: 1px dashed #ccc; 
+		background: #999;
+	}
+
+	input[type=text]{
+		font-size: 11px;
+		color: grey;
+		outline: none;	
+	}
+
+	.field_with_errors {color: $orange;}
+
+	#errorExplanation, #errorExplanation ul li{
+		font-size: $standard_font_size_small;
+		color: $orange;
+		margin-left: 10%;
+	}
+
+	.alert{ 
+		width: 76%;
+		margin-left: auto;
+		margin-right: auto;
+	}
+
+/*blocks*/
+
+li.dropdown:hover .dropdown-menu{
+	display: block;    
+	opacity: 1;
+}
+
+.search {height: 18px; width:160px;}
+
+.column{display: table-cell; vertical-align: top;}
