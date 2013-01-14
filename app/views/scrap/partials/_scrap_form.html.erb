@@ -37,8 +37,10 @@
 <% if vendor_authorization?%>
 <div class="control-group">
 	<%= f.label(:visible, "Visible to public?", :class=> 'control-label')%>
-	<div class="controls">
+	<div class="controls" style="text-alignment: right">
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 		<%= f.radio_button(:visibility, true, :id => 'radio_buttons') %>Yes
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 		<%= f.radio_button(:visibility, false, :id => 'radio_buttons') %>No
 	</div>
 </div>
@@ -49,6 +51,16 @@
 		<%= text_field_tag(:keywords, params[:keywords])%>
 	</div>
 </div>
+
+<%else%>
+<div class="control-group">
+	<%= label_tag('inputTags', raw("Tags - separate with <br> commas (ex. traditional, floral):"), :class=> 'control-label')%>
+	<div class="controls">
+		<%= text_field_tag(:tags, params[:tags])%>
+	</div>
+</div>
+
+
 <%end%>
 
 <div class="control-group">
@@ -58,11 +70,13 @@
 	</div>
 </div>	
 
+<% if !vendor_authorization?%>
+
 <div class="control-group" >
 	<%= f.label(:tabs, "Save to tabs", :class=> 'control-label')%>
 	<div class="controls" id="tabs">
 		<%= render(:partial => "scrap/partials/create_tab", :locals => {:tabs => @tabs, :scrap => @scrap})%>	
 	</div>
 </div>	
-
+<%end%>
 

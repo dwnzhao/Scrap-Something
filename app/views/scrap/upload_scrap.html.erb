@@ -9,12 +9,11 @@
 	<%= render(:partial => 'scrap/partials/scrap_form', :locals => {:f => f})%><br/>
 
 	<br><br><br><br>
+	
 	<div style="margin-left: 25%"><%= submit_tag "Save", :class =>'button' %></div>
 </div>
 
 <% end %>
-
-
 
 
 
@@ -27,16 +26,20 @@
 
 	<%= render(:partial => 'scrap/partials/scrap_form', :locals => {:f => f, :form => 'upload'})%><br/>
 
-	<br><br><br><br>
+	<br>
 	<div style="margin-left: 25%"><%= submit_tag "Save", :class =>'button' %></div>
 
 	<% end %>
 </div>
+
 <% end %>
+
+<% if !vendor_authorization?%>
+
 
 <div  ng-app="MyApp" ng-controller = "TabController" style="position: relative; top: -90px">
 
 	<%= render(:partial => "common/add_tab_form")%>	
-
-<br/><br/><br/>
 </div>
+
+<%end%>

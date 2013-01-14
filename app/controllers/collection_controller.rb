@@ -14,21 +14,24 @@ class CollectionController < ApplicationController
     if vendor_authorization?
       redirect_to(:action => "view_items", :controller => 'vendor')
     else
-      @selected_collection = get_all_user_scraps.paginate(:page => params[:page], :per_page => 8)
-      @user = get_session_user
-      @categories = get_all_user_categories
-      @vb = get_session_user.vision_boards
+      @collection = get_all_user_scraps.paginate(:page => params[:page], :per_page => 8)
+      if (params[:page])
+        render("collection/expand.js")
+      else
+        @user = get_session_user
+        @categories = get_all_user_categories
+        @tags = get_all_user_tags
+        @vb = get_session_user.vision_boards
+      end
     end
   end
-  
+
   def tab_max_error
     flash[:warning] = "you cannot add any more tabs (max 7 tabs)"
     redirect_to(:action => 'view_collection')      
   end
 
   def browse_collection
-    @categories = Category.all
-    @cities = City.all.collect(&:city)
     if (params[:category_id])
       @collection = Category.find(params[:category_id]).scraps.paginate(:page => params[:page], :per_page => 9)
     elsif (params[:keyword_id])
@@ -39,14 +42,25 @@ class CollectionController < ApplicationController
       @collection = Scrap.public_scraps.paginate(:page => params[:page], :per_page => 9)
     end
     flash.now[:info] = "sorry, nothing found" if @collection.empty?
+    if (params[:page])
+      render("collection/expand.js")
+    else
+      @categories = Category.all
+      @cities = City.all.collect(&:city)
+    end
   end
 
   def category_filter
     if params[:favorite]
       @selected_collection = get_all_user_favorite_scraps
       render("collection/filter_home.js")
-    elsif params[:user_specific]
+    elsif params[:tag_id]
+      @selected_collection = Tag.find(params[:tag_id]).scraps & get_all_user_scraps
+      @selected_collection.paginate(:page => params[:page], :per_page => 9) 
+      render("collection/filter_home.js")
+    elsif params[:category_id]
       @selected_collection = Category.find(params[:category_id]).scraps & get_all_user_scraps
+      @selected_collection.paginate(:page => params[:page], :per_page => 9) 
       render("collection/filter_home.js")
     end
   end

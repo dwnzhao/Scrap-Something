@@ -4,12 +4,13 @@ class Scrap < ActiveRecord::Base
   has_attached_file :photo, :styles => { :medium => "200x300#", :thumb => "50x50#" }
   
   validates :creator_id, :presence => true
-  validates :photo, :attachment_presence => {:message => "must upload an image"}
+  validates :photo, :presence => {:message => "must upload an image"}
   validates :name, :presence => {:message => "is required"}, :length => {:maximum => 25}
   
   has_many :images, :dependent => :destroy 
   belongs_to :category, :counter_cache => true
   has_and_belongs_to_many :keywords
+  has_and_belongs_to_many :tags
   has_many :collection_items
   has_many :collections, :through => :collection_items
   has_many :tab_items

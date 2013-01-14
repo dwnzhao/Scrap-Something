@@ -1,0 +1,13 @@
+$('<%= j(render(:partial => "collection/partials/collection_view", :locals => {:images => @collection}))%>').appendTo('#center_panel').hide().fadeIn('300');
+
+totalPages = <%= @collection.total_pages%>;
+$('#mainpage').css('height', $('#mainpage').height() + 300);
+
+// scrap hover 
+$(".scrap_asset").hover(function() {
+	$(this).siblings(".scrap_hover").fadeIn();	
+});
+
+$(".scrap_block").mouseleave(function() {
+	$(this).children(".scrap_hover").fadeOut();		
+});

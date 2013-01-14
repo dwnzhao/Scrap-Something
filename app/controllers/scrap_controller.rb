@@ -29,13 +29,14 @@ class ScrapController < ApplicationController
     end 
   end
 
-
   def save_upload_scrap
     @scrap = Scrap.new(params[:scrap])
     @scrap.creator_id = session[:user_id]
-    Category.find_by_name(params[:category]).scraps << @scrap
+    @scrap.save
     if !@scrap.new_record?
+      Category.find_by_name(params[:category]).scraps << @scrap
       process_keywords(params[:keywords], @scrap) if params[:keywords]
+      process_tags(params[:tags], @scrap) if params[:tags]
       process_tabs(params[:tabs], @scrap)
       get_session_user.collections.uploaded.scraps << @scrap
       flash[:notice] = "Clip added!"
@@ -47,6 +48,7 @@ class ScrapController < ApplicationController
       return
     else
       @categories = Category.all.collect(&:name)
+      @tabs = get_session_user.tabs.uniq
       render('upload_scrap', :layout => 'standard')
     end
   end

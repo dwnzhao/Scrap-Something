@@ -13,7 +13,7 @@ class TabController < ApplicationController
       tab = Tab.new()
       tab.name = params[:name]
       user.tabs << tab
-    rescue
+    rescue ActiveResource::MethodNotAllowed
       flash[:warning] = "cannot add any more tabs (max is 7)"
       render :js => "<script>window.location = '/collection/view_collection'</script>"
     else

@@ -71,11 +71,14 @@
 
 		<%= render(:partial => "common/add_tab_form")%>	
 
-	<hr>
 
-
+	</div>
+	
 	<%if !@vendor_items.blank? %>
+
 	<div class="table">
+
+		<hr>
 		<p class="lead" style="align: 'right';">Also by <%= link_to(@vendor.company, {:action => 'vendor_detail', :controller => 'vendor', :vendor_id => @vendor.id}, {:class => "fancybox", :class => "vendor", :style => "font-size: 24px"})%>:</p>
 
 		<% @vendor_items.each_with_index do |scrap, index|%>

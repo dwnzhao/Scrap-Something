@@ -44,7 +44,7 @@ class AccessController < ApplicationController
     def logout      
       session[:user_id] = nil
       get_session_user(false)
-      redirect_to(:action => "browse_collection", :controller => 'collection')
+      redirect_to('https://docs.google.com/spreadsheet/embeddedform?formkey=dE00T21hQkpXTGRKZlZiSWl1UERyYmc6MQ')
     end
 
     def authenticate

@@ -1,12 +1,4 @@
-<%if current_page?(:action => 'view_collection')%>
-<div class="scrap_block_blank">
-	<div class="scrap_asset"><%=link_to(image_tag('/assets/AddClip.png', {:style => "width:200px; height:290px"}), {:action => "upload_scrap", :controller => "scrap"})%>
-	</div>
-</div>
-<%end%>
-
-<% images.in_groups_of(3, false) do |row_of_images|%>
-<% for image in row_of_images%>
+<% for image in images%>
 <div class ="scrap_block">
 	<div class="scrap_asset">
 		<%=link_to(image_tag(image.photo.url(:medium)), {:action => "view_scrap_detail", :scrap_id => image.id, :controller => "scrap"}, {:class => 'fancybox'})%>
@@ -29,6 +21,3 @@
 	</div>
 </div>
 <%end%>
-
-<br>	
-<%end%>		

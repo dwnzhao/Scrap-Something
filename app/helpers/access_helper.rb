@@ -26,7 +26,7 @@ module AccessHelper
 
   def user_binder
     html = ''
-    html << session[:user_first_name]
+    html << User.find(session[:user_id]).first_name
     html << "'s Binder"
     return html.html_safe
   end

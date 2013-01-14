@@ -42,13 +42,13 @@ function TabController($scope, $http) {
 	$scope.addTab = function() {
 		angular.element('#tab_form').addClass('hide');
 		$http.post('/tab/create_tab/', {name: $scope.tabText}).success(function(data, status, headers, config) {
-			$scope.tabs.push({name:$scope.tabText});
 			$scope.tabText = '';
 			angular.element('#add-button').css('display', "block");
 			angular.element('body').append(data);
+			$scope.tabs.push({name:$scope.tabText});
 			
 		}).error(function(data, status, headers, config) {
-		
+
 		});
 	};
 
@@ -60,7 +60,7 @@ function TabController($scope, $http) {
 			$scope.tabText = '';
 			$scope.result = data;
 			angular.element('#add-button').css('display', "block");
-			
+
 			angular.element('#tabs').html($scope.result);
 		}).error(function(data, status, headers, config) {
 			window.location = "/collection/tab_max_error"

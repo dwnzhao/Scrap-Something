@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130104070318) do
+ActiveRecord::Schema.define(:version => 20130113234143) do
 
   create_table "categories", :force => true do |t|
     t.string   "name"
@@ -47,6 +47,11 @@ ActiveRecord::Schema.define(:version => 20130104070318) do
   end
 
   add_index "collection_items", ["collection_id", "scrap_id"], :name => "index_collection_items_on_collection_id_and_scrap_id"
+
+  create_table "collection_vendors", :force => true do |t|
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "collections", :force => true do |t|
     t.integer  "user_id"
@@ -116,6 +121,13 @@ ActiveRecord::Schema.define(:version => 20130104070318) do
 
   add_index "scraps", ["creator_id"], :name => "index_scraps_on_creator_id"
 
+  create_table "scraps_tags", :id => false, :force => true do |t|
+    t.integer "scrap_id"
+    t.integer "tag_id"
+  end
+
+  add_index "scraps_tags", ["scrap_id", "tag_id"], :name => "index_scraps_tags_on_scrap_id_and_tag_id"
+
   create_table "shared_scraps", :force => true do |t|
     t.integer  "user_id"
     t.integer  "bookmarked_scrap_id"
@@ -144,6 +156,15 @@ ActiveRecord::Schema.define(:version => 20130104070318) do
   end
 
   add_index "tabs", ["name"], :name => "index_tabs_on_name"
+
+  create_table "tags", :force => true do |t|
+    t.string   "name"
+    t.integer  "scrap_count"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  add_index "tags", ["name"], :name => "index_tags_on_name"
 
   create_table "users", :force => true do |t|
     t.string   "first_name",          :limit => 25

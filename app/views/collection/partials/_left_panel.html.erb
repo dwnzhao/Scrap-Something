@@ -19,21 +19,35 @@
 <br><br>
 <hr>
 
-<div id="vision_boards"><br>
-	my pages <br><br>
-	<% @vb.each_with_index do |vb, index|%>
-	<p><%= vb.name%>
-		<%= link_to(image_tag(vb.photo.url, :size => "100x100"), vb.photo.url, {:class => "fancybox_vb", :title => vb.name})%>
-		<%= link_to(raw('<i class="icon-trash"></i>'), {:action => 'delete', :controller => 'visualize', :vb_id => vb.id})%>
 
-	</p>
-	<% if (index+1)%3==0 %>
+<%if !tags.blank?%>
+<div id="tag_table"><br>
+	tags
+	<br><br>
+	<% tags.in_groups_of(4, false) do |row_of_tags|%>
+	<% for tag in row_of_tags%>
+	<%= link_to(tag.name, {:action => "category_filter", :tag_id => tag.id, :controller => "collection",}, :remote => true) %>&nbsp;&nbsp;
+	<%end%>
 	<br>
-	<%end%>		
+	<%end%>
+	</div><hr>
 	<%end%>
 
-	<br>
-	<br>
-	<br>
+	<div id="vision_boards"><br>
+		my pages <br><br>
+		<% @vb.each_with_index do |vb, index|%>
+		<p><%= vb.name%>
+			<%= link_to(image_tag(vb.photo.url, :size => "100x100"), vb.photo.url, {:class => "fancybox_vb", :title => vb.name})%>
+			<%= link_to(raw('<i class="icon-trash"></i>'), {:action => 'delete', :controller => 'visualize', :vb_id => vb.id})%>
 
-</div>
+		</p>
+		<% if (index+1)%3==0 %>
+		<br>
+		<%end%>		
+		<%end%>
+
+		<br>
+		<br>
+		<br>
+
+	</div>

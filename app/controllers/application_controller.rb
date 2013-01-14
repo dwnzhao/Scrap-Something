@@ -68,6 +68,20 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def process_tags(tags, scrap)
+    full_list = tags.split(",")
+    clean_list = []
+    full_list.each {|tag| clean_list << tag.strip}
+    clean_list.each do |tag|
+      t = Tag.find_by_name(tag)
+      if t.nil?  
+        t = Tag.new()
+        t.name = tag
+      end
+      scrap.tags << t
+    end
+  end
+
   def get_tabs_from(tab_list)
     return [] if tab_list.blank?
     return tab_list.collect {|tab| Tab.find_by_id(tab.to_i)}
@@ -115,6 +129,17 @@ class ApplicationController < ActionController::Base
       user_categories << scrap.category
     end
     return user_categories.uniq
+  end
+
+
+
+  def get_all_user_tags
+    scrap_all = get_all_user_scraps
+    user_tags = []
+    scrap_all.each_with_index do |scrap, index|
+      user_tags << scrap.tags
+    end
+    return user_tags.flatten.uniq
   end
 
   def get_listing(id)

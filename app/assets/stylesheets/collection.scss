@@ -8,10 +8,10 @@ $standard_font_size: 12px;
 $medium_font_size: 14px;
 $medium_large_font_size: 14px;
 $large_font_size: 28px;
+$left_border_size: 10px;
 
-
-$center_align_min_width: 1000px;
-$center_align_width: 1149px;
+$center_align_min_width: 900px;
+$center_align_width: 1109px;
 
 $mainpage_height: 1100px;
 $mainpage_top_margin: 10px;
@@ -50,6 +50,7 @@ min-width: $center_align_min_width;
 text-align: center;
 @include center-align;
 @include box-shadow;
+border-left: $left_border_size solid $light_blue_border; 
 }
 
 .hero-unit p.title, .gold{
@@ -64,7 +65,7 @@ position: relative;
 background-color: white; 
 height: $mainpage_height; 
 top: -$mainpage_top_margin;
-border-left: 10px solid $light_blue_border; 
+border-left: $left_border_size solid $light_blue_border; 
 min-width: $center_align_min_width;
 @include center-align;
 @include box-shadow;
@@ -74,14 +75,14 @@ min-width: $center_align_min_width;
 width: $center_align_width; 
 position: relative; 
 top: -60px;
-height:800px; 
+height:700px; 
 overflow: hidden;
 padding: 30px 0px 0px 0px;
 min-width: $center_align_min_width;
 @include center;
 @include page-shadow;
 background-color: $light_blue_background;
-border-top: 30px solid rgba(255, 255, 255, 0.3);
+border-top: 35px solid rgba(255, 255, 255, 0.2);
 }
 
 .circle{
