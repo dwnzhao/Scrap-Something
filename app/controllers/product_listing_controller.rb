@@ -1,6 +1,7 @@
 class ProductListingController < ApplicationController
   layout 'standard' 
   before_filter :confirm_vendor_authorization, :except => []
+    before_filter :confirm_test_authorization
 
   def add_listing
     user = get_session_user

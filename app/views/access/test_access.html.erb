@@ -1,0 +1,24 @@
+<% if !flash[:warning].blank?%>
+	<%= flash[:warning]%>
+	<hr>
+<%end%>
+
+<div>
+<%= form_tag({:action => "tester_access", :controller => 'access'}, :class => 'form-horizontal') do %>
+<div class="control-group">
+	<%= label_tag 'inputUsername', 'username:'%>
+	<div class="controls">
+		<%= text_field_tag(:username)%>
+	</div>
+</div>
+<div class="control-group">
+	<%= label_tag 'inputPassword:', 'Password:'%>
+	<div class="controls">
+		<%= password_field_tag(:password)%>
+	</div>
+</div>
+</div>
+
+<br>
+<%= submit_tag "log in", :class=>'button'%>
+<%end%>	<br><br><br>	

@@ -1,6 +1,7 @@
 class ShareController < ApplicationController
 
   before_filter :confirm_logged_in, :except => []
+  before_filter :confirm_test_authorization
 
   def bookmark
     scrap = Scrap.find(params[:scrap_id])
@@ -17,18 +18,18 @@ class ShareController < ApplicationController
     end
     redirect_to(:action => 'view_collection', :controller => 'collection')
   end
-  
+
   def favor
     scrap = Scrap.find(params[:scrap_id])
     get_session_user.collections.favorite.scraps << scrap
     scrap.update_attribute(:number_of_shares, scrap.number_of_shares + 1)
     redirect_to(:action => 'view_collection', :controller => 'collection')
   end
-  
+
   def defavor
     scrap = Scrap.find(params[:scrap_id])
     get_session_user.collections.favorite.scraps.destroy(scrap)
     redirect_to(:action => 'view_collection', :controller => 'collection')
   end
-  
+
 end

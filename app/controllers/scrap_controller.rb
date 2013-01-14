@@ -2,6 +2,7 @@ class ScrapController < ApplicationController
   layout 'scrap_detail'
   before_filter :confirm_logged_in, :except => [:view_scrap_detail, :switch_image, :switch_scrap]
   respond_to :html, :js
+    before_filter :confirm_test_authorization
 
   def upload_scrap
     @scrap = Scrap.new

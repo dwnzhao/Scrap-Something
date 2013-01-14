@@ -5,6 +5,9 @@ class CollectionController < ApplicationController
   respond_to :html, :js
 
   before_filter :confirm_logged_in, :except => [:browse_collection, :search, :category_browse, :landing_page, :advanced_category_filter, :browse_by_keyword]
+  
+  before_filter :confirm_test_authorization
+  
 
   def index
     redirect_to(:action => 'browse_collection')      

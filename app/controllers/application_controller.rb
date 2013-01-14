@@ -31,6 +31,15 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def confirm_test_authorization
+    unless session[:test_id]
+      flash.now[:warning] = "please log in"
+      render('/access/test_access', :layout => false)
+      return false
+    end
+    return true
+  end
+
   def confirm_vendor_authorization
     unless (get_session_user.user_level > 1)
       flash.now[:warning] = "You must be a vendor to perform this task"

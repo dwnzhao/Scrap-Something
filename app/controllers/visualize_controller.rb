@@ -1,5 +1,6 @@
 class VisualizeController < ApplicationController
   before_filter :confirm_logged_in, :except => []
+  before_filter :confirm_test_authorization
   require 'base64'
   layout 'standard'
 
@@ -20,12 +21,12 @@ class VisualizeController < ApplicationController
     get_session_user.vision_boards << vb
     render :js => "window.location = '/collection/view_collection'"
   end
-  
+
   def delete
     VisionBoard.find(params[:vb_id]).destroy
     flash[:notice] = "Vision Board deleted..."
     redirect_to(:action => 'view_collection', :controller => 'collection')
-    
+
   end
 
 end

@@ -1,7 +1,8 @@
 class UserController < ApplicationController
   before_filter :confirm_logged_in, :except => []
+  before_filter :confirm_test_authorization
   layout "standard"
-  
+
   def instructed
     get_session_user.update_attribute(:instructed, true)
     redirect_to(:action => "view_collection", :controller => "collection") 
@@ -11,7 +12,7 @@ class UserController < ApplicationController
     get_session_user.update_attribute(:instructed, false)
     redirect_to(:action => "view_collection", :controller => "collection") 
   end
-  
+
   def edit
     @user = get_session_user
     @cities = City.all.collect(&:city)   
@@ -46,5 +47,5 @@ class UserController < ApplicationController
     flash[:notice] = "Deleted profile..."
     redirect_to(:action => "index")
   end
-  
+
 end

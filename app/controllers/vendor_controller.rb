@@ -3,6 +3,7 @@ class VendorController < ApplicationController
 
   layout 'standard'
   before_filter :confirm_vendor_authorization, :except => [:vendor_detail, :advanced_filter_vendor, :browse_vendors]
+  before_filter :confirm_test_authorization
 
   def vendor_signup
     @vendor = Vendor.new
