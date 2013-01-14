@@ -27,7 +27,7 @@
 		<%= render(:partial => "collection/partials/home_center_top_panel", :locals => {:user => @user})%>	
 
 
-		<%if current_page?(:action => 'view_collection')%>
+		<%if current_page?(:action => 'view_collection') && get_session_user.instructed%>
 		<div class="scrap_block_blank">
 			<div class="scrap_asset"><%=link_to(image_tag('/assets/AddClip.png', {:style => "width:200px; height:290px"}), {:action => "upload_scrap", :controller => "scrap"})%>
 			</div>
