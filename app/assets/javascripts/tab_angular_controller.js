@@ -32,6 +32,7 @@ module.config(["$httpProvider", function(provider) {
 	}]
 );
 
+TabController.$inject = ['$scope', '$http'];
 
 
 function TabController($scope, $http) {
