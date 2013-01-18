@@ -1,6 +1,6 @@
 ScrapSomething::Application.routes.draw do
 
- root :to => "collection#landing_page" 
+ root :to => "access#index" 
  # get "home/index"
 
  # The priority is based upon order of creation:

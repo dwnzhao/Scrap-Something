@@ -69,7 +69,9 @@ $(document).ready(function() {
 
 
 	// price-range slider 
-
+	
+	// need to process this: var slider_value = $("#amount");
+	
 	$( "#slider" ).slider({
 		range: true,
 		min: 1,
@@ -78,6 +80,7 @@ $(document).ready(function() {
 		slide: function( event, ui ) {
 			$( "#amount" ).val(Array(ui.values[0]+1).join("$") + " - " + Array(ui.values[1]+1).join("$") );
 		}
+		
 	});
 
 	// endless page

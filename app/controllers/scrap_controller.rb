@@ -2,7 +2,7 @@ class ScrapController < ApplicationController
   layout 'scrap_detail'
   before_filter :confirm_logged_in, :except => [:view_scrap_detail, :switch_image, :switch_scrap]
   respond_to :html, :js
-    before_filter :confirm_test_authorization
+  before_filter :confirm_test_authorization
 
   def upload_scrap
     @scrap = Scrap.new
@@ -16,7 +16,11 @@ class ScrapController < ApplicationController
     @scrap = Scrap.find(params[:scrap_id])
     user = User.find(@scrap.creator_id)
     @categories = @scrap.category
-    @image = @scrap.photo
+    if (params[:image_id])
+      @image = Image.find(params[:image_id])
+    else
+      @image = @scrap.photo
+    end
     @icons = @scrap.images - Array(@image)
     @keywords = @scrap.keywords
     unless user.vendor.blank?
@@ -128,14 +132,6 @@ class ScrapController < ApplicationController
     image = Image.find(params[:image_id]).destroy
     flash[:notice] = "Image deleted ..."
     redirect_to(:action => 'view_collection', :controller => 'collection')
-  end
-
-  def switch_image
-    @image = Image.find(params[:image_id])
-    @scrap = @image.scrap
-    @categories = get_category_names(@scrap)
-    @images = @scrap.images - @image.to_a
-    render :template => 'scrap/view_scrap_detail', :layout => 'scrap_detail'
   end
 
   def make_invisible

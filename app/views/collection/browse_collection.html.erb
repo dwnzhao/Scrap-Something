@@ -22,18 +22,18 @@
 
 		price range 
 
-		<%= text_field_tag(:price_range, "$ - $$$$$", :id => 'amount', :readonly => "true")%>
+		<%= text_field_tag(:price_range, params[:price_range] || "$ - $$$$$", :id => 'amount', :readonly => "true")%>
 
 		<div id="slider" style="width: 200px; float: right; height: 10px"></div>
 		<br><br><br><br><br><br>
 
 		location
-		<%= select_tag(:city, options_for_select(["all"] + @cities), :style => "width:150px; height:20px")%>
+		<%= select_tag(:city, options_for_select(["all"] + @cities, params[:city]), :style => "width:150px; height:20px")%>
 
 		<br><br><br><br>
 
 		keywords <br>
-		<%= text_field_tag(:keywords, "", {:class => 'search', :field => 'ex: traditional, floral', :autocomplete => "off"}) %> <br><br><br>
+		<%= text_field_tag(:keywords, params[:keywords], {:class => 'search', :field => 'ex: traditional, floral', :autocomplete => "off"}) %> <br><br><br>
 		<button type="submit" class = 'button'>update</button>
 
 		<%end%>

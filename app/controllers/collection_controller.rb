@@ -5,9 +5,9 @@ class CollectionController < ApplicationController
   respond_to :html, :js
 
   before_filter :confirm_logged_in, :except => [:browse_collection, :search, :category_browse, :landing_page, :advanced_category_filter, :browse_by_keyword]
-  
+
   before_filter :confirm_test_authorization
-  
+
 
   def index
     redirect_to(:action => 'browse_collection')      
@@ -18,14 +18,11 @@ class CollectionController < ApplicationController
       redirect_to(:action => "view_items", :controller => 'vendor')
     else
       @collection = get_all_user_scraps.paginate(:page => params[:page], :per_page => 8)
-      if (params[:page])
-        render("collection/expand.js")
-      else
-        @user = get_session_user
-        @categories = get_all_user_categories
-        @tags = get_all_user_tags
-        @vb = get_session_user.vision_boards
-      end
+      render("collection/expand.js") if (params[:page])
+      @user = get_session_user
+      @categories = get_all_user_categories
+      @tags = get_all_user_tags
+      @vb = get_session_user.vision_boards
     end
   end
 
@@ -45,12 +42,9 @@ class CollectionController < ApplicationController
       @collection = Scrap.public_scraps.paginate(:page => params[:page], :per_page => 9)
     end
     flash.now[:info] = "sorry, nothing found" if @collection.empty?
-    if (params[:page])
-      render("collection/expand.js")
-    else
-      @categories = Category.all
-      @cities = City.all.collect(&:city)
-    end
+    render("collection/expand.js") if (params[:page])
+    @categories = Category.all
+    @cities = City.all.collect(&:city)
   end
 
   def category_filter
@@ -88,10 +82,8 @@ class CollectionController < ApplicationController
     @collection = []
     price_range = calculate_price(params[:price_range])
     all = find_scraps_by_city_and_category(params[:city], params[:category_id])    
-    if all
-      all.each do |scrap|
-        @collection << scrap if (price_range[0]..price_range[1]).include?(scrap.product_listings[0].price)
-      end
+    for scrap in all
+      @collection << scrap if (price_range[0]..price_range[1]).include?(scrap.product_listings[0].price)
     end
     @collection = @collection.paginate(:page => params[:page], :per_page => 9)
     @categories = Category.all

@@ -26,7 +26,6 @@ class VisualizeController < ApplicationController
     VisionBoard.find(params[:vb_id]).destroy
     flash[:notice] = "Vision Board deleted..."
     redirect_to(:action => 'view_collection', :controller => 'collection')
-
   end
 
 end

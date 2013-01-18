@@ -2,8 +2,8 @@
 	<%= link_to(raw('<p class="title">Browse vendors</p>'), {:action => "browse_vendors", :controller => "vendor"}) %>
 
 	<%= form_tag({:action => 'browse_vendors', :controller => 'vendor'}) do %>
-	<%= select_tag(:business_type, options_for_select(['catering', 'dress & tux', 'photographer', 'venue']))%>
-	<%= select_tag(:city, options_for_select(@cities))%>
+	<%= select_tag(:business_type, options_for_select(['catering', 'dress & tux', 'photographer', 'venue'], params[:business_type]))%>
+	<%= select_tag(:city, options_for_select(@cities, params[:city]))%>
 	<button type="submit" class = 'button'>go</button>
 	<%end%>
 </div>

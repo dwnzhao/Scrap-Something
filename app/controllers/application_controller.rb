@@ -140,8 +140,6 @@ class ApplicationController < ActionController::Base
     return user_categories.uniq
   end
 
-
-
   def get_all_user_tags
     scrap_all = get_all_user_scraps
     user_tags = []
