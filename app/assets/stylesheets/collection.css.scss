@@ -117,6 +117,8 @@ background-color: $light_blue_background;
 padding: 0px 20px; 	
  a {
 	color: $light_blue;
+	font-size: $medium_font_size;
+	
  }
 }
 
@@ -180,7 +182,9 @@ text-align: center;
 .instruction{font-size: $medium_font_size;}
 
 #center_panel{
-margin-left: 300px; 
+margin-left: 300px;
+display: table;
+center-align: right; 
 }
 
 #center_panel ul li{

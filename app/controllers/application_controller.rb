@@ -121,7 +121,7 @@ class ApplicationController < ActionController::Base
     collection_all.each_with_index do |collection, index|
       selected_collection += collection.scraps
     end
-    return selected_collection
+    return selected_collection.uniq
   end
 
   def get_all_user_favorite_scraps

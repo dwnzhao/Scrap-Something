@@ -18,12 +18,12 @@
 		<li class="instruction">
 			As you add photos, organize your binder by adding clips to tabs or save as favorites for later.
 		</li>	<hr><br>
-		
+
 		<li class="instruction">Want to see how your wedding is going to look? 
-			<%=link_to("Create collages", {:action => 'visualize', :controller => 'visualize'}, {:class => 'link'})%>
+			<%=link_to("Visualize with collages", {:action => 'visualize', :controller => 'visualize'}, {:class => 'link'})%>
 			and share them with family and friends. 
 		</li> 	<hr><br>
-		
+
 	</ul>
 	<br>		
 </ul>
@@ -32,15 +32,7 @@
 <%=link_to("got it!", {:action => 'instructed', :controller => 'user'})%>
 </div>
 
-<% elsif !@collection.empty?%>
-
-<div class = "my_scrap">
-	<%= render(:partial => "collection/partials/collection_view", :locals => {:images => @collection})%>
-</div>
-
-<%else%>
-<%= render(:partial => "collection/partials/collection_view", :locals => {:images => [], :link_description => "remove bookmark", :method => "remove_bookmark"})%>
-
 <%end%>
-</div>
+
+<%= render(:partial => "collection/partials/collection_view", :locals => {:images => @collection})%>
 

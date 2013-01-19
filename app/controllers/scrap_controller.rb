@@ -44,6 +44,7 @@ class ScrapController < ApplicationController
       process_tags(params[:tags], @scrap) if params[:tags]
       process_tabs(params[:tabs], @scrap)
       get_session_user.collections.uploaded.scraps << @scrap
+      get_session_user.update_attribute(:instructed, true)
       flash[:notice] = "Clip added!"
       if vendor_authorization?
         redirect_to(:action => "add_listing", :controller => 'product_listing', :scrap_id => @scrap.id) 

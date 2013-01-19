@@ -13,7 +13,7 @@
 		<%= process_favorite(image)%>
 	</div>
 
-	<div class="scrap_hover"><br>
+	<div class="scrap_hover">
 		<%=link_to({:action => "view_scrap_detail", :scrap_id => image.id, :controller => "scrap"}, {:class => 'fancybox', :remote => true}) do%>
 		<h6><%= image.name%></h6>
 		<p><%= truncate(image.description, :length => 300)%></p>

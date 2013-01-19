@@ -71,7 +71,7 @@ $(function() {
 
 		var dataURL = convert_to_image();
 
-		var form = '<div style="padding: 30px"><input id="vb_name" placeholder="name your vision board..." class="txt" /><br><hr><br><img style="width:150px; height:150px" src="'+dataURL+'"/><br><br><button class="button" id="save_vision_board">save</button></div>'
+		var form = '<div style="padding: 30px"><input id="vb_name" placeholder="name your collage..." class="txt" /><br><hr><br><img style="width:150px; height:150px" src="'+dataURL+'"/><br><br><button class="button" id="save_vision_board">save</button></div>'
 
 		$.fancybox(
 			form,

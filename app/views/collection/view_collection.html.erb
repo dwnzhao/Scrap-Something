@@ -26,16 +26,17 @@
 	<div ng-app="MyApp" ng-controller = "TabController" id="center_panel" style="position: absolute; top: 399px; margin-top:-370px;">
 		<%= render(:partial => "collection/partials/home_center_top_panel", :locals => {:user => @user})%>	
 
-
-		<%if current_page?(:action => 'view_collection') && get_session_user.instructed%>
-		<div class="scrap_block_blank">
-			<div class="scrap_asset"><%=link_to(image_tag('/assets/AddClip.png', {:style => "width:200px; height:290px"}), {:action => "upload_scrap", :controller => "scrap"})%>
+		<div id="center_panel_content">
+			<%if current_page?(:action => 'view_collection') && get_session_user.instructed%>
+			<div class="scrap_block_blank">
+				<div class="scrap_asset"><%=link_to(image_tag('/assets/AddClip.png', {:style => "width:200px; height:290px"}), {:action => "upload_scrap", :controller => "scrap"})%>
+				</div>
 			</div>
+			<%end%>
+
+			<%= render(:partial => "collection/partials/home_center_panel", :locals => {:user => @user, :collection => @collection})%>
 		</div>
-		<%end%>
-
-		<%= render(:partial => "collection/partials/home_center_panel", :locals => {:user => @user, :collection => @collection})%>
-
 	</div>
 
 
+</div>

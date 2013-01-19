@@ -37,17 +37,14 @@
 			<%=menu_nav_current?('view_collection', 'tab_filter') %> 
 			<%= link_to(user_binder, :action => 'view_collection', :controller => 'collection') %></li>
 
-
 			<%=menu_nav_current?('browse_collection', 'browse_vendors') %> 
 			<%= render(:partial => "common/partials/browse_dropdown")%>	
-
-
-			<%=menu_nav_current?('index') %> 
-			<%= link_to("Visualize", :controller => 'visualize') %></li>
 
 			<%=menu_nav_current?('upload_scrap') %> 
 			<%= render(:partial => "common/partials/clip_dropdown")%>	
 
+			<%=menu_nav_current?('index') %> 
+			<%= link_to("Visualize", :controller => 'visualize') %></li>
 
 			<%=menu_nav_current?('profile') %> 
 			<%= render(:partial => "common/partials/profile_dropdown")%>	
