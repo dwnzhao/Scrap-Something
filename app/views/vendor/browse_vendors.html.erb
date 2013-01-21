@@ -1,4 +1,4 @@
-<div class="hero-unit page-shadow" style="height: 70px">
+<div class="hero-unit page-shadow title-bar-unit">
 	<%= link_to(raw('<p class="title">Browse vendors</p>'), {:action => "browse_vendors", :controller => "vendor"}) %>
 
 	<%= form_tag({:action => 'browse_vendors', :controller => 'vendor'}) do %>
@@ -8,8 +8,7 @@
 	<%end%>
 </div>
 
-<img src="/assets/ring.png" height="70px" width="70px" style="position:absolute; top:230px; left: 170px; z-index: 3">
-<img src="/assets/ring.png" height="70px" width="70px" style="position:absolute; top:230px; left: 210px; z-index: 3">
+<%= render(:partial => "common/rings")%>
 
 <div id="mainpage">
 

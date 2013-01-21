@@ -28,7 +28,7 @@ body, p, h1, h2, h3, h4, h5, table, th, td, a{text-decoration:none; font-family:
 
 table, .table{display: table; @include center}
 
-body, div, p, a {font-size: $standard_font_size_small}
+body, div, p, a, form {font-size: $standard_font_size_small}
 
 h1, h2, h3, h4, .dropdown-menu, .alert {text-align: center}
 
@@ -82,7 +82,7 @@ a:hover {opacity: 1; text-decoration: none; color: $grey}
 	}
 
 	.alert{ 
-		width: 76%;
+		width: 80%;
 		margin-left: auto;
 		margin-right: auto;
 	}

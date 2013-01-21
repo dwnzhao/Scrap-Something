@@ -18,7 +18,7 @@ class ApplicationController < ActionController::Base
 
   def user_favorite
     return [] if session[:user_id].blank? || get_session_user.collections.favorite.nil?
-    return get_session_user.collections.favorite.scraps
+    return get_session_user.collections.favorite.scraps.uniq
   end
 
   def confirm_logged_in

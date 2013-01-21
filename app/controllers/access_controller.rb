@@ -18,6 +18,11 @@ class AccessController < ApplicationController
     if (params[:username] == 'LBBTester' && params[:password] == 'ScrapSomething')
       session[:test_id] = true
       redirect_to(:action => "browse_collection", :controller => "collection", )  
+    elsif
+      (params[:username] == 'DawnDemo' && params[:password] == 'ScrapSomething')
+        session[:test_id] = true
+        redirect_to(:action => "browse_collection", :controller => "collection", )  
+      
     else
       flash[:warning] = "wrong log in information"
       render( :layout => false, :action => 'test_access')

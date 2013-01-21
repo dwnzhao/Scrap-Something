@@ -3,6 +3,7 @@ $light_blue: rgba(102, 153, 204, 0.9);
 $light_blue_border: rgba(102, 153, 204, 0.5); 
 $light_blue_background: rgba(102, 153, 204, 0.3); 
 $dark_blue: #104E8B;
+$light_grey: #888888;
 
 $standard_font_size: 12px;
 $medium_font_size: 14px;
@@ -51,6 +52,11 @@ text-align: center;
 @include center-align;
 @include box-shadow;
 border-left: $left_border_size solid $light_blue_border; 
+}
+
+.title-bar-unit{
+height: 50px;
+
 }
 
 .hero-unit p.title, .gold{
@@ -118,7 +124,6 @@ padding: 0px 20px;
  a {
 	color: $light_blue;
 	font-size: $medium_font_size;
-	
  }
 }
 
@@ -135,7 +140,7 @@ outline: 10px solid rgba(255, 255, 255, 0.7)
 
 .fancy_button{
 background-color: white; 
-padding: 15px 30px; 
+padding: 10px 30px 30px 30px; 
 left: 40px;
 position: absolute;  
 opacity: 0.9; 
@@ -143,6 +148,9 @@ outline: 10px solid rgba(255, 255, 255, 0.4);
 width: 150px; 
 height: 13px; 
 text-align: center;
+border: none;
+font-size: 18px;
+color: $light_grey;
 }
 
 .fancy_button_black{
@@ -169,7 +177,7 @@ background-color: rgba(0, 0, 0, 0.4);
 outline: 10px solid rgba(0, 0, 0, 0.3);
 }
 
-.fancy_button:hover{
+.fancy_button:hover {
 opacity: 1;
 outline: 10px solid rgba(255, 255, 255, 0.7)	
 }
@@ -184,7 +192,8 @@ text-align: center;
 #center_panel{
 margin-left: 300px;
 display: table;
-center-align: right; 
+center-align: right;
+min-width: 500px; 
 }
 
 #center_panel ul li{

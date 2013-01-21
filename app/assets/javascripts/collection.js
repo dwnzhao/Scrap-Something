@@ -53,9 +53,9 @@ $(document).ready(function() {
 
 	// fancybox animation
 	$(".fancybox").fancybox({
-		'width'				: '65%',
+		'width'				: '55%',
 		'height'			: '100%',
-		'autoScale'     	: false,
+		'autoScale'     	: true,
 		'type'				: 'iframe',
 		'showCloseButton'	: true,	
 		'padding'			: '0',	        

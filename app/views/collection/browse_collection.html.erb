@@ -1,4 +1,4 @@
-<div class="hero-unit page-shadow browse_category">
+<div class="hero-unit page-shadow browse_category title-bar-unit">
 	<%= link_to(raw('<p class="title">Browse clips</p>'), {:action => "browse_collection", :controller => "collection"}) %>
 
 	<%for cat in @categories.to_a%>
@@ -6,8 +6,7 @@
 	<%end%>	
 </div>
 
-<img src="/assets/ring.png" height="70px" width="70px" style="position:absolute; top:215px; left: 170px; z-index: 3">
-<img src="/assets/ring.png" height="70px" width="70px" style="position:absolute; top:215px; left: 210px; z-index: 3">
+<%= render(:partial => "common/rings")%>
 
 <div id="mainpage">
 
