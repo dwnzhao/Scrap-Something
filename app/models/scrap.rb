@@ -4,7 +4,6 @@ class Scrap < ActiveRecord::Base
   has_attached_file :photo, :styles => { :medium => "200x300#", :thumb => "50x50#" }
   
   validates :creator_id, :presence => true
-  validates :photo, :presence => {:message => "must upload an image"}
   validates :name, :presence => {:message => "is required"}, :length => {:maximum => 25}
   
   has_many :images, :dependent => :destroy 

@@ -1,24 +1,6 @@
 <div class="hero-unit page-shadow">
 
-	<%if @from_url%>
-	<p class="title">Add a clip from the web </p> <hr>
-</br>
-
-<div style="text-align: left; margin-left: 30%">
-	<%= form_for(:scrap, :url => {:action => 'save_link_scrap', :controller => 'external'}, :html => {:multipart => true, :class => "form-horizontal"}) do |f| %>
-	<%= render(:partial => 'scrap/partials/scrap_form', :locals => {:f => f})%><br/>
-
-	<br><br><br><br>
-	
-	<div style="margin-left: 25%"><%= submit_tag "Save", :class =>'button' %></div>
-</div>
-
-<% end %>
-
-
-
-<%else%>
-<p class="title">Add a clip from file </p> <hr>
+<p class="title">Add a clip </p> <hr>
 </br>
 
 <div style="text-align: left; margin-left: 30%">
@@ -32,7 +14,6 @@
 	<% end %>
 </div>
 
-<% end %>
 
 <% if !vendor_authorization?%>
 

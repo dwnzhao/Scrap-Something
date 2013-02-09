@@ -33,18 +33,16 @@ class ScrapController < ApplicationController
       @remove_tabs = @scrap.tabs.uniq
     end 
   end
-
-  def save_upload_scrap
+  
+  def save_external(img_url)
+    external_image = open img_url
     @scrap = Scrap.new(params[:scrap])
+    @scrap.photo = external_image
     @scrap.creator_id = session[:user_id]
-    @scrap.save
+    Category.find_by_name(params[:category]).scraps << @scrap
     if !@scrap.new_record?
-      Category.find_by_name(params[:category]).scraps << @scrap
       process_keywords(params[:keywords], @scrap) if params[:keywords]
-      process_tags(params[:tags], @scrap) if params[:tags]
-      process_tabs(params[:tabs], @scrap)
-      get_session_user.collections.uploaded.scraps << @scrap
-      get_session_user.update_attribute(:instructed, true)
+      get_session_user.collections.external.scraps << @scrap
       flash[:notice] = "Clip added!"
       if vendor_authorization?
         redirect_to(:action => "add_listing", :controller => 'product_listing', :scrap_id => @scrap.id) 
@@ -54,8 +52,36 @@ class ScrapController < ApplicationController
       return
     else
       @categories = Category.all.collect(&:name)
-      @tabs = get_session_user.tabs.uniq
-      render('upload_scrap', :layout => 'standard')
+      render('scrap/link_scrap', :layout => 'access')
+    end
+  end
+
+  def save_upload_scrap
+    if !params[:img_url].empty?
+      save_external(params[:img_url])
+    else
+      @scrap = Scrap.new(params[:scrap])
+      @scrap.creator_id = session[:user_id]
+      @scrap.save
+      if !@scrap.new_record?
+        Category.find_by_name(params[:category]).scraps << @scrap
+        process_keywords(params[:keywords], @scrap) if params[:keywords]
+        process_tags(params[:tags], @scrap) if params[:tags]
+        process_tabs(params[:tabs], @scrap)
+        get_session_user.collections.uploaded.scraps << @scrap
+        get_session_user.update_attribute(:instructed, true)
+        flash[:notice] = "Clip added!"
+        if vendor_authorization?
+          redirect_to(:action => "add_listing", :controller => 'product_listing', :scrap_id => @scrap.id) 
+          return
+        end
+        redirect_to(:action => 'view_collection', :controller => 'collection')
+        return
+      else
+        @categories = Category.all.collect(&:name)
+        @tabs = get_session_user.tabs.uniq
+        render('upload_scrap', :layout => 'standard')
+      end
     end
   end
 

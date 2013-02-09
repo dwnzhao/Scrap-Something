@@ -1,6 +1,5 @@
 <%= error_messages_for(@scrap)%>
 
-<%if @from_url%>
 
 <div class="control-group">
 	<%= f.label("URL of your clip: ", :class=> 'control-label')%>
@@ -10,7 +9,6 @@
 </div>
 
 
-<%else%>
 <div class="control-group">
 	<%= f.label("Upload your clip: ", :class=> 'control-label')%>
 	<div class="controls">
@@ -18,7 +16,6 @@
 	</div>
 </div>
 
-<%end%>
 
 <div class="control-group">
 	<%= f.label(:name, "Name your clip: ", :class=> 'control-label')%>
@@ -59,8 +56,6 @@
 		<%= text_field_tag(:tags, params[:tags])%>
 	</div>
 </div>
-
-
 <%end%>
 
 <div class="control-group">
@@ -70,8 +65,8 @@
 	</div>
 </div>	
 
-<% if !vendor_authorization?%>
 
+<% if !vendor_authorization?%>
 <div class="control-group" >
 	<%= f.label(:tabs, "Save to tabs", :class=> 'control-label')%>
 	<div class="controls" id="tabs">

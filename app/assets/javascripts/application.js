@@ -17,3 +17,5 @@
 //= require twitter/bootstrap/bootstrap-alert
 //= require twitter/bootstrap/bootstrap-button
 //= require twitter/bootstrap/bootstrap-dropdown
+//= require morris
+//= require raphael

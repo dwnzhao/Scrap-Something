@@ -15,7 +15,8 @@ class ApplicationController < ActionController::Base
       return @current_user
     end
   end
-
+  
+  
   def user_favorite
     return [] if session[:user_id].blank? || get_session_user.collections.favorite.nil?
     return get_session_user.collections.favorite.scraps.uniq
